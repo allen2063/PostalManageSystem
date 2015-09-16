@@ -849,10 +849,11 @@
 - (void)formDataBack:(NSNotification *)note{
     if ([[[note userInfo]objectForKey:@"result"] isEqualToString:@"1"]) {
         if ([app.network.specialInterface isEqualToString: @"Szxwd"]) {
-//            NSDictionary * data = [[note userInfo]objectForKey:@"info"];
+            NSDictionary * data = [[note userInfo]objectForKey:@"info"];
+            
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
-            //[applyAddBranchVC initTingZhi:data];
+            [applyAddBranchVC initTianJia:data];
             [self.navigationController pushViewController:applyAddBranchVC animated:YES];
         }
     }else{
