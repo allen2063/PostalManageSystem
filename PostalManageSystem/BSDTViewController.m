@@ -87,6 +87,7 @@
     yhxxxgBtn.frame = CGRectMake(1, NAVIGATIONHEIGHT+1,BTNWIDTH,BTNHEIGHT );
     [yhxxxgBtn addTarget:self action:@selector(jumpPageForBSDT:) forControlEvents:UIControlEventTouchUpInside];
     yhxxxgBtn.tag = 1;
+    yhxxxgBtn.userInteractionEnabled = YES;
     [self.view addSubview:yhxxxgBtn];
     
     UIButton * sqxzwdBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -223,13 +224,15 @@
         [self.loginView addSubview:forgetBtn];
         [self.view addSubview:self.loginView];
         [self.view bringSubviewToFront:self.loginView];
-        accountTextField.text = @"1";
+        accountTextField.text = @"测试";
+        passwordTextField.secureTextEntry = YES;
         passwordTextField.text = @"111111";
     }
 }
 
 - (void)jumpPageForBSDT:(UIButton*)btn{
-    
+    [self cancelView];
+
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     ChangeUserInfoViewController * changeUserInfoVC = [storyboard instantiateViewControllerWithIdentifier:@"changeUserInfoVC"];
