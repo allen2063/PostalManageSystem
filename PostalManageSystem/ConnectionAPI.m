@@ -159,8 +159,6 @@
 - (void)withInterface:(NSString *)interface andArgument1Name:(NSString *)argument1Name andArgument1Value:(NSString *)argument1Value {
     NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:argument1Value,argument1Name,nil];
     NSString *soapMsg =[NSString stringWithFormat:@"%@",dic];
-    //中文有乱码  转码
-    soapMsg = [ConnectionAPI replaceUnicode:soapMsg];
     NSLog(@"soapMsg %@",soapMsg);
     NSString * ur = [NSString stringWithFormat:@"%@%@",urlToServer,interface];
     NSURL * url = [NSURL URLWithString:ur] ;
@@ -188,8 +186,7 @@
 - (void)withInterface:(NSString *)interface andArgument1Name:(NSString *)argument1Name andArgument1Value:(NSString *)argument1Value andArgument2Name:(NSString *)argument2Name andArgument2Value:(id)argument2Value{
     NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:argument1Value,argument1Name,argument2Value,argument2Name, nil];
     NSString *soapMsg = [NSString stringWithFormat:@"%@",dic];
-    //中文有乱码  转码
-    soapMsg = [ConnectionAPI replaceUnicode:soapMsg];
+    
     NSLog(@"soapMsg %@",soapMsg);
     NSString * ur = [NSString stringWithFormat:@"%@%@",urlToServer,interface];
     NSURL * url = [NSURL URLWithString:ur] ;
@@ -216,8 +213,6 @@
 - (void)withInterface:(NSString *)interface andArgument1Name:(NSString *)argument1Name andArgument1Value:(NSString *)argument1Value andArgument2Name:(NSString *)argument2Name andArgument2Value:(NSString *)argument2Value andArgument3Name:(NSString *)argument3Name andArgument3Value:(id)argument3Value{
     NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:argument1Value,argument1Name,argument2Value,argument2Name,argument3Value,argument3Name, nil];
     NSString *soapMsg =[NSString stringWithFormat:@"%@",dic];
-    //中文有乱码  转码
-    soapMsg = [ConnectionAPI replaceUnicode:soapMsg];
     NSLog(@"soapMsg %@",soapMsg);
     NSString * ur = [NSString stringWithFormat:@"%@%@",urlToServer,interface];
     NSURL * url = [NSURL URLWithString:ur] ;
@@ -245,8 +240,6 @@
     
     NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:argument1Value,argument1Name,argument2Value,argument2Name,argument3Value,argument3Name,argument4Value,argument4Name, nil];
     NSString *soapMsg =[NSString stringWithFormat:@"%@",dic];
-    //中文有乱码  转码
-    soapMsg = [ConnectionAPI replaceUnicode:soapMsg];
     NSLog(@"soapMsg %@",soapMsg);
     NSString * ur = [NSString stringWithFormat:@"%@%@",urlToServer,interface];
     NSURL * url = [NSURL URLWithString:ur] ;
