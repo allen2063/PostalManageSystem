@@ -78,6 +78,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(userList:) name:@"userList" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getApplyList:) name:@"getApplyList" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(cellBack:) name:@"isScrolledToRight" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(btnStatusAction:) name:@"BtnAction" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(formDataBack:) name:@"bsdtApi/get" object:nil];
 
     isInitState =YES;
@@ -464,6 +465,86 @@
     }
 }
 
+//cell右滑后的按钮操作
+-(void)btnStatusAction:(NSNotification *)note{
+    NSString * actionString = [[note userInfo]objectForKey:@"action"];
+    NSString * statusString;
+    CustomTableViewCell * theCell = [[note userInfo]objectForKey:@"cell"];
+    if (theCell != nil) {
+        //遍历cell 找到点击按钮的cell
+        for (int row = 0; row < _dataListForDisplay.count; row ++) {
+            NSUInteger section = 0;
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+            CustomTableViewCell * cell = (CustomTableViewCell *)[_tableViewForDisplay cellForRowAtIndexPath:indexPath];
+            if(cell == theCell){
+                //判断按钮响应类型
+                if([actionString isEqualToString:@"delete"]){
+                    statusString = [[[_dataListForDisplay objectAtIndex:row] objectForKey:@"status"]stringValue];
+                    [self statusJuge:statusString AndAction:@"delete"];
+                }else if ([actionString isEqualToString:@"edit"]){
+                    statusString = [[[_dataListForDisplay objectAtIndex:row] objectForKey:@"status"]stringValue];
+                    [self statusJuge:statusString AndAction:@"edit"];
+                }else if ([actionString isEqualToString:@"upload"]){
+                    statusString = [[[_dataListForDisplay objectAtIndex:row] objectForKey:@"status"]stringValue];
+                    [self statusJuge:statusString AndAction:@"upload"];
+                }
+                NSLog(@"It's me, I will not back");
+            }
+        }
+    }
+}
+
+//改cell对应表的审核状态下是否能执行对应操作
+- (void)statusJuge:(NSString *)status AndAction:(NSString*)action{
+    //未审核
+    if ([status isEqualToString:@"0"]) {
+        //该情况下不允许上传图片
+        if ([action isEqualToString:@"upload"]) {
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"未审核" message:@"请在审核通过后上传照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        //允许删除或者修改
+        else if([action isEqualToString:@"delete"]){
+            NSLog(@"delete");
+        }else if([action isEqualToString:@"edit"]){
+            NSLog(@"edit");
+        }
+    }
+    //审核通过未上传  只能传照片
+    else if ([status isEqualToString:@"1"]){
+        if ([action isEqualToString:@"upload"]) {
+            //上传
+            NSLog(@"upload");
+            
+        }else{
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"已审核" message:@"审核通过后只能上传照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
+    //审核通过已上传  只能传照片
+    else if ([status isEqualToString:@"2"]){
+        if ([action isEqualToString:@"upload"]) {
+            //上传
+            NSLog(@"upload");
+            
+        }else{
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"已审核" message:@"审核通过后只能上传照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
+    //审核未通过 不能传照片  只能删除修改
+    else if ([status isEqualToString:@"3"]){
+        if ([action isEqualToString:@"upload"]) {
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"审核未通过" message:@"请在审核通过后上传照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }else if([action isEqualToString:@"delete"]){
+            NSLog(@"delete");
+        }else if([action isEqualToString:@"edit"]){
+            NSLog(@"edit");
+        }
+    }
+}
+
 
 #pragma  -mark 网络返回
 - (void)userList:(NSNotification *)note{
@@ -654,6 +735,10 @@
             cell.timeAndApllyPersonLabel.text = timeAndApllyPersonString;
         }
         //    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        if (segmentControl.selectedSegmentIndex == 0) {
+            //全部申请列表这不允许滑动
+            cell.backgroundScrollView.scrollEnabled = NO;
+        }
         return cell;
     }
 }
@@ -753,7 +838,6 @@
                 cell.backgroundScrollView.contentOffset = CGPointMake(0, 0);
             }];
         }
-
     }
     
 }
@@ -763,28 +847,10 @@
     if ([[[note userInfo]objectForKey:@"result"] isEqualToString:@"1"]) {
         if ([app.network.specialInterface isEqualToString: @"Szxwd"]) {
             NSDictionary * data = [[note userInfo]objectForKey:@"info"];
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
             [applyAddBranchVC initTianJia:data];
-=======
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
-            [applyAddBranchVC initTingZhi:data];
->>>>>>> parent of 7146785... update
-=======
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
-            [applyAddBranchVC initTingZhi:data];
->>>>>>> parent of 7146785... update
-=======
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
-            [applyAddBranchVC initTingZhi:data];
->>>>>>> parent of 7146785... update
             [self.navigationController pushViewController:applyAddBranchVC animated:YES];
         }
     }else{
