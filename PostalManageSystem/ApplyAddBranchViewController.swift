@@ -371,125 +371,125 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate {
     func initTianJia(dict: NSDictionary) {
 
         if (dict.valueForKey("sx") as! String == "szyzpbfwyycs")   {
-            chooseShiXiang.text = "设置邮政普遍服务营业场所"
+            chooseShiXiang!.text = "设置邮政普遍服务营业场所"
         }
         //崩溃   未初始化。。。
         if(dict.valueForKey("sx") as! String == "szqtyzyycs") {
-            chooseShiXiang.text = "设置其他营业场所"
+            chooseShiXiang!.text = "设置其他营业场所"
         }
         
         if (dict.valueForKey("jyfs") as! String == "zb")   {
-            chooseJingYingFangShi.text = "自办"
+            chooseJingYingFangShi!.text = "自办"
         }
         if(dict.valueForKey("jyfs") as! String == "wb") {
-            chooseJingYingFangShi.text = "委办"
+            chooseJingYingFangShi!.text = "委办"
         }
         
         if (dict.valueForKey("fwcq") as! String == "ziy")   {
-            chooseFangWuChangQuan.text = "自有"
+            chooseFangWuChangQuan!.text = "自有"
         }
         if(dict.valueForKey("fwcq") as! String == "zuy") {
-            chooseFangWuChangQuan.text = "租用"
+            chooseFangWuChangQuan!.text = "租用"
         }
         if (dict.valueForKey("fwcq") as! String == "wucsy")   {
-            chooseFangWuChangQuan.text = "无偿使用"
+            chooseFangWuChangQuan!.text = "无偿使用"
         }
         if(dict.valueForKey("fwcq") as! String == "qt") {
-            chooseFangWuChangQuan.text = "其他"
+            chooseFangWuChangQuan!.text = "其他"
         }
         
         if(dict.valueForKey("szdy") as! String == "csdq") {
-            chooseSheZhiDiYu.text = "城市地区"
+            chooseSheZhiDiYu!.text = "城市地区"
         }
         if (dict.valueForKey("szdy") as! String == "xzdq")   {
-            chooseSheZhiDiYu.text = "乡镇地区"
+            chooseSheZhiDiYu!.text = "乡镇地区"
         }
         if(dict.valueForKey("szdy") as! String == "ncdq") {
-            chooseSheZhiDiYu.text = "农村地区"
+            chooseSheZhiDiYu!.text = "农村地区"
         }
         
         if (dict.valueForKey("mqyt") as! String == "y")   {
-            chooseMenQianYouTong.text = "有"
+            chooseMenQianYouTong!.text = "有"
         }
         if(dict.valueForKey("mqyt") as! String == "w") {
-            chooseMenQianYouTong.text = "无"
+            chooseMenQianYouTong!.text = "无"
         }
         
-        changSuoMingCheng.text = dict.valueForKey("yzyycsmc") as! String
-        shi.text = dict.valueForKey("csdz_s") as! String
-        xian.text = dict.valueForKey("csdz_xqs") as! String
-        jieDao.text = dict.valueForKey("csdz_jx") as! String
-        menPaiHao.text = dict.valueForKey("csdz_h") as! String
-        jingDu.text = dict.valueForKey("csdz_jd") as! String
-        weiDu.text = dict.valueForKey("csdz_wd") as! String
+        changSuoMingCheng!.text = dict.valueForKey("yzyycsmc") as! String
+        shi!.text = dict.valueForKey("csdz_s") as! String
+        xian!.text = dict.valueForKey("csdz_xqs") as! String
+        jieDao!.text = dict.valueForKey("csdz_jx") as! String
+        menPaiHao!.text = dict.valueForKey("csdz_h") as! String
+        jingDu!.text = dict.valueForKey("csdz_jd") as! String
+        weiDu!.text = dict.valueForKey("csdz_wd") as! String
         
-        youBian.text = dict.valueForKey("yzbm") as! String
-        shangJiDanWei.text = dict.valueForKey("sjdw") as! String
-        cangSuoFuZeRen.text = dict.valueForKey("yycsfzr") as! String
-        lianXiDianHua.text = dict.valueForKey("lxdh") as! String
+        youBian!.text = dict.valueForKey("yzbm") as! String
+        shangJiDanWei!.text = dict.valueForKey("sjdw") as! String
+        cangSuoFuZeRen!.text = dict.valueForKey("yycsfzr") as! String
+        lianXiDianHua!.text = dict.valueForKey("lxdh") as! String
         
-        kaiYeShiJian.text = dict.valueForKey("kysj") as! String
+        kaiYeShiJian!.text = dict.valueForKey("kysj") as! String
         
-        jianZhuMianJi.text = dict.valueForKey("jzmj") as! String
-        yingYeShiJianZhouJi.text = dict.valueForKey("zyyr_ks") as! String
-        yingYeShiJianZhiZhouJi.text = dict.valueForKey("zyyr_js") as! String
-        yingYeShiJianJiDian.text = dict.valueForKey("sryysj_ksx") as! String
-        yingYeShiJianZhiJiDian.text = dict.valueForKey("ryysj_js") as! String
+        jianZhuMianJi!.text = dict.valueForKey("jzmj") as! String
+        yingYeShiJianZhouJi!.text = dict.valueForKey("zyyr_ks") as! String
+        yingYeShiJianZhiZhouJi!.text = dict.valueForKey("zyyr_js") as! String
+        yingYeShiJianJiDian!.text = dict.valueForKey("sryysj_ksx") as! String
+        yingYeShiJianZhiJiDian!.text = dict.valueForKey("ryysj_js") as! String
         
         
-        zhouKaiQuTianShu.text = dict.valueForKey("zkqts") as! String
-        riKaiQuPinCi.text = dict.valueForKey("rkqpc") as! String
+        zhouKaiQuTianShu!.text = dict.valueForKey("zkqts") as! String
+        riKaiQuPinCi!.text = dict.valueForKey("rkqpc") as! String
         
-        fuWuQuYu.text = dict.valueForKey("fwqy") as! String
+        fuWuQuYu!.text = dict.valueForKey("fwqy") as! String
         
-        zhouTouDiTianShu.text = dict.valueForKey("ztdts") as! String
-        riTouDiPinCi.text = dict.valueForKey("rtdpc") as! String
+        zhouTouDiTianShu!.text = dict.valueForKey("ztdts") as! String
+        riTouDiPinCi!.text = dict.valueForKey("rtdpc") as! String
         
-        fuWuBanJing.text = dict.valueForKey("fwbj") as! String
-        fuWuRenKou.text = dict.valueForKey("fwrk") as! String
+        fuWuBanJing!.text = dict.valueForKey("fwbj") as! String
+        fuWuRenKou!.text = dict.valueForKey("fwrk") as! String
 
         var ywsxArray = dict.valueForKey("ywfw") as! String
         if (ywsxArray.rangeOfString("xj") != nil) {
-            XinJian.selected = true
+            XinJian!.selected = true
         }
         if (ywsxArray.rangeOfString("wl") != nil) {
-            WuLiu.selected = true
+            WuLiu!.selected = true
         }
         if (ywsxArray.rangeOfString("jy") != nil) {
-            JiYou.selected = true
+            JiYou!.selected = true
         }
         if (ywsxArray.rangeOfString("bgs") != nil) {
-            BaoGuo.selected = true
+            BaoGuo!.selected = true
         }
         if (ywsxArray.rangeOfString("ysp") != nil) {
-            YinShuaPin.selected = true
+            YinShuaPin!.selected = true
         }
         if (ywsxArray.rangeOfString("bkls") != nil) {
-            BaoKanLingShou.selected = true
+            BaoKanLingShou!.selected = true
         }
         if (ywsxArray.rangeOfString("yzcx") != nil) {
-            YouZhengChuXu.selected = true
+            YouZhengChuXu!.selected = true
         }
         if (ywsxArray.rangeOfString("ywfw") != nil) {
-            MangRenDuWu.selected = true
+            MangRenDuWu!.selected = true
         }
         if (ywsxArray.rangeOfString("tkzd") != nil) {
-            TeKuaiZhuangDi.selected = true
+            TeKuaiZhuangDi!.selected = true
         }
         if (ywsxArray.rangeOfString("bkdy") != nil) {
-            BaoKanDingYue.selected = true
+            BaoKanDingYue!.selected = true
         }
         if (ywsxArray.rangeOfString("yzhd") != nil) {
-            YouZhengHuiDui.selected = true
+            YouZhengHuiDui!.selected = true
         }
         if (ywsxArray.rangeOfString("ywbxh") != nil) {
-            YIWuBingXinHan.selected = true
+            YIWuBingXinHan!.selected = true
         }
         if (ywsxArray.rangeOfString("lsywbg") != nil) {
-            LieShiBaoGuo.selected = true
+            LieShiBaoGuo!.selected = true
         }
         if (ywsxArray.rangeOfString("qt") != nil) {
-            QiTa.selected = true
+            QiTa!.selected = true
         }
         
     }
