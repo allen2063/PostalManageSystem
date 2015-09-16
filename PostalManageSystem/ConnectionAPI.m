@@ -112,8 +112,6 @@
     return [self getObjectData:obj];
 }
 
-
-
 //时间超时定义
 -(void) handleTimer:(NSTimer *)timer
 {
@@ -128,7 +126,6 @@
         
     }
 }
-
 
 #pragma -mark 接口
 //0参数
@@ -157,6 +154,7 @@
         webData = [NSMutableData data];
     }else NSLog(@"con为假  %@",webData);
 }
+
 //1参数
 - (void)withInterface:(NSString *)interface andArgument1Name:(NSString *)argument1Name andArgument1Value:(NSString *)argument1Value {
     NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:argument1Value,argument1Name,nil];
@@ -210,6 +208,7 @@
         webData = [NSMutableData data];
     }else NSLog(@"con为假  %@",webData);
 }
+
 //3参数
 - (void)withInterface:(NSString *)interface andArgument1Name:(NSString *)argument1Name andArgument1Value:(NSString *)argument1Value andArgument2Name:(NSString *)argument2Name andArgument2Value:(NSString *)argument2Value andArgument3Name:(NSString *)argument3Name andArgument3Value:(id)argument3Value{
     NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:argument1Value,argument1Name,argument2Value,argument2Name,argument3Value,argument3Name, nil];
@@ -326,7 +325,7 @@
 
 - (void)getFlowIDWithInterface:(NSString *)interface ANdToken:(NSString *)token AndFlowID:(NSString *)flowID {
     communicatingInterface = [NSString stringWithFormat:@"bsdtApi/get%@",interface];
-    
+    self.specialInterface = interface;
     [self withInterface:communicatingInterface andArgument1Name:@"token" andArgument1Value:token andArgument2Name:@"flowid" andArgument2Value:flowID];
 }
 
@@ -455,6 +454,10 @@
     else if ([communicatingInterface isEqualToString:@"baseUpdateApi/getXmlFilebyJson"]){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"getXmlFilebyJson" object:self userInfo:resultDic];
     }
+    //获取表的详情
+    else if ([communicatingInterface isEqualToString:[NSString stringWithFormat:@"bsdtApi/get%@",self.specialInterface]]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"bsdtApi/get" object:self userInfo:resultDic];
+    }
 }
 
 //uinicode转UNT8
@@ -490,37 +493,8 @@
 +(NSString *)readXMLStringWithFileName:(NSString *)name
 {
     NSString* path = [[NSBundle mainBundle] pathForResource:name ofType:@"xml"];
-
-    //dataPath 表示当前目录下指定的一个文件 data.plist
-    //NSString *dataPath = [[NSBundle mainBundle] pathForResource:@"Data" ofType:@"plist"];
-    //filePath 表示程序目录下指定文件
-    //NSString *filePath = [self documentsPath:@"provinces.xml"];
-    //NSLog(@"path:%@",filePath);
-    //从filePath 这个指定的文件里读
     NSError * error;
     NSString * str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
-    //NSLog(@"XML:%@",str);
-    
-    
-    
-//    NSString * new = @" <RECORD id=\"24\" provinceid=\"520000\" province=\"贵州省\"/> ";
-//    NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:new,name ,nil];
-//    
-//    NSString *documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-//    NSString *paths = [documents stringByAppendingPathComponent:@"xmlDic.archiver"];//拓展名可以自己随便取
-//    
-//    BOOL writeResult =[NSKeyedArchiver archiveRootObject:dic toFile:paths];
-//    NSLog(@"%@",writeResult ? @"写入缓存成功ConnectionAPI":@"写入缓存失败ConnectionAPI");
-//    
-//    if (writeResult) {
-//        NSString *documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-//        NSString *path = [documents stringByAppendingPathComponent:@"xmlDic.archiver"];
-//        
-//        NSMutableDictionary * newDic = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-//        ;
-//        NSLog(@"读取ing  %@",[newDic objectForKey:name]);
-//    }
-//    
     return str;
 }
 

@@ -373,6 +373,7 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate {
         if (dict.valueForKey("sx") as! String == "szyzpbfwyycs")   {
             chooseShiXiang.text = "设置邮政普遍服务营业场所"
         }
+        //崩溃   未初始化。。。
         if(dict.valueForKey("sx") as! String == "szqtyzyycs") {
             chooseShiXiang.text = "设置其他营业场所"
         }

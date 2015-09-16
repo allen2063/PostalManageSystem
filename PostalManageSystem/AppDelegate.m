@@ -55,7 +55,7 @@
 //    [ConnectionAPI PostImagesToServer:@"http://222.85.149.6:88/GuiYangPost/uploadpicture/upload" dicPostParams:dic dicImages:dic];
     return YES;
 }
-
+#warning xml下载还没弄完
 - (void)getXmlFilebyJson:(NSNotification *)note{
     
 }

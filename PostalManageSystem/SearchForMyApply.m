@@ -5,11 +5,14 @@
 //  Created by ZengYifei on 15/9/14.
 //  Copyright (c) 2015年 IOS-developer. All rights reserved.
 //
+#import "PostalManageSystem-Swift.h"
 
 #import "SearchForMyApply.h"
 #import "CustomTableViewCell.h"
 #import "DJRefresh.h"
 #import "DJRefreshProgressView.h"
+//#import "ApplyAddBranchViewController.swift"
+
 #define tableViewCellHeight 35
 #define selectedfont 14
 #define defualtFont 17
@@ -75,6 +78,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(userList:) name:@"userList" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getApplyList:) name:@"getApplyList" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(cellBack:) name:@"isScrolledToRight" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(formDataBack:) name:@"bsdtApi/get" object:nil];
 
     isInitState =YES;
     //获取单例  userList
@@ -752,6 +756,22 @@
 
     }
     
+}
+
+//表的详情返回
+- (void)formDataBack:(NSNotification *)note{
+    if ([[[note userInfo]objectForKey:@"result"] isEqualToString:@"1"]) {
+        if ([app.network.specialInterface isEqualToString: @"Szxwd"]) {
+            NSDictionary * data = [[note userInfo]objectForKey:@"info"];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
+            [applyAddBranchVC initTingZhi:data];
+            [self.navigationController pushViewController:applyAddBranchVC animated:YES];
+        }
+    }else{
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"数据请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 #pragma mark - touch

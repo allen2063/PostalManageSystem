@@ -239,8 +239,8 @@
     ApplyPausedViewController * applyPausedBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyPausedBranchVC"];
     ApplyStopBranchViewController * applyStopBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyStopBranchVC"];
     ApplyRestoreBranchViewController * applyRestoreBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyRestoreBranchVC"];
-    BSDTDetailViewController * bsdt = [BSDTDetailViewController alloc];
-    UploadPicViewController * uploadPic = [[UploadPicViewController alloc]init];
+//    BSDTDetailViewController * bsdt = [BSDTDetailViewController alloc];
+//    UploadPicViewController * uploadPic = [[UploadPicViewController alloc]init];
     //提前初始化查询  以接受服务器返回数据
     _search = [[SearchForMyApply alloc]init];
     switch (btn.tag) {

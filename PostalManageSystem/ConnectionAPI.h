@@ -55,6 +55,6 @@
 
 @property (strong, nonatomic) NSMutableDictionary * cacheDic;
 @property (strong, nonatomic) NSArray *resultArray;
-
+@property (strong, nonatomic) NSString *specialInterface;
 
 @end
