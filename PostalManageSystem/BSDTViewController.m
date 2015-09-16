@@ -223,8 +223,9 @@
         [self.loginView addSubview:forgetBtn];
         [self.view addSubview:self.loginView];
         [self.view bringSubviewToFront:self.loginView];
-        accountTextField.text = @"1";
+        accountTextField.text = @"测试";
         passwordTextField.text = @"111111";
+        passwordTextField.secureTextEntry = YES;
     }
 }
 

@@ -573,6 +573,9 @@
         for (NSDictionary * dics in data) {
             [_dataListForDisplay addObject: dics];
         }
+    }else{
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"请求出错" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
     }
     if(_dataListForDisplay.count == 0){
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"数据为空" message:@"没有该项数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -583,6 +586,23 @@
     }
 
      [self addDataWithDirection:directionForNow];
+}
+
+//表的详情返回
+- (void)formDataBack:(NSNotification *)note{
+    if ([[[note userInfo]objectForKey:@"result"] isEqualToString:@"1"]) {
+        if ([app.network.specialInterface isEqualToString: @"Szxwd"]) {
+            NSDictionary * data = [[note userInfo]objectForKey:@"info"];
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
+            [applyAddBranchVC initTianJia:data];
+            [self.navigationController pushViewController:applyAddBranchVC animated:YES];
+        }
+    }else{
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"数据请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 #pragma mark - DJrefresh df
@@ -840,23 +860,6 @@
         }
     }
     
-}
-
-//表的详情返回
-- (void)formDataBack:(NSNotification *)note{
-    if ([[[note userInfo]objectForKey:@"result"] isEqualToString:@"1"]) {
-        if ([app.network.specialInterface isEqualToString: @"Szxwd"]) {
-            NSDictionary * data = [[note userInfo]objectForKey:@"info"];
-            
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
-            [applyAddBranchVC initTianJia:data];
-            [self.navigationController pushViewController:applyAddBranchVC animated:YES];
-        }
-    }else{
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"数据请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
-    }
 }
 
 #pragma mark - touch
