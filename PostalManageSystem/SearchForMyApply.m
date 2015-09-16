@@ -764,10 +764,16 @@
         if ([app.network.specialInterface isEqualToString: @"Szxwd"]) {
             NSDictionary * data = [[note userInfo]objectForKey:@"info"];
 <<<<<<< HEAD
+<<<<<<< HEAD
             
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
             [applyAddBranchVC initTianJia:data];
+=======
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
+            [applyAddBranchVC initTingZhi:data];
+>>>>>>> parent of 7146785... update
 =======
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
