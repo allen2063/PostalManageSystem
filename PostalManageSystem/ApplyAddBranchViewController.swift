@@ -368,7 +368,7 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate {
         println("\(ClassToJSON.getObjectData(infoOfYzqyszyzyycsdjb))")
     }
     
-    func initTingZhi(dict: NSDictionary) {
+    func initTianJia(dict: NSDictionary) {
 
         if (dict.valueForKey("sx") as! String == "szyzpbfwyycs")   {
             chooseShiXiang.text = "设置邮政普遍服务营业场所"
