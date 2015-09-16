@@ -1126,6 +1126,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate {
         }
 
         println("\(ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb))")
+        //ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb)
     }
     
     func initBianGeng(dict: NSDictionary, segmentedControlIndex index:Int)
