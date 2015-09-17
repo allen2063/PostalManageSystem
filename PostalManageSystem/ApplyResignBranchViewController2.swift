@@ -232,23 +232,6 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        resignPostSheetView.hidden = true
-        
-        if app.ServerData == true {
-            app.ServerData = false
-            
-            if app.applyResignDic.count == 2 {
-                if app.applyResignDic
-                initCheXiaoPuBianFuWuChangSuoShenQing()
-            }
-//            initCheXiaoPuBianFuWuChangSuoShenQing()
-//            initCheXiaoPuBianFuWuChangSuo(<#dict: NSDictionary#>)
-//            initCheXiaoYouZhengYingYeChangSuo(<#dict: NSDictionary#>)
-        }
-
-    }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -727,13 +710,43 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         println("\(ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb))")
     }
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        resignPostSheetView.hidden = true
+        
+        if app.ServerData == true {
+            app.ServerData = false
+            
+            if app.applyResignDic.count == 2 {
+                println("\(app.applyResignDic.description)")
+                
+                initCheXiao(app.applyResignDic, segmentedControlIndex: 0)
+                
+                //                if (app.applyResignDic.valueForKey("info2") != nil) {
+                //                    initCheXiao(app.applyResignDic, segmentedControlIndex: 0)
+                //                }
+            } else {
+                println("\(app.applyResignDic.description)")
+//                initCheXiao(app.applyResignDic, segmentedControlIndex: 1)
+            }
+        }
+        
+    }
+
+    
     func initCheXiao(dict: NSDictionary, segmentedControlIndex index:Int)
     {
         if index == 0 {
-            initCheXiaoPuBianFuWuChangSuoShenQing(dict)
-            initCheXiaoPuBianFuWuChangSuo(dict)
-        } else if index == 1{
-            initCheXiaoYouZhengYingYeChangSuo(dict)
+            var dict1 = dict.valueForKey("info1") as! NSDictionary
+            println("dsasdasdasdasdasdasdasdasd\(dict1.description)")
+            initCheXiaoPuBianFuWuChangSuoShenQing(dict1)
+            var dict2 = dict.valueForKey("info2") as! NSDictionary
+            initCheXiaoPuBianFuWuChangSuo(dict2)
+        }
+        if index == 1{
+            
+//            initCheXiaoYouZhengYingYeChangSuo(dict)
         }
     }
     
@@ -765,67 +778,67 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     }
     
     func initCheXiaoPuBianFuWuChangSuo(dict: NSDictionary){
-        youZhengChangSuoMingCheng.text = dict.valueForKey("yzcsmc") as! String
+        youZhengChangSuoMingCheng.text? = (dict.valueForKey("yzcsmc") as? String)!
         
         if (dict.valueForKey("jyfs") as! String == "zb")   {
-            chooseJIngYingFangShi.text = "自办"
+            chooseJIngYingFangShi.text? = "自办"
         }
         if(dict.valueForKey("jyfs") as! String == "wb") {
-            chooseJIngYingFangShi.text = "委办"
+            chooseJIngYingFangShi.text? = "委办"
         }
         
-        changSuoDiZhiShi.text = dict.valueForKey("csdz_s") as! String
-        changSuoDiZhiXian.text = dict.valueForKey("csdz_xqs") as! String
-        changSuoDiZhiJie.text = dict.valueForKey("csdz_jx") as! String
-        changSuoDiZhiHao.text = dict.valueForKey("csdz_h") as! String
-        changSuoDiZhiJingDu.text = dict.valueForKey("csdz_jd") as! String
-        changSuoDiZhiWeiDu.text = dict.valueForKey("csdz_wd") as! String
+        changSuoDiZhiShi.text? = dict.valueForKey("csdz_s") as! String
+        changSuoDiZhiXian.text? = dict.valueForKey("csdz_xqs") as! String
+        changSuoDiZhiJie.text? = dict.valueForKey("csdz_jx") as! String
+        changSuoDiZhiHao.text? = dict.valueForKey("csdz_h") as! String
+        changSuoDiZhiJingDu.text? = dict.valueForKey("csdz_jd") as! String
+        changSuoDiZhiWeiDu.text? = dict.valueForKey("csdz_wd") as! String
         
-        youZhengBianMa.text = dict.valueForKey("yzbm") as! String
-        shangJiDanWei.text = dict.valueForKey("sjdw") as! String
+        youZhengBianMa.text? = dict.valueForKey("yzbm") as! String
+        shangJiDanWei.text? = dict.valueForKey("sjdw") as! String
         
-        yingYeChangSuoFuZeRen.text = dict.valueForKey("yycsf") as! String
-        YingYeChangSuoLianXiDianHua.text = dict.valueForKey("yycslxdh") as! String
+        yingYeChangSuoFuZeRen.text? = dict.valueForKey("yycsf") as! String
+        YingYeChangSuoLianXiDianHua.text? = dict.valueForKey("yycslxdh") as! String
         
-        fuWuBanJing.text = dict.valueForKey("fwbj") as! String
+        fuWuBanJing.text? = dict.valueForKey("fwbj") as! String
         
         if(dict.valueForKey("szdd") as! String == "csdq") {
-            chooseSuoZaiDiDian.text = "城市地区"
+            chooseSuoZaiDiDian.text? = "城市地区"
         }
         if (dict.valueForKey("szdd") as! String == "xzdq")   {
-            chooseSuoZaiDiDian.text = "乡镇地区"
+            chooseSuoZaiDiDian.text? = "乡镇地区"
         }
         if(dict.valueForKey("szdd") as! String == "ncdq") {
-            chooseSuoZaiDiDian.text = "农村地区"
+            chooseSuoZaiDiDian.text? = "农村地区"
         }
         
-        fuWuRenKou.text = dict.valueForKey("fwrk") as! String
-        kaiYeShiJian.text = dict.valueForKey("kysj") as! String
+        fuWuRenKou.text? = dict.valueForKey("fwrk") as! String
+        kaiYeShiJian.text? = dict.valueForKey("kysj") as! String
         
         if (dict.valueForKey("fwcq") as! String == "ziy")   {
-            chooseFangWuChangQuan.text = "自有"
+            chooseFangWuChangQuan.text? = "自有"
         }
         if(dict.valueForKey("fwcq") as! String == "zuy") {
-            chooseFangWuChangQuan.text = "租用"
+            chooseFangWuChangQuan.text? = "租用"
         }
         if (dict.valueForKey("fwcq") as! String == "wucsy")   {
-            chooseFangWuChangQuan.text = "无偿使用"
+            chooseFangWuChangQuan.text? = "无偿使用"
         }
         if(dict.valueForKey("fwcq") as! String == "qt") {
-            chooseFangWuChangQuan.text = "其他"
+            chooseFangWuChangQuan.text? = "其他"
         }
     
         jianZhuMianJi.text = dict.valueForKey("jzmj") as! String
-        fuWuQuYu.text = dict.valueForKey("fwqy") as! String
+        fuWuQuYu.text? = dict.valueForKey("fwqy") as! String
         
-        zhougYIngYeRiZhouJi.text = dict.valueForKey("zyyr_ks") as! String
-        zhougYIngYeRiZhiZhouJi.text = dict.valueForKey("zyyr_js") as! String
-        riYingYeRiJiDian.text = dict.valueForKey("ryysj_ks") as! String
-        riYingYeRiZhiJiDian.text = dict.valueForKey("ryysj_js") as! String
+        zhougYIngYeRiZhouJi.text? = dict.valueForKey("zyyr_ks") as! String
+        zhougYIngYeRiZhiZhouJi.text? = dict.valueForKey("zyyr_js") as! String
+        riYingYeRiJiDian.text? = dict.valueForKey("ryysj_ks") as! String
+        riYingYeRiZhiJiDian.text? = dict.valueForKey("ryysj_js") as! String
         
-        kaiXIangPinCi.text = dict.valueForKey("kxpc") as! String
-        riTouDiPinCi.text = dict.valueForKey("rtdpc") as! String
-        zhouTouDiPinCi.text = dict.valueForKey("ztdpc") as! String
+        kaiXIangPinCi.text? = dict.valueForKey("kxpc") as! String
+        riTouDiPinCi.text? = dict.valueForKey("rtdpc") as! String
+        zhouTouDiPinCi.text? = dict.valueForKey("ztdpc") as! String
         
         var ywsxArray = dict.valueForKey("ywfw") as! String
         if (ywsxArray.rangeOfString("xj") != nil) {
@@ -871,21 +884,21 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             QiTa.selected = true
         }
         
-        zongShouRu.text = dict.valueForKey("ncxyzpbfwyycszsr") as! String
-        shouRuHanJian.text = dict.valueForKey("yycsjyndywsrhj") as! String
-        shuRuBaoGuo.text = dict.valueForKey("yycsjyndywsrbg") as! String
-        shouRuYinShuaPin.text = dict.valueForKey("yycsjyndywsrysp") as! String
-        shouRuHuiDui.text = dict.valueForKey("yycsjyndywsrhd") as! String
-        shouRuBaoKan.text = dict.valueForKey("yycsjyndywsrbk") as! String
-        shouRuDaiLiYeWu.text = dict.valueForKey("yycsjyndywsrdlyw") as! String
-        shouRuQiTa.text = dict.valueForKey("yycsjyndywsrqt") as! String
+        zongShouRu.text? = dict.valueForKey("ncxyzpbfwyycszsr") as! String
+        shouRuHanJian.text? = dict.valueForKey("yycsjyndywsrhj") as! String
+        shuRuBaoGuo.text? = dict.valueForKey("yycsjyndywsrbg") as! String
+        shouRuYinShuaPin.text? = dict.valueForKey("yycsjyndywsrysp") as! String
+        shouRuHuiDui.text? = dict.valueForKey("yycsjyndywsrhd") as! String
+        shouRuBaoKan.text? = dict.valueForKey("yycsjyndywsrbk") as! String
+        shouRuDaiLiYeWu.text? = dict.valueForKey("yycsjyndywsrdlyw") as! String
+        shouRuQiTa.text? = dict.valueForKey("yycsjyndywsrqt") as! String
         
-        yeWuLiangHanJian.text = dict.valueForKey("yycsjynzyywlhj") as! String
-        yeWuLiangBaoGuo.text = dict.valueForKey("yycsjynzyywlbg") as! String
-        yeWuLiangYinShuaPin.text = dict.valueForKey("yycsjynzyywlysp") as! String
-        yeWuLiangHuiDui.text = dict.valueForKey("yycsjynzyywlhd") as! String
-        yeWuLiangBaoKan.text = dict.valueForKey("yycsjynzyywlbk") as! String
-        yeWuLiangDaiLiYeWu.text = dict.valueForKey("yycsjynzyywldlyw") as! String
+        yeWuLiangHanJian.text? = dict.valueForKey("yycsjynzyywlhj") as! String
+        yeWuLiangBaoGuo.text? = dict.valueForKey("yycsjynzyywlbg") as! String
+        yeWuLiangYinShuaPin.text? = dict.valueForKey("yycsjynzyywlysp") as! String
+        yeWuLiangHuiDui.text? = dict.valueForKey("yycsjynzyywlhd") as! String
+        yeWuLiangBaoKan.text? = dict.valueForKey("yycsjynzyywlbk") as! String
+        yeWuLiangDaiLiYeWu.text? = dict.valueForKey("yycsjynzyywldlyw") as! String
 
     }
     
