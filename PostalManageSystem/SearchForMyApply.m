@@ -626,22 +626,28 @@
 //表的详情返回
 - (void)formDataBack:(NSNotification *)note{
     NSDictionary * tempDic = [note userInfo];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     if ([[[note userInfo]objectForKey:@"result"] isEqualToString:@"1"]) {
         app.ServerData = YES;
+        //申请新增
         if ([app.network.specialInterface isEqualToString: @"Szxwd"]) {
-//            NSDictionary * data = [[note userInfo]objectForKey:@"info"];
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            app.applyAddDic = [[note userInfo]objectForKey:@"info"];
             ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
-//            [applyAddBranchVC initTianJia:data];
             [self.navigationController pushViewController:applyAddBranchVC animated:YES];
-        }else if ([app.network.specialInterface isEqualToString: @"Hfyw"]){
+        }
+        //申请恢复
+        else if ([app.network.specialInterface isEqualToString: @"Hfyw"]){
             if (tempDic.count == 2) {
                 app.applyRestoreDic = [[note userInfo]objectForKey:@"info"];
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 ApplyRestoreBranchViewController * applyRestoreBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyRestoreBranchVC"];
                 [self.navigationController pushViewController:applyRestoreBranchVC animated:YES];
-
             }
+        }
+        //申请撤销网店
+        else if ([app.network.specialInterface isEqualToString: @"Cxpbfwwd"] || [app.network.specialInterface isEqualToString: @"Cxfpbfwwd"]){
+            app.applyResignDic = [[note userInfo]objectForKey:@"info"];
+            ApplyResignBranchViewController2 * applyResignBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyResignBranchVC"];
+            [self.navigationController pushViewController:applyResignBranchVC animated:YES];
         }
     }else{
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"数据请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
