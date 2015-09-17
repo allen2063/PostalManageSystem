@@ -9,6 +9,9 @@
 import UIKit
 
 class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate, UITextFieldDelegate, UIScrollViewDelegate {
+    
+    var app = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     @IBOutlet weak var applyResignBranchView: UIView!
     @IBOutlet weak var resignPostSheetView: UIView!
     @IBOutlet weak var SegmentedControl: UISegmentedControl!
@@ -232,6 +235,19 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         resignPostSheetView.hidden = true
+        
+        if app.ServerData == true {
+            app.ServerData = false
+            
+            if app.applyResignDic.count == 2 {
+                if app.applyResignDic
+                initCheXiaoPuBianFuWuChangSuoShenQing()
+            }
+//            initCheXiaoPuBianFuWuChangSuoShenQing()
+//            initCheXiaoPuBianFuWuChangSuo(<#dict: NSDictionary#>)
+//            initCheXiaoYouZhengYingYeChangSuo(<#dict: NSDictionary#>)
+        }
+
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
