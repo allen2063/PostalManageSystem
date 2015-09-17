@@ -35,7 +35,7 @@
     isback =NO;
     requestCount = 0;
     timeout = 25;
-    self.cacheDic = [ConnectionAPI readFileDic];
+    self.cacheDic = [ConnectionAPI readFileDicWithFileName:@"cacheDic.archiver"];
     if (self.cacheDic == nil) {
         self.cacheDic = [[NSMutableDictionary alloc]init];
     }
@@ -494,9 +494,9 @@
 
 #pragma mark - read&write File
 //读取缓存
-+(NSMutableDictionary *)readFileDic{
++(NSMutableDictionary *)readFileDicWithFileName:(NSString *)flieName{
     NSString *documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *path = [documents stringByAppendingPathComponent:@"cacheDic.archiver"];
+    NSString *path = [documents stringByAppendingPathComponent:flieName];
     
     if ([[NSKeyedUnarchiver unarchiveObjectWithFile:path]isKindOfClass:[NSMutableDictionary class]]) {
         NSLog( @"read file successfully!");
@@ -506,6 +506,15 @@
         return [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     }
 }
+
+////读取XML
+//+(NSString *)readXMLStringWithFileName:(NSString *)name
+//{
+//    NSString* path = [[NSBundle mainBundle] pathForResource:name ofType:@"xml"];
+//    NSError * error;
+//    NSString * str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+//    return str;
+//}
 
 //读取XML
 +(NSString *)readXMLStringWithFileName:(NSString *)name

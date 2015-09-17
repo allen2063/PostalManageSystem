@@ -48,9 +48,10 @@
     UINavigationController * navCon = [[UINavigationController alloc] initWithRootViewController:mainViewController];
     self.window.rootViewController = navCon;
     [self.window makeKeyAndVisible];
-    
+    //百度地图
     [self initBDTT];
-    
+    //xml更新请求
+    [self.network getXMLDate];
     //启动公告
 //    Pager * pager;
 //    [self.network getListWithToken:@"jiou" AndType:@"qdgg" AndListPager:pager];
@@ -62,8 +63,21 @@
 //    [ConnectionAPI PostImagesToServer:@"http://222.85.149.6:88/GuiYangPost/uploadpicture/upload" dicPostParams:dic dicImages:dic];
     return YES;
 }
-#warning xml下载还没弄完
+#warning xml下载还没弄完   @"cacheDic.archiver"
 - (void)getXmlFilebyJson:(NSNotification *)note{
+    if ([[[note userInfo]objectForKey:@"result"]isEqualToString:@"1"]) {
+        NSDictionary * dateDic = [[note userInfo]objectForKey:@"data"];
+        NSArray * formNameArray = [dateDic allKeys];
+        for (NSString * formNameString in formNameArray) {
+            [ConnectionAPI readFileDicWithFileName:@"XMLDic.archiver"];
+            
+        }
+        
+    }
+    NSLog(@"%@",[note userInfo]);
+}
+
+- (void)compareDateWithFormName:(NSString *)formName AndFormBuildTime:(NSString *)FormBuildTime{
     
 }
 

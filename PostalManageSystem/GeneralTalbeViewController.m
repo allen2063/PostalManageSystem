@@ -61,7 +61,7 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getNewsByType:) name:@"getNewsByType" object:nil];
     //读取缓存数据
-    self.cachaDic = [ConnectionAPI readFileDic];
+    self.cachaDic = [ConnectionAPI readFileDicWithFileName:@"cacheDic.archiver"];
     if (self.cachaDic == nil) {
         self.cachaDic = [[NSMutableDictionary alloc]init];
     }

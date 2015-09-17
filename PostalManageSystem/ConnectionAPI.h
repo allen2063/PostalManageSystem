@@ -27,7 +27,7 @@
 //图片转二进制
 + (NSData *)picToStringWithImage:(UIImage *)image;
 //读取文件
-+(NSMutableDictionary *)readFileDic;
++(NSMutableDictionary *)readFileDicWithFileName:(NSString *)flieName;
 +(NSString *)documentsPath:(NSString *)fileName;
 //md5加密
 + (NSString *)md5:(NSString *)str;

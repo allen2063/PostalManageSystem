@@ -637,6 +637,10 @@
         }else if ([app.network.specialInterface isEqualToString: @"Hfyw"]){
             if (tempDic.count == 2) {
                 app.applyRestoreDic = [[note userInfo]objectForKey:@"info"];
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                ApplyRestoreBranchViewController * applyRestoreBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyRestoreBranchVC"];
+                [self.navigationController pushViewController:applyRestoreBranchVC animated:YES];
+
             }
         }
     }else{
