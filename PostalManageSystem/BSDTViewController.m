@@ -230,7 +230,7 @@
 }
 
 - (void)jumpPageForBSDT:(UIButton*)btn{
-    
+    [self cancelView];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     ChangeUserInfoViewController * changeUserInfoVC = [storyboard instantiateViewControllerWithIdentifier:@"changeUserInfoVC"];

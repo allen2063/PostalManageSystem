@@ -399,7 +399,10 @@
                                               encoding:NSUTF8StringEncoding];
     // 打印出得到的XML
     NSLog(@"得到的返回数据：%@", theXML);
-    self.getXMLResults = [[ NSMutableString alloc ]initWithString:theXML];
+    //如果为空会崩
+    if (theXML != nil) {
+        self.getXMLResults = [[ NSMutableString alloc ]initWithString:theXML];
+    
     //服务器报错
     isfault = NO;
     //json解析
@@ -407,10 +410,13 @@
     NSDictionary * resultDic =  [NSJSONSerialization JSONObjectWithData:aData options:NSJSONReadingMutableContainers error:nil];
         isback = YES;
     [self analysisTheResult:resultDic];
-
+    }
 }
 
 - (void)analysisTheResult:(NSDictionary *)resultDic{
+    if (resultDic == nil) {
+        return;
+    }
     
     if ([[resultDic objectForKey:@"result"] isEqualToString:@"0"]) {
         NSLog(@"网络返回报错");

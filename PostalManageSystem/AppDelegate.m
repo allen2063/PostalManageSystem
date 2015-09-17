@@ -10,9 +10,10 @@
 #import "MainViewController.h"
 #import "GDataXMLNode.h"
 
-@interface AppDelegate ()<UIWebViewDelegate,BMKGeneralDelegate>
+@interface AppDelegate ()<UIWebViewDelegate,BMKGeneralDelegate>{
+    BOOL isWriting;
+}
 @property (strong,nonatomic) BMKMapManager* mapManager;
-
 @property (strong,nonatomic)UIView * backgroundView;
 @property (strong,nonatomic)UIView * blackView;
 @end
@@ -50,6 +51,9 @@
     [self.window makeKeyAndVisible];
     //百度地图
     [self initBDTT];
+    
+    //[self.network getXMLDataWithFileName:@"zipcode"];  //  provinces   cities  areas  zipcode
+
     //xml更新请求
     [self.network getXMLDate];
     //启动公告
@@ -63,26 +67,99 @@
 //    [ConnectionAPI PostImagesToServer:@"http://222.85.149.6:88/GuiYangPost/uploadpicture/upload" dicPostParams:dic dicImages:dic];
     return YES;
 }
-#warning xml下载还没弄完   @"cacheDic.archiver"
-- (void)getXmlFilebyJson:(NSNotification *)note{
-    if ([[[note userInfo]objectForKey:@"result"]isEqualToString:@"1"]) {
-        NSDictionary * dateDic = [[note userInfo]objectForKey:@"data"];
-        NSArray * formNameArray = [dateDic allKeys];
-        for (NSString * formNameString in formNameArray) {
-            [ConnectionAPI readFileDicWithFileName:@"XMLDic.archiver"];
-            
-        }
-        
-    }
-    NSLog(@"%@",[note userInfo]);
-}
-
-- (void)compareDateWithFormName:(NSString *)formName AndFormBuildTime:(NSString *)FormBuildTime{
-    
-}
-
+#warning xml下载还没弄完
 - (void)getXmlDate:(NSNotification *)note{
+    NSDictionary * dateDic = [[note userInfo]objectForKey:@"data"];
+    NSArray * formNameArray = [dateDic allKeys];
+    NSString * formNameString;
+    //循环检测4个文件
+    int i =1;
+    for (formNameString in formNameArray) {
+        NSMutableDictionary * XMLDic = [ConnectionAPI readFileDicWithFileName:[NSString stringWithFormat:@"%@.archiver",formNameString]];
+        NSLog(@"formNameString:%@",[NSString stringWithFormat:@"%@.archiver",formNameString]);
+        //xml不存在或者出错 则直接请求
+        if (XMLDic == nil || ![XMLDic isKindOfClass:[NSDictionary class]]) {
+            NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:formNameString,@"formNameString", nil];
+            [NSTimer scheduledTimerWithTimeInterval:5.0*i target: self selector: @selector(getXMLDataWithFileName:) userInfo:dic repeats:NO];
+//            [self.network getXMLDataWithFileName:formNameString];
+        }
+        //如果返回检测版本信息返回结果成功
+        else if ([[[note userInfo]objectForKey:@"result"]isEqualToString:@"1"]){
+            NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:formNameString,@"formNameString",[dateDic objectForKey:formNameString],@"serverFormBuildTimeString" ,nil];
+            [NSTimer scheduledTimerWithTimeInterval:5.0*i target: self selector: @selector(compareDate:) userInfo:dic repeats:NO];
+//            [self compareDateWithFormName:formNameString AndFormBuildTime:[dateDic objectForKey:formNameString]];
+        }
+        i++;
+    }
+}
+
+- (void)getXMLDataWithFileName:(NSTimer *)timer{
+    NSString * formNameString = [[timer userInfo] objectForKey:@"formNameString"];
+    [self.network getXMLDataWithFileName:formNameString];
+}
+
+//比较日期信息
+//- (void)compareDateWithFormName:(NSString *)formNameString AndFormBuildTime:(NSString *)serverFormBuildTimeString{
+- (void)compareDate:(NSTimer *)timer{
+    NSString * formNameString = [[timer userInfo] objectForKey:@"formNameString"];
+    NSString * serverFormBuildTimeString = [[timer userInfo] objectForKey:@"serverFormBuildTimeString"];
     
+    NSMutableDictionary * XMLDic = [ConnectionAPI readFileDicWithFileName:[NSString stringWithFormat:@"%@.archiver",formNameString]];
+    NSString * localFormBuildTimeString = [XMLDic objectForKey:[NSString stringWithFormat:@"%@ForTime",formNameString]];
+    NSDate * localFormBuildTimeDate = [self dateFromString:localFormBuildTimeString];
+    NSDate * serverFormBuildTimeDate = [self dateFromString:serverFormBuildTimeString];
+    BOOL needUpdate = ![localFormBuildTimeDate isEqualToDate:serverFormBuildTimeDate];
+    if (needUpdate) {
+        [self.network getXMLDataWithFileName:formNameString];
+    }
+}
+
+//string 转 date
+- (NSDate *)dateFromString:(NSString *)dateString{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+    NSDate *destDate= [dateFormatter dateFromString:dateString];
+    return destDate;
+}
+
+//
+- (void)getXmlFilebyJson:(NSNotification *)note{
+    //写入对应位置
+    if (!isWriting) {
+    isWriting = YES;
+    NSDictionary * dic = [note userInfo];
+    NSString * formNameString = [dic objectForKey:@"fileName"];
+    NSString * fileDate = [dic objectForKey:@"fileDate"];
+    NSString * data = [dic objectForKey:@"data"];
+    NSMutableDictionary * XMLDic = [ConnectionAPI readFileDicWithFileName:[NSString stringWithFormat:@"%@.archiver",formNameString]];
+    
+    if (XMLDic == nil) {
+        XMLDic = [[NSMutableDictionary alloc]init];
+    }
+       
+    if ([[dic objectForKey: @"result"]isEqualToString:@"1"]) {
+        [XMLDic setObject:data forKey:formNameString];
+        [XMLDic setObject:fileDate forKey:[NSString stringWithFormat:@"%@ForTime",formNameString]];
+        [self writeFileDic:XMLDic AndFileNameString:formNameString];
+//        NSLog(@"form %@  %@",formNameString,writeResult ? @"写入缓存成功ConnectionAPI":@"写入缓存失败ConnectionAPI");
+    }
+    }
+    //
+    else{
+        [NSTimer scheduledTimerWithTimeInterval:5.0 target: self selector: @selector(getXmlFilebyJson:) userInfo:note repeats:NO];
+    }
+    
+}
+
+- (BOOL)writeFileDic:(NSMutableDictionary *)dic AndFileNameString:(NSString *)formNameString{
+    
+    NSString *documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [documents stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.archiver",formNameString]];//拓展名可以自己随便取
+    
+    BOOL writeResult =[NSKeyedArchiver archiveRootObject:dic toFile:path];
+//    NSLog(@"form %@  %@   path:%@",formNameString,writeResult ? @"写入缓存成功ConnectionAPI":@"写入缓存失败ConnectionAPI",path);
+    isWriting = NO;
+    return writeResult;
 }
 
 //超时处理

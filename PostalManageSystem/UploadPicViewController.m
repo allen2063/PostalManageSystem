@@ -64,7 +64,7 @@
     [imageFromCameraBtn setTitleColor:[UIColor yellowColor]forState:UIControlStateNormal];
     [self.view addSubview:imageFromCameraBtn];
 
-
+//    UIButton * uploadBtn = 
 }
 
 - (void)viewWillAppear:(BOOL)animated{
