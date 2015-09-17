@@ -648,7 +648,6 @@
                 ApplyResignBranchViewController2 * applyResignBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyResignBranchVC"];
                 [self.navigationController pushViewController:applyResignBranchVC animated:YES];
             }
-            //            NSLog(@"app.applyResignDic%@",app.applyResignDic);
         }
         //申请变更网点   分为seg0申请网点信息变更（备案信息变更） seg1就近迁址
         else if ([app.network.specialInterface isEqualToString: @"Baxxbg"] || [app.network.specialInterface isEqualToString: @"Jjqz"]){
@@ -672,11 +671,9 @@
         }
         //申请恢复
         else if ([app.network.specialInterface isEqualToString: @"Hfyw"]){
-//            if (tempDic.count == 2) {
                 app.applyRestoreDic = [[note userInfo]objectForKey:@"info"];
                 ApplyRestoreBranchViewController * applyRestoreBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyRestoreBranchVC"];
                 [self.navigationController pushViewController:applyRestoreBranchVC animated:YES];
-//            }
         }
 
     }else{
