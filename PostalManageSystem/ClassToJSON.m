@@ -12,7 +12,9 @@
 
 #pragma 对象json化
 
-@implementation ClassToJSON : NSObject 
+@implementation ClassToJSON : NSObject
+
+
 
 + (NSDictionary*)getObjectData:(id)obj
 {
@@ -28,12 +30,15 @@
         if(value == nil)
         {
             value = [NSNull null];
+            //将有key无值的像去掉
+            [dic removeObjectForKey:propName];
         }
         else
         {
             value = [self getObjectInternal:value];
+            [dic setObject:value forKey:propName];
         }
-        [dic setObject:value forKey:propName];
+//        [dic setObject:value forKey:propName];
     }
     return dic;
 }

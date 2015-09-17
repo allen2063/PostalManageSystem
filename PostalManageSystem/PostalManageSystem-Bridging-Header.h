@@ -3,3 +3,4 @@
 //
 
 #import "ClassToJSON.h"
+#import "AppDelegate.h"

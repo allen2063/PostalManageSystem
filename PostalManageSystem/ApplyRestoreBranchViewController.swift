@@ -140,8 +140,12 @@ class ApplyRestoreBranchViewController: UIViewController {
         infoOfHfblyzpbhtsfwywbgb.hfbldsj = huiFuBanLiShiJian.text
         infoOfHfblyzpbhtsfwywbgb.qtxysmdsx = qiTaShuoMingShiXiang.text
         
+        var app=UIApplication.sharedApplication().delegate as! AppDelegate
+        app.network .sendFormToServerWithInterface("Hfyw", andUser: app.userData, andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb), andExtraInfo: nil)
+        
         println("\(infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx)")
         println("\(ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb))")
+        
     }
     
     func initHuiFu(dict: NSDictionary) {

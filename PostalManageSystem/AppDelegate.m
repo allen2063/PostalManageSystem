@@ -36,6 +36,13 @@
     self.network = [[ConnectionAPI alloc]init];
     self.pager = [[Pager alloc]init];
     self.userData = [[NSMutableDictionary alloc]init];
+    self.applyAddDic = [[NSMutableDictionary alloc]init];
+    self.applyChangeDic = [[NSMutableDictionary alloc]init];
+    self.applyPauseDic = [[NSMutableDictionary alloc]init];
+    self.applyResignDic = [[NSMutableDictionary alloc]init];
+    self.applyRestoreDic = [[NSMutableDictionary alloc]init];
+    self.applyStopDic = [[NSMutableDictionary alloc]init];
+
     MainViewController * mainViewController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
     self.interfaceTransform = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"baseNewsApi/getNewsByType",@"满意度调查结果通告", nil];
     UINavigationController * navCon = [[UINavigationController alloc] initWithRootViewController:mainViewController];

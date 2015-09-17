@@ -346,6 +346,17 @@
     [self withInterface:communicatingInterface andArgument1Name:@"token" andArgument1Value:@"jiou" andArgument2Name:@"fileName" andArgument2Value:fileName];
 }
 
+- (void)sendFormToServerWithInterface:(NSString *)interface AndUser:(id)user AndInfo:(id)info AndExtraInfo:(id)extraInfo{
+    communicatingInterface = [NSString stringWithFormat:@"bsdtApi/add%@",interface];
+    self.specialInterface = interface;
+    if (extraInfo == nil) {
+        [self withInterface:communicatingInterface andArgument1Name:@"token" andArgument1Value:@"jiou" andArgument2Name:@"info" andArgument2Value:info andArgument3Name:@"baseUser" andArgument3Value:user];
+    }else{
+        [self withInterface:communicatingInterface andArgument1Name:@"token" andArgument1Value:@"jiou" andArgument2Name:@"info1" andArgument2Value:info andArgument3Name:@"info2" andArgument3Value:extraInfo andArgument4Name:@"baseUser" andArgument4Value:user];
+    }
+    
+}
+
 //连接
 
 #pragma mark URL Connection Data Delegate Methods

@@ -387,23 +387,6 @@
     isSearchStateChange = NO;
     if (segmentControl.selectedSegmentIndex == 0) {
         segmentStateString = [NSString stringWithFormat:@"0"];
-        
-//        NSString * loginName = loginNameText.text;
-//        if ([loginName rangeOfString:@"全部"].length != 0) {
-//            loginName = @"";
-//        }
-//        UITextField * typeNameText = (UITextField *)[self.view viewWithTag:3];
-//        NSString * typeName = typeNameText.text;
-//        if ([typeName rangeOfString:@"全部"].length != 0) {
-//            typeName = @"";
-//        }
-//        UITextField * stateNameText = (UITextField *)[self.view viewWithTag:4];
-//        NSString * stateName = stateNameText.text;
-//        if ([stateName rangeOfString:@"全部"].length != 0) {
-//            stateName = @"";
-//        }
-//        Pager * pager = [[Pager alloc]init];
-//        [app.network getAllApplyListWithToken:@"jiou" AndType:typeName AndUserName:loginName AndPlaceName:placeText.text AndState:stateName AndPager:pager];
     }else{
         segmentStateString = [NSString stringWithFormat:@"1"];
     }
@@ -461,6 +444,59 @@
                 stateName = [interfaceTransform objectForKey:stateName];
             }
             [app.network getAllApplyListWithToken:@"jiou" AndType:typeName AndUserName:loginName AndPlaceName:placeNameTextField2.text AndState:stateName AndPager:app.pager];
+        }
+    }
+}
+
+
+- (void)showTableViewWith:(UITextField *) textField{
+    if ([tableViewCacheDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)selectedTextFieldTag]] != NULL) {
+        _selectedTable = [tableViewCacheDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)selectedTextFieldTag]];
+        NSLog(@"buweikong");
+    }else  {
+        _selectedTable = [[UITableView alloc]init];
+        _selectedTable.tag = 100+ selectedTextFieldTag;
+        self.selectedTable.dataSource = self;
+        self.selectedTable.delegate = self;
+    }
+    
+    _selectedTable.frame = CGRectMake(textField.frame.origin.x, textField.frame.origin.y+NAVIGATIONHEIGHT + segmentControl.frame.size.height, textField.frame.size.width, tableViewCellHeight*self.dataList.count);
+    if (_selectedTable.frame.size.height+ _selectedTable.frame.origin.y> UISCREENHEIGHT -20) {
+        self.selectedTable.frame = CGRectMake(textField.frame.origin.x, textField.frame.origin.y+NAVIGATIONHEIGHT + segmentControl.frame.size.height, textField.frame.size.width, UISCREENHEIGHT -20 - (textField.frame.origin.y + NAVIGATIONHEIGHT + segmentControl.frame.size.height));
+    }
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view addSubview:_blackView];
+        [self.view addSubview:_selectedTable];
+        _blackView.alpha = 0.5;
+    }];
+    [tableViewCacheDictionary setObject:self.selectedTable forKey:[NSString stringWithFormat:@"%ld",(long)selectedTextFieldTag]];
+}
+
+//当有cell右滑滑出时  将其他cell左滑还原
+- (void)cellBack:(NSNotification *)note{
+    CustomTableViewCell * theCell = [[note userInfo]objectForKey:@"cell"];
+    if (theCell != nil) {
+        //遍历cell 并将其他cell左滑还原
+        for (int row = 0; row < _dataListForDisplay.count; row ++) {
+            NSUInteger section = 0;
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+            CustomTableViewCell * cell = (CustomTableViewCell *)[_tableViewForDisplay cellForRowAtIndexPath:indexPath];
+            if (cell.backgroundScrollView.contentOffset.x > UISCREENWIDTH /2  &&  cell != theCell) {
+                [UIView animateWithDuration:0.3 animations:^{
+                    cell.backgroundScrollView.contentOffset = CGPointMake(0, 0);
+                }];
+            }else if(cell == theCell){
+                NSLog(@"It's me, I will not back");
+            }
+        }
+    }else{
+        for (int row = 0; row < _dataListForDisplay.count; row ++) {
+            NSUInteger section = 0;
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+            CustomTableViewCell * cell = (CustomTableViewCell *)[_tableViewForDisplay cellForRowAtIndexPath:indexPath];
+            [UIView animateWithDuration:0.3 animations:^{
+                cell.backgroundScrollView.contentOffset = CGPointMake(0, 0);
+            }];
         }
     }
 }
@@ -545,7 +581,6 @@
     }
 }
 
-
 #pragma  -mark 网络返回
 - (void)userList:(NSNotification *)note{
     [GMDCircleLoader hideFromView:self.view animated:YES];
@@ -590,14 +625,19 @@
 
 //表的详情返回
 - (void)formDataBack:(NSNotification *)note{
+    NSDictionary * tempDic = [note userInfo];
     if ([[[note userInfo]objectForKey:@"result"] isEqualToString:@"1"]) {
+        app.ServerData = YES;
         if ([app.network.specialInterface isEqualToString: @"Szxwd"]) {
-            NSDictionary * data = [[note userInfo]objectForKey:@"info"];
-            
+//            NSDictionary * data = [[note userInfo]objectForKey:@"info"];
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
-            [applyAddBranchVC initTianJia:data];
+//            [applyAddBranchVC initTianJia:data];
             [self.navigationController pushViewController:applyAddBranchVC animated:YES];
+        }else if ([app.network.specialInterface isEqualToString: @"Hfyw"]){
+            if (tempDic.count == 2) {
+                app.applyRestoreDic = [[note userInfo]objectForKey:@"info"];
+            }
         }
     }else{
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"数据请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -795,7 +835,6 @@
     
 }
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _selectedTable) {
         return tableViewCellHeight;
@@ -807,59 +846,6 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
-}
-
-- (void)showTableViewWith:(UITextField *) textField{
-    if ([tableViewCacheDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)selectedTextFieldTag]] != NULL) {
-        _selectedTable = [tableViewCacheDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)selectedTextFieldTag]];
-        NSLog(@"buweikong");
-    }else  {
-        _selectedTable = [[UITableView alloc]init];
-        _selectedTable.tag = 100+ selectedTextFieldTag;
-        self.selectedTable.dataSource = self;
-        self.selectedTable.delegate = self;
-    }
-    
-    _selectedTable.frame = CGRectMake(textField.frame.origin.x, textField.frame.origin.y+NAVIGATIONHEIGHT + segmentControl.frame.size.height, textField.frame.size.width, tableViewCellHeight*self.dataList.count);
-    if (_selectedTable.frame.size.height+ _selectedTable.frame.origin.y> UISCREENHEIGHT -20) {
-        self.selectedTable.frame = CGRectMake(textField.frame.origin.x, textField.frame.origin.y+NAVIGATIONHEIGHT + segmentControl.frame.size.height, textField.frame.size.width, UISCREENHEIGHT -20 - (textField.frame.origin.y + NAVIGATIONHEIGHT + segmentControl.frame.size.height));
-    }
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.view addSubview:_blackView];
-        [self.view addSubview:_selectedTable];
-        _blackView.alpha = 0.5;
-    }];
-    [tableViewCacheDictionary setObject:self.selectedTable forKey:[NSString stringWithFormat:@"%ld",(long)selectedTextFieldTag]];
-}
-
-//当有cell右滑滑出时  将其他cell左滑还原
-- (void)cellBack:(NSNotification *)note{
-    CustomTableViewCell * theCell = [[note userInfo]objectForKey:@"cell"];
-    if (theCell != nil) {
-        //遍历cell 并将其他cell左滑还原
-        for (int row = 0; row < _dataListForDisplay.count; row ++) {
-            NSUInteger section = 0;
-            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-            CustomTableViewCell * cell = (CustomTableViewCell *)[_tableViewForDisplay cellForRowAtIndexPath:indexPath];
-            if (cell.backgroundScrollView.contentOffset.x > UISCREENWIDTH /2  &&  cell != theCell) {
-                [UIView animateWithDuration:0.3 animations:^{
-                    cell.backgroundScrollView.contentOffset = CGPointMake(0, 0);
-                }];
-            }else if(cell == theCell){
-                NSLog(@"It's me, I will not back");
-            }
-        }
-    }else{
-        for (int row = 0; row < _dataListForDisplay.count; row ++) {
-            NSUInteger section = 0;
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-            CustomTableViewCell * cell = (CustomTableViewCell *)[_tableViewForDisplay cellForRowAtIndexPath:indexPath];
-            [UIView animateWithDuration:0.3 animations:^{
-                cell.backgroundScrollView.contentOffset = CGPointMake(0, 0);
-            }];
-        }
-    }
-    
 }
 
 #pragma mark - touch

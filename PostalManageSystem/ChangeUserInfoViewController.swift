@@ -53,6 +53,7 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
         
 //        println("\(ClassToJSON.getObjectData(userInfo))")
         
+        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

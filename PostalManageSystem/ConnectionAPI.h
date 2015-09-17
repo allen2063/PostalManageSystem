@@ -49,6 +49,8 @@
 - (void)getXMLDate;
 //获取XML数据
 - (void)getXMLDataWithFileName:(NSString *)fileName;
+//发送表详情
+- (void)sendFormToServerWithInterface:(NSString *)interface AndUser:(id)user AndInfo:(id)info AndExtraInfo:(id)extraInfo;
 @property (strong, nonatomic) NSMutableData *webData;
 @property (strong, nonatomic) NSURLConnection *conn;
 @property (strong, nonatomic) NSMutableString *getXMLResults;

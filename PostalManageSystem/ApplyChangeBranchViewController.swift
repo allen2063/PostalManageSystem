@@ -1124,6 +1124,8 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate {
         if QiTa2.selected {
             infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",qt"
         }
+//        var app=UIApplication.sharedApplication().delegate as! AppDelegate
+//        app.network .sendFormToServerWithInterface("Jjqz", andInfo: ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb), andExtraInfo: nil)
 
         println("\(ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb))")
         //ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb)

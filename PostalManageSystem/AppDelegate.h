@@ -20,5 +20,16 @@
 @property (strong,nonatomic) Pager * pager;
 @property (strong,nonatomic) NSMutableDictionary * interfaceTransform;
 @property (strong,nonatomic) NSMutableDictionary * userData;
+
+@property BOOL ServerData;
+@property (strong,nonatomic) NSMutableDictionary * applyResignDic;
+@property (strong,nonatomic) NSMutableDictionary * applyAddDic;
+@property (strong,nonatomic) NSMutableDictionary * applyPauseDic;
+@property (strong,nonatomic) NSMutableDictionary * applyRestoreDic;
+@property (strong,nonatomic) NSMutableDictionary * applyStopDic;
+@property (strong,nonatomic) NSMutableDictionary * applyChangeDic;
+
+
+
 @end
 
