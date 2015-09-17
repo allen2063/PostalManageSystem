@@ -232,7 +232,6 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     }
     
     
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
