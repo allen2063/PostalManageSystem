@@ -635,15 +635,7 @@
             ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
             [self.navigationController pushViewController:applyAddBranchVC animated:YES];
         }
-        //申请恢复
-        else if ([app.network.specialInterface isEqualToString: @"Hfyw"]){
-            if (tempDic.count == 2) {
-                app.applyRestoreDic = [[note userInfo]objectForKey:@"info"];
-                ApplyRestoreBranchViewController * applyRestoreBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyRestoreBranchVC"];
-                [self.navigationController pushViewController:applyRestoreBranchVC animated:YES];
-            }
-        }
-        //申请撤销网店
+        //申请撤销网店  有时2个info       对应一个VC  两个页面   3各表   seg0是Cxpbfwwd  2个表   seg1是Cxfpbfwwd 1个表
         else if ([app.network.specialInterface isEqualToString: @"Cxpbfwwd"] || [app.network.specialInterface isEqualToString: @"Cxfpbfwwd"]){
             if (tempDic.count == 2) {
                 app.applyResignDic = [[note userInfo]objectForKey:@"info"];
@@ -656,8 +648,37 @@
                 ApplyResignBranchViewController2 * applyResignBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyResignBranchVC"];
                 [self.navigationController pushViewController:applyResignBranchVC animated:YES];
             }
-//            NSLog(@"app.applyResignDic%@",app.applyResignDic);
+            //            NSLog(@"app.applyResignDic%@",app.applyResignDic);
         }
+        //申请变更网点   分为seg0申请网点信息变更（备案信息变更） seg1就近迁址
+        else if ([app.network.specialInterface isEqualToString: @"Baxxbg"] || [app.network.specialInterface isEqualToString: @"Jjqz"]){
+            app.applyChangeDic = [[note userInfo]objectForKey:@"info"];
+            ApplyChangeBranchViewController * applyChangeBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyChangeBranchVC"];
+            [self.navigationController pushViewController:applyChangeBranchVC animated:YES];
+        }
+        //申请暂停限业务
+        else if ([app.network.specialInterface isEqualToString: @"Ztxyw"]){
+            app.applyPauseDic = [[note userInfo]objectForKey:@"info"];
+            ApplyPausedViewController * applyPausedBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyPausedBranchVC"];
+            [self.navigationController pushViewController:applyPausedBranchVC animated:YES];
+        }
+        //申请停限业务   2个表  两个info
+        else if ([app.network.specialInterface isEqualToString: @"Txyw"]){
+            NSDictionary * info1Dic = [[note userInfo]objectForKey:@"info1"];
+            NSDictionary * info2Dic = [[note userInfo]objectForKey:@"info2"];
+            app.applyStopDic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:info1Dic,@"info1",info2Dic,@"info2", nil];
+            ApplyStopBranchViewController * applyStopBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyStopBranchVC"];
+            [self.navigationController pushViewController:applyStopBranchVC animated:YES];
+        }
+        //申请恢复
+        else if ([app.network.specialInterface isEqualToString: @"Hfyw"]){
+//            if (tempDic.count == 2) {
+                app.applyRestoreDic = [[note userInfo]objectForKey:@"info"];
+                ApplyRestoreBranchViewController * applyRestoreBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyRestoreBranchVC"];
+                [self.navigationController pushViewController:applyRestoreBranchVC animated:YES];
+//            }
+        }
+
     }else{
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"数据请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
