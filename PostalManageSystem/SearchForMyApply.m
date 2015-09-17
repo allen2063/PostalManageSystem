@@ -645,9 +645,18 @@
         }
         //申请撤销网店
         else if ([app.network.specialInterface isEqualToString: @"Cxpbfwwd"] || [app.network.specialInterface isEqualToString: @"Cxfpbfwwd"]){
-            app.applyResignDic = [[note userInfo]objectForKey:@"info"];
-            ApplyResignBranchViewController2 * applyResignBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyResignBranchVC"];
-            [self.navigationController pushViewController:applyResignBranchVC animated:YES];
+            if (tempDic.count == 2) {
+                app.applyResignDic = [[note userInfo]objectForKey:@"info"];
+                ApplyResignBranchViewController2 * applyResignBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyResignBranchVC"];
+                [self.navigationController pushViewController:applyResignBranchVC animated:YES];
+            }else{
+                NSDictionary * info1Dic = [[note userInfo]objectForKey:@"info1"];
+                NSDictionary * info2Dic = [[note userInfo]objectForKey:@"info2"];
+                app.applyResignDic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:info1Dic,@"info1",info2Dic,@"info2", nil];
+                ApplyResignBranchViewController2 * applyResignBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyResignBranchVC"];
+                [self.navigationController pushViewController:applyResignBranchVC animated:YES];
+            }
+//            NSLog(@"app.applyResignDic%@",app.applyResignDic);
         }
     }else{
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"数据请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
