@@ -240,8 +240,8 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             app.ServerData = false
             
             if app.applyResignDic.count == 2 {
-                if app.applyResignDic
-                initCheXiaoPuBianFuWuChangSuoShenQing()
+//                if app.applyResignDic
+//                initCheXiaoPuBianFuWuChangSuoShenQing()
             }
 //            initCheXiaoPuBianFuWuChangSuoShenQing()
 //            initCheXiaoPuBianFuWuChangSuo(<#dict: NSDictionary#>)
