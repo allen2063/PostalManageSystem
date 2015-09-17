@@ -254,6 +254,7 @@
             app.titleForCurrentPage = @"申请新增网点";
             //            bsdt = [bsdt init];
             [self.navigationController pushViewController:applyAddBranchVC animated:YES];
+//            printf("%@", applyAddBranchVC.chooseShiXiang);
             break;
         case 3:
         {

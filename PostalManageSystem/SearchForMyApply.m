@@ -848,6 +848,82 @@
     return YES;
 }
 
+<<<<<<< Updated upstream
+=======
+- (void)showTableViewWith:(UITextField *) textField{
+    if ([tableViewCacheDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)selectedTextFieldTag]] != NULL) {
+        _selectedTable = [tableViewCacheDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)selectedTextFieldTag]];
+        NSLog(@"buweikong");
+    }else  {
+        _selectedTable = [[UITableView alloc]init];
+        _selectedTable.tag = 100+ selectedTextFieldTag;
+        self.selectedTable.dataSource = self;
+        self.selectedTable.delegate = self;
+    }
+    
+    _selectedTable.frame = CGRectMake(textField.frame.origin.x, textField.frame.origin.y+NAVIGATIONHEIGHT + segmentControl.frame.size.height, textField.frame.size.width, tableViewCellHeight*self.dataList.count);
+    if (_selectedTable.frame.size.height+ _selectedTable.frame.origin.y> UISCREENHEIGHT -20) {
+        self.selectedTable.frame = CGRectMake(textField.frame.origin.x, textField.frame.origin.y+NAVIGATIONHEIGHT + segmentControl.frame.size.height, textField.frame.size.width, UISCREENHEIGHT -20 - (textField.frame.origin.y + NAVIGATIONHEIGHT + segmentControl.frame.size.height));
+    }
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view addSubview:_blackView];
+        [self.view addSubview:_selectedTable];
+        _blackView.alpha = 0.5;
+    }];
+    [tableViewCacheDictionary setObject:self.selectedTable forKey:[NSString stringWithFormat:@"%ld",(long)selectedTextFieldTag]];
+}
+
+//当有cell右滑滑出时  将其他cell左滑还原
+- (void)cellBack:(NSNotification *)note{
+    CustomTableViewCell * theCell = [[note userInfo]objectForKey:@"cell"];
+    if (theCell != nil) {
+        //遍历cell 并将其他cell左滑还原
+        for (int row = 0; row < _dataListForDisplay.count; row ++) {
+            NSUInteger section = 0;
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+            CustomTableViewCell * cell = (CustomTableViewCell *)[_tableViewForDisplay cellForRowAtIndexPath:indexPath];
+            if (cell.backgroundScrollView.contentOffset.x > UISCREENWIDTH /2  &&  cell != theCell) {
+                [UIView animateWithDuration:0.3 animations:^{
+                    cell.backgroundScrollView.contentOffset = CGPointMake(0, 0);
+                }];
+            }else if(cell == theCell){
+                NSLog(@"It's me, I will not back");
+            }
+        }
+    }else{
+        for (int row = 0; row < _dataListForDisplay.count; row ++) {
+            NSUInteger section = 0;
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+            CustomTableViewCell * cell = (CustomTableViewCell *)[_tableViewForDisplay cellForRowAtIndexPath:indexPath];
+            [UIView animateWithDuration:0.3 animations:^{
+                cell.backgroundScrollView.contentOffset = CGPointMake(0, 0);
+            }];
+        }
+
+    }
+    
+}
+
+//表的详情返回
+- (void)formDataBack:(NSNotification *)note{
+    if ([[[note userInfo]objectForKey:@"result"] isEqualToString:@"1"]) {
+        if ([app.network.specialInterface isEqualToString: @"Szxwd"]) {
+            NSDictionary * data = [[note userInfo]objectForKey:@"info"];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
+            ApplyAddBranchViewController * applyAddBranchVC = [[ApplyAddBranchViewController alloc]init];
+//            [applyAddBranchVC initTianJia:data];
+            [self.navigationController pushViewController:applyAddBranchVC animated:YES];
+            
+            [applyAddBranchVC.changSuoMingCheng setText:@"ssssss"];
+        }
+    }else{
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"数据请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+>>>>>>> Stashed changes
 #pragma mark - touch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];   //scrollview捕获了touch事件
