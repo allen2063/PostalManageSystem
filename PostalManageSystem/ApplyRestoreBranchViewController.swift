@@ -9,6 +9,8 @@
 import UIKit
 
 class ApplyRestoreBranchViewController: UIViewController {
+    var app = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     @IBOutlet weak var qiYeMingCheng: UITextField!
     @IBOutlet weak var yingYeChangSUoMingCheng: UITextField!
     @IBOutlet weak var diZhi: UITextField!
@@ -98,8 +100,12 @@ class ApplyRestoreBranchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        if app.ServerData == true {
+            app.ServerData = false
+            initHuiFu( app.applyRestoreDic)
+        }
+      
     }
 
     @IBAction func commit(sender: AnyObject) {
@@ -140,7 +146,7 @@ class ApplyRestoreBranchViewController: UIViewController {
         infoOfHfblyzpbhtsfwywbgb.hfbldsj = huiFuBanLiShiJian.text
         infoOfHfblyzpbhtsfwywbgb.qtxysmdsx = qiTaShuoMingShiXiang.text
         
-        var app=UIApplication.sharedApplication().delegate as! AppDelegate
+        
         app.network .sendFormToServerWithInterface("Hfyw", andUser: app.userData, andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb), andExtraInfo: nil)
         
         println("\(infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx)")
