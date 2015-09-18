@@ -244,9 +244,13 @@
     if (cell == nil) {
         cell = [[GeneralTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     }
-    //无图片布局
+    //判断cell是否有图  默认有
     if([[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"] isKindOfClass:[NSString class]]
        && [(NSString *)[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"] length]==0){
+        cell.havePic = NO;
+    }
+    //无图片布局
+    if(!cell.havePic){
         cell.titleLabel.text = [[self.dataList objectAtIndex:indexPath.row]objectForKey:@"title"];
         cell.writerLabel.text = [[self.dataList objectAtIndex:indexPath.row]objectForKey:@"author"];
         NSString * pubTime = [[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"pubTime"]substringWithRange:NSMakeRange(0,10)];

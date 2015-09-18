@@ -37,7 +37,7 @@
         self.timeLabel.textColor = UIColorFromRGBValue(0x9e9e9e);
         self.timeLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:self.timeLabel];
-
+        self.havePic = YES;
         }
     return self;
 }
@@ -49,7 +49,8 @@
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
     self.titleLabel.textColor = UIColorFromRGBValue(0x333333);
     self.titleLabel.numberOfLines = 2;
-    
+    self.havePic = NO;
+
 //    self.writerLabel.frame = CGRectMake(15, self.frame.size.height*2/3, self.frame.size.width*2/8-7.5, self.frame.size.height*2/9);
 //    self.writerLabel.backgroundColor = [UIColor clearColor];
 //    self.writerLabel.font = [UIFont systemFontOfSize:14];

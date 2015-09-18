@@ -8,11 +8,12 @@
 
 #import "UploadPicViewController.h"
 #define BACKGROUNDIMGVIEWWIDTH (UISCREENHEIGHT*4/5 - 135)
-@interface UploadPicViewController()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
+@interface UploadPicViewController()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate>{
     AppDelegate *app;
     BOOL picIsChoosen;
     UIAlertView * alerts;
     BOOL isUploading;
+    BOOL uploadSuccess;
 }
 @property (strong,nonatomic) UIImagePickerController * imagePicker;
 @property (strong,nonatomic) UIView * backgroundView;
@@ -39,6 +40,7 @@
         _imagePicker.delegate = self;
         picIsChoosen = NO;
         isUploading = NO;
+        uploadSuccess = NO;
     }
     return self;
 }
@@ -226,10 +228,14 @@
     NSString * state = [[timer userInfo] objectForKey:@"state"];
     [alerts dismissWithClickedButtonIndex:0 animated:NO];
     if ([state isEqualToString:@"YES"]) {
+        uploadSuccess = NO;
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"上传失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        alert.delegate = self;
         [alert show];
     }else{
+        uploadSuccess = YES;
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        alert.delegate = self;
         [alert show];
     }
     isUploading = NO;
@@ -325,5 +331,12 @@
     }
 }
 
-
+#pragma mark - alertView
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView != alerts && buttonIndex == 0 && uploadSuccess) {
+        [self cancelView];
+    }else if(alertView != alerts && buttonIndex == 0 && !uploadSuccess) {
+//        [self cancelView];
+    }
+}
 @end

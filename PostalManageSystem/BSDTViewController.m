@@ -319,15 +319,16 @@
 }
 
 - (void)doLogin:(NSNotification *)note{
+    NSDictionary * dic = [[NSDictionary alloc]initWithDictionary:[note userInfo]];
     [GMDCircleLoader hideFromView:self.view animated:YES];
+    
     NSString * loginResult = [[note userInfo] objectForKey:@"result"];
     if ([loginResult isEqualToString:@"0"]) {
         UIAlertView * alerts = [[UIAlertView alloc]initWithTitle:@"登录失败" message:@"请检查账号、密码！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alerts show];
     }else if ([loginResult isEqualToString:@"1"]){
         [self.view sendSubviewToBack:self.loginView];
-        NSDictionary * userData = [[NSDictionary alloc]initWithDictionary:[[note userInfo] objectForKey:@"data"]];
-        app.userData = [[NSMutableDictionary alloc]initWithDictionary: userData];
+        app.userData = [[NSMutableDictionary alloc]initWithDictionary: [dic objectForKey:@"data"]];
         
         self.titleLabel.text = @"办事大厅";
         app.login = YES;

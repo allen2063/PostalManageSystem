@@ -14,4 +14,5 @@
 @property(nonatomic,strong) UILabel * writerLabel;
 @property(nonatomic,strong) UILabel * timeLabel;
 @property(nonatomic,strong) UIImageView * picImageView;
+@property BOOL havePic;
 @end

@@ -221,7 +221,7 @@
 }
 
 - (void)qdgg:(NSNotification *)note{
-    NSDictionary * dic = [note userInfo];
+    NSDictionary * dic = [[NSDictionary alloc]initWithDictionary:[note userInfo]];
     if ([[dic objectForKey:@"result"]isEqualToString:@"1"]) {
         NSDictionary * data = [dic objectForKey:@"data"];
         
