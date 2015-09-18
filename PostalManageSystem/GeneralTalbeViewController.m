@@ -19,6 +19,7 @@
     BOOL shouldUpdateCacheForTitle;
     NSString * titleID;
     BOOL shouldUpdateCacheForPic;
+    BOOL shouldWaitForPicDownload;
 }
 @property (strong,nonatomic)UILabel * titleLabel;
 @property (strong,nonatomic)UITableView * tableView;
@@ -58,6 +59,7 @@
     app.pager = [app.pager init];
     shouldUpdateCacheForTitle = NO;
     shouldUpdateCacheForPic =NO;
+    shouldWaitForPicDownload = NO;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getNewsByType:) name:@"getNewsByType" object:nil];
     //读取缓存数据
@@ -134,17 +136,25 @@
         }
     }
     
-    for (id obj in self.tempDataList) {     //加载新闻图片
-        if ([obj isKindOfClass:[NSDictionary class]]
-            && [[(NSDictionary * )obj objectForKey:@"imageUrl"]isKindOfClass:[NSString class]]
-            && [(NSString *)[(NSDictionary * )obj objectForKey:@"imageUrl"] length]!=0) {
-            NSString * url = [(NSDictionary * )obj objectForKey:@"imageUrl"];
-            NSLog(@"线程%d已抛出",threadCount);
-            NSString * threadCountString = [NSString stringWithFormat:@"%d",threadCount];
-            NSMutableArray * tempArrays = [[NSMutableArray alloc]initWithObjects:url,threadCountString, nil];
-            [NSThread detachNewThreadSelector:@selector(loadData:) toTarget:self withObject:tempArrays];
+    if (threadCount != 0) {
+        for (id obj in self.tempDataList) {     //加载新闻图片
+            if ([obj isKindOfClass:[NSDictionary class]]
+                && [[(NSDictionary * )obj objectForKey:@"imageUrl"]isKindOfClass:[NSString class]]
+                && [(NSString *)[(NSDictionary * )obj objectForKey:@"imageUrl"] length]!=0) {
+                NSString * url = [(NSDictionary * )obj objectForKey:@"imageUrl"];
+                NSLog(@"线程%d已抛出",threadCount);
+                NSString * threadCountString = [NSString stringWithFormat:@"%d",threadCount];
+                NSMutableArray * tempArrays = [[NSMutableArray alloc]initWithObjects:url,threadCountString, nil];
+                [NSThread detachNewThreadSelector:@selector(loadData:) toTarget:self withObject:tempArrays];
+            }
         }
     }
+    //无图
+    else{
+        [self addDataWithDirection:directionForNow];
+    }
+    
+    
     isLoading = NO;
 }
 
