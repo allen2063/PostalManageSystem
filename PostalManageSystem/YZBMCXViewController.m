@@ -536,7 +536,8 @@
     NSLog(@"getProvinceInfo");
     //获取省份名称列表
     if (searchState == 11) {
-        NSString * str = [ConnectionAPI readXMLStringWithFileName:@"provinces"];
+//        NSString * str = [ConnectionAPI readXMLStringWithFileName:@"provinces"];
+        NSString * str = [[ConnectionAPI readFileDicWithFileName:@"provinces.archiver"]objectForKey:@"provinces"];
         NSData * dataString = [str dataUsingEncoding:NSUTF8StringEncoding ];
         self.xmlParser = [[NSXMLParser alloc] initWithData: dataString];
         self.xmlParser.delegate = self;
@@ -548,7 +549,8 @@
 - (void)getCityInfo{
     NSLog(@"getCityInfo");
         // 使用NSXMLParser解析出我们想要的结果
-        NSString * str = [ConnectionAPI readXMLStringWithFileName:@"cities"];
+//        NSString * str = [ConnectionAPI readXMLStringWithFileName:@"cities"];
+    NSString * str = [[ConnectionAPI readFileDicWithFileName:@"cities.archiver"]objectForKey:@"cities"];
         NSData * dataString = [str dataUsingEncoding:NSUTF8StringEncoding ];
         self.xmlParser = [[NSXMLParser alloc] initWithData: dataString];
         self.xmlParser.delegate = self;
@@ -559,7 +561,8 @@
 - (void)getAreaInfo{
     NSLog(@"getAreaInfo");
         // 使用NSXMLParser解析出我们想要的结果
-        NSString * str = [ConnectionAPI readXMLStringWithFileName:@"areas"];
+//        NSString * str = [ConnectionAPI readXMLStringWithFileName:@"areas"];
+    NSString * str = [[ConnectionAPI readFileDicWithFileName:@"areas.archiver"]objectForKey:@"areas"];
         NSData * dataString = [str dataUsingEncoding:NSUTF8StringEncoding ];
         self.xmlParser = [[NSXMLParser alloc] initWithData: dataString];
         self.xmlParser.delegate = self;
@@ -572,7 +575,8 @@
     searchState = GETZIPCODE;
         //searchState = FINDZIPCODE;
         // 使用NSXMLParser解析出我们想要的结果
-        NSString * str = [ConnectionAPI readXMLStringWithFileName:@"zipcode"];
+//        NSString * str = [ConnectionAPI readXMLStringWithFileName:@"zipcode"];
+    NSString * str = [[ConnectionAPI readFileDicWithFileName:@"zipcode.archiver"]objectForKey:@"zipcode"];
         NSData * dataString = [str dataUsingEncoding:NSUTF8StringEncoding ];
         self.xmlParser = [[NSXMLParser alloc] initWithData: dataString];
         self.xmlParser.delegate = self;

@@ -75,8 +75,8 @@
     //循环检测4个文件
     int i =1;
     for (formNameString in formNameArray) {
+        NSLog(@"读XML文件是否为空或者类型不匹配:%@",[NSString stringWithFormat:@"%@.archiver",formNameString]);
         NSMutableDictionary * XMLDic = [ConnectionAPI readFileDicWithFileName:[NSString stringWithFormat:@"%@.archiver",formNameString]];
-        NSLog(@"formNameString:%@",[NSString stringWithFormat:@"%@.archiver",formNameString]);
         //xml不存在或者出错 则直接请求
         if (XMLDic == nil || ![XMLDic isKindOfClass:[NSDictionary class]]) {
             NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:formNameString,@"formNameString", nil];
@@ -103,6 +103,7 @@
 - (void)compareDate:(NSTimer *)timer{
     NSString * formNameString = [[timer userInfo] objectForKey:@"formNameString"];
     NSString * serverFormBuildTimeString = [[timer userInfo] objectForKey:@"serverFormBuildTimeString"];
+    NSLog(@"读XML文件数据库版本信息:%@",[NSString stringWithFormat:@"%@.archiver",formNameString]);
     
     NSMutableDictionary * XMLDic = [ConnectionAPI readFileDicWithFileName:[NSString stringWithFormat:@"%@.archiver",formNameString]];
     NSString * localFormBuildTimeString = [XMLDic objectForKey:[NSString stringWithFormat:@"%@ForTime",formNameString]];

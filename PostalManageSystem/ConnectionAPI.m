@@ -505,7 +505,7 @@
     NSString *path = [documents stringByAppendingPathComponent:flieName];
     
     if ([[NSKeyedUnarchiver unarchiveObjectWithFile:path]isKindOfClass:[NSMutableDictionary class]]) {
-        NSLog( @"read file successfully!");
+        NSLog( @"read file:%@ successfully!",flieName);
         return [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     }else{
         NSLog( @"ERROR FROM READ FILE");
