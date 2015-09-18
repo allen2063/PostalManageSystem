@@ -12,6 +12,7 @@
 #import "JXJWPMLCXViewController.h"
 #import "BSDTViewController.h"
 #import "BaiduMapSearch.h"
+#import "UploadPicViewController.h"
 @interface MainViewController (){
     AppDelegate * app;
 }
@@ -55,6 +56,11 @@
     }else if ([app.titleForCurrentPage isEqualToString:@"邮政资讯"]){
         [self initForYZZX];
     }
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+   
 }
 
 # pragma UI

@@ -7,12 +7,17 @@
 //
 
 #import "UploadPicViewController.h"
+#define BACKGROUNDIMGVIEWWIDTH (UISCREENHEIGHT*4/5 - 135)
 @interface UploadPicViewController()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     AppDelegate *app;
-
+    BOOL picIsChoosen;
+    UIAlertView * alerts;
+    BOOL isUploading;
 }
-@property (strong,nonatomic) UILabel * titleLabel;
 @property (strong,nonatomic) UIImagePickerController * imagePicker;
+@property (strong,nonatomic) UIView * backgroundView;
+@property (strong,nonatomic) UIView * blackView;
+@property (strong,nonatomic) UIImageView * backgroudnImgView;
 @end
 
 @implementation UploadPicViewController
@@ -24,9 +29,16 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.view.backgroundColor = [UIColor whiteColor];
+        self.view.backgroundColor = [UIColor clearColor];
+        _blackView = [[UIView alloc]initWithFrame:self.view.bounds];
+        _blackView.alpha = 0.0;
+        _blackView.backgroundColor = [UIColor blackColor];
+        [self.view addSubview:_blackView];
+        [self.view sendSubviewToBack:_blackView];
         _imagePicker = [[UIImagePickerController alloc] init];
         _imagePicker.delegate = self;
+        picIsChoosen = NO;
+        isUploading = NO;
     }
     return self;
 }
@@ -39,32 +51,79 @@
     
     //获取单例
     app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    //设置导航栏label
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
-    self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-    self.titleLabel.textColor = [UIColor yellowColor];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.text = app.titleForCurrentPage;
-    self.navigationItem.titleView = self.titleLabel;
+    
+    _backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, UISCREENHEIGHT/5, UISCREENWIDTH, UISCREENHEIGHT*4/5)];
+    _backgroundView.backgroundColor = [UIColor whiteColor];
+//    _backgroundView.alpha = 0.8;
+    [self.view addSubview:_backgroundView];
+    
+    UILabel * backgroundViewLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, UISCREENWIDTH, 35)];
+    backgroundViewLabel.text = @"请选择图片";
+    backgroundViewLabel.font = [UIFont systemFontOfSize:15];
+    backgroundViewLabel.backgroundColor = UIColorFromRGBValue(0xc0c0c0);
+    backgroundViewLabel.textAlignment = NSTextAlignmentCenter;
+    [_backgroundView addSubview:backgroundViewLabel];
+    
+    UIButton * cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    cancelBtn.frame = CGRectMake(UISCREENWIDTH -45, 0, 45, 35);
+    [cancelBtn addTarget:self action:@selector(cancelView) forControlEvents:UIControlEventTouchUpInside];
+    [cancelBtn setTitle:@"返回" forState:UIControlStateNormal];
+    [cancelBtn setTitleColor:[UIColor blackColor]forState:UIControlStateNormal];
+    [_backgroundView addSubview:cancelBtn];
+
     
     UIButton * imageFromAlbumBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    imageFromAlbumBtn.frame = CGRectMake(UISCREENWIDTH/6, NAVIGATIONHEIGHT + UISCREENHEIGHT/6, UISCREENWIDTH/3, UISCREENHEIGHT/4);
+    imageFromAlbumBtn.frame = CGRectMake((UISCREENWIDTH/4-33.75),_backgroundView.frame.size.height - 80, 45, 65);
     [imageFromAlbumBtn addTarget:self action:@selector(pickImageFromAlbum) forControlEvents:UIControlEventTouchUpInside];
-    [imageFromAlbumBtn setTitle:@"图库" forState:UIControlStateNormal];
-    imageFromAlbumBtn.backgroundColor = UIColorFromRGBValue(0x028e45);
     [imageFromAlbumBtn setTitleColor:[UIColor yellowColor]forState:UIControlStateNormal];
-    [self.view addSubview:imageFromAlbumBtn];
+    [_backgroundView addSubview:imageFromAlbumBtn];
+    
+    UIImageView * imageFromAlbumImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 45, 45)];
+    imageFromAlbumImgView.image = [UIImage imageNamed:@"images"];
+    [imageFromAlbumBtn addSubview:imageFromAlbumImgView];
+    
+    UILabel * imageFromAlbumLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 45, 45, 25)];
+    imageFromAlbumLabel.text = @"图库";
+    imageFromAlbumLabel.font = [UIFont systemFontOfSize:15];
+    imageFromAlbumLabel.textAlignment = NSTextAlignmentCenter;
+    [imageFromAlbumBtn addSubview:imageFromAlbumLabel];
     
     UIButton * imageFromCameraBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    imageFromCameraBtn.frame = CGRectMake(UISCREENWIDTH*7/12, NAVIGATIONHEIGHT + UISCREENHEIGHT/6, UISCREENWIDTH/3, UISCREENHEIGHT/4);
+    imageFromCameraBtn.frame = CGRectMake(UISCREENWIDTH/4*2-22.5, _backgroundView.frame.size.height - 80, 45, 65);
     [imageFromCameraBtn addTarget:self action:@selector(pickImageFromCamera) forControlEvents:UIControlEventTouchUpInside];
-    [imageFromCameraBtn setTitle:@"相机" forState:UIControlStateNormal];
-    imageFromCameraBtn.backgroundColor = UIColorFromRGBValue(0x028e45);
     [imageFromCameraBtn setTitleColor:[UIColor yellowColor]forState:UIControlStateNormal];
-    [self.view addSubview:imageFromCameraBtn];
-
-//    UIButton * uploadBtn = 
+    [_backgroundView addSubview:imageFromCameraBtn];
+    
+    UIImageView * imageFromCameraImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 45, 45)];
+    imageFromCameraImgView.image = [UIImage imageNamed:@"cameras"];
+    [imageFromCameraBtn addSubview:imageFromCameraImgView];
+    
+    UILabel * imageFromCameraLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 45, 45, 25)];
+    imageFromCameraLabel.text = @"相机";
+    imageFromCameraLabel.font = [UIFont systemFontOfSize:15];
+    imageFromCameraLabel.textAlignment = NSTextAlignmentCenter;
+    [imageFromCameraBtn addSubview:imageFromCameraLabel];
+    
+    
+    UIButton * imageUploadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    imageUploadBtn.frame = CGRectMake(UISCREENWIDTH/4*3-11.25, _backgroundView.frame.size.height - 80, 45, 65);
+    [imageUploadBtn addTarget:self action:@selector(uploadAction) forControlEvents:UIControlEventTouchUpInside];
+    [imageUploadBtn setTitleColor:[UIColor yellowColor]forState:UIControlStateNormal];
+    [_backgroundView addSubview:imageUploadBtn];
+    
+    UIImageView * imageUploadImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 45, 45)];
+    imageUploadImgView.image = [UIImage imageNamed:@"uploads"];
+    [imageUploadBtn addSubview:imageUploadImgView];
+    
+    UILabel * imageUploadLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 45, 45, 25)];
+    imageUploadLabel.text = @"上传";
+    imageUploadLabel.font = [UIFont systemFontOfSize:15];
+    imageUploadLabel.textAlignment = NSTextAlignmentCenter;
+    [imageUploadBtn addSubview:imageUploadLabel];
+    
+    _backgroudnImgView = [[UIImageView alloc]initWithFrame:CGRectMake((UISCREENWIDTH - BACKGROUNDIMGVIEWWIDTH)/2, 45, BACKGROUNDIMGVIEWWIDTH, BACKGROUNDIMGVIEWWIDTH)];
+    _backgroudnImgView.image = [UIImage imageNamed:@"tup"];//backgroundImage
+    [_backgroundView addSubview:_backgroudnImgView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -76,6 +135,104 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     //[self pickImageFromAlbum];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.2];
+    _blackView.alpha = 0.5;
+    [UIView commitAnimations];
+}
+
+//等比例缩放适配
+- (void)adjustPicForDisplay:(UIImage *)selectedImg{
+    float imgRatio = selectedImg.size.height/selectedImg.size.width ;
+    NSLog(@"imgRatio:%@",NSStringFromCGSize(selectedImg.size));
+    float screeRatio = 1;//self.view.frame.size.height/self.view.frame.size.width;
+    CGSize bigImgSize;
+    if (imgRatio>screeRatio) {
+        //长为最大值   宽等比例转换
+        bigImgSize = CGSizeMake(BACKGROUNDIMGVIEWWIDTH/imgRatio, BACKGROUNDIMGVIEWWIDTH);
+        //长为最大值  则高度固定    宽的起始点浮动（frame.x）
+        _backgroudnImgView.frame = CGRectMake((UISCREENWIDTH - bigImgSize.width)/2, 45, bigImgSize.width, bigImgSize.height);
+    }else{
+        //宽为最大值   长等比例转换
+        bigImgSize = CGSizeMake(BACKGROUNDIMGVIEWWIDTH, BACKGROUNDIMGVIEWWIDTH*imgRatio);
+        //宽为最大值  则宽度固定    长的高度点浮动（frame.y）
+        _backgroudnImgView.frame = CGRectMake((UISCREENWIDTH - bigImgSize.width)/2, 45, bigImgSize.width, bigImgSize.height);
+    }
+    _backgroudnImgView.center = CGPointMake(UISCREENWIDTH/2, 45+BACKGROUNDIMGVIEWWIDTH/2);
+}
+
+//二进制转图片
++ (UIImage * )stringToPicWithImage:(NSData *)imageData{
+    UIImage *image = [UIImage imageWithData: imageData];
+    return image;
+}
+
+-(void)uploadAction{
+    //上传图片
+    if (picIsChoosen == NO) {
+        alerts = [[UIAlertView alloc]initWithTitle:nil message:@"请先选择照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alerts show];
+        return;
+    }
+    if (isUploading) {
+        return;
+    }else{
+        isUploading = YES;
+    }
+    alerts = [[UIAlertView alloc]initWithTitle:nil message:@"上传中" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    [alerts show];
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target: self selector: @selector(uploadNow) userInfo:nil repeats:NO];
+}
+
+- (void)uploadNow{
+////    压缩图片
+//        NSData *data;
+//        if (UIImagePNGRepresentation(_backgroudnImgView.image) == nil)
+//        {
+//            data = UIImageJPEGRepresentation(_backgroudnImgView.image, 0.8);
+//        }
+//        else
+//        {
+//            data = UIImagePNGRepresentation(_backgroudnImgView.image);
+//        }
+//
+//    NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//    //文件管理器
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    
+//    //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
+//    [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
+//    [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:@"/image.png"] contents:data attributes:nil];
+//    //    得到选择后沙盒中图片的完整路径
+//    NSString * filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,  @"/image.png"];
+//    //读取沙盒中的图片数据
+//    UIImage * imgs = [[UIImage alloc]initWithContentsOfFile:filePath];
+    
+//    _backgroudnImgView.image = imgs;
+//    _backgroudnImgView.image = [UploadPicViewController stringToPicWithImage:data];
+    
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:_backgroudnImgView.image,@"pic", nil];
+    NSString * resultString = [app.network PostImagesToServer:@"http://222.85.149.6:88/GuiYangPost/uploadpicture/upload" dicPostParams:dic dicImages:dic];
+    if ([resultString rangeOfString:@"result\":\"1"].length == 0) {
+        NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"YES",@"state", nil];
+        [NSTimer scheduledTimerWithTimeInterval:0.1 target: self selector: @selector(uploadFeedback:) userInfo:dic repeats:NO];
+    }else{
+        NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"NO",@"state", nil];
+        [NSTimer scheduledTimerWithTimeInterval:0.1 target: self selector: @selector(uploadFeedback:) userInfo:dic repeats:NO];
+    }
+}
+
+- (void)uploadFeedback:(NSTimer *)timer{
+    NSString * state = [[timer userInfo] objectForKey:@"state"];
+    [alerts dismissWithClickedButtonIndex:0 animated:NO];
+    if ([state isEqualToString:@"YES"]) {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"上传失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }else{
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    isUploading = NO;
 }
 
 - (void)pickImageFromCamera
@@ -101,6 +258,7 @@
     [self presentViewController:_imagePicker animated:YES completion:nil];
 }
 
+#pragma -mark 选择的图片
 //当选择一张图片后进入这里
 -(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -110,24 +268,24 @@
     {
         //先把图片转成NSData
         UIImage* image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        NSData *data;
-        if (UIImagePNGRepresentation(image) == nil)
-        {
-            data = UIImageJPEGRepresentation(image, 1.0);
-        }
-        else
-        {
-            data = UIImagePNGRepresentation(image);
-        }
-        //图片保存的路径
-        //这里将图片放在沙盒的documents文件夹中
-        NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        //文件管理器
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-       
-        //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
-        [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
-        [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:@"/image.png"] contents:data attributes:nil];
+//        NSData *data;
+//        if (UIImagePNGRepresentation(image) == nil)
+//        {
+//            data = UIImageJPEGRepresentation(image, 0.8);
+//        }
+//        else
+//        {
+//            data = UIImagePNGRepresentation(image);
+//        }
+//        //图片保存的路径
+//        //这里将图片放在沙盒的documents文件夹中
+//        NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//        //文件管理器
+//        NSFileManager *fileManager = [NSFileManager defaultManager];
+//       
+//        //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
+//        [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
+//        [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:@"/image.png"] contents:data attributes:nil];
         //得到选择后沙盒中图片的完整路径
 
         //filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,  @"/image.png"];
@@ -136,10 +294,12 @@
         [picker dismissViewControllerAnimated:YES completion:nil];
         //创建一个选择后图片的小图标放在下方
         //类似微薄选择图后的效果
-        UIImageView *smallimage = [[UIImageView alloc] initWithFrame:CGRectMake(50, NAVIGATIONHEIGHT + UISCREENWIDTH, 200, 200)];
-        smallimage.image = image;
+//        UIImageView *smallimage = [[UIImageView alloc] initWithFrame:CGRectMake(50, NAVIGATIONHEIGHT + UISCREENWIDTH, 200, 200)];
+        [self adjustPicForDisplay:image];
+        _backgroudnImgView.image = image;
+        picIsChoosen = YES;
         //加在视图中
-        [self.view addSubview:smallimage];
+//        [self.view addSubview:smallimage];
     }
 
 }
@@ -148,6 +308,21 @@
 {
     NSLog(@"您取消了选择图片");
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)cancelView{
+    _blackView.alpha = 0.0;
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+}
+
+#pragma mark - touch
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    UITouch *touch = [touches anyObject];
+    if (touch.view == _blackView) {
+        [self cancelView];
+    }
 }
 
 

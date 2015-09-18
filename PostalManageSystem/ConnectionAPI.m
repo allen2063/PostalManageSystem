@@ -35,10 +35,10 @@
     isback =NO;
     requestCount = 0;
     timeout = 25;
-    self.cacheDic = [ConnectionAPI readFileDicWithFileName:@"cacheDic.archiver"];
-    if (self.cacheDic == nil) {
+//    self.cacheDic = [ConnectionAPI readFileDicWithFileName:@"cacheDic.archiver"];
+//    if (self.cacheDic == nil) {
         self.cacheDic = [[NSMutableDictionary alloc]init];
-    }
+//    }
     return self;
 }
 
@@ -508,8 +508,9 @@
         NSLog( @"read file:%@ successfully!",flieName);
         return [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     }else{
-        NSLog( @"ERROR FROM READ FILE");
-        return [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        NSLog( @"ERROR FROM READ FILE  read file:%@   path:%@",flieName,path);
+        NSMutableDictionary * dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"error",@"result", nil];
+        return dic;
     }
 }
 
@@ -558,7 +559,7 @@
 }
 
 #pragma mark - 图片上传
-+(NSString *)PostImagesToServer:(NSString *) strUrl dicPostParams:(NSMutableDictionary *)params dicImages:(NSMutableDictionary *) dicImages{
+-(NSString *)PostImagesToServer:(NSString *) strUrl dicPostParams:(NSMutableDictionary *)params dicImages:(NSMutableDictionary *) dicImages{
     NSString * res;
     
     //分界线的标识符
@@ -566,7 +567,8 @@
     //根据url初始化request
     //NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:strUrl] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10];
     
-    NSURL *url = [NSURL URLWithString:strUrl];
+//    @"http://222.85.149.6:88/GuiYangPost/uploadpicture/upload"
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@uploadpicture/upload",urlToServer]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     //分界线 --AaB03x
     NSString *MPboundary=[[NSString alloc]initWithFormat:@"--%@",TWITTERFON_FORM_BOUNDARY];
@@ -610,7 +612,11 @@
         //要上传的图片
         image = [dicImages objectForKey:[keys objectAtIndex:i ]];
         //得到图片的data
+        image = [ConnectionAPI fixOrientation:image];
+        NSLog(@"压缩前方向：%ld",(long)image.imageOrientation);
+//        UIImageOrientation * beforeOrientationChange = image.imageOrientation;
         NSData* data =  UIImageJPEGRepresentation(image, 0.0);
+        NSLog(@"压缩后方向：%ld",(long)image.imageOrientation);
         NSMutableString *imgbody = [[NSMutableString alloc] init];
         //此处循环添加图片文件
         //添加图片信息字段
@@ -675,7 +681,104 @@
      res = [[NSString alloc] init];
      }*/
     NSLog(@"服务器返回：%@", res);
+    
     return res;
+}
+
++ (UIImage *)fixOrientation:(UIImage *)aImage {
+    
+    // No-op if the orientation is already correct
+    if (aImage.imageOrientation == UIImageOrientationUp)
+        return aImage;
+    
+    // We need to calculate the proper transformation to make the image upright.
+    // We do it in 2 steps: Rotate if Left/Right/Down, and then flip if Mirrored.
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    
+    switch (aImage.imageOrientation) {
+        case UIImageOrientationDown:
+        case UIImageOrientationDownMirrored:
+            transform = CGAffineTransformTranslate(transform, aImage.size.width, aImage.size.height);
+            transform = CGAffineTransformRotate(transform, M_PI);
+            break;
+            
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+            transform = CGAffineTransformTranslate(transform, aImage.size.width, 0);
+            transform = CGAffineTransformRotate(transform, M_PI_2);
+            break;
+            
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            transform = CGAffineTransformTranslate(transform, 0, aImage.size.height);
+            transform = CGAffineTransformRotate(transform, -M_PI_2);
+            break;
+        default:
+            break;
+    }
+    
+    switch (aImage.imageOrientation) {
+        case UIImageOrientationUpMirrored:
+        case UIImageOrientationDownMirrored:
+            transform = CGAffineTransformTranslate(transform, aImage.size.width, 0);
+            transform = CGAffineTransformScale(transform, -1, 1);
+            break;
+            
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRightMirrored:
+            transform = CGAffineTransformTranslate(transform, aImage.size.height, 0);
+            transform = CGAffineTransformScale(transform, -1, 1);
+            break;
+        default:
+            break;
+    }
+    
+    // Now we draw the underlying CGImage into a new context, applying the transform
+    // calculated above.
+    CGContextRef ctx = CGBitmapContextCreate(NULL, aImage.size.width, aImage.size.height,
+                                             CGImageGetBitsPerComponent(aImage.CGImage), 0,
+                                             CGImageGetColorSpace(aImage.CGImage),
+                                             CGImageGetBitmapInfo(aImage.CGImage));
+    CGContextConcatCTM(ctx, transform);
+    switch (aImage.imageOrientation) {
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            // Grr...
+            CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.height,aImage.size.width), aImage.CGImage);
+            break;
+            
+        default:
+            CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.width,aImage.size.height), aImage.CGImage);
+            break;
+    }
+    
+    // And now we just create a new UIImage from the drawing context
+    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
+    UIImage *img = [UIImage imageWithCGImage:cgimg];
+    CGContextRelease(ctx);
+    CGImageRelease(cgimg);
+    return img;
+}
+
+/////NSData -> NSDictionary
+//- (NSDictionary *)dataToDic:(NSData *)data{
+//    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+//    NSDictionary *myDictionary = [unarchiver decodeObjectForKey:@"Some Key Value"];
+//    [unarchiver finishDecoding];
+//    return myDictionary;
+//}
+
+//路径文件转dictonary
++(NSDictionary*)returnDictionaryWithDataPath:(NSString*)path
+{
+    NSData* data = [[NSMutableData alloc]initWithContentsOfFile:path];
+    NSKeyedUnarchiver* unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
+    NSDictionary* myDictionary = [unarchiver decodeObjectForKey:@"talkData"];
+    [unarchiver finishDecoding];
+    //    NSLog(@"%@", myDictionary);
+    return myDictionary;
 }
 
 @end

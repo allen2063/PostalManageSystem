@@ -57,17 +57,14 @@
     //xml更新请求
     [self.network getXMLDate];
     //启动公告
-//    Pager * pager;
-//    [self.network getListWithToken:@"jiou" AndType:@"qdgg" AndListPager:pager];
-//    [self initQDGG];
-    //_backgroundView.alpha = 0.8;
-    
-    //上传图片
-//    NSMutableDictionary * dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[UIImage imageNamed:@"banshidating"],@"pic", nil];
-//    [ConnectionAPI PostImagesToServer:@"http://222.85.149.6:88/GuiYangPost/uploadpicture/upload" dicPostParams:dic dicImages:dic];
+    Pager * pager;
+    [self.network getListWithToken:@"jiou" AndType:@"qdgg" AndListPager:pager];
+    [self initQDGG];
+    _backgroundView.alpha = 0.8;
+
     return YES;
 }
-#warning xml下载还没弄完
+
 - (void)getXmlDate:(NSNotification *)note{
     NSDictionary * dateDic = [[note userInfo]objectForKey:@"data"];
     NSArray * formNameArray = [dateDic allKeys];
@@ -75,17 +72,17 @@
     //循环检测4个文件
     int i =1;
     for (formNameString in formNameArray) {
-        NSLog(@"读XML文件是否为空或者类型不匹配:%@",[NSString stringWithFormat:@"%@.archiver",formNameString]);
+//        NSLog(@"读XML文件是否为空或者类型不匹配:%@",[NSString stringWithFormat:@"%@.archiver",formNameString]);
         NSMutableDictionary * XMLDic = [ConnectionAPI readFileDicWithFileName:[NSString stringWithFormat:@"%@.archiver",formNameString]];
         //xml不存在或者出错 则直接请求
-        if (XMLDic == nil || ![XMLDic isKindOfClass:[NSDictionary class]]) {
+        if (XMLDic == nil || ![XMLDic isKindOfClass:[NSDictionary class]] || [[XMLDic objectForKey:@"result"]isEqualToString:@"error"]) {
             NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:formNameString,@"formNameString", nil];
-            [NSTimer scheduledTimerWithTimeInterval:5.0*i target: self selector: @selector(getXMLDataWithFileName:) userInfo:dic repeats:NO];
+            [NSTimer scheduledTimerWithTimeInterval:5.0*i target: self selector: @selector(getXMLDataWithFileNames:) userInfo:dic repeats:NO];
 //            [self.network getXMLDataWithFileName:formNameString];
         }
         //如果返回检测版本信息返回结果成功
         else if ([[[note userInfo]objectForKey:@"result"]isEqualToString:@"1"]){
-            NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:formNameString,@"formNameString",[dateDic objectForKey:formNameString],@"serverFormBuildTimeString" ,nil];
+            NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:formNameString,@"formNameString",[dateDic objectForKey:formNameString],@"serverFormBuildTimeString" ,XMLDic , @"XMLDic", nil];
             [NSTimer scheduledTimerWithTimeInterval:5.0*i target: self selector: @selector(compareDate:) userInfo:dic repeats:NO];
 //            [self compareDateWithFormName:formNameString AndFormBuildTime:[dateDic objectForKey:formNameString]];
         }
@@ -93,7 +90,7 @@
     }
 }
 
-- (void)getXMLDataWithFileName:(NSTimer *)timer{
+- (void)getXMLDataWithFileNames:(NSTimer *)timer{
     NSString * formNameString = [[timer userInfo] objectForKey:@"formNameString"];
     [self.network getXMLDataWithFileName:formNameString];
 }
@@ -103,16 +100,19 @@
 - (void)compareDate:(NSTimer *)timer{
     NSString * formNameString = [[timer userInfo] objectForKey:@"formNameString"];
     NSString * serverFormBuildTimeString = [[timer userInfo] objectForKey:@"serverFormBuildTimeString"];
-    NSLog(@"读XML文件数据库版本信息:%@",[NSString stringWithFormat:@"%@.archiver",formNameString]);
+//    NSLog(@"读XML文件数据库版本信息:%@",[NSString stringWithFormat:@"%@.archiver",formNameString]);
     
-    NSMutableDictionary * XMLDic = [ConnectionAPI readFileDicWithFileName:[NSString stringWithFormat:@"%@.archiver",formNameString]];
+    NSMutableDictionary * XMLDic = [[timer userInfo] objectForKey:@"XMLDic"];//[ConnectionAPI readFileDicWithFileName:[NSString stringWithFormat:@"%@.archiver",formNameString]];
     NSString * localFormBuildTimeString = [XMLDic objectForKey:[NSString stringWithFormat:@"%@ForTime",formNameString]];
     NSDate * localFormBuildTimeDate = [self dateFromString:localFormBuildTimeString];
     NSDate * serverFormBuildTimeDate = [self dateFromString:serverFormBuildTimeString];
     BOOL needUpdate = ![localFormBuildTimeDate isEqualToDate:serverFormBuildTimeDate];
     if (needUpdate) {
         [self.network getXMLDataWithFileName:formNameString];
+        
+        NSLog(@"!!!要更新  localFormBuildTimeDate：%@   serverFormBuildTimeDate%@",localFormBuildTimeDate,serverFormBuildTimeDate);
     }
+    
 }
 
 //string 转 date
@@ -132,11 +132,11 @@
     NSString * formNameString = [dic objectForKey:@"fileName"];
     NSString * fileDate = [dic objectForKey:@"fileDate"];
     NSString * data = [dic objectForKey:@"data"];
-    NSMutableDictionary * XMLDic = [ConnectionAPI readFileDicWithFileName:[NSString stringWithFormat:@"%@.archiver",formNameString]];
+//    NSMutableDictionary * XMLDic = [ConnectionAPI readFileDicWithFileName:[NSString stringWithFormat:@"%@.archiver",formNameString]];
     
-    if (XMLDic == nil) {
-        XMLDic = [[NSMutableDictionary alloc]init];
-    }
+//    if (XMLDic == nil || ![XMLDic isKindOfClass:[NSDictionary class]] || [[XMLDic objectForKey:@"result"]isEqualToString:@"error"]) {
+        NSMutableDictionary * XMLDic = [[NSMutableDictionary alloc]init];
+//    }
        
     if ([[dic objectForKey: @"result"]isEqualToString:@"1"]) {
         [XMLDic setObject:data forKey:formNameString];

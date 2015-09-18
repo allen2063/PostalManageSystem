@@ -12,7 +12,7 @@
 #import "DJRefresh.h"
 #import "DJRefreshProgressView.h"
 //#import "ApplyAddBranchViewController.swift"
-
+#import "UploadPicViewController.h"
 #define tableViewCellHeight 35
 #define selectedfont 14
 #define defualtFont 17
@@ -32,6 +32,8 @@
     UIAlertView * alerts;
     //搜索的选项是否发生改变  yes为改变了   no为没改变   点击一次didselect设置为yes   点击一次submit设置为no
     BOOL isSearchStateChange;
+    
+    int viewCount;
     
     UITextField * placeNameTextField;
     UITextField * loginNameTextField;
@@ -257,7 +259,7 @@
     _tableViewForDisplay = [[UITableView alloc]initWithFrame:CGRectMake(0, allApplySearch.frame.origin.y +allApplySearch.frame.size.height  , UISCREENWIDTH, UISCREENHEIGHT - NAVIGATIONHEIGHT - segmentControl.frame.size.height -allApplySearch.frame.size.height) ];
     _tableViewForDisplay.delegate = self;
     _tableViewForDisplay.dataSource = self;
-    _tableViewForDisplay.hidden = YES;
+//    _tableViewForDisplay.hidden = YES;
     [self.view addSubview:_tableViewForDisplay];
     
     app.pager = [app.pager init];
@@ -271,7 +273,16 @@
     }
     _cachaDataForDifferentSegPage0 = [[NSMutableDictionary alloc]init];
     _cachaDataForDifferentSegPage1 = [[NSMutableDictionary alloc]init];
+    segmentStateString = [NSString stringWithFormat:@"0"];
+    viewCount = 1;
+}
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    if (viewCount == 1) {
+        [self submit];
+        viewCount ++;
+    }
 }
 
 
@@ -288,6 +299,11 @@
 
 -(void)change{
     [(UITextField *)[self.view viewWithTag:1] resignFirstResponder];
+    
+    if (isLoading) {
+        [segmentControl setSelectedSegmentIndex:[segmentStateString intValue]];
+        return;
+    }
     //存储改变前页面数据
     if (segmentControl.selectedSegmentIndex == 1) {
         NSString * isSearchStateChangeString = [NSString stringWithFormat:@"%@",isSearchStateChange ? @"YES":@"NO"];
@@ -374,10 +390,12 @@
     [_tableViewForDisplay reloadData];
     
     if (_dataListForDisplay.count == 0) {
-        _tableViewForDisplay.hidden = YES;
+//        _tableViewForDisplay.hidden = YES;
     }else{
-        _tableViewForDisplay.hidden =NO;
+//        _tableViewForDisplay.hidden =NO;
     }
+    
+    [self submit];
 }
 
 - (void)submit{
@@ -551,7 +569,18 @@
         if ([action isEqualToString:@"upload"]) {
             //上传
             NSLog(@"upload");
-            
+            UploadPicViewController * upload = [[UploadPicViewController alloc]init];
+//            upload.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+                upload.providesPresentationContextTransitionStyle = YES;
+                upload.definesPresentationContext = YES;
+                upload.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+                [self presentViewController:upload animated:YES completion:nil];
+            } else {
+                self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+                [self presentViewController:upload animated:NO completion:nil];
+                self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+            }
         }else{
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"已审核" message:@"审核通过后只能上传照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
@@ -562,7 +591,18 @@
         if ([action isEqualToString:@"upload"]) {
             //上传
             NSLog(@"upload");
-            
+            UploadPicViewController * upload = [[UploadPicViewController alloc]init];
+//            upload.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+                upload.providesPresentationContextTransitionStyle = YES;
+                upload.definesPresentationContext = YES;
+                upload.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+                [self presentViewController:upload animated:YES completion:nil];
+            } else {
+                self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+                [self presentViewController:upload animated:NO completion:nil];
+                self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+            }
         }else{
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"已审核" message:@"审核通过后只能上传照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
@@ -586,11 +626,18 @@
     [GMDCircleLoader hideFromView:self.view animated:YES];
     NSDictionary * dic = [note userInfo];
     if ([[dic objectForKey:@"result"] isEqualToString:@"1"]) {
+        //有多个用户时data是一个数组  只有一个用户时则是字典
         NSArray * data = [dic objectForKey:@"data"];
-        for (NSDictionary * dics in data) {
-            [_tempList addObject: [dics objectForKey:@"userName"]];
+        if ([data isKindOfClass:[NSArray class ]]) {
+            for (NSDictionary * dics in data) {
+                [_tempList addObject: [dics objectForKey:@"userName"]];
+            }
+            [_tempList insertObject:@"全部登录名" atIndex:0];
+        }else if([data isKindOfClass:[NSDictionary class]]){
+            [_tempList addObject: [(NSDictionary *)data objectForKey:@"userName"]];
+            [_tempList insertObject:@"全部登录名" atIndex:0];
         }
-        [_tempList insertObject:@"全部登录名" atIndex:0];
+        
     }
 }
 
@@ -615,9 +662,9 @@
     if(_dataListForDisplay.count == 0){
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"数据为空" message:@"没有该项数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
-        _tableViewForDisplay.hidden = YES;
+//        _tableViewForDisplay.hidden = YES;
     }else{
-        _tableViewForDisplay.hidden = NO;
+//        _tableViewForDisplay.hidden = NO;
     }
 
      [self addDataWithDirection:directionForNow];
@@ -749,7 +796,7 @@
             break;
         case 4:
             [(UITextField *)[self.view viewWithTag:1] resignFirstResponder];
-            _dataList = [[NSMutableArray alloc]initWithObjects:@"全部",@"未审核",@"审核未通过",@"已审核未上传照片",@"已审核以上传照片", nil];
+            _dataList = [[NSMutableArray alloc]initWithObjects:@"全部",@"未审核",@"审核未通过",@"审核未上传照片",@"审核已上传照片", nil];
             selectedTextFieldTag = 4;
             [self showTableViewWith:textField];
             return NO;
@@ -768,7 +815,7 @@
             break;
         case 7:
             [(UITextField *)[self.view viewWithTag:1] resignFirstResponder];
-            _dataList = [[NSMutableArray alloc]initWithObjects:@"全部",@"未审核",@"审核未通过",@"已审核未上传照片",@"已审核以上传照片", nil];
+            _dataList = [[NSMutableArray alloc]initWithObjects:@"全部",@"未审核",@"审核未通过",@"审核未上传照片",@"审核已上传照片", nil];
             selectedTextFieldTag = 7;
             [self showTableViewWith:textField];
             return NO;
@@ -864,6 +911,9 @@
         [self cancelView];
         [tableViewCacheDictionary setObject:tableView forKey:[NSString stringWithFormat:@"%ld",(long)selectedTextFieldTag]];
     }else{
+        if (isLoading) {
+            return;
+        }
         NSMutableString * flowID = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"flowId"];
         NSString * interface = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"type"];
 //        [flowID insertString:@"\"" atIndex:0];

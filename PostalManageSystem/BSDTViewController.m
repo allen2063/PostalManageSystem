@@ -326,7 +326,9 @@
         [alerts show];
     }else if ([loginResult isEqualToString:@"1"]){
         [self.view sendSubviewToBack:self.loginView];
-        app.userData = [[note userInfo] objectForKey:@"data"];
+        NSDictionary * userData = [[NSDictionary alloc]initWithDictionary:[[note userInfo] objectForKey:@"data"]];
+        app.userData = [[NSMutableDictionary alloc]initWithDictionary: userData];
+        
         self.titleLabel.text = @"办事大厅";
         app.login = YES;
     }
