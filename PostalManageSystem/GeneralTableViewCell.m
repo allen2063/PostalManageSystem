@@ -37,36 +37,25 @@
         self.timeLabel.textColor = UIColorFromRGBValue(0x9e9e9e);
         self.timeLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:self.timeLabel];
-        self.havePic = YES;
+        
+        self.picImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width*3/4-10, 10, self.frame.size.width/4, self.frame.size.height-20)];
+        [self addSubview:self.picImageView];
+
         }
     return self;
 }
 
 - (void)addPicLayout{
     self.titleLabel.frame = CGRectMake(15, 0, self.frame.size.width*3/4-15-10, self.frame.size.height*7/9);
-    self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    self.titleLabel.textAlignment = NSTextAlignmentLeft;
-    self.titleLabel.textColor = UIColorFromRGBValue(0x333333);
-    self.titleLabel.numberOfLines = 2;
-    self.havePic = NO;
 
-//    self.writerLabel.frame = CGRectMake(15, self.frame.size.height*2/3, self.frame.size.width*2/8-7.5, self.frame.size.height*2/9);
-//    self.writerLabel.backgroundColor = [UIColor clearColor];
-//    self.writerLabel.font = [UIFont systemFontOfSize:14];
-//    self.writerLabel.textColor = UIColorFromRGBValue(0x9e9e9e);
-//    self.writerLabel.textAlignment = NSTextAlignmentLeft;
-//    
-//    self.timeLabel.frame = CGRectMake(15+self.writerLabel.frame.size.width, self.frame.size.height*2/3, self.frame.size.width*4/8-7.5, self.frame.size.height*2/9);
-//    self.timeLabel.backgroundColor = [UIColor clearColor];
-//    self.timeLabel.font = [UIFont systemFontOfSize:14];
-//    self.timeLabel.textColor = UIColorFromRGBValue(0x9e9e9e);
-//    self.timeLabel.textAlignment = NSTextAlignmentCenter;
-    
-    self.picImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width*3/4-10, 10, self.frame.size.width/4, self.frame.size.height-20)];
+    self.picImageView.hidden = NO;
     self.picImageView.image = [UIImage imageNamed:@"logo"];
-    [self addSubview:self.picImageView];
+}
 
+- (void)deletePicLayout{
+    self.titleLabel.frame = CGRectMake(15, 0, self.frame.size.width-15, self.frame.size.height*7/9);
+
+    self.picImageView.hidden = YES;
 }
 
 - (void)awakeFromNib {

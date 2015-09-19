@@ -255,17 +255,20 @@
         cell = [[GeneralTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     }
     //判断cell是否有图  默认有
-    if([[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"] isKindOfClass:[NSString class]]
-       && [(NSString *)[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"] length]==0){
-        cell.havePic = NO;
-    }
+//    if([[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"] isKindOfClass:[NSString class]]
+//       && [(NSString *)[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"] rangeOfString:@"http"].length == 0){
+//        NSLog(@"出现就代表没图  %@  %hhd  判断条件%d",[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"],cell.havePic,[(NSString *)[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"] rangeOfString:@"http"].length);
+//        cell.havePic = NO;
+//    }
     //无图片布局
-    if(!cell.havePic){
+    if([(NSString *)[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"] rangeOfString:@"t"].length == 0){
+        [cell deletePicLayout];
         cell.titleLabel.text = [[self.dataList objectAtIndex:indexPath.row]objectForKey:@"title"];
         cell.writerLabel.text = [[self.dataList objectAtIndex:indexPath.row]objectForKey:@"author"];
         NSString * pubTime = [[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"pubTime"]substringWithRange:NSMakeRange(0,10)];
         pubTime = [NSString stringWithFormat:@"发布时间:%@",pubTime];
         cell.timeLabel.text = pubTime;
+            NSLog(@"到底有没有图  应该为空才对  %@  ",[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"]);
     }
     //有图片布局
     else{
@@ -277,6 +280,7 @@
         cell.timeLabel.text = pubTime;
         UIImageView * temp = (UIImageView *)[self.cachaDic objectForKey:[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"]];
         cell.picImageView.image = temp.image;
+        NSLog(@"应该不为空才对  %@  ",[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"]);
     }
     return cell;
 }

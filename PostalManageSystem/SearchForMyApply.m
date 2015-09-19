@@ -32,7 +32,9 @@
     UIAlertView * alerts;
     //搜索的选项是否发生改变  yes为改变了   no为没改变   点击一次didselect设置为yes   点击一次submit设置为no
     BOOL isSearchStateChange;
-    
+    //判断是点击左滑按钮后的cell按钮返回  还是点击cell的返回
+    BOOL didSelectedCell;
+    //控制刷新  只有再初始化时第一次出现才刷新
     int viewCount;
     
     UITextField * placeNameTextField;
@@ -275,6 +277,7 @@
     _cachaDataForDifferentSegPage1 = [[NSMutableDictionary alloc]init];
     segmentStateString = [NSString stringWithFormat:@"0"];
     viewCount = 1;
+    didSelectedCell = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -583,12 +586,12 @@
                 self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationFullScreen;
             }
             
-            //请求表的详情  如果有imageUrl则加载图片  
-            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
-            NSMutableString * flowID = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"flowId"];
-            NSString * interface = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"type"];
-            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
-            [app.network getFlowIDWithInterface:interface ANdToken:@"jiou" AndFlowID:flowID];
+            //未上传照片  则无需加载图片
+//            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
+//            NSMutableString * flowID = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"flowId"];
+//            NSString * interface = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"type"];
+//            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
+//            [app.network getFlowIDWithInterface:interface ANdToken:@"jiou" AndFlowID:flowID];
         }else{
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"已审核" message:@"审核通过后只能上传照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
@@ -611,6 +614,12 @@
                 [self presentViewController:upload animated:NO completion:nil];
                 self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationFullScreen;
             }
+            //预读取之前已上传的图片
+            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
+            NSMutableString * flowID = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"flowId"];
+            NSString * interface = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"type"];
+            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
+            [app.network getFlowIDWithInterface:interface ANdToken:@"jiou" AndFlowID:flowID];
         }else{
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"已审核" message:@"审核通过后只能上传照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
@@ -645,7 +654,6 @@
             [_tempList addObject: [(NSDictionary *)data objectForKey:@"userName"]];
             [_tempList insertObject:@"全部登录名" atIndex:0];
         }
-        
     }
 }
 
@@ -680,6 +688,10 @@
 
 //表的详情返回
 - (void)formDataBack:(NSNotification *)note{
+    //判断是点击左滑按钮后的cell按钮返回  还是点击cell的返回
+    if (!didSelectedCell) {
+        return;
+    }
     [GMDCircleLoader hideFromView:self.view animated:YES];
     NSDictionary * tempDic = [[NSDictionary alloc]initWithDictionary: [note userInfo]];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -736,6 +748,7 @@
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"数据请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
     }
+    didSelectedCell = NO;
 }
 
 #pragma mark - DJrefresh df
@@ -919,7 +932,9 @@
         }
         [self cancelView];
         [tableViewCacheDictionary setObject:tableView forKey:[NSString stringWithFormat:@"%ld",(long)selectedTextFieldTag]];
-    }else{
+    }
+    //CustomCell
+    else{
         if (isLoading) {
             return;
         }
@@ -927,6 +942,7 @@
         NSString * interface = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"type"];
         [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
         [app.network getFlowIDWithInterface:interface ANdToken:@"jiou" AndFlowID:flowID];
+        didSelectedCell = YES;
     }
     
 }

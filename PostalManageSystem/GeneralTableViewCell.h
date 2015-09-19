@@ -10,9 +10,9 @@
 
 @interface GeneralTableViewCell : UITableViewCell
 - (void)addPicLayout;
+- (void)deletePicLayout;
 @property(nonatomic,strong) UILabel * titleLabel;
 @property(nonatomic,strong) UILabel * writerLabel;
 @property(nonatomic,strong) UILabel * timeLabel;
 @property(nonatomic,strong) UIImageView * picImageView;
-@property BOOL havePic;
 @end
