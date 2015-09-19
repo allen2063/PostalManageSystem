@@ -44,7 +44,9 @@
 //获取flowID
 - (void)getFlowIDWithInterface:(NSString *)interface ANdToken:(NSString *)token AndFlowID:(NSString *)flowID;
 //上传图片
--(NSString *)PostImagesToServer:(NSString *) strUrl dicPostParams:(NSMutableDictionary *)params dicImages:(NSMutableDictionary *) dicImages;
+-(NSString *)PostImagesToServer:(NSString *)strUrl dicPostParams:(NSMutableDictionary *)params dicImages:(NSMutableDictionary *) dicImages;
+//修改
+- (void)editWithInterface:(NSString *)interface AndInfo:(NSDictionary *)info AndExtraInfo:(id)extraInfo;
 //获取XML版本信息
 - (void)getXMLDate;
 //获取XML数据

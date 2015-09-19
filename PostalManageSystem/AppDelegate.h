@@ -22,6 +22,9 @@
 
 @property (strong,nonatomic) NSMutableDictionary * interfaceTransform;
 @property (strong,nonatomic) NSMutableDictionary * userData;
+@property (strong,nonatomic) NSMutableDictionary * selectedCellData;
+//@property (strong,nonatomic) NSMutableDictionary * interfaceTransformForBSDT;
+
 
 @property BOOL ServerData;
 @property (strong,nonatomic) NSMutableDictionary * applyResignDic;

@@ -534,13 +534,14 @@
                 //判断按钮响应类型
                 if([actionString isEqualToString:@"delete"]){
                     statusString = [[[_dataListForDisplay objectAtIndex:row] objectForKey:@"status"]stringValue];
-                    [self statusJuge:statusString AndAction:@"delete"];
+                    [self statusJuge:statusString AndAction:@"delete" AndIndexPath:indexPath];
                 }else if ([actionString isEqualToString:@"edit"]){
                     statusString = [[[_dataListForDisplay objectAtIndex:row] objectForKey:@"status"]stringValue];
-                    [self statusJuge:statusString AndAction:@"edit"];
+                    [self statusJuge:statusString AndAction:@"edit" AndIndexPath:indexPath];
                 }else if ([actionString isEqualToString:@"upload"]){
+                    app.selectedCellData = [_dataListForDisplay objectAtIndex:indexPath.row];
                     statusString = [[[_dataListForDisplay objectAtIndex:row] objectForKey:@"status"]stringValue];
-                    [self statusJuge:statusString AndAction:@"upload"];
+                    [self statusJuge:statusString AndAction:@"upload" AndIndexPath:indexPath];
                 }
                 NSLog(@"It's me, I will not back");
             }
@@ -549,7 +550,7 @@
 }
 
 //改cell对应表的审核状态下是否能执行对应操作
-- (void)statusJuge:(NSString *)status AndAction:(NSString*)action{
+- (void)statusJuge:(NSString *)status AndAction:(NSString*)action AndIndexPath:(NSIndexPath *)indexPath{
     //未审核
     if ([status isEqualToString:@"0"]) {
         //该情况下不允许上传图片
@@ -581,6 +582,13 @@
                 [self presentViewController:upload animated:NO completion:nil];
                 self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationFullScreen;
             }
+            
+            //请求表的详情  如果有imageUrl则加载图片  
+            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
+            NSMutableString * flowID = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"flowId"];
+            NSString * interface = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"type"];
+            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
+            [app.network getFlowIDWithInterface:interface ANdToken:@"jiou" AndFlowID:flowID];
         }else{
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"已审核" message:@"审核通过后只能上传照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
@@ -672,25 +680,26 @@
 
 //表的详情返回
 - (void)formDataBack:(NSNotification *)note{
-    NSDictionary * tempDic = [note userInfo];
+    [GMDCircleLoader hideFromView:self.view animated:YES];
+    NSDictionary * tempDic = [[NSDictionary alloc]initWithDictionary: [note userInfo]];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    if ([[[note userInfo]objectForKey:@"result"] isEqualToString:@"1"]) {
+    if ([[tempDic objectForKey:@"result"] isEqualToString:@"1"]) {
         app.ServerData = YES;
         //申请新增
         if ([app.network.specialInterface isEqualToString: @"Szxwd"]) {
-            app.applyAddDic = [[note userInfo]objectForKey:@"info"];
+            app.applyAddDic = [tempDic objectForKey:@"info"];
             ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
             [self.navigationController pushViewController:applyAddBranchVC animated:YES];
         }
         //申请撤销网店  有时2个info       对应一个VC  两个页面   3各表   seg0是Cxpbfwwd  2个表   seg1是Cxfpbfwwd 1个表
         else if ([app.network.specialInterface isEqualToString: @"Cxpbfwwd"] || [app.network.specialInterface isEqualToString: @"Cxfpbfwwd"]){
             if (tempDic.count == 2) {
-                app.applyResignDic = [[note userInfo]objectForKey:@"info"];
+                app.applyResignDic = [tempDic objectForKey:@"info"];
                 ApplyResignBranchViewController2 * applyResignBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyResignBranchVC"];
                 [self.navigationController pushViewController:applyResignBranchVC animated:YES];
             }else{
-                NSDictionary * info1Dic = [[note userInfo]objectForKey:@"info1"];
-                NSDictionary * info2Dic = [[note userInfo]objectForKey:@"info2"];
+                NSDictionary * info1Dic = [tempDic objectForKey:@"info1"];
+                NSDictionary * info2Dic = [tempDic objectForKey:@"info2"];
                 app.applyResignDic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:info1Dic,@"info1",info2Dic,@"info2", nil];
                 ApplyResignBranchViewController2 * applyResignBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyResignBranchVC"];
                 [self.navigationController pushViewController:applyResignBranchVC animated:YES];
@@ -698,27 +707,27 @@
         }
         //申请变更网点   分为seg0申请网点信息变更（备案信息变更） seg1就近迁址
         else if ([app.network.specialInterface isEqualToString: @"Baxxbg"] || [app.network.specialInterface isEqualToString: @"Jjqz"]){
-            app.applyChangeDic = [[note userInfo]objectForKey:@"info"];
+            app.applyChangeDic = [tempDic objectForKey:@"info"];
             ApplyChangeBranchViewController * applyChangeBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyChangeBranchVC"];
             [self.navigationController pushViewController:applyChangeBranchVC animated:YES];
         }
         //申请暂停限业务
         else if ([app.network.specialInterface isEqualToString: @"Ztxyw"]){
-            app.applyPauseDic = [[note userInfo]objectForKey:@"info"];
+            app.applyPauseDic = [tempDic objectForKey:@"info"];
             ApplyPausedViewController * applyPausedBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyPausedBranchVC"];
             [self.navigationController pushViewController:applyPausedBranchVC animated:YES];
         }
         //申请停限业务   2个表  两个info
         else if ([app.network.specialInterface isEqualToString: @"Txyw"]){
-            NSDictionary * info1Dic = [[note userInfo]objectForKey:@"info1"];
-            NSDictionary * info2Dic = [[note userInfo]objectForKey:@"info2"];
+            NSDictionary * info1Dic = [tempDic objectForKey:@"info1"];
+            NSDictionary * info2Dic = [tempDic objectForKey:@"info2"];
             app.applyStopDic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:info1Dic,@"info1",info2Dic,@"info2", nil];
             ApplyStopBranchViewController * applyStopBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyStopBranchVC"];
             [self.navigationController pushViewController:applyStopBranchVC animated:YES];
         }
         //申请恢复
         else if ([app.network.specialInterface isEqualToString: @"Hfyw"]){
-                app.applyRestoreDic = [[note userInfo]objectForKey:@"info"];
+                app.applyRestoreDic = [tempDic objectForKey:@"info"];
                 ApplyRestoreBranchViewController * applyRestoreBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyRestoreBranchVC"];
                 [self.navigationController pushViewController:applyRestoreBranchVC animated:YES];
         }
@@ -916,7 +925,7 @@
         }
         NSMutableString * flowID = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"flowId"];
         NSString * interface = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"type"];
-//        [flowID insertString:@"\"" atIndex:0];
+        [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
         [app.network getFlowIDWithInterface:interface ANdToken:@"jiou" AndFlowID:flowID];
     }
     

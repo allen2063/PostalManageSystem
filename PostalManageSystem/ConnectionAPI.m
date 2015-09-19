@@ -213,7 +213,7 @@
 }
 
 //3参数
-- (void)withInterface:(NSString *)interface andArgument1Name:(NSString *)argument1Name andArgument1Value:(NSString *)argument1Value andArgument2Name:(NSString *)argument2Name andArgument2Value:(NSString *)argument2Value andArgument3Name:(NSString *)argument3Name andArgument3Value:(id)argument3Value{
+- (void)withInterface:(NSString *)interface andArgument1Name:(NSString *)argument1Name andArgument1Value:(NSString *)argument1Value andArgument2Name:(NSString *)argument2Name andArgument2Value:(id)argument2Value andArgument3Name:(NSString *)argument3Name andArgument3Value:(id)argument3Value{
     NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:argument1Value,argument1Name,argument2Value,argument2Name,argument3Value,argument3Name, nil];
     NSString *soapMsg =[NSString stringWithFormat:@"%@",dic];
     //中文有乱码  转码
@@ -354,7 +354,16 @@
     }else{
         [self withInterface:communicatingInterface andArgument1Name:@"token" andArgument1Value:@"jiou" andArgument2Name:@"info1" andArgument2Value:info andArgument3Name:@"info2" andArgument3Value:extraInfo andArgument4Name:@"baseUser" andArgument4Value:user];
     }
-    
+}
+
+- (void)editWithInterface:(NSString *)interface AndInfo:(NSDictionary *)info AndExtraInfo:(id)extraInfo;{
+    communicatingInterface = [NSString stringWithFormat:@"bsdtApi/edit%@",interface];
+    self.specialInterface = interface;
+    if (extraInfo == nil) {
+    [self withInterface:communicatingInterface andArgument1Name:@"token" andArgument1Value:@"jiou" andArgument2Name:@"info" andArgument2Value:info];
+    }else{
+        [self withInterface:communicatingInterface andArgument1Name:@"token" andArgument1Value:@"jiou" andArgument2Name:@"info1" andArgument2Value:info andArgument3Name:@"info2" andArgument3Value:extraInfo];
+    }
 }
 
 //连接
@@ -481,6 +490,10 @@
     //获取表的详情
     else if ([communicatingInterface isEqualToString:[NSString stringWithFormat:@"bsdtApi/get%@",self.specialInterface]]){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"bsdtApi/get" object:self userInfo:resultDic];
+    }
+    //修改接口返回
+    else if ([communicatingInterface isEqualToString:[NSString stringWithFormat:@"bsdtApi/edit%@",self.specialInterface]]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"bsdtApi/edit" object:self userInfo:resultDic];
     }
 }
 

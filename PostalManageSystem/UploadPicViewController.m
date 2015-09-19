@@ -19,6 +19,7 @@
 @property (strong,nonatomic) UIView * backgroundView;
 @property (strong,nonatomic) UIView * blackView;
 @property (strong,nonatomic) UIImageView * backgroudnImgView;
+@property (strong,nonatomic) NSDictionary * formData;
 @end
 
 @implementation UploadPicViewController
@@ -50,7 +51,10 @@
     // Do any additional setup after loading the view.
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
-    
+    //监听通知
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadFeedback:) name:@"bsdtApi/edit" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(formDataBack:) name:@"bsdtApi/get" object:nil];
+
     //获取单例
     app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
@@ -143,6 +147,26 @@
     [UIView commitAnimations];
 }
 
+- (void)formDataBack:(NSNotification *)note{
+    NSDictionary * tempDic = [[NSDictionary alloc]initWithDictionary: [note userInfo]];
+    if (tempDic.count == 2) {
+        _formData = [tempDic objectForKey:@"info"];
+        NSString * url = [_formData objectForKey:@"imageUrl"];
+        if(url.length > 10){
+
+            NSString * url = [_formData objectForKey:@"imageUrl"];
+            NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
+            _backgroudnImgView.image = [[UIImage alloc] initWithData:imageData];
+            
+        }else{
+            
+        }
+    }else{
+#warning 两张图片的情况
+    }
+    [GMDCircleLoader hideFromView:self.view animated:YES];
+}
+
 //等比例缩放适配
 - (void)adjustPicForDisplay:(UIImage *)selectedImg{
     float imgRatio = selectedImg.size.height/selectedImg.size.width ;
@@ -215,22 +239,38 @@
     
     NSMutableDictionary * dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:_backgroudnImgView.image,@"pic", nil];
     NSString * resultString = [app.network PostImagesToServer:@"http://222.85.149.6:88/GuiYangPost/uploadpicture/upload" dicPostParams:dic dicImages:dic];
-    if ([resultString rangeOfString:@"result\":\"1"].length == 0) {
-        NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"YES",@"state", nil];
-        [NSTimer scheduledTimerWithTimeInterval:0.1 target: self selector: @selector(uploadFeedback:) userInfo:dic repeats:NO];
+    uploadSuccess = NO;
+
+    
+    //json解析
+    NSData *aData = [resultString dataUsingEncoding: NSUTF8StringEncoding];
+    
+    NSDictionary * resultDic =  [NSJSONSerialization JSONObjectWithData:aData options:NSJSONReadingMutableContainers error:nil];
+    if (resultDic == nil) {
+        resultDic = [[NSDictionary alloc]init];
+    }
+
+    
+    
+    if ([[resultDic objectForKey:@"result"]isEqualToString:@"1"]) {
+        [alerts dismissWithClickedButtonIndex:0 animated:NO];
+        //修改
+        NSString * interface = [app.selectedCellData objectForKey:@"type"];
+        NSString * url = [resultDic objectForKey:@"url"];
+        [app.selectedCellData setObject:url forKey:@"imageUrl"];
+        [app.network editWithInterface:interface AndInfo:app.selectedCellData AndExtraInfo:nil];
     }else{
-        NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"NO",@"state", nil];
-        [NSTimer scheduledTimerWithTimeInterval:0.1 target: self selector: @selector(uploadFeedback:) userInfo:dic repeats:NO];
+        [alerts dismissWithClickedButtonIndex:0 animated:NO];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"上传失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        isUploading = NO;
     }
 }
 
-- (void)uploadFeedback:(NSTimer *)timer{
-    NSString * state = [[timer userInfo] objectForKey:@"state"];
-    [alerts dismissWithClickedButtonIndex:0 animated:NO];
-    if ([state isEqualToString:@"YES"]) {
-        uploadSuccess = NO;
+- (void)uploadFeedback:(NSNotification *)note{
+    NSString * state = [[note userInfo] objectForKey:@"result"];
+    if ([state isEqualToString:@"0"]) {
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"上传失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        alert.delegate = self;
         [alert show];
     }else{
         uploadSuccess = YES;

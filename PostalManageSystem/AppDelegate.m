@@ -37,6 +37,9 @@
     self.network = [[ConnectionAPI alloc]init];
     self.pager = [[Pager alloc]init];
     self.userData = [[NSMutableDictionary alloc]init];
+    self.selectedCellData = [[NSMutableDictionary alloc]init];
+//    self.interfaceTransformForBSDT = [[NSDictionary alloc]initWithObjectsAndKeys:@"Szxwd",@"设置新网点",@"Cxpbfwwd",@"撤销普遍服务网点",@"Cxfpbfwwd",@"撤销非普遍服务网点",@"Baxxbg",@"备案信息变更",@"Jjqz",@"就近迁址",@"Txyw",@"停限业务",@"Ztxyw",@"暂停限业务",@"Hfyw",@"恢复业务",@"0",@"未审核",@"1",@"审核未上传照片",@"2",@"审核已上传照片",@"3",@"审核未通过", nil];
+
     self.applyAddDic = [[NSMutableDictionary alloc]init];
     self.applyChangeDic = [[NSMutableDictionary alloc]init];
     self.applyPauseDic = [[NSMutableDictionary alloc]init];
@@ -56,11 +59,12 @@
 
     //xml更新请求
     [self.network getXMLDate];
+    
     //启动公告
-    Pager * pager;
-    [self.network getListWithToken:@"jiou" AndType:@"qdgg" AndListPager:pager];
-    [self initQDGG];
-    _backgroundView.alpha = 0.8;
+//    Pager * pager;
+//    [self.network getListWithToken:@"jiou" AndType:@"qdgg" AndListPager:pager];
+//    [self initQDGG];
+//    _backgroundView.alpha = 0.8;
 
     return YES;
 }
