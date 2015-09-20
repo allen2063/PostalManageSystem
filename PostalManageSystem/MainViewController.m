@@ -11,7 +11,7 @@
 #import "YZBMCXViewController.h"
 #import "JXJWPMLCXViewController.h"
 #import "BSDTViewController.h"
-#import "BaiduMapSearch.h"
+#import "BaiduMap.h"
 #import "UploadPicViewController.h"
 @interface MainViewController (){
     AppDelegate * app;
@@ -99,7 +99,8 @@
             break;case 5:
         {
             app.titleForCurrentPage = @"周边网点查询";
-            BaiduMapSearch * mapCotntroller = [[BaiduMapSearch alloc]init];
+            BaiduMap * mapCotntroller = [[BaiduMap alloc]init];
+//            MapViewControlDemoViewController * mapCotntroller = [[MapViewControlDemoViewController alloc]init];
             [self.navigationController pushViewController:mapCotntroller animated:YES];
         }
             break;

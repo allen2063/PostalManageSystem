@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BaiduMapSearch : UIViewController
+@interface BaiduMap : UIViewController
 
 @end

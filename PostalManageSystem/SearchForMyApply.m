@@ -283,7 +283,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
     if (viewCount == 1) {
-        [self submit];
+//        [self submit];
         viewCount ++;
     }
 }
@@ -305,6 +305,8 @@
     
     if (isLoading) {
         [segmentControl setSelectedSegmentIndex:[segmentStateString intValue]];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"网络加载中" message:@"请加载完成过后再试！" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
         return;
     }
     //存储改变前页面数据
@@ -507,7 +509,7 @@
                     cell.backgroundScrollView.contentOffset = CGPointMake(0, 0);
                 }];
             }else if(cell == theCell){
-                NSLog(@"It's me, I will not back");
+//                NSLog(@"It's me, I will not back");
             }
         }
     }else{
@@ -655,16 +657,19 @@
             [_tempList insertObject:@"全部登录名" atIndex:0];
         }
     }
+    [self submit];
 }
 
 - (void)getApplyList:(NSNotification *)note{
     //[GMDCircleLoader hideFromView:self.view animated:YES];
     submitBtn.enabled = YES;
     submitBtn2.enabled =YES;
-    NSDictionary * dic = [note userInfo];
+    NSDictionary * dic = [[NSDictionary alloc]initWithDictionary: [note userInfo]];
     if ([[dic objectForKey:@"result"] isEqualToString:@"1"]) {
         //填充对应页面下方list的页面信息
-        [_pagerDci setObject:[dic objectForKey:@"listPager"] forKey:segmentStateString];
+        if ([dic objectForKey:@"listPager"] !=nil) {
+            [_pagerDci setObject:[dic objectForKey:@"listPager"] forKey:segmentStateString];
+        }
         app.pager.currentPage = [[[dic objectForKey:@"listPager"]objectForKey:@"currentPage"]intValue];
         app.pager.totalPages = [[[dic objectForKey:@"listPager"]objectForKey:@"totalPages"]intValue];
         NSArray * data = [dic objectForKey:@"list"];
@@ -678,9 +683,8 @@
     if(_dataListForDisplay.count == 0){
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"数据为空" message:@"没有该项数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
-//        _tableViewForDisplay.hidden = YES;
     }else{
-//        _tableViewForDisplay.hidden = NO;
+        
     }
 
      [self addDataWithDirection:directionForNow];
@@ -884,13 +888,16 @@
     }
     else{
         CustomTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"cell" ];
-//        if (cell == nil) {
+        if (cell == nil) {
             cell = [[CustomTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-//        }
+        }
         
         if (indexPath.row % 2 == 0) {
             cell.backgroundColor = UIColorFromRGBValue(0xf3f3f3);
+        }else{
+            cell.backgroundColor = [UIColor whiteColor];
         }
+        
         if (indexPath.row < _dataListForDisplay.count) {
             cell.placeNameLabel.text = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"wdxx"];
             cell.serviceTypeLabel.text = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"typeName"];
@@ -904,6 +911,8 @@
         if (segmentControl.selectedSegmentIndex == 0) {
             //全部申请列表这不允许滑动
             cell.backgroundScrollView.scrollEnabled = NO;
+        }else{
+            cell.backgroundScrollView.scrollEnabled = YES;
         }
         return cell;
     }

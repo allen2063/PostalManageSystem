@@ -132,7 +132,7 @@
 - (void)withInterface:(NSString *)interface{
     NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"",@"", nil];
     NSString *soapMsg =[NSString stringWithFormat:@"%@",dic];
-    NSLog(@"soapMsg %@",soapMsg);
+    NSLog(@"soapMsg %@  插入接口：%@",soapMsg,communicatingInterface);
     NSString * ur = [NSString stringWithFormat:@"%@%@",urlToServer,interface];
     NSURL * url = [NSURL URLWithString:ur] ;
     NSMutableURLRequest * req = [NSMutableURLRequest requestWithURL:url];
@@ -161,7 +161,7 @@
     NSString *soapMsg =[NSString stringWithFormat:@"%@",dic];
     //中文有乱码  转码
     soapMsg = [ConnectionAPI replaceUnicode:soapMsg];
-    NSLog(@"soapMsg %@",soapMsg);
+    NSLog(@"soapMsg %@  插入接口：%@",soapMsg,communicatingInterface);
     NSString * ur = [NSString stringWithFormat:@"%@%@",urlToServer,interface];
     NSURL * url = [NSURL URLWithString:ur] ;
     NSMutableURLRequest * req = [NSMutableURLRequest requestWithURL:url];
@@ -190,7 +190,7 @@
     NSString *soapMsg = [NSString stringWithFormat:@"%@",dic];
     //中文有乱码  转码
     soapMsg = [ConnectionAPI replaceUnicode:soapMsg];
-    NSLog(@"soapMsg %@",soapMsg);
+    NSLog(@"soapMsg %@  插入接口：%@",soapMsg,communicatingInterface);
     NSString * ur = [NSString stringWithFormat:@"%@%@",urlToServer,interface];
     NSURL * url = [NSURL URLWithString:ur] ;
     NSMutableURLRequest * req = [NSMutableURLRequest requestWithURL:url];
@@ -218,7 +218,7 @@
     NSString *soapMsg =[NSString stringWithFormat:@"%@",dic];
     //中文有乱码  转码
     soapMsg = [ConnectionAPI replaceUnicode:soapMsg];
-    NSLog(@"soapMsg %@",soapMsg);
+    NSLog(@"soapMsg %@  插入接口：%@",soapMsg,communicatingInterface);
     NSString * ur = [NSString stringWithFormat:@"%@%@",urlToServer,interface];
     NSURL * url = [NSURL URLWithString:ur] ;
     NSMutableURLRequest * req = [NSMutableURLRequest requestWithURL:url];
@@ -247,7 +247,7 @@
     NSString *soapMsg =[NSString stringWithFormat:@"%@",dic];
     //中文有乱码  转码
     soapMsg = [ConnectionAPI replaceUnicode:soapMsg];
-    NSLog(@"soapMsg %@",soapMsg);
+    NSLog(@"soapMsg %@  插入接口：%@",soapMsg,communicatingInterface);
     NSString * ur = [NSString stringWithFormat:@"%@%@",urlToServer,interface];
     NSURL * url = [NSURL URLWithString:ur] ;
     NSMutableURLRequest * req = [NSMutableURLRequest requestWithURL:url];
@@ -278,7 +278,7 @@
     NSString *soapMsg =[NSString stringWithFormat:@"%@",dic];
     //中文有乱码  转码
     soapMsg = [ConnectionAPI replaceUnicode:soapMsg];
-    NSLog(@"soapMsg %@",soapMsg);
+    NSLog(@"soapMsg %@  插入接口：%@",soapMsg,communicatingInterface);
     NSString * ur = [NSString stringWithFormat:@"%@%@",urlToServer,interface];
     NSURL * url = [NSURL URLWithString:ur] ;
     NSMutableURLRequest * req = [NSMutableURLRequest requestWithURL:url];
@@ -395,7 +395,7 @@
    
     NSDictionary * d = [[NSDictionary alloc]initWithObjectsAndKeys:error,@"error" ,nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"fault" object:self userInfo:d];
-    if ([[error localizedDescription] rangeOfString:@"timed out"].length != 0) {
+    if ([[error localizedDescription] rangeOfString:@"timed out"].length != 0  || [[error localizedDescription] rangeOfString:@"请求超时"].length != 0) {
         NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:[error localizedDescription],@"timeOut", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"timeOut" object:self userInfo:dic];
     }
@@ -407,7 +407,7 @@
                                                 length:[self.webData length]
                                               encoding:NSUTF8StringEncoding];
     // 打印出得到的XML
-    NSLog(@"得到的返回数据：%@", theXML);
+    NSLog(@"得到的返回数据：%@  插入数据%@", theXML , communicatingInterface);
     //如果为空会崩
     if (theXML != nil) {
         self.getXMLResults = [[ NSMutableString alloc ]initWithString:theXML];

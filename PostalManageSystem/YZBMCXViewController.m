@@ -34,6 +34,7 @@
     int cityid;
     int areaid;
     int zipcode;
+    NSString * zipcodeString;
     int searchState;
 }
 @property (strong,nonatomic) UILabel * titleLabel;
@@ -309,9 +310,9 @@
             [alerts show];
             return;
         }
-        CGFloat font = [self adaptTextFontForString:[NSString stringWithFormat:@"您查询的地区的邮政编码为:%d",zipcode] AndWidth:informationLabel.frame.size.width*2];
+        CGFloat font = [self adaptTextFontForString:[NSString stringWithFormat:@"您查询的地区的邮政编码为:%@",zipcodeString] AndWidth:informationLabel.frame.size.width*2];
         informationLabel.font = [UIFont systemFontOfSize:font];
-        informationLabel.text = [NSString stringWithFormat:@"您查询的地区的邮政编码为:%d",zipcode];
+        informationLabel.text = [NSString stringWithFormat:@"您查询的地区的邮政编码为:%@",zipcodeString];
         //zipcode = 0;
     }
     //邮编查地区  可能一个邮编对应多个地区
@@ -622,6 +623,7 @@
                 case 14:    //获取邮政编码
                 {   //通过选定的地区id获取邮政编码
                     if([[attributeDict objectForKey:@"areaid"]intValue] == areaid){
+                        zipcodeString = [attributeDict objectForKey:@"zip"];
                         zipcode = [[attributeDict objectForKey:@"zip"]intValue];
                         NSLog(@"zip:  %@",[attributeDict objectForKey:@"zip"]);
                     }

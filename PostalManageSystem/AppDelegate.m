@@ -70,7 +70,7 @@
 }
 
 - (void)getXmlDate:(NSNotification *)note{
-    NSDictionary * dateDic = [[note userInfo]objectForKey:@"data"];
+    NSDictionary * dateDic = [[note userInfo]objectForKey:@"xmlDate"];
     NSArray * formNameArray = [dateDic allKeys];
     NSString * formNameString;
     //循环检测4个文件
