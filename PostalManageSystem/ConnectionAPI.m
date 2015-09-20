@@ -317,6 +317,11 @@
     [self withInterface:@"baseNewsApi/getNewsById" andArgument1Name:@"token" andArgument1Value:token andArgument2Name:@"id" andArgument2Value:ID];
 }
 
+- (void)getPostOfiiceCoordinate{
+    communicatingInterface = @"bsdtApi/getWdxxList";
+    [self withInterface:communicatingInterface andArgument1Name:@"token" andArgument1Value:@"jiou"];
+}
+
 - (void)getUserList{
     communicatingInterface = @"manageApi/userList";
     [self withInterface:@"manageApi/userList" andArgument1Name:@"token" andArgument1Value:@"jiou"];
@@ -470,6 +475,10 @@
     //获取新闻详情
     else if([communicatingInterface isEqualToString:@"baseNewsApi/getNewsById" ]){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"getNewsById" object:self userInfo:resultDic];
+    }
+    //获取邮政网点信息坐标
+    else if([communicatingInterface isEqualToString:@"bsdtApi/getWdxxList"]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"getWdxxList" object:self userInfo:resultDic];
     }
     //获取用户列表
     else if ([communicatingInterface isEqualToString:@"manageApi/userList"]){

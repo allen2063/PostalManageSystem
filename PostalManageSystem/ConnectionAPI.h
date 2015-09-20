@@ -37,6 +37,8 @@
 - (void)getListWithToken:(NSString *)token AndType:(NSString *)type AndListPager:(Pager *)listPager;
 //获取详情
 - (void)getDetailViewWithToken:(NSString *)token AndID:(NSString *)ID;
+//百度地图中附近邮局坐标
+- (void)getPostOfiiceCoordinate;
 //获取app用户列表
 - (void)getUserList;
 //全部申请查询

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		565430631B96AF3300B49E0E /* GMDCircleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 565430621B96AF3300B49E0E /* GMDCircleLoader.m */; };
 		565430691B96C3B500B49E0E /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 565430681B96C3B500B49E0E /* settings.png */; };
+		56957EF71BAE992B002298B0 /* MyAnimatedAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56957EF61BAE992B002298B0 /* MyAnimatedAnnotationView.m */; };
 		56A5EA4C1BABAA1B002B0007 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 56A5EA4A1BABAA1B002B0007 /* camera.png */; };
 		56A5EA4D1BABAA1B002B0007 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = 56A5EA4B1BABAA1B002B0007 /* picture.png */; };
 		56A5EA511BABB260002B0007 /* cameras.png in Resources */ = {isa = PBXBuildFile; fileRef = 56A5EA4E1BABB260002B0007 /* cameras.png */; };
@@ -136,6 +137,8 @@
 		565430611B96AF3300B49E0E /* GMDCircleLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMDCircleLoader.h; path = Indicator/GMDCircleLoader.h; sourceTree = "<group>"; };
 		565430621B96AF3300B49E0E /* GMDCircleLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMDCircleLoader.m; path = Indicator/GMDCircleLoader.m; sourceTree = "<group>"; };
 		565430681B96C3B500B49E0E /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		56957EF51BAE992B002298B0 /* MyAnimatedAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnimatedAnnotationView.h; sourceTree = "<group>"; };
+		56957EF61BAE992B002298B0 /* MyAnimatedAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnimatedAnnotationView.m; sourceTree = "<group>"; };
 		56A5EA4A1BABAA1B002B0007 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		56A5EA4B1BABAA1B002B0007 /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture.png; sourceTree = "<group>"; };
 		56A5EA4E1BABB260002B0007 /* cameras.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameras.png; sourceTree = "<group>"; };
@@ -525,6 +528,8 @@
 				56C6628D1B85CCE800BA95BD /* JXJWPMLCXViewController.m */,
 				56B88E2C1BA55B5C000B54D0 /* BaiduMap.h */,
 				56B88E2D1BA55B5C000B54D0 /* BaiduMap.mm */,
+				56957EF51BAE992B002298B0 /* MyAnimatedAnnotationView.h */,
+				56957EF61BAE992B002298B0 /* MyAnimatedAnnotationView.m */,
 			);
 			name = BianMinFuWu;
 			sourceTree = "<group>";
@@ -803,6 +808,7 @@
 				56CE54EF1BA94ED70065518A /* ApplyPausedViewController.swift in Sources */,
 				56C59E2E1B83164C00D96F08 /* MYDDCBGViewController.m in Sources */,
 				56C59E311B8316FF00D96F08 /* GeneralTalbeViewController.m in Sources */,
+				56957EF71BAE992B002298B0 /* MyAnimatedAnnotationView.m in Sources */,
 				56CE54EE1BA94ED70065518A /* ApplyAddBranchViewController.swift in Sources */,
 				56CE5B9C1B9ADAFE008D3B75 /* DJRefreshProgressView.m in Sources */,
 				56B88E2E1BA55B5C000B54D0 /* BaiduMap.mm in Sources */,
