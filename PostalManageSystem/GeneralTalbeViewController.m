@@ -268,7 +268,7 @@
         NSString * pubTime = [[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"pubTime"]substringWithRange:NSMakeRange(0,10)];
         pubTime = [NSString stringWithFormat:@"发布时间:%@",pubTime];
         cell.timeLabel.text = pubTime;
-            NSLog(@"到底有没有图  应该为空才对  %@  ",[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"]);
+//            NSLog(@"到底有没有图  应该为空才对  %@  ",[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"]);
     }
     //有图片布局
     else{
@@ -280,7 +280,7 @@
         cell.timeLabel.text = pubTime;
         UIImageView * temp = (UIImageView *)[self.cachaDic objectForKey:[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"]];
         cell.picImageView.image = temp.image;
-        NSLog(@"应该不为空才对  %@  ",[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"]);
+//        NSLog(@"应该不为空才对  %@  ",[[self.dataList objectAtIndex:indexPath.row]objectForKey:@"imageUrl"]);
     }
     return cell;
 }

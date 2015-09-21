@@ -14,6 +14,12 @@
     UIAlertView * alerts;
     BOOL isUploading;
     BOOL uploadSuccess;
+    int picCount;
+    int stepFlag;
+    UIButton * cancelBtn;
+    UILabel * backgroundViewLabel;
+    UIImageView * firstImgView;
+    UIImageView * secondImgView;
 }
 @property (strong,nonatomic) UIImagePickerController * imagePicker;
 @property (strong,nonatomic) UIView * backgroundView;
@@ -32,51 +38,43 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.view.backgroundColor = [UIColor clearColor];
-        _blackView = [[UIView alloc]initWithFrame:self.view.bounds];
-        _blackView.alpha = 0.0;
-        _blackView.backgroundColor = [UIColor blackColor];
-        [self.view addSubview:_blackView];
-        [self.view sendSubviewToBack:_blackView];
-        _imagePicker = [[UIImagePickerController alloc] init];
-        _imagePicker.delegate = self;
-        picIsChoosen = NO;
-        isUploading = NO;
-        uploadSuccess = NO;
     }
     return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    self.navigationItem.backBarButtonItem = item;
-    //监听通知
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadFeedback:) name:@"bsdtApi/edit" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(formDataBack:) name:@"bsdtApi/get" object:nil];
-
-    //获取单例
-    app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+-(id)initWithCountOfPic:(int )count AndFormName:(NSString *)formName{
     
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.view.backgroundColor = [UIColor clearColor];
+    }
+    picCount = count;
+    stepFlag = 1;
     _backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, UISCREENHEIGHT/5, UISCREENWIDTH, UISCREENHEIGHT*4/5)];
     _backgroundView.backgroundColor = [UIColor whiteColor];
-//    _backgroundView.alpha = 0.8;
     [self.view addSubview:_backgroundView];
     
-    UILabel * backgroundViewLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, UISCREENWIDTH, 35)];
-    backgroundViewLabel.text = @"请选择图片";
+    backgroundViewLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, UISCREENWIDTH, 35)];
+    backgroundViewLabel.text = formName;
     backgroundViewLabel.font = [UIFont systemFontOfSize:15];
     backgroundViewLabel.backgroundColor = UIColorFromRGBValue(0xc0c0c0);
     backgroundViewLabel.textAlignment = NSTextAlignmentCenter;
     [_backgroundView addSubview:backgroundViewLabel];
-    
-    UIButton * cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    cancelBtn.frame = CGRectMake(UISCREENWIDTH -45, 0, 45, 35);
-    [cancelBtn addTarget:self action:@selector(cancelView) forControlEvents:UIControlEventTouchUpInside];
+
+    cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    cancelBtn.frame = CGRectMake(UISCREENWIDTH -55, 0, 55, 35);
+    cancelBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [cancelBtn addTarget:self action:@selector(cancelViewForUpload) forControlEvents:UIControlEventTouchUpInside];
     [cancelBtn setTitle:@"返回" forState:UIControlStateNormal];
     [cancelBtn setTitleColor:[UIColor blackColor]forState:UIControlStateNormal];
     [_backgroundView addSubview:cancelBtn];
-
+    
+    if (picCount != 1) {
+        [cancelBtn setTitle:@"下一步" forState:UIControlStateNormal];
+        [cancelBtn addTarget:self action:@selector(nextStep) forControlEvents:UIControlEventTouchUpInside];
+        firstImgView = [[UIImageView alloc]init];
+        secondImgView = [[UIImageView alloc]init];
+    }
     
     UIButton * imageFromAlbumBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     imageFromAlbumBtn.frame = CGRectMake((UISCREENWIDTH/4-33.75),_backgroundView.frame.size.height - 80, 45, 65);
@@ -130,6 +128,38 @@
     _backgroudnImgView = [[UIImageView alloc]initWithFrame:CGRectMake((UISCREENWIDTH - BACKGROUNDIMGVIEWWIDTH)/2, 45, BACKGROUNDIMGVIEWWIDTH, BACKGROUNDIMGVIEWWIDTH)];
     _backgroudnImgView.image = [UIImage imageNamed:@"tup"];//backgroundImage
     [_backgroundView addSubview:_backgroudnImgView];
+    
+    
+    _blackView = [[UIView alloc]initWithFrame:self.view.bounds];
+    _blackView.alpha = 0.0;
+    _blackView.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:_blackView];
+    [self.view sendSubviewToBack:_blackView];
+    _imagePicker = [[UIImagePickerController alloc] init];
+    _imagePicker.delegate = self;
+    picIsChoosen = NO;
+    isUploading = NO;
+    uploadSuccess = NO;
+    
+    
+    return self;
+
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = item;
+    
+    //监听通知
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadFeedback:) name:@"bsdtApi/edit" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(cellDataBack:) name:@"bsdtApi/get" object:nil];
+
+    //获取单例
+    app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -147,22 +177,37 @@
     [UIView commitAnimations];
 }
 
-- (void)formDataBack:(NSNotification *)note{
+- (void)cellDataBack:(NSNotification *)note{
     NSDictionary * tempDic = [[NSDictionary alloc]initWithDictionary: [note userInfo]];
     if (tempDic.count == 2) {
         _formData = [tempDic objectForKey:@"info"];
         NSString * url = [_formData objectForKey:@"imageUrl"];
         if(url.length > 10){
-
             NSString * url = [_formData objectForKey:@"imageUrl"];
             NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
             _backgroudnImgView.image = [[UIImage alloc] initWithData:imageData];
-            
+            [self adjustPicForDisplay:_backgroudnImgView.image];
         }else{
-            
+            //没有图片  什么都不做
         }
     }else{
 #warning 两张图片的情况
+        _formData = [tempDic objectForKey:@"info1"];
+        NSString * url = [_formData objectForKey:@"imageUrl"];
+        if(url.length > 10){
+            NSString * url = [_formData objectForKey:@"imageUrl"];
+            NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
+            firstImgView.image = [[UIImage alloc] initWithData:imageData];
+            _backgroudnImgView.image = [[UIImage alloc] initWithData:imageData];
+            [self adjustPicForDisplay:_backgroudnImgView.image];
+        }
+        _formData = [tempDic objectForKey:@"info2"];
+        url = [_formData objectForKey:@"imageUrl"];
+        if(url.length > 10){
+            NSString * url = [_formData objectForKey:@"imageUrl"];
+            NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
+            secondImgView.image = [[UIImage alloc] initWithData:imageData];
+        }
     }
     [GMDCircleLoader hideFromView:self.view animated:YES];
 }
@@ -185,6 +230,17 @@
         _backgroudnImgView.frame = CGRectMake((UISCREENWIDTH - bigImgSize.width)/2, 45, bigImgSize.width, bigImgSize.height);
     }
     _backgroudnImgView.center = CGPointMake(UISCREENWIDTH/2, 45+BACKGROUNDIMGVIEWWIDTH/2);
+}
+
+//图片转二进制
++ (NSData *)picToStringWithImage:(UIImage *)image{
+    NSData *data;
+    if (UIImagePNGRepresentation(image)==nil) {
+        data = UIImageJPEGRepresentation(image, 0.1);
+    }else{
+        data = UIImagePNGRepresentation(image);
+    }
+    return data;
 }
 
 //二进制转图片
@@ -356,9 +412,28 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)cancelView{
-    _blackView.alpha = 0.0;
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)nextStep{
+    if (stepFlag == 1) {
+        firstImgView.image = _backgroudnImgView.image;
+        _backgroudnImgView.image = secondImgView.image;
+        [cancelBtn setTitle:@"上一步" forState:UIControlStateNormal];
+        stepFlag = 2;
+    }else if (stepFlag == 2){
+        secondImgView.image = _backgroudnImgView.image;
+        _backgroudnImgView.image = firstImgView.image;
+        [cancelBtn setTitle:@"下一步" forState:UIControlStateNormal];
+        stepFlag = 1;
+    }
+}
+
+- (void)cancelViewForUpload{
+    if (picCount != 1) {
+        
+    }else{
+        _blackView.alpha = 0.0;
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
 
 }
 
@@ -367,14 +442,14 @@
     [super touchesBegan:touches withEvent:event];
     UITouch *touch = [touches anyObject];
     if (touch.view == _blackView) {
-        [self cancelView];
+        [self cancelViewForUpload];
     }
 }
 
 #pragma mark - alertView
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView != alerts && buttonIndex == 0 && uploadSuccess) {
-        [self cancelView];
+        [self cancelViewForUpload];
     }else if(alertView != alerts && buttonIndex == 0 && !uploadSuccess) {
 //        [self cancelView];
     }

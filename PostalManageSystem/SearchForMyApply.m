@@ -575,8 +575,15 @@
         if ([action isEqualToString:@"upload"]) {
             //上传
             NSLog(@"upload");
-            UploadPicViewController * upload = [[UploadPicViewController alloc]init];
-//            upload.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            //取到表的类型判断上传几张图片
+            UploadPicViewController * upload;
+            NSString * typeName = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"typeName"];
+            if ([typeName isEqualToString:@"撤销普遍服务网点"]||[typeName isEqualToString:@"停限业务"]) {
+                upload = [[UploadPicViewController alloc]initWithCountOfPic:2 AndFormName:typeName];
+            }else{
+                upload = [[UploadPicViewController alloc]initWithCountOfPic:1 AndFormName:typeName];
+            }
+            //            upload.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
                 upload.providesPresentationContextTransitionStyle = YES;
                 upload.definesPresentationContext = YES;
@@ -604,7 +611,14 @@
         if ([action isEqualToString:@"upload"]) {
             //上传
             NSLog(@"upload");
-            UploadPicViewController * upload = [[UploadPicViewController alloc]init];
+            //取到表的类型判断上传几张图片
+            UploadPicViewController * upload;
+            NSString * typeName = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"typeName"];
+            if ([typeName isEqualToString:@"撤销普遍服务网点"]||[typeName isEqualToString:@"停限业务"]) {
+                upload = [[UploadPicViewController alloc]initWithCountOfPic:2 AndFormName:typeName];
+            }else{
+                upload = [[UploadPicViewController alloc]initWithCountOfPic:1 AndFormName:typeName];
+            }
 //            upload.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
                 upload.providesPresentationContextTransitionStyle = YES;

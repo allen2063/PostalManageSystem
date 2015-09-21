@@ -90,7 +90,7 @@
     [self.view addSubview:yhxxxgBtn];
     
     UIButton * sqxzwdBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    UIImageView * sqxzwdImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shenqingxinzengwangdian"]];
+    UIImageView * sqxzwdImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shenqingshezhiwangdian"]];
     sqxzwdImageView.frame = CGRectMake(0, 0, BTNWIDTH*IMGSIZERATIO, BTNWIDTH*IMGSIZERATIO*1.64);
     sqxzwdImageView.center = CGPointMake(BTNWIDTH/2, BTNHEIGHT/2);
     [sqxzwdBtn addSubview:sqxzwdImageView];
@@ -243,7 +243,7 @@
 //    BSDTDetailViewController * bsdt = [BSDTDetailViewController alloc];
 //    UploadPicViewController * uploadPic = [[UploadPicViewController alloc]init];
     //提前初始化查询  以接受服务器返回数据
-    _search = [[SearchForMyApply alloc]init];
+    _search = [SearchForMyApply alloc];
     switch (btn.tag) {
         case 1:
             app.titleForCurrentPage = @"用户信息修改";
@@ -251,7 +251,7 @@
             [self.navigationController pushViewController:changeUserInfoVC animated:YES];
             break;
         case 2:
-            app.titleForCurrentPage = @"申请新增网点";
+            app.titleForCurrentPage = @"申请设置网点";
             //            bsdt = [bsdt init];
             [self.navigationController pushViewController:applyAddBranchVC animated:YES];
 //            printf("%@", applyAddBranchVC.chooseShiXiang);
@@ -290,9 +290,10 @@
         }
             break;
         case 8:
+            app.titleForCurrentPage = @"申请查询";
+            _search = [_search init];
             [app.network getUserList];
             [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
-            app.titleForCurrentPage = @"我的申请查询";
             [self.navigationController pushViewController:_search animated:YES];
             break;
         default:

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UploadPicViewController : UIViewController
-
+-(id) initWithCountOfPic:(int )count AndFormName:(NSString *)formName;
 @end

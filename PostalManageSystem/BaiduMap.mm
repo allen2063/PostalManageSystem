@@ -147,9 +147,9 @@
         self.navigationController.navigationBar.translucent = NO;
     }
     
-    UIBarButtonItem *customRightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"选项" style:UIBarButtonItemStyleBordered target:self action:@selector(snapshot)];
-//    customRightBarButtonItem.title = @"截图";
-    self.navigationItem.rightBarButtonItem = customRightBarButtonItem;
+//    UIBarButtonItem *customRightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"选项" style:UIBarButtonItemStyleBordered target:self action:@selector(snapshot)];
+////    customRightBarButtonItem.title = @"截图";
+//    self.navigationItem.rightBarButtonItem = customRightBarButtonItem;
 
     //获取单例  getWdxxList
     app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -193,9 +193,6 @@
     blackView.alpha = 0.0;
     [self.view addSubview:blackView];
     [self.view sendSubviewToBack:blackView];
-
-    
-    
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -216,8 +213,6 @@
         [self showTableViews];
     }
 }
-
-
 
 #pragma mark - BMKMapViewDelegate
 
@@ -273,7 +268,6 @@
     }
     annotationView.annotationImages = images;
     return annotationView;
-    
 }
 
 - (void)locationTap{
@@ -334,19 +328,22 @@
                 CLLocationCoordinate2D test = CLLocationCoordinate2DMake(wd, jd);
                 //转换 google地图、soso地图、aliyun地图、mapabc地图和amap地图所用坐标至百度坐标
                 NSDictionary* testdic = BMKConvertBaiduCoorFrom(test,BMK_COORDTYPE_COMMON);
-                NSLog(@"x=%@,y=%@",[testdic objectForKey:@"x"],[testdic objectForKey:@"y"]);
-                jdString = [testdic objectForKey:@"x"];
-                wdString = [testdic objectForKey:@"y"];
-                NSData* decodeX = [jdString dataUsingEncoding:NSUTF8StringEncoding];
-                NSData* decodeY = [wdString dataUsingEncoding:NSUTF8StringEncoding];
-                NSString* decodeJdStr = [[NSString alloc] initWithData:decodeX encoding:NSUTF8StringEncoding];
-                NSString* decodeWdStr = [[NSString alloc] initWithData:decodeY encoding:NSUTF8StringEncoding];
-
-                NSLog(@"jd=%@,wd=%@",decodeJdStr,decodeWdStr);
-
+//                NSLog(@"x=%@,y=%@",[testdic objectForKey:@"x"],[testdic objectForKey:@"y"]);
+//                jdString = [testdic objectForKey:@"x"];
+//                wdString = [testdic objectForKey:@"y"];
+//                NSData* decodeX = [jdString dataUsingEncoding:NSUTF8StringEncoding];
+//                NSData* decodeY = [wdString dataUsingEncoding:NSUTF8StringEncoding];
+//                NSString* decodeJdStr = [[NSString alloc] initWithData:decodeX encoding:NSUTF8StringEncoding];
+//                NSString* decodeWdStr = [[NSString alloc] initWithData:decodeY encoding:NSUTF8StringEncoding];
+//
+//                NSLog(@"jd=%@,wd=%@",decodeJdStr,decodeWdStr);
                 
-                [dic setObject:decodeJdStr forKey:@"jd"];
-                [dic setObject:decodeWdStr forKey:@"wd"];
+                CLLocationCoordinate2D trans = BMKCoorDictionaryDecode(testdic);
+                jdString = [NSString stringWithFormat:@"%.6f",trans.longitude ] ;
+                wdString = [NSString stringWithFormat:@"%.6f",trans.latitude ];
+                NSLog(@"转换坐标：jd%@,wd%@",jdString,wdString);
+                [dic setObject:jdString forKey:@"jd"];
+                [dic setObject:wdString forKey:@"wd"];
             }
             [_cachaDicForPostOffice setObject:coordinateArray forKey:@"listArray"];
         }else if([coordinateArray isKindOfClass:[NSDictionary class]]){
@@ -476,24 +473,23 @@
                 //全市
             case 10:
                 for (NSDictionary *dic in postOfficeArray) {
+                    NSLog(@"要显示的坐标：jd%@ wd%@",[dic objectForKey:@"jd"],[dic objectForKey:@"wd"]);
                     CGFloat jd = [[dic objectForKey:@"jd"]floatValue];
                     CGFloat wd = [[dic objectForKey:@"wd"]floatValue];
                     //                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.423700,106.673858));//服务器第一个返回
                     //                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.449867,106.679026));//用户GPS信息
-                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(wd,jd));//服务器第一个返回
-                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLatitude,userLongitude));//用户GPS信息
-                    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);//2944米  无需转换
+//                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(wd,jd));//服务器第一个返回
+//                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLatitude,userLongitude));//用户GPS信息
+//                    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);//2944米  无需转换
                     //计算距离
-                    if (distance < 80000) {
-                        pointAnnotation = [[BMKPointAnnotation alloc]init];
-                        CLLocationCoordinate2D coor;
-                        coor.latitude = wd;
-                        coor.longitude = jd;
-                        pointAnnotation.coordinate = coor;
-                        pointAnnotation.title = [dic objectForKey:@"wdmc"];
-                        pointAnnotation.subtitle = @"点此查看详细信息";
-                        [_mapView addAnnotation:pointAnnotation];
-                    }
+                    pointAnnotation = [[BMKPointAnnotation alloc]init];
+                    CLLocationCoordinate2D coor;
+                    coor.latitude = wd;
+                    coor.longitude = jd;
+                    pointAnnotation.coordinate = coor;
+                    pointAnnotation.title = [dic objectForKey:@"wdmc"];
+                    pointAnnotation.subtitle = @"点此查看详细信息";
+                    [_mapView addAnnotation:pointAnnotation];
                 }
                 break;
             default:
