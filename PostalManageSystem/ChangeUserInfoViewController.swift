@@ -63,7 +63,6 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        changePasswordView.hidden = true
         // Do any additional setup after loading the view.
     }
 

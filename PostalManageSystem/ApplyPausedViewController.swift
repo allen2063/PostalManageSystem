@@ -117,10 +117,14 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
         }
     }
 
-    
+    var app = UIApplication.sharedApplication().delegate as! AppDelegate
      override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if app.ServerData == true {
+            app.ServerData = false
+            initZanTing(app.applyPauseDic)
+        }
 //          NSNotificationCenter.defaultCenter().addObserver(self, selector: nil, name: UIKeyboardDidShowNotification, object: nil)
         }
     

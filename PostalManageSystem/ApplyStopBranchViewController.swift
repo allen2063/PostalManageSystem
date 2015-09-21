@@ -372,6 +372,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         shangJiDanWei1.text = dict.valueForKey("sjdw") as! String
         
         var ywsxArray = dict.valueForKey("tzblywsx") as! String
+        println("\(ywsxArray)")
         if (ywsxArray.rangeOfString("xj") != nil) {
             XinJian.selected = true
         }
@@ -431,9 +432,20 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
 
     }
     
+    var app = UIApplication.sharedApplication().delegate as! AppDelegate
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+               if app.ServerData == true {
+                app.ServerData = false
+                println("\(app.applyStopDic)")
+                var dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+                var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
+                dict1.addEntriesFromDictionary(dict2 as NSDictionary as [NSObject : AnyObject])
+                
+                initTingZhi(dict1)
+//                initTingZhi(app.applyStopDic.valueForKey("info2") as! NSDictionary)
+        }
         // Do any additional setup after loading the view.
     }
 }

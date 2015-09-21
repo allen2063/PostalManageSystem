@@ -613,11 +613,11 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         infoOfNcxyzpbfwyycsjbqkb.yycsjynzyywlbk = yeWuLiangBaoKan.text
         infoOfNcxyzpbfwyycsjbqkb.yycsjynzyywldlyw = yeWuLiangDaiLiYeWu.text
         
+        ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq)
+        ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb)
         
-        
-        
-        println("\(ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq))")
-        println("\(ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))")
+//        println("\(ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq))")
+//        println("\(ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))")
         
     }
 
@@ -706,7 +706,9 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         infoOfyzqycxyzyycsdjb.cxyy = cheXiaoYuanYin1.text
         infoOfyzqycxyzyycsdjb.ncxrq = niCheXiaoRiQi1.text
         
-        println("\(ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb))")
+        ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb)
+        
+//        println("\(ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb))")
     }
     
     
@@ -718,7 +720,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             app.ServerData = false
             
             if app.applyResignDic.count == 2 {
-                println("\(app.applyResignDic.description)")
+//                println("\(app.applyResignDic.description)")
                 
                 initCheXiao(app.applyResignDic, segmentedControlIndex: 0)
                 
@@ -726,7 +728,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 //                    initCheXiao(app.applyResignDic, segmentedControlIndex: 0)
                 //                }
             } else {
-                println("\(app.applyResignDic.description)")
+                initCheXiao(app.applyResignDic, segmentedControlIndex: 1)
 //                initCheXiao(app.applyResignDic, segmentedControlIndex: 1)
             }
         }
@@ -738,14 +740,14 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     {
         if index == 0 {
             var dict1 = dict.valueForKey("info1") as! NSDictionary
-            println("dsasdasdasdasdasdasdasdasd\(dict1.description)")
+//            println("dsasdasdasdasdasdasdasdasd\(dict1.description)")
             initCheXiaoPuBianFuWuChangSuoShenQing(dict1)
             var dict2 = dict.valueForKey("info2") as! NSDictionary
             initCheXiaoPuBianFuWuChangSuo(dict2)
         }
-        if index == 1{
-            
-//            initCheXiaoYouZhengYingYeChangSuo(dict)
+        if index == 1 {
+//            println("\(dict)")
+            initCheXiaoYouZhengYingYeChangSuo(dict as NSDictionary)
         }
     }
     

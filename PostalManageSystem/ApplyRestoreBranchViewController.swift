@@ -9,7 +9,7 @@
 import UIKit
 
 class ApplyRestoreBranchViewController: UIViewController {
-    var app = UIApplication.sharedApplication().delegate as! AppDelegate
+
     
     @IBOutlet weak var qiYeMingCheng: UITextField!
     @IBOutlet weak var yingYeChangSUoMingCheng: UITextField!
@@ -98,6 +98,7 @@ class ApplyRestoreBranchViewController: UIViewController {
         }
     }
     
+    var app = UIApplication.sharedApplication().delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         

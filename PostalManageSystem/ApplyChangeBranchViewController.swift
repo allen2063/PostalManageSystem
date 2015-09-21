@@ -37,15 +37,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate {
     }
 
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        applyChangeBranchLocationView.hidden = true
-        if let rootView = self.view as? UIScrollView {
-            rootView.contentSize = CGSize(width: 320, height: 1570)
-            println("\(self.view.debugDescription)")
-            // Do any additional setup after loading the view.
-        }
-    }
+    
     
     @IBOutlet weak var mingChengBianGeng: UIButton! //名称变更
     @IBOutlet weak var jingYingShiJianBianGeng: UIButton! //经营时间变更
@@ -1129,6 +1121,29 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate {
 
         println("\(ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb))")
         //ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb)
+    }
+    
+    
+    var app = UIApplication.sharedApplication().delegate as! AppDelegate
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        applyChangeBranchLocationView.hidden = true
+        if let rootView = self.view as? UIScrollView {
+            rootView.contentSize = CGSize(width: 320, height: 1570)
+            println("\(self.view.debugDescription)")
+            // Do any additional setup after loading the view.
+        }
+        
+        //服务器信息回填
+        if app.ServerData == true {
+            app.ServerData = false
+        
+            if app.applyChangeDic.valueForKey("bgsx") != nil {
+                initBianGengXinXi(app.applyChangeDic)
+            } else {
+                initBianGengQianZhi(app.applyChangeDic)
+            }
+        }
     }
     
     func initBianGeng(dict: NSDictionary, segmentedControlIndex index:Int)
