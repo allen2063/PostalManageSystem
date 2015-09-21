@@ -48,8 +48,80 @@
 
         self.table.dataSource = self;
         self.table.delegate = self;
-        self.table.frame = CGRectMake(UISCREENWIDTH - OffsetX + 45, UISCREENHEIGHT - 60, 45, BTNHEIGHT);
+        self.table.frame = CGRectMake(UISCREENWIDTH - OffsetX + 45, UISCREENHEIGHT - 60, 45, 0);
         [self.view addSubview:self.table];
+        
+        _locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _locationBtn.frame = CGRectMake(UISCREENWIDTH - OffsetX, UISCREENHEIGHT - 60, 45, BTNHEIGHT);
+        _locationBtn.backgroundColor = [UIColor whiteColor];
+        _locationBtn.alpha = 0.8;
+        [_locationBtn.layer setMasksToBounds:YES];
+        [_locationBtn.layer setCornerRadius:0.0]; //设置矩形四个圆角半径
+        [_locationBtn.layer setBorderWidth:1.0];   //边框宽度
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 204/255.0, 204/255.0, 204/255.0, 1 });
+        [_locationBtn.layer setBorderColor:colorref];//边框颜色
+        [_locationBtn addTarget:self action:@selector(locationTap) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_locationBtn];
+        
+        UIImageView * locationImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45/2 - BTNHEIGHT*7/10*4/5/2,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*7/10*4/5, BTNHEIGHT*4/5)];
+        locationImgView.image = [UIImage imageNamed:@"locations"];
+        locationImgView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:locationImgView];
+        
+        _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _searchBtn.frame = CGRectMake(UISCREENWIDTH - OffsetX + 45, UISCREENHEIGHT - 60, 45, BTNHEIGHT);
+        _searchBtn.backgroundColor = [UIColor whiteColor];
+        _searchBtn.alpha = 0.8;
+        [_searchBtn.layer setMasksToBounds:YES];
+        [_searchBtn.layer setCornerRadius:0.0]; //设置矩形四个圆角半径
+        [_searchBtn.layer setBorderWidth:1.0];   //边框宽度
+        colorSpace = CGColorSpaceCreateDeviceRGB();
+        colorref = CGColorCreate(colorSpace,(CGFloat[]){ 204/255.0, 204/255.0, 204/255.0, 1 });
+        [_searchBtn.layer setBorderColor:colorref];//边框颜色
+        [_searchBtn addTarget:self action:@selector(snapshot) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_searchBtn];
+        
+        UIImageView * searchImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45 + BTNHEIGHT*1/10,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
+        searchImgView.image = [UIImage imageNamed:@"chazhao"];
+        searchImgView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:searchImgView];
+        
+        _zoomInBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _zoomInBtn.frame = CGRectMake(UISCREENWIDTH - OffsetX + 45, UISCREENHEIGHT - 120, 45, BTNHEIGHT);
+        _zoomInBtn.backgroundColor = [UIColor whiteColor];
+        _zoomInBtn.alpha = 0.8;
+        [_zoomInBtn.layer setMasksToBounds:YES];
+        [_zoomInBtn.layer setCornerRadius:0.0]; //设置矩形四个圆角半径
+        [_zoomInBtn.layer setBorderWidth:1.0];   //边框宽度
+        colorSpace = CGColorSpaceCreateDeviceRGB();
+        colorref = CGColorCreate(colorSpace,(CGFloat[]){ 204/255.0, 204/255.0, 204/255.0, 1 });
+        [_zoomInBtn.layer setBorderColor:colorref];//边框颜色
+        [_zoomInBtn addTarget:self action:@selector(zoomIn) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_zoomInBtn];
+        
+        UIImageView * zoomInImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45 + BTNHEIGHT*1/10,UISCREENHEIGHT - 120 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
+        zoomInImgView.image = [UIImage imageNamed:@"plus"];
+        zoomInImgView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:zoomInImgView];
+        
+        _zoomOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _zoomOutBtn.frame = CGRectMake(UISCREENWIDTH - OffsetX + 45, UISCREENHEIGHT - 164, 45, BTNHEIGHT);
+        _zoomOutBtn.backgroundColor = [UIColor whiteColor];
+        _zoomOutBtn.alpha = 0.8;
+        [_zoomOutBtn.layer setMasksToBounds:YES];
+        [_zoomOutBtn.layer setCornerRadius:0.0]; //设置矩形四个圆角半径
+        [_zoomOutBtn.layer setBorderWidth:1.0];   //边框宽度
+        colorSpace = CGColorSpaceCreateDeviceRGB();
+        colorref = CGColorCreate(colorSpace,(CGFloat[]){ 204/255.0, 204/255.0, 204/255.0, 1 });
+        [_zoomOutBtn.layer setBorderColor:colorref];//边框颜色
+        [_zoomOutBtn addTarget:self action:@selector(zoomOut) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_zoomOutBtn];
+        
+        UIImageView * zoomOutBtnImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45 + BTNHEIGHT*1/10,UISCREENHEIGHT - 164 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
+        zoomOutBtnImgView.image = [UIImage imageNamed:@"minus"];
+        zoomOutBtnImgView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:zoomOutBtnImgView];
         
         _cachaDicForPostOffice = [ConnectionAPI readFileDicWithFileName:@"cachaDicForPostOffice.archiver"];
             if (_cachaDicForPostOffice == nil) {
@@ -57,6 +129,14 @@
             }
     }
     return self;
+}
+
+- (void)zoomIn{
+    _mapView.zoomLevel = ++zoom;
+}
+
+- (void)zoomOut{
+    _mapView.zoomLevel = --zoom;
 }
 
 - (void)viewDidLoad{
@@ -115,51 +195,7 @@
     [self.view sendSubviewToBack:blackView];
 
     
-    _locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _locationBtn.frame = CGRectMake(UISCREENWIDTH - OffsetX, UISCREENHEIGHT - 60, 45, BTNHEIGHT);
-    _locationBtn.backgroundColor = [UIColor whiteColor];
-    [_locationBtn.layer setMasksToBounds:YES];
-    [_locationBtn.layer setCornerRadius:0.0]; //设置矩形四个圆角半径
-    [_locationBtn.layer setBorderWidth:1.0];   //边框宽度
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 204/255.0, 204/255.0, 204/255.0, 1 });
-    [_locationBtn.layer setBorderColor:colorref];//边框颜色
-    [_locationBtn addTarget:self action:@selector(locationTap) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_locationBtn];
     
-    UIImageView * locationImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45/2 - BTNHEIGHT*7/10*4/5/2,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*7/10*4/5, BTNHEIGHT*4/5)];
-    locationImgView.image = [UIImage imageNamed:@"locations"];
-    locationImgView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:locationImgView];
-    
-    _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _searchBtn.frame = CGRectMake(UISCREENWIDTH - OffsetX + 45, UISCREENHEIGHT - 60, 45, BTNHEIGHT);
-    _searchBtn.backgroundColor = [UIColor whiteColor];
-    [_searchBtn.layer setMasksToBounds:YES];
-    [_searchBtn.layer setCornerRadius:0.0]; //设置矩形四个圆角半径
-    [_searchBtn.layer setBorderWidth:1.0];   //边框宽度
-    colorSpace = CGColorSpaceCreateDeviceRGB();
-    colorref = CGColorCreate(colorSpace,(CGFloat[]){ 204/255.0, 204/255.0, 204/255.0, 1 });
-    [_searchBtn.layer setBorderColor:colorref];//边框颜色
-    [_searchBtn addTarget:self action:@selector(snapshot) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_searchBtn];
-    
-    UIImageView * searchImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45 + BTNHEIGHT*1/10,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
-    searchImgView.image = [UIImage imageNamed:@"chazhao"];
-    searchImgView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:searchImgView];
-    
-//    _zoomInBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    _zoomInBtn.frame = CGRectMake(UISCREENWIDTH - OffsetX + 45, UISCREENHEIGHT - 60, 45, BTNHEIGHT);
-//    _zoomInBtn.backgroundColor = [UIColor whiteColor];
-//    [_zoomInBtn.layer setMasksToBounds:YES];
-//    [_zoomInBtn.layer setCornerRadius:0.0]; //设置矩形四个圆角半径
-//    [_zoomInBtn.layer setBorderWidth:1.0];   //边框宽度
-//    colorSpace = CGColorSpaceCreateDeviceRGB();
-//    colorref = CGColorCreate(colorSpace,(CGFloat[]){ 204/255.0, 204/255.0, 204/255.0, 1 });
-//    [_zoomInBtn.layer setBorderColor:colorref];//边框颜色
-//    [_zoomInBtn addTarget:self action:@selector(showTableView) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:_zoomInBtn];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -240,9 +276,6 @@
     
 }
 
-
-
-
 - (void)locationTap{
     NSLog(@"location");
     [_locService startUserLocationService];
@@ -302,11 +335,18 @@
                 //转换 google地图、soso地图、aliyun地图、mapabc地图和amap地图所用坐标至百度坐标
                 NSDictionary* testdic = BMKConvertBaiduCoorFrom(test,BMK_COORDTYPE_COMMON);
                 NSLog(@"x=%@,y=%@",[testdic objectForKey:@"x"],[testdic objectForKey:@"y"]);
+                jdString = [testdic objectForKey:@"x"];
+                wdString = [testdic objectForKey:@"y"];
+                NSData* decodeX = [jdString dataUsingEncoding:NSUTF8StringEncoding];
+                NSData* decodeY = [wdString dataUsingEncoding:NSUTF8StringEncoding];
+                NSString* decodeJdStr = [[NSString alloc] initWithData:decodeX encoding:NSUTF8StringEncoding];
+                NSString* decodeWdStr = [[NSString alloc] initWithData:decodeY encoding:NSUTF8StringEncoding];
+
+                NSLog(@"jd=%@,wd=%@",decodeJdStr,decodeWdStr);
+
                 
-                jdString = [NSString stringWithFormat:@"%@",[testdic objectForKey:@"x"]];
-                wdString = [NSString stringWithFormat:@"%@",[testdic objectForKey:@"y"]];
-                [dic setObject:jdString forKey:@"jd"];
-                [dic setObject:wdString forKey:@"wd"];
+                [dic setObject:decodeJdStr forKey:@"jd"];
+                [dic setObject:decodeWdStr forKey:@"wd"];
             }
             [_cachaDicForPostOffice setObject:coordinateArray forKey:@"listArray"];
         }else if([coordinateArray isKindOfClass:[NSDictionary class]]){
@@ -346,52 +386,120 @@
                 for (NSDictionary *dic in postOfficeArray) {
                     CGFloat jd = [[dic objectForKey:@"jd"]floatValue];
                     CGFloat wd = [[dic objectForKey:@"wd"]floatValue];
-                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.423700,106.673858));//服务器第一个返回
-                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.449867,106.679026));//用户GPS信息
-                    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);//2944米  无需转换
+//                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.423700,106.673858));//服务器第一个返回
+//                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.449867,106.679026));//用户GPS信息
+                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(wd,jd));//服务器第一个返回
+                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLatitude,userLongitude));//用户GPS信息
+                    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
                     //计算距离
-                    if (distance < 20) {
+                    if (distance < 2000) {
                         pointAnnotation = [[BMKPointAnnotation alloc]init];
                         CLLocationCoordinate2D coor;
                         coor.latitude = wd;
                         coor.longitude = jd;
                         pointAnnotation.coordinate = coor;
-                        pointAnnotation.title = @"test";
-                        pointAnnotation.subtitle = @"此Annotation可拖拽!";
+                        pointAnnotation.title = [dic objectForKey:@"wdmc"];
+                        pointAnnotation.subtitle = @"点此查看详细信息";
+                        [_mapView addAnnotation:pointAnnotation];
                     }
                 }
                 break;
                 //5KM
             case 14:
-                
+                for (NSDictionary *dic in postOfficeArray) {
+                    CGFloat jd = [[dic objectForKey:@"jd"]floatValue];
+                    CGFloat wd = [[dic objectForKey:@"wd"]floatValue];
+                    //                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.423700,106.673858));//服务器第一个返回
+                    //                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.449867,106.679026));//用户GPS信息
+                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(wd,jd));//服务器第一个返回
+                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLatitude,userLongitude));//用户GPS信息
+                    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);//2944米  无需转换
+                    //计算距离
+                    if (distance < 5000) {
+                        pointAnnotation = [[BMKPointAnnotation alloc]init];
+                        CLLocationCoordinate2D coor;
+                        coor.latitude = wd;
+                        coor.longitude = jd;
+                        pointAnnotation.coordinate = coor;
+                        pointAnnotation.title = [dic objectForKey:@"wdmc"];
+                        pointAnnotation.subtitle = @"点此查看详细信息";
+                        [_mapView addAnnotation:pointAnnotation];
+                    }
+                }
                 break;
                 //10KM
             case 13:
-                
+                for (NSDictionary *dic in postOfficeArray) {
+                    CGFloat jd = [[dic objectForKey:@"jd"]floatValue];
+                    CGFloat wd = [[dic objectForKey:@"wd"]floatValue];
+                    //                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.423700,106.673858));//服务器第一个返回
+                    //                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.449867,106.679026));//用户GPS信息
+                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(wd,jd));//服务器第一个返回
+                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLatitude,userLongitude));//用户GPS信息
+                    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);//2944米  无需转换
+                    //计算距离
+                    if (distance < 10000) {
+                        pointAnnotation = [[BMKPointAnnotation alloc]init];
+                        CLLocationCoordinate2D coor;
+                        coor.latitude = wd;
+                        coor.longitude = jd;
+                        pointAnnotation.coordinate = coor;
+                        pointAnnotation.title = [dic objectForKey:@"wdmc"];
+                        pointAnnotation.subtitle = @"点此查看详细信息";
+                        [_mapView addAnnotation:pointAnnotation];
+                    }
+                }
                 break;
                 //20KM
             case 12:
-                
+                for (NSDictionary *dic in postOfficeArray) {
+                    CGFloat jd = [[dic objectForKey:@"jd"]floatValue];
+                    CGFloat wd = [[dic objectForKey:@"wd"]floatValue];
+                    //                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.423700,106.673858));//服务器第一个返回
+                    //                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.449867,106.679026));//用户GPS信息
+                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(wd,jd));//服务器第一个返回
+                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLatitude,userLongitude));//用户GPS信息
+                    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);//2944米  无需转换
+                    //计算距离
+                    if (distance < 20000) {
+                        pointAnnotation = [[BMKPointAnnotation alloc]init];
+                        CLLocationCoordinate2D coor;
+                        coor.latitude = wd;
+                        coor.longitude = jd;
+                        pointAnnotation.coordinate = coor;
+                        pointAnnotation.title = [dic objectForKey:@"wdmc"];
+                        pointAnnotation.subtitle = @"点此查看详细信息";
+                        [_mapView addAnnotation:pointAnnotation];
+                    }
+                }
                 break;
                 //全市
             case 10:
-                
+                for (NSDictionary *dic in postOfficeArray) {
+                    CGFloat jd = [[dic objectForKey:@"jd"]floatValue];
+                    CGFloat wd = [[dic objectForKey:@"wd"]floatValue];
+                    //                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.423700,106.673858));//服务器第一个返回
+                    //                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.449867,106.679026));//用户GPS信息
+                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(wd,jd));//服务器第一个返回
+                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLatitude,userLongitude));//用户GPS信息
+                    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);//2944米  无需转换
+                    //计算距离
+                    if (distance < 80000) {
+                        pointAnnotation = [[BMKPointAnnotation alloc]init];
+                        CLLocationCoordinate2D coor;
+                        coor.latitude = wd;
+                        coor.longitude = jd;
+                        pointAnnotation.coordinate = coor;
+                        pointAnnotation.title = [dic objectForKey:@"wdmc"];
+                        pointAnnotation.subtitle = @"点此查看详细信息";
+                        [_mapView addAnnotation:pointAnnotation];
+                    }
+                }
                 break;
             default:
                 break;
         }
     }
-    
-    if (pointAnnotation == nil) {
-        pointAnnotation = [[BMKPointAnnotation alloc]init];
-        CLLocationCoordinate2D coor;
-        coor.latitude = 39.915;
-        coor.longitude = 116.404;
-        pointAnnotation.coordinate = coor;
-        pointAnnotation.title = @"test";
-        pointAnnotation.subtitle = @"此Annotation可拖拽!";
-    }
-    [_mapView addAnnotation:pointAnnotation];
 }
 
 // 当点击annotation view弹出的泡泡时，调用此接口
@@ -399,7 +507,6 @@
 {
     NSLog(@"paopaoclick");
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];//选中后的反显颜色即刻消失
@@ -447,6 +554,8 @@
             break;
     }
     [_mapView removeOverlays:_mapView.overlays];
+    NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
+    [_mapView removeAnnotations:array];
     [self addPointAnnotation];
     [self cancelView];
 }
@@ -477,7 +586,6 @@
                          _table.hidden = YES;
                      }
      ];
-    
 }
 
 #pragma mark - touch
