@@ -300,5 +300,6 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
         buJiuCuoShi.text = dict.valueForKey("zstzblhzxzblywqjyzqycqdbjcs") as! String
     }
 
+    
 }
 

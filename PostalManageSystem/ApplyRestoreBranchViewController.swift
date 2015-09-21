@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ApplyRestoreBranchViewController: UIViewController {
+class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBOutlet weak var qiYeMingCheng: UITextField!
@@ -193,4 +193,8 @@ class ApplyRestoreBranchViewController: UIViewController {
         qiTaShuoMingShiXiang.text = dict.valueForKey("qtxysmdsx") as! String
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate {
+class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var chooseShiXiang: UILabel!
     @IBOutlet weak var chooseJingYingFangShi: UILabel!
@@ -504,5 +504,10 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate {
             QiTa!.selected = true
         }
         
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

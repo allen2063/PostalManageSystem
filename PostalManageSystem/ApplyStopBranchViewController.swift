@@ -448,4 +448,9 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         }
         // Do any additional setup after loading the view.
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

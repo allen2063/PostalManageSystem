@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate {
+class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, UITextFieldDelegate{
     @IBOutlet weak var applyChangeBranchInfoView: UIView!
     @IBOutlet weak var applyChangeBranchLocationView: UIView!
     @IBOutlet weak var SegmentedControl: UISegmentedControl!
@@ -698,8 +698,6 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate {
     @IBOutlet weak var qzqChangSuoDiZhiXian: UITextField!
     @IBOutlet weak var qzqChangSuoDiZhiJie: UITextField!
     @IBOutlet weak var qzqChangSuoDiZhiHao: UITextField!
-    @IBOutlet weak var qzqChangSuoDiZhiJingDu: UITextField!
-    @IBOutlet weak var qzqChangSuoDiZhiWeiDu: UITextField!
     
     @IBOutlet weak var qzqShangJiDanWei: UITextField!
     @IBOutlet weak var qzqYouZhengBianMa: UITextField!
@@ -722,8 +720,6 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate {
     @IBOutlet weak var qzhChangSuoDiZhiXian: UITextField!
     @IBOutlet weak var qzhChangSuoDiZhiJie: UITextField!
     @IBOutlet weak var qzhChangSuoDiZhiHao: UITextField!
-    @IBOutlet weak var qzhChangSuoDiZhiJingDu: UITextField!
-    @IBOutlet weak var qzhChangSuoDiZhiWeiDu: UITextField!
     @IBOutlet weak var qzhYuYuanZhiZhiXianJuLi: UITextField!
     
     @IBOutlet weak var qzhyouZhengBianMa: UITextField!
@@ -1520,4 +1516,9 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate {
         }
     }
 }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
