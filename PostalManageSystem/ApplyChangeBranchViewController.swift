@@ -1124,8 +1124,10 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         applyChangeBranchLocationView.hidden = true
+        SegmentedControl.frame.size.height = 40
+        
         if let rootView = self.view as? UIScrollView {
-            rootView.contentSize = CGSize(width: 320, height: 1570)
+            rootView.contentSize = CGSize(width: 320, height: 1561)
             println("\(self.view.debugDescription)")
             // Do any additional setup after loading the view.
         }

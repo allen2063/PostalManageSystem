@@ -9,7 +9,6 @@
 import UIKit
 
 class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate, UITextFieldDelegate, UIScrollViewDelegate {
-    
     var app = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var applyResignBranchView: UIView!
@@ -715,6 +714,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         resignPostSheetView.hidden = true
+        SegmentedControl.frame.size.height = 40
         
         if app.ServerData == true {
             app.ServerData = false

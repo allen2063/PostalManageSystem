@@ -9,6 +9,10 @@
 import UIKit
 
 class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    
     @IBOutlet weak var bianGengShiXiangTextField: UITextField!
     @IBOutlet weak var changSuoMingChengTextField: UITextField!
     @IBOutlet weak var dengJiBianHaoTextField: UITextField!
@@ -64,6 +68,7 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        segmentedControl.frame.size.height = 40
     }
 
     override func didReceiveMemoryWarning() {

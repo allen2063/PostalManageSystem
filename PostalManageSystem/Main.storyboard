@@ -56,14 +56,14 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Xam-AT-9LG">
-                                <rect key="frame" x="56" y="414.00000050193387" width="100" height="114"/>
+                                <rect key="frame" x="56" y="414.00000050193393" width="100" height="114"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <state key="normal" image="办事大厅恢复网点">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0YR-FJ-M6g">
-                                <rect key="frame" x="163.99999946594238" y="414.00000050193387" width="100" height="114"/>
+                                <rect key="frame" x="163.99999946594238" y="414.00000050193393" width="100" height="114"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <state key="normal" image="办事大厅企业查询">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -122,7 +122,7 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" id="2mD-8W-DCN">
-                                <rect key="frame" x="0.0" y="29" width="320" height="1779"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="1790"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="申请网点就近迁址" id="Ky0-8i-I5b">
@@ -873,7 +873,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="E2U-Zp-Gq8">
-                                <rect key="frame" x="0.0" y="29" width="320" height="1550"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="1561"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="申请网点信息变更" id="ZvD-d0-CyG">
@@ -1457,7 +1457,7 @@
                         </subviews>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
-                                <size key="value" width="320" height="1550"/>
+                                <size key="value" width="320" height="1561"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </scrollView>
@@ -2691,7 +2691,7 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" id="c6a-B8-xPY">
-                                <rect key="frame" x="0.0" y="93" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="104" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="旧密码:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Omf-so-GU1">
@@ -2716,7 +2716,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入旧密码" textAlignment="center" minimumFontSize="17" id="zMO-by-nfh">
-                                        <rect key="frame" x="85.999999701976776" y="35" width="216" height="30"/>
+                                        <rect key="frame" x="85.999999386190552" y="35" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2725,7 +2725,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入新密码" textAlignment="center" minimumFontSize="17" id="oS6-Rd-xGU">
-                                        <rect key="frame" x="85.999999701976776" y="80" width="216" height="30"/>
+                                        <rect key="frame" x="85.999999386190552" y="80" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2734,7 +2734,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请重复输入密码" textAlignment="center" minimumFontSize="17" id="TRU-5q-bv4">
-                                        <rect key="frame" x="94.999999701976776" y="133" width="207" height="30"/>
+                                        <rect key="frame" x="94.999999386190552" y="133" width="207" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2759,7 +2759,7 @@
                                 <color key="backgroundColor" red="0.72941176470588232" green="0.82352941176470584" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="zPR-2O-wSP">
-                                <rect key="frame" x="0.0" y="93" width="320" height="475"/>
+                                <rect key="frame" x="0.0" y="104" width="320" height="475"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="用户信息修改" id="h9B-u6-LQa">
@@ -2767,7 +2767,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="变更事项" textAlignment="center" minimumFontSize="17" id="89w-QU-mol">
-                                        <rect key="frame" x="96" y="13" width="216.00000021192761" height="30"/>
+                                        <rect key="frame" x="96.00000042144012" y="13" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2776,7 +2776,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="场所名称" textAlignment="center" minimumFontSize="17" id="jdx-RE-FhH">
-                                        <rect key="frame" x="96.000000211927613" y="51" width="216" height="30"/>
+                                        <rect key="frame" x="96.00000042144012" y="51" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2785,7 +2785,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="登记编号" textAlignment="center" minimumFontSize="17" id="az2-gZ-ADJ">
-                                        <rect key="frame" x="96.000000211927613" y="89" width="216" height="30"/>
+                                        <rect key="frame" x="96" y="89" width="216.00000042144012" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2794,7 +2794,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="上级单位" textAlignment="center" minimumFontSize="17" id="zh1-Z8-5hR">
-                                        <rect key="frame" x="96.000000211927613" y="165" width="216" height="30"/>
+                                        <rect key="frame" x="96.00000042144012" y="165" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2803,7 +2803,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮政编码" textAlignment="center" minimumFontSize="17" id="Aen-eH-PNs">
-                                        <rect key="frame" x="96.000000211927613" y="203" width="216" height="30"/>
+                                        <rect key="frame" x="96.00000042144012" y="203" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2812,7 +2812,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="场所地址" textAlignment="center" minimumFontSize="17" id="uHo-8r-3f8">
-                                        <rect key="frame" x="96.000000211927613" y="127" width="216" height="30"/>
+                                        <rect key="frame" x="96.00000042144012" y="127" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -2849,6 +2849,7 @@
                         <outlet property="changePasswordView" destination="c6a-B8-xPY" id="eab-Dt-Cbb"/>
                         <outlet property="changeUserInfoView" destination="zPR-2O-wSP" id="3fy-Fh-JuJ"/>
                         <outlet property="dengJiBianHaoTextField" destination="az2-gZ-ADJ" id="NLA-1N-rf5"/>
+                        <outlet property="segmentedControl" destination="8ZY-mI-JZA" id="Oam-G8-JnM"/>
                         <outlet property="shangJiDanWeiTextField" destination="zh1-Z8-5hR" id="CbO-Qe-Qk9"/>
                         <outlet property="youZhengBianMaTextField" destination="Aen-eH-PNs" id="Fav-w8-m9I"/>
                     </connections>
@@ -2866,7 +2867,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Ija-R0-ga1">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="2190"/>
+                                <rect key="frame" x="0.0" y="11" width="320" height="2190"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="撤销普遍服务场所" id="17X-38-fBg">
@@ -4071,7 +4072,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="GT9-wI-kHO">
-                                <rect key="frame" x="0.0" y="29" width="320" height="840"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="840"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="撤销邮政营业场所登记表" id="ccx-9M-aUT">
