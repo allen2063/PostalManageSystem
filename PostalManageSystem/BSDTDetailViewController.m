@@ -909,8 +909,8 @@
     [self.selectedTable removeFromSuperview];
     [self.blackView removeFromSuperview];
     [tableViewStateDictionary setObject:self.selectedTable forKey:[NSString stringWithFormat:@"%ld",(long)selectedTextFieldTag]];
-
 }
+
 //#warning tableView还是有问题   实现互斥与不互斥的现实已选择  并用字典保存对应的tableView
 - (void)showTableViewWith:(UITextField *) textField{
     //[self cancelView];

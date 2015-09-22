@@ -158,8 +158,6 @@
 
     //获取单例
     app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -305,11 +303,11 @@
     if (resultDic == nil) {
         resultDic = [[NSDictionary alloc]init];
     }
-
-    
     
     if ([[resultDic objectForKey:@"result"]isEqualToString:@"1"]) {
         [alerts dismissWithClickedButtonIndex:0 animated:NO];
+        //将服务器返回的url存在本地  供详情列表提交时使用
+        self.picUrl = [resultDic objectForKey:@"url"];
         //修改
         NSString * interface = [app.selectedCellData objectForKey:@"type"];
         NSString * url = [resultDic objectForKey:@"url"];

@@ -84,6 +84,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(cellBack:) name:@"isScrolledToRight" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(btnStatusAction:) name:@"BtnAction" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(formDataBack:) name:@"bsdtApi/get" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteForm:) name:@"bsdtApi/del" object:nil];
 
     isInitState =YES;
     //获取单例  userList
@@ -767,6 +768,10 @@
         [alert show];
     }
     didSelectedCell = NO;
+}
+
+- (void)deleteForm:(NSNotification *)note{
+#warning 返回删除操作
 }
 
 #pragma mark - DJrefresh df

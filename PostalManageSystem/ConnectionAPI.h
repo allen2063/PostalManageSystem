@@ -49,6 +49,8 @@
 -(NSString *)PostImagesToServer:(NSString *)strUrl dicPostParams:(NSMutableDictionary *)params dicImages:(NSMutableDictionary *) dicImages;
 //修改
 - (void)editWithInterface:(NSString *)interface AndInfo:(NSDictionary *)info AndExtraInfo:(id)extraInfo;
+//删除表
+- (void)deleteWithInterface:(NSString *)interface AndFlowID:(NSString *)flowID;
 //获取XML版本信息
 - (void)getXMLDate;
 //获取XML数据

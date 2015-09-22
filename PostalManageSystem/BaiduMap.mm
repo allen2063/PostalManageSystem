@@ -64,8 +64,10 @@
         [_locationBtn addTarget:self action:@selector(locationTap) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_locationBtn];
         
-        UIImageView * locationImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45/2 - BTNHEIGHT*7/10*4/5/2,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*7/10*4/5, BTNHEIGHT*4/5)];
-        locationImgView.image = [UIImage imageNamed:@"locations"];
+//        UIImageView * locationImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45/2 - BTNHEIGHT*7/10*4/5/2,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*7/10*4/5, BTNHEIGHT*4/5)];
+        UIImageView * locationImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + BTNHEIGHT*1/10,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
+
+        locationImgView.image = [UIImage imageNamed:@"location3"];
         locationImgView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:locationImgView];
         
@@ -83,7 +85,7 @@
         [self.view addSubview:_searchBtn];
         
         UIImageView * searchImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45 + BTNHEIGHT*1/10,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
-        searchImgView.image = [UIImage imageNamed:@"chazhao"];
+        searchImgView.image = [UIImage imageNamed:@"search_new"];
         searchImgView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:searchImgView];
         
@@ -101,7 +103,7 @@
         [self.view addSubview:_zoomInBtn];
         
         UIImageView * zoomInImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45 + BTNHEIGHT*1/10,UISCREENHEIGHT - 120 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
-        zoomInImgView.image = [UIImage imageNamed:@"plus"];
+        zoomInImgView.image = [UIImage imageNamed:@"zoom_+"];
         zoomInImgView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:zoomInImgView];
         
@@ -119,7 +121,7 @@
         [self.view addSubview:_zoomOutBtn];
         
         UIImageView * zoomOutBtnImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45 + BTNHEIGHT*1/10,UISCREENHEIGHT - 164 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
-        zoomOutBtnImgView.image = [UIImage imageNamed:@"minus"];
+        zoomOutBtnImgView.image = [UIImage imageNamed:@"zoom_-"];
         zoomOutBtnImgView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:zoomOutBtnImgView];
         
@@ -318,6 +320,7 @@
         NSMutableArray *coordinateArray = [tempDic objectForKey:@"list"];
         if ([coordinateArray isKindOfClass:[NSArray class]]) {
             NSMutableDictionary * dic;
+            NSMutableArray * resultArray = [[NSMutableArray alloc]init];
             for(int i = 0;i<coordinateArray.count; i++){
                 dic = [[NSMutableDictionary alloc]initWithDictionary:[coordinateArray objectAtIndex:i]];
                 NSString * jdString = [dic objectForKey:@"jd"];
@@ -344,11 +347,11 @@
                 NSLog(@"转换坐标：jd%@,wd%@",jdString,wdString);
                 [dic setObject:jdString forKey:@"jd"];
                 [dic setObject:wdString forKey:@"wd"];
+                [resultArray addObject:dic];
             }
-            [_cachaDicForPostOffice setObject:coordinateArray forKey:@"listArray"];
+            [_cachaDicForPostOffice setObject:resultArray forKey:@"listArray"];
         }else if([coordinateArray isKindOfClass:[NSDictionary class]]){
 //            NSDictionary * coordinateDic = [tempDic objectForKey:@"list"];
-            
         }
     }
 }
@@ -383,8 +386,6 @@
                 for (NSDictionary *dic in postOfficeArray) {
                     CGFloat jd = [[dic objectForKey:@"jd"]floatValue];
                     CGFloat wd = [[dic objectForKey:@"wd"]floatValue];
-//                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.423700,106.673858));//服务器第一个返回
-//                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.449867,106.679026));//用户GPS信息
                     BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(wd,jd));//服务器第一个返回
                     BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLatitude,userLongitude));//用户GPS信息
                     CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
@@ -406,8 +407,6 @@
                 for (NSDictionary *dic in postOfficeArray) {
                     CGFloat jd = [[dic objectForKey:@"jd"]floatValue];
                     CGFloat wd = [[dic objectForKey:@"wd"]floatValue];
-                    //                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.423700,106.673858));//服务器第一个返回
-                    //                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.449867,106.679026));//用户GPS信息
                     BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(wd,jd));//服务器第一个返回
                     BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLatitude,userLongitude));//用户GPS信息
                     CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);//2944米  无需转换
@@ -429,8 +428,6 @@
                 for (NSDictionary *dic in postOfficeArray) {
                     CGFloat jd = [[dic objectForKey:@"jd"]floatValue];
                     CGFloat wd = [[dic objectForKey:@"wd"]floatValue];
-                    //                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.423700,106.673858));//服务器第一个返回
-                    //                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.449867,106.679026));//用户GPS信息
                     BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(wd,jd));//服务器第一个返回
                     BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLatitude,userLongitude));//用户GPS信息
                     CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);//2944米  无需转换
@@ -452,8 +449,6 @@
                 for (NSDictionary *dic in postOfficeArray) {
                     CGFloat jd = [[dic objectForKey:@"jd"]floatValue];
                     CGFloat wd = [[dic objectForKey:@"wd"]floatValue];
-                    //                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.423700,106.673858));//服务器第一个返回
-                    //                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.449867,106.679026));//用户GPS信息
                     BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(wd,jd));//服务器第一个返回
                     BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLatitude,userLongitude));//用户GPS信息
                     CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);//2944米  无需转换
@@ -476,11 +471,6 @@
                     NSLog(@"要显示的坐标：jd%@ wd%@",[dic objectForKey:@"jd"],[dic objectForKey:@"wd"]);
                     CGFloat jd = [[dic objectForKey:@"jd"]floatValue];
                     CGFloat wd = [[dic objectForKey:@"wd"]floatValue];
-                    //                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.423700,106.673858));//服务器第一个返回
-                    //                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(26.449867,106.679026));//用户GPS信息
-//                    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(wd,jd));//服务器第一个返回
-//                    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLatitude,userLongitude));//用户GPS信息
-//                    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);//2944米  无需转换
                     //计算距离
                     pointAnnotation = [[BMKPointAnnotation alloc]init];
                     CLLocationCoordinate2D coor;
@@ -501,6 +491,9 @@
 // 当点击annotation view弹出的泡泡时，调用此接口
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view;
 {
+    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 70, 70)];
+    label.text= @"我不干了";
+   view.paopaoView = [view.paopaoView initWithCustomView:label];
     NSLog(@"paopaoclick");
 }
 

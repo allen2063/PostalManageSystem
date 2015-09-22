@@ -10,4 +10,5 @@
 
 @interface UploadPicViewController : UIViewController
 -(id) initWithCountOfPic:(int )count AndFormName:(NSString *)formName;
+@property (strong,nonatomic) NSString * picUrl;
 @end

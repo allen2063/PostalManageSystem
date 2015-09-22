@@ -85,6 +85,10 @@
 		56C6628B1B85BBC300BA95BD /* GeneralTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C6628A1B85BBC300BA95BD /* GeneralTableViewCell.m */; };
 		56C6628E1B85CCE800BA95BD /* JXJWPMLCXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C6628D1B85CCE800BA95BD /* JXJWPMLCXViewController.m */; };
 		56C662901B85DCDB00BA95BD /* HZAreaPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56C6628F1B85DCDB00BA95BD /* HZAreaPickerView.xib */; };
+		56C774591BB0FBA000C751B8 /* location3.png in Resources */ = {isa = PBXBuildFile; fileRef = 56C774551BB0FBA000C751B8 /* location3.png */; };
+		56C7745A1BB0FBA000C751B8 /* search_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 56C774561BB0FBA000C751B8 /* search_new.png */; };
+		56C7745B1BB0FBA000C751B8 /* zoom_-.png in Resources */ = {isa = PBXBuildFile; fileRef = 56C774571BB0FBA000C751B8 /* zoom_-.png */; };
+		56C7745C1BB0FBA000C751B8 /* zoom_+.png in Resources */ = {isa = PBXBuildFile; fileRef = 56C774581BB0FBA000C751B8 /* zoom_+.png */; };
 		56C8F0741BA0344A00763A4C /* areas.xml in Resources */ = {isa = PBXBuildFile; fileRef = 56C8F0701BA0344A00763A4C /* areas.xml */; };
 		56C8F0751BA0344A00763A4C /* cities.xml in Resources */ = {isa = PBXBuildFile; fileRef = 56C8F0711BA0344A00763A4C /* cities.xml */; };
 		56C8F0761BA0344A00763A4C /* provinces.xml in Resources */ = {isa = PBXBuildFile; fileRef = 56C8F0721BA0344A00763A4C /* provinces.xml */; };
@@ -238,6 +242,10 @@
 		56C6628C1B85CCE800BA95BD /* JXJWPMLCXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXJWPMLCXViewController.h; sourceTree = "<group>"; };
 		56C6628D1B85CCE800BA95BD /* JXJWPMLCXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXJWPMLCXViewController.m; sourceTree = "<group>"; };
 		56C6628F1B85DCDB00BA95BD /* HZAreaPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZAreaPickerView.xib; sourceTree = "<group>"; };
+		56C774551BB0FBA000C751B8 /* location3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location3.png; sourceTree = "<group>"; };
+		56C774561BB0FBA000C751B8 /* search_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_new.png; sourceTree = "<group>"; };
+		56C774571BB0FBA000C751B8 /* zoom_-.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zoom_-.png"; sourceTree = "<group>"; };
+		56C774581BB0FBA000C751B8 /* zoom_+.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zoom_+.png"; sourceTree = "<group>"; };
 		56C8F0701BA0344A00763A4C /* areas.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = areas.xml; sourceTree = "<group>"; };
 		56C8F0711BA0344A00763A4C /* cities.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = cities.xml; sourceTree = "<group>"; };
 		56C8F0721BA0344A00763A4C /* provinces.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = provinces.xml; sourceTree = "<group>"; };
@@ -462,6 +470,10 @@
 		56C59DF61B82F59D00D96F08 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				56C774551BB0FBA000C751B8 /* location3.png */,
+				56C774561BB0FBA000C751B8 /* search_new.png */,
+				56C774571BB0FBA000C751B8 /* zoom_-.png */,
+				56C774581BB0FBA000C751B8 /* zoom_+.png */,
 				56B28B6D1BAD7E6C00D81A9C /* location2.png */,
 				56B28B6E1BAD7E6C00D81A9C /* zoom_in.png */,
 				56B28B6F1BAD7E6C00D81A9C /* zoom_out.png */,
@@ -700,9 +712,12 @@
 				DC3554501BA9AE7B00F7F3CB /* Images.xcassets in Resources */,
 				56CE54F61BA94EF00065518A /* Main.storyboard in Resources */,
 				56C59E2A1B82F59D00D96F08 /* zhoubianwangdianchaxun.png in Resources */,
+				56C7745C1BB0FBA000C751B8 /* zoom_+.png in Resources */,
 				56B28B6A1BAD77B500D81A9C /* minus.png in Resources */,
 				56C59E281B82F59D00D96F08 /* zhanghao.png in Resources */,
+				56C7745A1BB0FBA000C751B8 /* search_new.png in Resources */,
 				56C59E241B82F59D00D96F08 /* xinxigonggao.png in Resources */,
+				56C7745B1BB0FBA000C751B8 /* zoom_-.png in Resources */,
 				56C8F0751BA0344A00763A4C /* cities.xml in Resources */,
 				56C59E171B82F59D00D96F08 /* ic_launcher.png in Resources */,
 				56B28B6B1BAD77B500D81A9C /* plus.png in Resources */,
@@ -752,6 +767,7 @@
 				56C662901B85DCDB00BA95BD /* HZAreaPickerView.xib in Resources */,
 				56B28B691BAD77B500D81A9C /* locations.png in Resources */,
 				56C59E291B82F59D00D96F08 /* zhengcefagui.png in Resources */,
+				56C774591BB0FBA000C751B8 /* location3.png in Resources */,
 				56CE54DF1BA8FF400065518A /* wodeshenqingchaxun.png in Resources */,
 				56B28B721BAD7E6C00D81A9C /* zoom_out.png in Resources */,
 				56B28B6C1BAD77B500D81A9C /* search.png in Resources */,

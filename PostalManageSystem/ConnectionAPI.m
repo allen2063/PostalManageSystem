@@ -26,6 +26,7 @@
 @synthesize conn;
 @synthesize getXMLResults;
 @synthesize resultArray,cacheDic;
+#warning 改为队列请求   返回一个发送一个
 
 - (id)init{
     self = [super init];
@@ -371,6 +372,12 @@
     }
 }
 
+- (void)deleteWithInterface:(NSString *)interface AndFlowID:(NSString *)flowID{
+    communicatingInterface = [NSString stringWithFormat:@"bsdtApi/del%@",interface];
+    self.specialInterface = interface;
+    [self withInterface:communicatingInterface andArgument1Name:@"flowid" andArgument1Value:flowID];
+}
+
 //连接
 
 #pragma mark URL Connection Data Delegate Methods
@@ -503,6 +510,10 @@
     //修改接口返回
     else if ([communicatingInterface isEqualToString:[NSString stringWithFormat:@"bsdtApi/edit%@",self.specialInterface]]){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"bsdtApi/edit" object:self userInfo:resultDic];
+    }
+    //删除接口返回
+    else if ([communicatingInterface isEqualToString:[NSString stringWithFormat:@"bsdtApi/del%@",self.specialInterface]]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"bsdtApi/del" object:self userInfo:resultDic];
     }
 }
 
