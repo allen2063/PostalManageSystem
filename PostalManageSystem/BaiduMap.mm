@@ -75,10 +75,10 @@
         [_locationBtn addTarget:self action:@selector(locationTap) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_locationBtn];
         
-//        UIImageView * locationImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45/2 - BTNHEIGHT*7/10*4/5/2,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*7/10*4/5, BTNHEIGHT*4/5)];
-        UIImageView * locationImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + BTNHEIGHT*1/10,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
+        UIImageView * locationImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45/2 - BTNHEIGHT*7/10*4/5/2,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*7/10*4/5, BTNHEIGHT*4/5)];
+//        UIImageView * locationImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + BTNHEIGHT*1/10,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
 
-        locationImgView.image = [UIImage imageNamed:@"location3"];
+        locationImgView.image = [UIImage imageNamed:@"locations"];
         locationImgView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:locationImgView];
         
@@ -96,7 +96,7 @@
         [self.view addSubview:_searchBtn];
         
         UIImageView * searchImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45 + BTNHEIGHT*1/10,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
-        searchImgView.image = [UIImage imageNamed:@"search_new"];
+        searchImgView.image = [UIImage imageNamed:@"chazhao"];
         searchImgView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:searchImgView];
         
@@ -114,7 +114,7 @@
         [self.view addSubview:_zoomInBtn];
         
         UIImageView * zoomInImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45 + BTNHEIGHT*1/10,UISCREENHEIGHT - 120 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
-        zoomInImgView.image = [UIImage imageNamed:@"zoom_+"];
+        zoomInImgView.image = [UIImage imageNamed:@"plus"];
         zoomInImgView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:zoomInImgView];
         
@@ -132,7 +132,7 @@
         [self.view addSubview:_zoomOutBtn];
         
         UIImageView * zoomOutBtnImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45 + BTNHEIGHT*1/10,UISCREENHEIGHT - 164 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
-        zoomOutBtnImgView.image = [UIImage imageNamed:@"zoom_-"];
+        zoomOutBtnImgView.image = [UIImage imageNamed:@"minus"];
         zoomOutBtnImgView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:zoomOutBtnImgView];
         
