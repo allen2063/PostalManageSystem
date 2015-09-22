@@ -7,7 +7,7 @@
 //
 
 #import "UploadPicViewController.h"
-#define BACKGROUNDIMGVIEWWIDTH (UISCREENHEIGHT*4/5 - 135)
+#define BACKGROUNDIMGVIEWWIDTH (UISCREENHEIGHT*4/5 - 145)
 @interface UploadPicViewController()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate>{
     AppDelegate *app;
     BOOL picIsChoosen;
@@ -25,7 +25,8 @@
 @property (strong,nonatomic) UIView * backgroundView;
 @property (strong,nonatomic) UIView * blackView;
 @property (strong,nonatomic) UIImageView * backgroudnImgView;
-@property (strong,nonatomic) NSDictionary * formData;
+@property (strong,nonatomic) NSMutableDictionary * formData;
+@property (strong,nonatomic) NSMutableDictionary * formData2;
 @end
 
 @implementation UploadPicViewController
@@ -54,26 +55,32 @@
     _backgroundView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_backgroundView];
     
-    backgroundViewLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, UISCREENWIDTH, 35)];
+    backgroundViewLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, UISCREENWIDTH, 45)];
     backgroundViewLabel.text = formName;
-    backgroundViewLabel.font = [UIFont systemFontOfSize:15];
+    backgroundViewLabel.font = [UIFont systemFontOfSize:14];
     backgroundViewLabel.backgroundColor = UIColorFromRGBValue(0xc0c0c0);
     backgroundViewLabel.textAlignment = NSTextAlignmentCenter;
     [_backgroundView addSubview:backgroundViewLabel];
 
     cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    cancelBtn.frame = CGRectMake(UISCREENWIDTH -55, 0, 55, 35);
+    cancelBtn.frame = CGRectMake(UISCREENWIDTH -55, 0, 55, backgroundViewLabel.frame.size.height);
     cancelBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [cancelBtn addTarget:self action:@selector(cancelViewForUpload) forControlEvents:UIControlEventTouchUpInside];
     [cancelBtn setTitle:@"返回" forState:UIControlStateNormal];
     [cancelBtn setTitleColor:[UIColor blackColor]forState:UIControlStateNormal];
     [_backgroundView addSubview:cancelBtn];
     
     if (picCount != 1) {
-        [cancelBtn setTitle:@"下一步" forState:UIControlStateNormal];
+        if ([[app.selectedCellData objectForKey:@"type"]isEqualToString:@"Txyw"]) {
+            backgroundViewLabel.text = @"停限业务申请表";
+        }else{
+            backgroundViewLabel.text = @"撤销场所登记表";
+        }
+        [cancelBtn setTitle:@"下一张" forState:UIControlStateNormal];
         [cancelBtn addTarget:self action:@selector(nextStep) forControlEvents:UIControlEventTouchUpInside];
         firstImgView = [[UIImageView alloc]init];
         secondImgView = [[UIImageView alloc]init];
+    }else{
+        [cancelBtn addTarget:self action:@selector(cancelViewForUpload) forControlEvents:UIControlEventTouchUpInside];
     }
     
     UIButton * imageFromAlbumBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -189,22 +196,29 @@
             //没有图片  什么都不做
         }
     }else{
-#warning 两张图片的情况
+#warning 两张图片的情况下按钮  返回    已经读取图片时的接口显示等
+        //第一张图片
         _formData = [tempDic objectForKey:@"info1"];
         NSString * url = [_formData objectForKey:@"imageUrl"];
         if(url.length > 10){
-            NSString * url = [_formData objectForKey:@"imageUrl"];
+//            NSString * url = [_formData objectForKey:@"imageUrl"];
             NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
             firstImgView.image = [[UIImage alloc] initWithData:imageData];
             _backgroudnImgView.image = [[UIImage alloc] initWithData:imageData];
             [self adjustPicForDisplay:_backgroudnImgView.image];
+        }else{
+            firstImgView.image = [UIImage imageNamed:@"tup"];
         }
-        _formData = [tempDic objectForKey:@"info2"];
-        url = [_formData objectForKey:@"imageUrl"];
+        
+        //第二张图片
+        _formData2 = [tempDic objectForKey:@"info2"];
+        url = [_formData2 objectForKey:@"imageUrl"];
         if(url.length > 10){
-            NSString * url = [_formData objectForKey:@"imageUrl"];
+//            NSString * url = [_formData2 objectForKey:@"imageUrl"];
             NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
             secondImgView.image = [[UIImage alloc] initWithData:imageData];
+        }else{
+            secondImgView.image = [UIImage imageNamed:@"tup"];
         }
     }
     [GMDCircleLoader hideFromView:self.view animated:YES];
@@ -214,20 +228,20 @@
 - (void)adjustPicForDisplay:(UIImage *)selectedImg{
     float imgRatio = selectedImg.size.height/selectedImg.size.width ;
     NSLog(@"imgRatio:%@",NSStringFromCGSize(selectedImg.size));
-    float screeRatio = 1;//self.view.frame.size.height/self.view.frame.size.width;
+    float screenDisplayAreaRatio = BACKGROUNDIMGVIEWWIDTH/UISCREENWIDTH;//1;
     CGSize bigImgSize;
-    if (imgRatio>screeRatio) {
-        //长为最大值   宽等比例转换
+    if (imgRatio>screenDisplayAreaRatio) {
+        //高为最大值   宽等比例转换
         bigImgSize = CGSizeMake(BACKGROUNDIMGVIEWWIDTH/imgRatio, BACKGROUNDIMGVIEWWIDTH);
-        //长为最大值  则高度固定    宽的起始点浮动（frame.x）
-        _backgroudnImgView.frame = CGRectMake((UISCREENWIDTH - bigImgSize.width)/2, 45, bigImgSize.width, bigImgSize.height);
+        //高为最大值  则高度固定    宽的起始点浮动（frame.x）
+        _backgroudnImgView.frame = CGRectMake((UISCREENWIDTH - bigImgSize.width)/2, 50, bigImgSize.width, bigImgSize.height);
     }else{
         //宽为最大值   长等比例转换
-        bigImgSize = CGSizeMake(BACKGROUNDIMGVIEWWIDTH, BACKGROUNDIMGVIEWWIDTH*imgRatio);
+        bigImgSize = CGSizeMake(UISCREENWIDTH, UISCREENWIDTH*imgRatio);
         //宽为最大值  则宽度固定    长的高度点浮动（frame.y）
-        _backgroudnImgView.frame = CGRectMake((UISCREENWIDTH - bigImgSize.width)/2, 45, bigImgSize.width, bigImgSize.height);
+        _backgroudnImgView.frame = CGRectMake((UISCREENWIDTH - bigImgSize.width)/2, 50, bigImgSize.width, bigImgSize.height);
     }
-    _backgroudnImgView.center = CGPointMake(UISCREENWIDTH/2, 45+BACKGROUNDIMGVIEWWIDTH/2);
+    _backgroudnImgView.center = CGPointMake(UISCREENWIDTH/2, 50+BACKGROUNDIMGVIEWWIDTH/2);
 }
 
 //图片转二进制
@@ -291,34 +305,85 @@
 //    _backgroudnImgView.image = imgs;
 //    _backgroudnImgView.image = [UploadPicViewController stringToPicWithImage:data];
     
-    NSMutableDictionary * dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:_backgroudnImgView.image,@"pic", nil];
+    //一张图片时
+    if(picCount == 1){
+        NSMutableDictionary * dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:_backgroudnImgView.image,@"pic", nil];
+        NSString * resultString = [app.network PostImagesToServer:@"http://222.85.149.6:88/GuiYangPost/uploadpicture/upload" dicPostParams:dic dicImages:dic];
+        uploadSuccess = NO;
+        //返回后json解析
+        NSData *aData = [resultString dataUsingEncoding: NSUTF8StringEncoding];
+        
+        NSDictionary * resultDic =  [NSJSONSerialization JSONObjectWithData:aData options:NSJSONReadingMutableContainers error:nil];
+        if (resultDic == nil) {
+            resultDic = [[NSDictionary alloc]init];
+        }
+        if ([[resultDic objectForKey:@"result"]isEqualToString:@"1"]) {
+                [alerts dismissWithClickedButtonIndex:0 animated:NO];
+                //将服务器返回的url存在本地  供详情列表提交时使用
+                self.picUrl = [resultDic objectForKey:@"url"];
+                //修改
+                NSString * interface = [app.selectedCellData objectForKey:@"type"];
+                NSString * url = [resultDic objectForKey:@"url"];
+                [_formData setObject:url forKey:@"imageUrl"];
+                [app.network editWithInterface:interface AndInfo:_formData AndExtraInfo:nil];
+        }else{
+            [alerts dismissWithClickedButtonIndex:0 animated:NO];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"上传失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            isUploading = NO;
+        }
+    }
+    //两张图片时
+    else if (picCount == 2){
+        //第一张图片上传
+        NSMutableDictionary * dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:firstImgView.image,@"pic1", nil];
+        NSDictionary * resultDic =  [self uploadPicAndGetResultWith:dic];
+        if ([[resultDic objectForKey:@"result"]isEqualToString:@"1"]) {
+            [alerts dismissWithClickedButtonIndex:0 animated:NO];
+            //修改
+            NSString * interface = [app.selectedCellData objectForKey:@"type"];
+            NSString * url = [resultDic objectForKey:@"url"];
+            [_formData setObject:url forKey:@"imageUrl"];
+            
+            //第二张图片上传
+            NSMutableDictionary * dic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:secondImgView.image,@"pic2", nil];
+            NSDictionary * resultDic =  [self uploadPicAndGetResultWith:dic];
+            if ([[resultDic objectForKey:@"result"]isEqualToString:@"1"]) {
+                [alerts dismissWithClickedButtonIndex:0 animated:NO];
+                //修改
+                url = [resultDic objectForKey:@"url"];
+                [_formData2 setObject:url forKey:@"imageUrl"];
+                
+                //集成1、2两张图片信息上传绑定flowdi
+                [app.network editWithInterface:interface AndInfo:_formData AndExtraInfo:_formData2];
+            }else{
+                [alerts dismissWithClickedButtonIndex:0 animated:NO];
+                UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"上传失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+                isUploading = NO;
+                NSLog(@"第二张图片上传失败");
+            }
+        }else{
+            [alerts dismissWithClickedButtonIndex:0 animated:NO];
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"上传失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            isUploading = NO;
+            NSLog(@"第一张图片上传失败");
+        }
+    }
+}
+
+- (NSDictionary *)uploadPicAndGetResultWith:(NSMutableDictionary *)dic{
     NSString * resultString = [app.network PostImagesToServer:@"http://222.85.149.6:88/GuiYangPost/uploadpicture/upload" dicPostParams:dic dicImages:dic];
     uploadSuccess = NO;
-
-    
-    //json解析
+    //返回后json解析
     NSData *aData = [resultString dataUsingEncoding: NSUTF8StringEncoding];
     
     NSDictionary * resultDic =  [NSJSONSerialization JSONObjectWithData:aData options:NSJSONReadingMutableContainers error:nil];
     if (resultDic == nil) {
         resultDic = [[NSDictionary alloc]init];
     }
-    
-    if ([[resultDic objectForKey:@"result"]isEqualToString:@"1"]) {
-        [alerts dismissWithClickedButtonIndex:0 animated:NO];
-        //将服务器返回的url存在本地  供详情列表提交时使用
-        self.picUrl = [resultDic objectForKey:@"url"];
-        //修改
-        NSString * interface = [app.selectedCellData objectForKey:@"type"];
-        NSString * url = [resultDic objectForKey:@"url"];
-        [app.selectedCellData setObject:url forKey:@"imageUrl"];
-        [app.network editWithInterface:interface AndInfo:app.selectedCellData AndExtraInfo:nil];
-    }else{
-        [alerts dismissWithClickedButtonIndex:0 animated:NO];
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"上传失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
-        isUploading = NO;
-    }
+    return resultDic;
 }
 
 - (void)uploadFeedback:(NSNotification *)note{
@@ -412,27 +477,37 @@
 
 - (void)nextStep{
     if (stepFlag == 1) {
+        if ([[app.selectedCellData objectForKey:@"type"]isEqualToString:@"Txyw"]) {
+            backgroundViewLabel.text = @"停限业务邮政营业场所基本情况表";
+        }else{
+            backgroundViewLabel.text = @"撤销场所基本情况表";
+        }
         firstImgView.image = _backgroudnImgView.image;
         _backgroudnImgView.image = secondImgView.image;
-        [cancelBtn setTitle:@"上一步" forState:UIControlStateNormal];
+        [self adjustPicForDisplay:_backgroudnImgView.image];
+        [cancelBtn setTitle:@"上一张" forState:UIControlStateNormal];
         stepFlag = 2;
     }else if (stepFlag == 2){
+        if ([[app.selectedCellData objectForKey:@"type"]isEqualToString:@"Txyw"]) {
+            backgroundViewLabel.text = @"停限业务申请表";
+        }else{
+            backgroundViewLabel.text = @"撤销场所登记表";
+        }
         secondImgView.image = _backgroudnImgView.image;
         _backgroudnImgView.image = firstImgView.image;
-        [cancelBtn setTitle:@"下一步" forState:UIControlStateNormal];
+        [self adjustPicForDisplay:_backgroudnImgView.image];
+        [cancelBtn setTitle:@"下一张" forState:UIControlStateNormal];
         stepFlag = 1;
     }
 }
 
 - (void)cancelViewForUpload{
-    if (picCount != 1) {
-        
-    }else{
+//    if (picCount != 1) {
+//    
+//    }else{
         _blackView.alpha = 0.0;
         [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    
-
+//    }
 }
 
 #pragma mark - touch

@@ -716,8 +716,8 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         resignPostSheetView.hidden = true
         SegmentedControl.frame.size.height = 40
         
-        if app.ServerData == true {
-            app.ServerData = false
+        if app.ServerData == 2 {
+            app.ServerData = 0
             
             if app.applyResignDic.count == 2 {
 //                println("\(app.applyResignDic.description)")

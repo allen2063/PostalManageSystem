@@ -1133,8 +1133,8 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         }
         
         //服务器信息回填
-        if app.ServerData == true {
-            app.ServerData = false
+        if app.ServerData == 2 {
+            app.ServerData = 0
         
             if app.applyChangeDic.valueForKey("bgsx") != nil {
                 initBianGengXinXi(app.applyChangeDic)

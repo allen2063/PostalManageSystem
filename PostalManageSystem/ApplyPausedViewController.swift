@@ -121,8 +121,8 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
      override func viewDidLoad() {
         super.viewDidLoad()
         
-        if app.ServerData == true {
-            app.ServerData = false
+        if app.ServerData == 2 {
+            app.ServerData = 0
             initZanTing(app.applyPauseDic)
         }
 //          NSNotificationCenter.defaultCenter().addObserver(self, selector: nil, name: UIKeyboardDidShowNotification, object: nil)

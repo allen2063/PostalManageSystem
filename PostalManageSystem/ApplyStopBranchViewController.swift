@@ -436,8 +436,8 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-               if app.ServerData == true {
-                app.ServerData = false
+               if app.ServerData == 2 {
+                app.ServerData = 0
                 println("\(app.applyStopDic)")
                 var dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
                 var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary

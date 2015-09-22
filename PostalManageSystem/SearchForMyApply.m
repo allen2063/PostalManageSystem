@@ -16,7 +16,7 @@
 #define tableViewCellHeight 35
 #define selectedfont 14
 #define defualtFont 17
-@interface SearchForMyApply()<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,DJRefreshDelegate,UIScrollViewDelegate>{
+@interface SearchForMyApply()<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,DJRefreshDelegate,UIScrollViewDelegate,UIAlertViewDelegate>{
     AppDelegate *app;
     UISegmentedControl *segmentControl;
     UIView * allApplySearch;
@@ -36,6 +36,9 @@
     BOOL didSelectedCell;
     //控制刷新  只有再初始化时第一次出现才刷新
     int viewCount;
+    
+    //操作的cell的index
+    NSIndexPath * selectedIndexiPaht;
     
     UITextField * placeNameTextField;
     UITextField * loginNameTextField;
@@ -289,7 +292,7 @@
     }
 }
 
-
+#pragma -mark  数据操作
 -(void)cancelView
 {
     [UIView animateWithDuration:0.3 animations:^{
@@ -513,7 +516,9 @@
 //                NSLog(@"It's me, I will not back");
             }
         }
-    }else{
+    }
+    //所有的都还原
+    else{
         for (int row = 0; row < _dataListForDisplay.count; row ++) {
             NSUInteger section = 0;
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
@@ -557,6 +562,7 @@
 
 //改cell对应表的审核状态下是否能执行对应操作
 - (void)statusJuge:(NSString *)status AndAction:(NSString*)action AndIndexPath:(NSIndexPath *)indexPath{
+    selectedIndexiPaht = indexPath;
     //未审核
     if ([status isEqualToString:@"0"]) {
         //该情况下不允许上传图片
@@ -567,7 +573,25 @@
         //允许删除或者修改
         else if([action isEqualToString:@"delete"]){
             NSLog(@"delete");
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"删除" message:@"确定要删除吗？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            alert.delegate = self;
+            [alert show];
+            }
+        //修改  状态变为2
+        else if([action isEqualToString:@"edit"]){
+            app.ServerData = 2;
+            NSLog(@"edit");
+        }
+    }
+    //审核未通过 不能传照片  只能删除修改
+    else if ([status isEqualToString:@"3"]){
+        if ([action isEqualToString:@"upload"]) {
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"审核未通过" message:@"请在审核通过后上传照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }else if([action isEqualToString:@"delete"]){
+            NSLog(@"delete");
         }else if([action isEqualToString:@"edit"]){
+            app.ServerData = 2;
             NSLog(@"edit");
         }
     }
@@ -642,17 +666,6 @@
             [alert show];
         }
     }
-    //审核未通过 不能传照片  只能删除修改
-    else if ([status isEqualToString:@"3"]){
-        if ([action isEqualToString:@"upload"]) {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"审核未通过" message:@"请在审核通过后上传照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
-        }else if([action isEqualToString:@"delete"]){
-            NSLog(@"delete");
-        }else if([action isEqualToString:@"edit"]){
-            NSLog(@"edit");
-        }
-    }
 }
 
 #pragma  -mark 网络返回
@@ -715,7 +728,7 @@
     NSDictionary * tempDic = [[NSDictionary alloc]initWithDictionary: [note userInfo]];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     if ([[tempDic objectForKey:@"result"] isEqualToString:@"1"]) {
-        app.ServerData = YES;
+        app.ServerData = 1;
         //申请新增
         if ([app.network.specialInterface isEqualToString: @"Szxwd"]) {
             app.applyAddDic = [tempDic objectForKey:@"info"];
@@ -771,7 +784,19 @@
 }
 
 - (void)deleteForm:(NSNotification *)note{
-#warning 返回删除操作
+    [GMDCircleLoader hideFromView:self.view animated:YES];
+    NSDictionary * dic = [[NSDictionary alloc]initWithDictionary:[note userInfo]];
+    if ([[dic objectForKey:@"result"]isEqualToString:@"1"]) {
+        [self cellBack:nil];
+        [_dataListForDisplay removeObjectAtIndex:selectedIndexiPaht.row];
+        [_tableViewForDisplay reloadData];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"删除成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }else{
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"删除失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+
 }
 
 #pragma mark - DJrefresh df
@@ -986,6 +1011,16 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
+}
+
+#pragma mark - alertView
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        NSString * interface = [[_dataListForDisplay objectAtIndex:selectedIndexiPaht.row]objectForKey:@"type"];
+        NSString * flowId = [[_dataListForDisplay objectAtIndex:selectedIndexiPaht.row]objectForKey:@"flowId"];
+        [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
+        [app.network deleteWithInterface:interface AndFlowID:flowId];
+    }
 }
 
 #pragma mark - touch

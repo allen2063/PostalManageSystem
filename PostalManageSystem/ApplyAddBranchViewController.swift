@@ -243,8 +243,8 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if app.ServerData == true {
-            app.ServerData = false
+        if app.ServerData == 2 {
+            app.ServerData = 0
             initTianJia(app.applyAddDic)
         }
     }

@@ -25,8 +25,11 @@
 @property (strong,nonatomic) NSMutableDictionary * selectedCellData;
 //@property (strong,nonatomic) NSMutableDictionary * interfaceTransformForBSDT;
 
-
-@property BOOL ServerData;
+//服务器数据回传给详情页面时的状态
+//0代表不是服务器回传数据  无须取数据  即对应新增
+//1代表是查看状态  显示服务器数据  但控件不响应  不可修改
+//2代表是修改状态  显示服务器数据同时可以修改控件对应的内容
+@property int ServerData;
 @property (strong,nonatomic) NSMutableDictionary * applyResignDic;
 @property (strong,nonatomic) NSMutableDictionary * applyAddDic;
 @property (strong,nonatomic) NSMutableDictionary * applyPauseDic;

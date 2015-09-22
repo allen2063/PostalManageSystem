@@ -102,8 +102,8 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if app.ServerData == true {
-            app.ServerData = false
+        if app.ServerData == 2 {
+            app.ServerData = 0
             initHuiFu( app.applyRestoreDic)
         }
       

@@ -375,7 +375,7 @@
 - (void)deleteWithInterface:(NSString *)interface AndFlowID:(NSString *)flowID{
     communicatingInterface = [NSString stringWithFormat:@"bsdtApi/del%@",interface];
     self.specialInterface = interface;
-    [self withInterface:communicatingInterface andArgument1Name:@"flowid" andArgument1Value:flowID];
+    [self withInterface:communicatingInterface andArgument1Name:@"flowid" andArgument1Value:flowID andArgument2Name:@"token" andArgument2Value:@"jiou"];
 }
 
 //连接
