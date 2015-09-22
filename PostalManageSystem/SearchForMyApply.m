@@ -563,7 +563,7 @@
 //改cell对应表的审核状态下是否能执行对应操作
 - (void)statusJuge:(NSString *)status AndAction:(NSString*)action AndIndexPath:(NSIndexPath *)indexPath{
     selectedIndexiPaht = indexPath;
-    //未审核
+    //未审核  不能传照片  只能删除修改
     if ([status isEqualToString:@"0"]) {
         //该情况下不允许上传图片
         if ([action isEqualToString:@"upload"]) {
@@ -604,9 +604,9 @@
             UploadPicViewController * upload;
             NSString * typeName = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"typeName"];
             if ([typeName isEqualToString:@"撤销普遍服务网点"]||[typeName isEqualToString:@"停限业务"]) {
-                upload = [[UploadPicViewController alloc]initWithCountOfPic:2 AndFormName:typeName];
+                upload = [[UploadPicViewController alloc]initWithUploadState:YES AndUrl:nil AndCountOfPic:2 AndFormName:typeName];
             }else{
-                upload = [[UploadPicViewController alloc]initWithCountOfPic:1 AndFormName:typeName];
+                upload = [[UploadPicViewController alloc]initWithUploadState:YES AndUrl:nil AndCountOfPic:1 AndFormName:typeName];
             }
             //            upload.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
@@ -636,13 +636,14 @@
         if ([action isEqualToString:@"upload"]) {
             //上传
             NSLog(@"upload");
-            //取到表的类型判断上传几张图片
+            //取到表的类型判断上传几张图片            http://img5.cache.netease.com/photo/0001/2015-09-22/B44FGIK900AN0001.jpg
             UploadPicViewController * upload;
             NSString * typeName = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"typeName"];
             if ([typeName isEqualToString:@"撤销普遍服务网点"]||[typeName isEqualToString:@"停限业务"]) {
-                upload = [[UploadPicViewController alloc]initWithCountOfPic:2 AndFormName:typeName];
+                upload = [[UploadPicViewController alloc]initWithUploadState:YES AndUrl:nil AndCountOfPic:2 AndFormName:typeName];
             }else{
-                upload = [[UploadPicViewController alloc]initWithCountOfPic:1 AndFormName:typeName];
+                upload = [[UploadPicViewController alloc]initWithUploadState:YES AndUrl:nil AndCountOfPic:1 AndFormName:typeName];
+//                upload = [[UploadPicViewController alloc]initWithUploadState:NO AndUrl:@"http://img5.cache.netease.com/photo/0001/2015-09-22/B44FGIK900AN0001.jpg" AndCountOfPic:1 AndFormName:typeName];
             }
 //            upload.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {

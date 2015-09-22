@@ -8,6 +8,7 @@
 
 #import "UploadPicViewController.h"
 #define BACKGROUNDIMGVIEWWIDTH (UISCREENHEIGHT*4/5 - 145)
+#define BIGBACKGROUNDIMGVIEWWIDTH ((UISCREENHEIGHT*4/5 - 65)>UISCREENWIDTH ? UISCREENWIDTH:(UISCREENHEIGHT*4/5 - 65))
 @interface UploadPicViewController()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate>{
     AppDelegate *app;
     BOOL picIsChoosen;
@@ -20,6 +21,7 @@
     UILabel * backgroundViewLabel;
     UIImageView * firstImgView;
     UIImageView * secondImgView;
+    BOOL uploadStates;
 }
 @property (strong,nonatomic) UIImagePickerController * imagePicker;
 @property (strong,nonatomic) UIView * backgroundView;
@@ -43,12 +45,13 @@
     return self;
 }
 
--(id)initWithCountOfPic:(int )count AndFormName:(NSString *)formName{
+-(id)initWithUploadState:(BOOL)uploadState AndUrl:(NSString *)url AndCountOfPic:(int)count AndFormName:(NSString *)formName{
     
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         self.view.backgroundColor = [UIColor clearColor];
     }
+    uploadStates = uploadState;
     picCount = count;
     stepFlag = 1;
     _backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, UISCREENHEIGHT/5, UISCREENWIDTH, UISCREENHEIGHT*4/5)];
@@ -146,6 +149,20 @@
     picIsChoosen = NO;
     isUploading = NO;
     uploadSuccess = NO;
+    
+    
+    //判断状态  以下为查看状态
+    if (!uploadStates) {
+        [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
+        imageUploadBtn.hidden = YES;
+        imageFromCameraBtn.hidden = YES;
+        imageFromAlbumBtn.hidden = YES;
+        NSLog(@"%f",BIGBACKGROUNDIMGVIEWWIDTH);
+        _backgroudnImgView.frame = CGRectMake((UISCREENWIDTH - BIGBACKGROUNDIMGVIEWWIDTH)/2, 45, BIGBACKGROUNDIMGVIEWWIDTH, BIGBACKGROUNDIMGVIEWWIDTH);
+        NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:url,@"imageUrl", nil];
+        NSDictionary * dics = [[NSDictionary alloc]initWithObjectsAndKeys:dic,@"info",@"resul",@"sdf", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"bsdtApi/get" object:self userInfo:dics];
+    }
     return self;
 }
 
@@ -221,11 +238,16 @@
 - (void)adjustPicForDisplay:(UIImage *)selectedImg{
     float imgRatio = selectedImg.size.height/selectedImg.size.width ;
     NSLog(@"imgRatio:%@",NSStringFromCGSize(selectedImg.size));
-    float screenDisplayAreaRatio = BACKGROUNDIMGVIEWWIDTH/UISCREENWIDTH;//1;
+    float screenDisplayAreaRatio;
+    if (!uploadStates) {
+        screenDisplayAreaRatio = BIGBACKGROUNDIMGVIEWWIDTH/UISCREENWIDTH;//1;
+    }else{
+        screenDisplayAreaRatio = BACKGROUNDIMGVIEWWIDTH/UISCREENWIDTH;//1;
+    }
     CGSize bigImgSize;
     if (imgRatio>screenDisplayAreaRatio) {
         //高为最大值   宽等比例转换
-        bigImgSize = CGSizeMake(BACKGROUNDIMGVIEWWIDTH/imgRatio, BACKGROUNDIMGVIEWWIDTH);
+        bigImgSize = CGSizeMake((screenDisplayAreaRatio * UISCREENWIDTH)/imgRatio, (screenDisplayAreaRatio * UISCREENWIDTH));
         //高为最大值  则高度固定    宽的起始点浮动（frame.x）
         _backgroudnImgView.frame = CGRectMake((UISCREENWIDTH - bigImgSize.width)/2, 50, bigImgSize.width, bigImgSize.height);
     }else{
@@ -234,7 +256,7 @@
         //宽为最大值  则宽度固定    长的高度点浮动（frame.y）
         _backgroudnImgView.frame = CGRectMake((UISCREENWIDTH - bigImgSize.width)/2, 50, bigImgSize.width, bigImgSize.height);
     }
-    _backgroudnImgView.center = CGPointMake(UISCREENWIDTH/2, 50+BACKGROUNDIMGVIEWWIDTH/2);
+    _backgroudnImgView.center = CGPointMake(UISCREENWIDTH/2, 50+(screenDisplayAreaRatio * UISCREENWIDTH)/2);
 }
 
 //图片转二进制
@@ -467,9 +489,6 @@
         //加在视图中
 //        [self.view addSubview:smallimage];
     }
-    
-    
-
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
