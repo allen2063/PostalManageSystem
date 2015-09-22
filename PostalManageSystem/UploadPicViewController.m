@@ -136,7 +136,6 @@
     _backgroudnImgView.image = [UIImage imageNamed:@"tup"];//backgroundImage
     [_backgroundView addSubview:_backgroudnImgView];
     
-    
     _blackView = [[UIView alloc]initWithFrame:self.view.bounds];
     _blackView.alpha = 0.0;
     _blackView.backgroundColor = [UIColor blackColor];
@@ -147,10 +146,7 @@
     picIsChoosen = NO;
     isUploading = NO;
     uploadSuccess = NO;
-    
-    
     return self;
-
 }
 
 - (void)viewDidLoad {
@@ -196,12 +192,10 @@
             //没有图片  什么都不做
         }
     }else{
-#warning 两张图片的情况下按钮  返回    已经读取图片时的接口显示等
         //第一张图片
         _formData = [tempDic objectForKey:@"info1"];
         NSString * url = [_formData objectForKey:@"imageUrl"];
         if(url.length > 10){
-//            NSString * url = [_formData objectForKey:@"imageUrl"];
             NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
             firstImgView.image = [[UIImage alloc] initWithData:imageData];
             _backgroudnImgView.image = [[UIImage alloc] initWithData:imageData];
@@ -214,7 +208,6 @@
         _formData2 = [tempDic objectForKey:@"info2"];
         url = [_formData2 objectForKey:@"imageUrl"];
         if(url.length > 10){
-//            NSString * url = [_formData2 objectForKey:@"imageUrl"];
             NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
             secondImgView.image = [[UIImage alloc] initWithData:imageData];
         }else{
@@ -461,11 +454,21 @@
         //类似微薄选择图后的效果
 //        UIImageView *smallimage = [[UIImageView alloc] initWithFrame:CGRectMake(50, NAVIGATIONHEIGHT + UISCREENWIDTH, 200, 200)];
         [self adjustPicForDisplay:image];
+        
+        //两张图片时识别对应状态并且赋值
+        if (picCount == 2 && [cancelBtn.titleLabel.text isEqualToString:@"下一张"]) {
+            firstImgView.image = image;
+        }else if(picCount == 2 && [cancelBtn.titleLabel.text isEqualToString:@"上一张"]) {
+            secondImgView.image = image;
+        }
+        
         _backgroudnImgView.image = image;
         picIsChoosen = YES;
         //加在视图中
 //        [self.view addSubview:smallimage];
     }
+    
+    
 
 }
 
