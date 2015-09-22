@@ -510,4 +510,52 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         textField.resignFirstResponder()
         return true
     }
+    
+    //上传图片功能
+    @IBAction func uploadYingYeRiQiChuoYang(sender: AnyObject) {
+        var uploadVC: UploadPicViewController = UploadPicViewController(countOfPic: 1, andFormName: "营业日期戳样")
+        
+        if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+            uploadVC.providesPresentationContextTransitionStyle = true
+            uploadVC.definesPresentationContext = true
+            uploadVC.modalPresentationStyle = .OverCurrentContext
+            self.presentViewController(uploadVC ,animated: true, completion: nil)
+        } else {
+            self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+            self.presentViewController(uploadVC ,animated: false, completion: nil)
+            self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+        }
+        
+//        UploadPicViewController * upload = [[UploadPicViewController alloc]initWithCountOfPic:1 AndFormName:typeName];
+        
+//        //            upload.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//        if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+//            upload.providesPresentationContextTransitionStyle = YES;
+//            upload.definesPresentationContext = YES;
+//            upload.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+//            [self presentViewController:upload animated:YES completion:nil];
+//        } else {
+//            self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+//            [self presentViewController:upload animated:NO completion:nil];
+//            self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+//        }
+        
+    }
+    
+    @IBAction func uploadTouDiRiQiChuoYang(sender: AnyObject) {
+        var uploadVC: UploadPicViewController = UploadPicViewController(countOfPic: 1, andFormName: "投递日期戳样")
+        
+        if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+            uploadVC.providesPresentationContextTransitionStyle = true
+            uploadVC.definesPresentationContext = true
+            uploadVC.modalPresentationStyle = .OverCurrentContext
+            self.presentViewController(uploadVC ,animated: true, completion: nil)
+        } else {
+            self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+            self.presentViewController(uploadVC ,animated: false, completion: nil)
+            self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+        }
+    }
+    
+    
 }

@@ -4,3 +4,4 @@
 
 #import "ClassToJSON.h"
 #import "AppDelegate.h"
+#import "UploadPicViewController.h"

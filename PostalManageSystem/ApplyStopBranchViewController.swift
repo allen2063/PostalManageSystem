@@ -453,4 +453,38 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    //图片上传
+    @IBAction func uploadYingYeChangSuoGongShangYingYeZhiZhaoFuYinJian(sender: AnyObject) {
+        var uploadVC: UploadPicViewController = UploadPicViewController(countOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件")
+        
+        if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+            uploadVC.providesPresentationContextTransitionStyle = true
+            uploadVC.definesPresentationContext = true
+            uploadVC.modalPresentationStyle = .OverCurrentContext
+            self.presentViewController(uploadVC ,animated: true, completion: nil)
+        } else {
+            self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+            self.presentViewController(uploadVC ,animated: false, completion: nil)
+            self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+        }
+
+    }
+    
+    @IBAction func uploadShenQingTingXianBanLiYeWuZhengMingWenJian(sender: AnyObject) {
+        var uploadVC: UploadPicViewController = UploadPicViewController(countOfPic: 1, andFormName: "申请停限办业务原因的证明文件")
+        
+        if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+            uploadVC.providesPresentationContextTransitionStyle = true
+            uploadVC.definesPresentationContext = true
+            uploadVC.modalPresentationStyle = .OverCurrentContext
+            self.presentViewController(uploadVC ,animated: true, completion: nil)
+        } else {
+            self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+            self.presentViewController(uploadVC ,animated: false, completion: nil)
+            self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+        }
+
+    }
+    
 }
