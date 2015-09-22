@@ -31,7 +31,9 @@
 @property (strong,nonatomic) UIButton * zoomInBtn;  //+
 @property (strong,nonatomic) UIButton * zoomOutBtn; //-
 @property (strong,nonatomic) UITableView * table;
+@property (strong,nonatomic) UITableView * informationTbaleView;
 @property (strong,nonatomic) NSMutableArray * dataList;
+@property (strong,nonatomic) NSMutableArray * informationDataList;
 @property (strong,nonatomic) NSMutableDictionary * cachaDicForPostOffice;
 @end
 
@@ -50,6 +52,15 @@
         self.table.delegate = self;
         self.table.frame = CGRectMake(UISCREENWIDTH - OffsetX + 45, UISCREENHEIGHT - 60, 45, 0);
         [self.view addSubview:self.table];
+        
+        _informationTbaleView =[[UITableView alloc]init];
+        _informationTbaleView.dataSource = self;
+        _informationTbaleView.delegate = self;
+        _informationTbaleView.frame = CGRectMake(0,0,UISCREENWIDTH *3/4, 0);
+        _informationTbaleView.scrollEnabled = NO;
+        [self.view addSubview:_informationTbaleView];
+        
+        _informationDataList = [[NSMutableArray alloc]init];
         
         _locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _locationBtn.frame = CGRectMake(UISCREENWIDTH - OffsetX, UISCREENHEIGHT - 60, 45, BTNHEIGHT);
@@ -81,7 +92,7 @@
         colorSpace = CGColorSpaceCreateDeviceRGB();
         colorref = CGColorCreate(colorSpace,(CGFloat[]){ 204/255.0, 204/255.0, 204/255.0, 1 });
         [_searchBtn.layer setBorderColor:colorref];//边框颜色
-        [_searchBtn addTarget:self action:@selector(snapshot) forControlEvents:UIControlEventTouchUpInside];
+        [_searchBtn addTarget:self action:@selector(searchfor) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_searchBtn];
         
         UIImageView * searchImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45 + BTNHEIGHT*1/10,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
@@ -167,15 +178,26 @@
     _titleLabel.text = app.titleForCurrentPage;
     self.navigationItem.titleView = _titleLabel;
     
+    
+    
+    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, NAVIGATIONHEIGHT, UISCREENWIDTH, UISCREENHEIGHT - NAVIGATIONHEIGHT)];
+    [self.view addSubview: _mapView];
+    
+    BMKCoordinateRegion region;
+    region.center.latitude  = 26.636333;
+    region.center.longitude = 106.642856;
+    region.span.latitudeDelta  = 0.2;
+    region.span.longitudeDelta = 0.2;
+    
+    _mapView.region = region;
+//    self.view = _mapView;
     //初始化BMKLocationService
+    
     _locService = [[BMKLocationService alloc]init];
     _locService.delegate = self;
     //启动LocationService
     [_locService startUserLocationService];
     
-    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, NAVIGATIONHEIGHT, UISCREENWIDTH, UISCREENHEIGHT - NAVIGATIONHEIGHT)];
-    [self.view addSubview: _mapView];
-//    self.view = _mapView;
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
     //指定最小距离更新(米)，默认：kCLDistanceFilterNone
     [BMKLocationService setLocationDistanceFilter:100.f];
@@ -203,16 +225,16 @@
 }
 
 //截图
--(void)snapshot
+-(void)searchfor
 {
-    NSLog(@"erfwe");
+    NSLog(@"search");
     if (showLoginSetting ==YES) {
         showLoginSetting = NO;
         [self cancelView];
     }else{
         showLoginSetting = YES;
         _table.hidden = NO;
-        [self showTableViews];
+        [self showTableViewWithTableView:_table];
     }
 }
 
@@ -236,143 +258,6 @@
 
 - (void)mapview:(BMKMapView *)mapView onDoubleClick:(CLLocationCoordinate2D)coordinate {
     NSLog(@"map view: double click");
-}
-
-// 根据anntation生成对应的View
-- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
-{
-    //普通annotation
-    if (annotation == pointAnnotation) {
-        NSString *AnnotationViewID = @"renameMark";
-        BMKPinAnnotationView *annotationView = (BMKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
-        if (annotationView == nil) {
-            annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
-            // 设置颜色
-            annotationView.pinColor = BMKPinAnnotationColorPurple;
-            // 从天上掉下效果
-            annotationView.animatesDrop = YES;
-            // 设置可拖拽
-            annotationView.draggable = YES;
-        }
-        return annotationView;
-    }
-    
-    //动画annotation
-    NSString *AnnotationViewID = @"AnimatedAnnotation";
-    MyAnimatedAnnotationView *annotationView = nil;
-    if (annotationView == nil) {
-        annotationView = [[MyAnimatedAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
-    }
-    NSMutableArray *images = [NSMutableArray array];
-    for (int i = 1; i < 4; i++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"poi_%d.png", i]];
-        [images addObject:image];
-    }
-    annotationView.annotationImages = images;
-    return annotationView;
-}
-
-- (void)locationTap{
-    NSLog(@"location");
-    [_locService startUserLocationService];
-}
-
-#pragma -mark 处理位置信息更新
-//实现相关delegate 处理位置信息更新
-//处理方向变更信息
-- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
-{
-    BMKCoordinateRegion region;
-    region.center.latitude  = userLocation.location.coordinate.latitude;
-    region.center.longitude = userLocation.location.coordinate.longitude;
-    region.span.latitudeDelta  = 0.2;
-    region.span.longitudeDelta = 0.2;
-    if (_mapView)
-    {
-        _mapView.region = region;
-        NSLog(@"当前的坐标是: %f,%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-        
-        CLLocationCoordinate2D test = CLLocationCoordinate2DMake(userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
-        //转换GPS坐标至百度坐标
-        NSDictionary* testdic = BMKConvertBaiduCoorFrom(test,BMK_COORDTYPE_GPS);
-        NSLog(@"x=%@,y=%@",[testdic objectForKey:@"x"],[testdic objectForKey:@"y"]);
-
-        userLatitude = userLocation.location.coordinate.latitude;
-        userLongitude = userLocation.location.coordinate.longitude;
-        [_locService stopUserLocationService];
-       
-    }
-    NSLog(@"heading is %@",userLocation.heading);
-}
-//处理位置坐标更新
-- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
-{
-    _mapView.showsUserLocation = YES;//显示定位图层
-    [_mapView updateLocationData:userLocation];
-    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-}
-
-#pragma -mark 网络请求返回
-- (void)getWdxxList:(NSNotification *)note{
-    NSDictionary * tempDic = [[NSDictionary alloc]initWithDictionary:[note userInfo]];
-    if ([[tempDic objectForKey:@"result"]isEqualToString:@"1"]) {
-        //坐标转换
-        NSMutableArray *coordinateArray = [tempDic objectForKey:@"list"];
-        if ([coordinateArray isKindOfClass:[NSArray class]]) {
-            NSMutableDictionary * dic;
-            NSMutableArray * resultArray = [[NSMutableArray alloc]init];
-            for(int i = 0;i<coordinateArray.count; i++){
-                dic = [[NSMutableDictionary alloc]initWithDictionary:[coordinateArray objectAtIndex:i]];
-                NSString * jdString = [dic objectForKey:@"jd"];
-                NSString * wdString = [dic objectForKey:@"wd"];
-                CGFloat jd = [jdString floatValue];
-                CGFloat wd = [wdString floatValue];
-                
-                CLLocationCoordinate2D test = CLLocationCoordinate2DMake(wd, jd);
-                //转换 google地图、soso地图、aliyun地图、mapabc地图和amap地图所用坐标至百度坐标
-                NSDictionary* testdic = BMKConvertBaiduCoorFrom(test,BMK_COORDTYPE_COMMON);
-//                NSLog(@"x=%@,y=%@",[testdic objectForKey:@"x"],[testdic objectForKey:@"y"]);
-//                jdString = [testdic objectForKey:@"x"];
-//                wdString = [testdic objectForKey:@"y"];
-//                NSData* decodeX = [jdString dataUsingEncoding:NSUTF8StringEncoding];
-//                NSData* decodeY = [wdString dataUsingEncoding:NSUTF8StringEncoding];
-//                NSString* decodeJdStr = [[NSString alloc] initWithData:decodeX encoding:NSUTF8StringEncoding];
-//                NSString* decodeWdStr = [[NSString alloc] initWithData:decodeY encoding:NSUTF8StringEncoding];
-//
-//                NSLog(@"jd=%@,wd=%@",decodeJdStr,decodeWdStr);
-                
-                CLLocationCoordinate2D trans = BMKCoorDictionaryDecode(testdic);
-                jdString = [NSString stringWithFormat:@"%.6f",trans.longitude ] ;
-                wdString = [NSString stringWithFormat:@"%.6f",trans.latitude ];
-                NSLog(@"转换坐标：jd%@,wd%@",jdString,wdString);
-                [dic setObject:jdString forKey:@"jd"];
-                [dic setObject:wdString forKey:@"wd"];
-                [resultArray addObject:dic];
-            }
-            [_cachaDicForPostOffice setObject:resultArray forKey:@"listArray"];
-        }else if([coordinateArray isKindOfClass:[NSDictionary class]]){
-//            NSDictionary * coordinateDic = [tempDic objectForKey:@"list"];
-        }
-    }
-}
-
-#pragma mark - TableView
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.dataList count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    //这样写在IOS7.0以后 TableViewCell的分割线就不会往右挫15个像素点了
-    [tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"cell" ];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-    }
-    cell.textLabel.text = [self.dataList objectAtIndex:indexPath.row];
-    //    cell.backgroundColor = UIColorFromRGBValue(0x028e45);
-    //    cell.textLabel.textColor = [UIColor yellowColor];
-    cell.alpha = 0.8;
-    return cell;
 }
 
 //添加标注
@@ -477,6 +362,7 @@
                     coor.latitude = wd;
                     coor.longitude = jd;
                     pointAnnotation.coordinate = coor;
+                    
                     pointAnnotation.title = [dic objectForKey:@"wdmc"];
                     pointAnnotation.subtitle = @"点此查看详细信息";
                     [_mapView addAnnotation:pointAnnotation];
@@ -491,14 +377,207 @@
 // 当点击annotation view弹出的泡泡时，调用此接口
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view;
 {
-    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 70, 70)];
-    label.text= @"我不干了";
-   view.paopaoView = [view.paopaoView initWithCustomView:label];
+    CLLocationCoordinate2D tempCoordinate = view.annotation.coordinate;
+    NSArray * tempArray = [_cachaDicForPostOffice objectForKey:@"listArray"];
+    [_informationDataList removeAllObjects];
+    for(NSDictionary * dic in tempArray){
+        CGFloat jd = [[dic objectForKey:@"jd"]floatValue];
+        CGFloat wd = [[dic objectForKey:@"wd"]floatValue];
+        
+        if (tempCoordinate.latitude == wd && tempCoordinate.longitude == jd) {
+            NSString * placeNameStirng = [dic objectForKey:@"wdmc"];
+            placeNameStirng = [NSString stringWithFormat:@"营业场所名称：%@",placeNameStirng];
+            [_informationDataList addObject:placeNameStirng];
+            
+            NSString * personNameStirng = [dic objectForKey:@"fzrxm"];
+            personNameStirng = [NSString stringWithFormat:@"联系人姓名：%@",personNameStirng];
+            [_informationDataList addObject:personNameStirng];
+            
+            NSString * telStirng = [dic objectForKey:@"fzrdh"];
+            telStirng = [NSString stringWithFormat:@"联系人电话：%@",telStirng];
+            [_informationDataList addObject:telStirng];
+            
+            NSString * serviceScopeStirng = [dic objectForKey:@"ywfw"];
+            serviceScopeStirng = [NSString stringWithFormat:@"业务范围：%@",serviceScopeStirng];
+            [_informationDataList addObject:serviceScopeStirng];
+            
+            NSString * timeStirng = [dic objectForKey:@"yysj"];
+            timeStirng = [NSString stringWithFormat:@"营业时间：%@",timeStirng];
+            [_informationDataList addObject:timeStirng];
+            [_informationTbaleView reloadData];
+            
+            [self showTableViewWithTableView: _informationTbaleView];
+            break;
+        }
+    }
+
     NSLog(@"paopaoclick");
+}
+
+- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
+//    view.paopaoView.hidden = YES;
+    CLLocationCoordinate2D tempCoordinate = view.annotation.coordinate;
+    BMKCoordinateRegion region;
+    region.center.latitude  = tempCoordinate.latitude;
+    region.center.longitude = tempCoordinate.longitude;
+    #warning 根据zoom调这里
+    _mapView.region = region;
+    _mapView.zoomLevel = zoom;
+
+   
+    NSLog(@"tempCoordinate%f %f",tempCoordinate.latitude , tempCoordinate.latitude);
+    
+
+}
+
+// 根据anntation生成对应的View
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
+{
+    //普通annotation
+    if (annotation == pointAnnotation) {
+        NSString *AnnotationViewID = @"renameMark";
+        BMKPinAnnotationView *annotationView = (BMKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+        if (annotationView == nil) {
+            annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+            // 设置颜色
+            annotationView.pinColor = BMKPinAnnotationColorPurple;
+            // 从天上掉下效果
+            annotationView.animatesDrop = YES;
+            // 设置可拖拽
+            annotationView.draggable = YES;
+        }
+        return annotationView;
+    }
+    
+    //动画annotation
+    NSString *AnnotationViewID = @"AnimatedAnnotation";
+    MyAnimatedAnnotationView *annotationView = nil;
+    if (annotationView == nil) {
+        annotationView = [[MyAnimatedAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+    }
+    NSMutableArray *images = [NSMutableArray array];
+    for (int i = 1; i < 4; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"poi_%d.png", i]];
+        [images addObject:image];
+    }
+    annotationView.annotationImages = images;
+    return annotationView;
+}
+
+- (void)locationTap{
+    NSLog(@"location");
+    [_locService startUserLocationService];
+}
+
+#pragma -mark 处理位置信息更新
+//实现相关delegate 处理位置信息更新
+//处理方向变更信息
+- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
+{
+    BMKCoordinateRegion region;
+    region.center.latitude  = userLocation.location.coordinate.latitude;
+    region.center.longitude = userLocation.location.coordinate.longitude;
+    region.span.latitudeDelta  = 0.2;
+    region.span.longitudeDelta = 0.2;
+    if (userLocation.location.coordinate.latitude != 0  || userLocation.location.coordinate.longitude != 0)
+    {
+        _mapView.region = region;
+        NSLog(@"当前的坐标是: %f,%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+        
+//        CLLocationCoordinate2D test = CLLocationCoordinate2DMake(userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
+        //转换GPS坐标至百度坐标
+//        NSDictionary* testdic = BMKConvertBaiduCoorFrom(test,BMK_COORDTYPE_GPS);
+//        NSLog(@"x=%@,y=%@",[testdic objectForKey:@"x"],[testdic objectForKey:@"y"]);
+
+        
+        userLatitude = userLocation.location.coordinate.latitude;
+        userLongitude = userLocation.location.coordinate.longitude;
+        
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@" %f",userLatitude] message:[NSString stringWithFormat:@" %f",userLongitude] delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+//        [alert show];
+        
+        [_locService stopUserLocationService];
+       
+    }
+    NSLog(@"heading is %@",userLocation.heading);
+}
+//处理位置坐标更新
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    _mapView.showsUserLocation = YES;//显示定位图层
+    [_mapView updateLocationData:userLocation];
+    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+}
+
+#pragma -mark 网络请求返回
+- (void)getWdxxList:(NSNotification *)note{
+    NSDictionary * tempDic = [[NSDictionary alloc]initWithDictionary:[note userInfo]];
+    if ([[tempDic objectForKey:@"result"]isEqualToString:@"1"]) {
+        //坐标转换
+        NSMutableArray *coordinateArray = [tempDic objectForKey:@"list"];
+        if ([coordinateArray isKindOfClass:[NSArray class]]) {
+            NSMutableDictionary * dic;
+            NSMutableArray * resultArray = [[NSMutableArray alloc]init];
+            for(int i = 0;i<coordinateArray.count; i++){
+                dic = [[NSMutableDictionary alloc]initWithDictionary:[coordinateArray objectAtIndex:i]];
+                NSString * jdString = [dic objectForKey:@"jd"];
+                NSString * wdString = [dic objectForKey:@"wd"];
+                CGFloat jd = [jdString floatValue];
+                CGFloat wd = [wdString floatValue];
+                
+                CLLocationCoordinate2D test = CLLocationCoordinate2DMake(wd, jd);
+                //转换 google地图、soso地图、aliyun地图、mapabc地图和amap地图所用坐标至百度坐标
+                NSDictionary* testdic = BMKConvertBaiduCoorFrom(test,BMK_COORDTYPE_COMMON);
+                //解密坐标
+                CLLocationCoordinate2D trans = BMKCoorDictionaryDecode(testdic);
+                jdString = [NSString stringWithFormat:@"%.6f",trans.longitude ] ;
+                wdString = [NSString stringWithFormat:@"%.6f",trans.latitude ];
+                NSLog(@"转换坐标：jd%@,wd%@",jdString,wdString);
+                [dic setObject:jdString forKey:@"jd"];
+                [dic setObject:wdString forKey:@"wd"];
+                [resultArray addObject:dic];
+            }
+            [_cachaDicForPostOffice setObject:resultArray forKey:@"listArray"];
+        }else if([coordinateArray isKindOfClass:[NSDictionary class]]){
+//            NSDictionary * coordinateDic = [tempDic objectForKey:@"list"];
+        }
+    }
+}
+
+#pragma mark - TableView
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (tableView == _table) {
+        return [self.dataList count];
+    }else{
+        return _informationDataList.count;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //这样写在IOS7.0以后 TableViewCell的分割线就不会往右挫15个像素点了
+    [tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"cell" ];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    }
+    if (tableView == _table) {
+        cell.textLabel.text = [self.dataList objectAtIndex:indexPath.row];
+        //    cell.backgroundColor = UIColorFromRGBValue(0x028e45);
+        //    cell.textLabel.textColor = [UIColor yellowColor];
+    }else{
+        cell.textLabel.text = [_informationDataList objectAtIndex:indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    cell.alpha = 0.8;
+
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];//选中后的反显颜色即刻消失
+    if (tableView == _informationTbaleView) {
+        return;
+    }
     switch (indexPath.row) {
         case 0:{
             //            NSLog(@"定位");
@@ -542,6 +621,13 @@
         default:
             break;
     }
+    
+    BMKCoordinateRegion region;
+    region.center.latitude  = userLatitude;
+    region.center.longitude = userLongitude;
+    _mapView.region = region;
+    _mapView.zoomLevel = zoom;
+    
     [_mapView removeOverlays:_mapView.overlays];
     NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
     [_mapView removeAnnotations:array];
@@ -550,18 +636,34 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    NSString *  headString = @"设置查询距离范围";
+    NSString *  headString;
+    if (tableView == _table) {
+        headString = @"设置查询距离范围";
+    }else{
+        headString = @"网点详细信息";
+    }
     return headString;
 }
 
 
-- (void)showTableViews{
+- (void)showTableViewWithTableView:(UITableView *)tableView{
     [self.view bringSubviewToFront:blackView];
-    [self.view bringSubviewToFront:self.table];
-    [UIView animateWithDuration:0.3 animations:^{
-        self.table.frame = CGRectMake(UISCREENWIDTH/8 , NAVIGATIONHEIGHT + 60, UISCREENWIDTH*3/4, 20+44*self.dataList.count);
-        blackView.alpha = 0.5;
-    }];
+    if (tableView != _informationTbaleView) {
+        [self.view bringSubviewToFront:self.table];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.table.frame = CGRectMake(UISCREENWIDTH/8 , NAVIGATIONHEIGHT + 60, UISCREENWIDTH*3/4, 20+44*self.dataList.count);
+            blackView.alpha = 0.5;
+        }];
+    }else{
+        [self.view bringSubviewToFront:_informationTbaleView];
+        _informationTbaleView.hidden = NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            _informationTbaleView.frame = CGRectMake(UISCREENWIDTH/10 , NAVIGATIONHEIGHT + 60, UISCREENWIDTH*4/5, 30+44*5);
+            _informationTbaleView.center = self.view.center;
+            blackView.alpha = 0.5;
+        }];
+    }
+    
 }
 
 -(void)cancelView
@@ -569,10 +671,13 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.table.frame =  CGRectMake(UISCREENWIDTH - OffsetX + 45, UISCREENHEIGHT - 60, 45, 0);
         blackView.alpha = 0.0;
+        _informationTbaleView.frame = CGRectMake(UISCREENWIDTH/2 - UISCREENWIDTH *3/8,UISCREENHEIGHT/2,UISCREENWIDTH *3/4, 0);
+        _informationTbaleView.center = self.view.center;
     }
                      completion:^(BOOL finished) {
                          [self.view sendSubviewToBack:blackView];
                          _table.hidden = YES;
+                         _informationTbaleView.hidden = YES;
                      }
      ];
 }

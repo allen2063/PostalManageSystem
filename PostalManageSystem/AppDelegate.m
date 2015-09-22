@@ -183,6 +183,15 @@
 }
 
 - (void)initBDTT{
+    
+//    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8) {
+//        //由于IOS8中定位的授权机制改变 需要进行手动授权
+//        CLLocationManager  *locationManager = [[CLLocationManager alloc] init];
+//        //获取授权认证
+//        [locationManager requestAlwaysAuthorization];
+//        [locationManager requestWhenInUseAuthorization];
+//    }
+    
     //百度地图
     _mapManager = [[BMKMapManager alloc]init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
