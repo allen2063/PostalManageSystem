@@ -15,7 +15,7 @@
 //第四个参数formName只有当第三个参数count为1时有效  传什么标题栏显示什么
 -(id) initWithUploadState:(BOOL)uploadState AndUrl:(NSString *)url AndCountOfPic:(int )count AndFormName:(NSString *)formName;
 
--(id) initWithCountOfPic:(int )count AndFormName:(NSString *)formName;
+//-(id) initWithCountOfPic:(int )count AndFormName:(NSString *)formName;
 
 @property (strong,nonatomic) NSString * picUrl;
 @end

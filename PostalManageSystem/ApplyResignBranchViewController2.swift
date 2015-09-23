@@ -996,8 +996,8 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     }
 
     @IBAction func uploadYIngYeZhiZhaoFuYinJian(sender: AnyObject) {
-        var uploadVC: UploadPicViewController = UploadPicViewController(countOfPic: 1, andFormName: "拟撤销场所的工商营业执照复印件")
-        
+         var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "拟撤销场所的工商营业执照复印件")
+       
         if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
             uploadVC.providesPresentationContextTransitionStyle = true
             uploadVC.definesPresentationContext = true
@@ -1013,7 +1013,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     
     
     @IBAction func uploadZhengMingWenJian(sender: AnyObject) {
-        var uploadVC: UploadPicViewController = UploadPicViewController(countOfPic: 1, andFormName: "申请拟撤销场所原因的证明文件")
+        var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请拟撤销场所原因的证明文件")
         
         if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
             uploadVC.providesPresentationContextTransitionStyle = true

@@ -513,7 +513,7 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     
     //上传图片功能
     @IBAction func uploadYingYeRiQiChuoYang(sender: AnyObject) {
-        var uploadVC: UploadPicViewController = UploadPicViewController(countOfPic: 1, andFormName: "营业日期戳样")
+        var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "营业日期戳样")
         
         if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
             uploadVC.providesPresentationContextTransitionStyle = true
@@ -543,7 +543,7 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     }
     
     @IBAction func uploadTouDiRiQiChuoYang(sender: AnyObject) {
-        var uploadVC: UploadPicViewController = UploadPicViewController(countOfPic: 1, andFormName: "投递日期戳样")
+        var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "投递日期戳样")
         
         if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
             uploadVC.providesPresentationContextTransitionStyle = true

@@ -456,7 +456,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     
     //图片上传
     @IBAction func uploadYingYeChangSuoGongShangYingYeZhiZhaoFuYinJian(sender: AnyObject) {
-        var uploadVC: UploadPicViewController = UploadPicViewController(countOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件")
+        var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件")
         
         if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
             uploadVC.providesPresentationContextTransitionStyle = true
@@ -472,7 +472,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     }
     
     @IBAction func uploadShenQingTingXianBanLiYeWuZhengMingWenJian(sender: AnyObject) {
-        var uploadVC: UploadPicViewController = UploadPicViewController(countOfPic: 1, andFormName: "申请停限办业务原因的证明文件")
+        var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件")
         
         if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
             uploadVC.providesPresentationContextTransitionStyle = true
