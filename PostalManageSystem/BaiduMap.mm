@@ -423,11 +423,7 @@
     #warning 根据zoom调这里
     _mapView.region = region;
     _mapView.zoomLevel = zoom;
-
-   
     NSLog(@"tempCoordinate%f %f",tempCoordinate.latitude , tempCoordinate.latitude);
-    
-
 }
 
 // 根据anntation生成对应的View
@@ -674,11 +670,11 @@
         _informationTbaleView.frame = CGRectMake(UISCREENWIDTH/2 - UISCREENWIDTH *3/8,UISCREENHEIGHT/2,UISCREENWIDTH *3/4, 0);
         _informationTbaleView.center = self.view.center;
     }
-                     completion:^(BOOL finished) {
-                         [self.view sendSubviewToBack:blackView];
-                         _table.hidden = YES;
-                         _informationTbaleView.hidden = YES;
-                     }
+    completion:^(BOOL finished) {
+        [self.view sendSubviewToBack:blackView];
+        _table.hidden = YES;
+        _informationTbaleView.hidden = YES;
+        }
      ];
 }
 
