@@ -46,7 +46,7 @@
     return self;
 }
 
--(id)initWithUploadState:(BOOL)uploadState AndUrl:(NSString *)url AndCountOfPic:(int)count AndFormName:(NSString *)formName AndUpadateKind:(int)uploadKind{
+-(id) initWithUploadState:(BOOL)uploadState AndUrl:(NSString *)url AndCountOfPic:(int )count AndFormName:(NSString *)formName AndUploadKind:(int)uploadKind{
     
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
