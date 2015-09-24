@@ -57,14 +57,20 @@
     
     //[self.network getXMLDataWithFileName:@"zipcode"];  //  provinces   cities  areas  zipcode
 
-    //xml更新请求
-    [self.network getXMLDate];
+
     
     //启动公告
-//    Pager * pager;
+    Pager * pager = [[Pager alloc]init];
 //    [self.network getListWithToken:@"jiou" AndType:@"qdgg" AndListPager:pager];
-//    [self initQDGG];
-//    _backgroundView.alpha = 0.8;
+    NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"qdgg",@"type",pager,@"pager",@"1",@"method", nil];
+    [self.network addObjectForRequestQueueWithDci:dic];
+    [self initQDGG];
+    _backgroundView.alpha = 0.8;
+    
+    //xml更新请求
+    //    [self.network getXMLDate];
+    NSDictionary * dics = [[NSDictionary alloc]initWithObjectsAndKeys:@"3",@"method", nil];
+    [self.network addObjectForRequestQueueWithDci:dics];
 
     return YES;
 }
@@ -80,14 +86,19 @@
         NSMutableDictionary * XMLDic = [ConnectionAPI readFileDicWithFileName:[NSString stringWithFormat:@"%@.archiver",formNameString]];
         //xml不存在或者出错 则直接请求
         if (XMLDic == nil || ![XMLDic isKindOfClass:[NSDictionary class]] || [[XMLDic objectForKey:@"result"]isEqualToString:@"error"]) {
-            NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:formNameString,@"formNameString", nil];
-            [NSTimer scheduledTimerWithTimeInterval:5.0*i target: self selector: @selector(getXMLDataWithFileNames:) userInfo:dic repeats:NO];
+            //非队列请求
+//            NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:formNameString,@"formNameString", nil];
+//            [NSTimer scheduledTimerWithTimeInterval:5.0*i target: self selector: @selector(getXMLDataWithFileNames:) userInfo:dic repeats:NO];
 //            [self.network getXMLDataWithFileName:formNameString];
+            //队列请求
+            NSDictionary * dics = [[NSDictionary alloc]initWithObjectsAndKeys:@"4",@"method",formNameString,@"FileName", nil];
+            [self.network addObjectForRequestQueueWithDci:dics];
         }
         //如果返回检测版本信息返回结果成功
         else if ([[[note userInfo]objectForKey:@"result"]isEqualToString:@"1"]){
+//            非队列请求
             NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:formNameString,@"formNameString",[dateDic objectForKey:formNameString],@"serverFormBuildTimeString" ,XMLDic , @"XMLDic", nil];
-            [NSTimer scheduledTimerWithTimeInterval:5.0*i target: self selector: @selector(compareDate:) userInfo:dic repeats:NO];
+            [NSTimer scheduledTimerWithTimeInterval:0.01*i target: self selector: @selector(compareDate:) userInfo:dic repeats:NO];
 //            [self compareDateWithFormName:formNameString AndFormBuildTime:[dateDic objectForKey:formNameString]];
         }
         i++;
@@ -96,7 +107,9 @@
 
 - (void)getXMLDataWithFileNames:(NSTimer *)timer{
     NSString * formNameString = [[timer userInfo] objectForKey:@"formNameString"];
-    [self.network getXMLDataWithFileName:formNameString];
+//    [self.network getXMLDataWithFileName:formNameString];
+    NSDictionary * dics = [[NSDictionary alloc]initWithObjectsAndKeys:@"4",@"method",formNameString,@"FileName", nil];
+    [self.network addObjectForRequestQueueWithDci:dics];
 }
 
 //比较日期信息
@@ -112,7 +125,9 @@
     NSDate * serverFormBuildTimeDate = [self dateFromString:serverFormBuildTimeString];
     BOOL needUpdate = ![localFormBuildTimeDate isEqualToDate:serverFormBuildTimeDate];
     if (needUpdate) {
-        [self.network getXMLDataWithFileName:formNameString];
+//        [self.network getXMLDataWithFileName:formNameString];
+        NSDictionary * dics = [[NSDictionary alloc]initWithObjectsAndKeys:@"4",@"method",formNameString,@"FileName", nil];
+        [self.network addObjectForRequestQueueWithDci:dics];
         
         NSLog(@"!!!要更新  localFormBuildTimeDate：%@   serverFormBuildTimeDate%@",localFormBuildTimeDate,serverFormBuildTimeDate);
     }
@@ -171,14 +186,29 @@
 - (void)timeOut:(NSNotification *)note{
     NSDictionary * dic = [note userInfo];
     [GMDCircleLoader hideFromView:self.window animated:YES];
-    UIAlertView * alerts = [[UIAlertView alloc]init];
-    if (alerts.visible != YES) {
-        NSString * str = @"请检查您的网络！";
-        if (dic != nil) {
-            str = [dic objectForKey:@"timeOut"];
+    if ([[dic objectForKey:@"timeOut"]rangeOfString:@"timed out"].length != 0) {
+        UIAlertView * alerts = [[UIAlertView alloc]init];
+        if (alerts.visible != YES) {
+            NSString * str = @"请检查您的网络！";
+            if (dic != nil) {
+                str = [dic objectForKey:@"timeOut"];
+            }
+            alerts = [alerts initWithTitle:@"网络请求超时" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alerts show];
         }
-        alerts = [alerts initWithTitle:@"网络请求超时" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alerts show];
+
+    }
+    else if ([[dic objectForKey:@"timeOut"]rangeOfString:@"The network connection was lost"].length != 0){
+        UIAlertView * alerts = [[UIAlertView alloc]init];
+        if (alerts.visible != YES) {
+            NSString * str = @"请检查您的网络！";
+            if (dic != nil) {
+                str = [dic objectForKey:@"timeOut"];
+            }
+            alerts = [alerts initWithTitle:@"网络出错" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alerts show];
+        }
+
     }
 }
 

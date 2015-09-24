@@ -580,6 +580,13 @@
         //修改  状态变为2
         else if([action isEqualToString:@"edit"]){
             app.ServerData = 2;
+            
+            NSMutableString * flowID = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"flowId"];
+            NSString * interface = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"type"];
+            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
+            [app.network getFlowIDWithInterface:interface ANdToken:@"jiou" AndFlowID:flowID];
+            didSelectedCell = YES;
+            
             NSLog(@"edit");
         }
     }
@@ -590,8 +597,18 @@
             [alert show];
         }else if([action isEqualToString:@"delete"]){
             NSLog(@"delete");
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"删除" message:@"确定要删除吗？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            alert.delegate = self;
+            [alert show];
         }else if([action isEqualToString:@"edit"]){
             app.ServerData = 2;
+            
+            NSMutableString * flowID = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"flowId"];
+            NSString * interface = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"type"];
+            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
+            [app.network getFlowIDWithInterface:interface ANdToken:@"jiou" AndFlowID:flowID];
+            didSelectedCell = YES;
+            
             NSLog(@"edit");
         }
     }

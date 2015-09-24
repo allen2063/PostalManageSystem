@@ -26,16 +26,21 @@
 @synthesize conn;
 @synthesize getXMLResults;
 @synthesize resultArray,cacheDic;
+@synthesize requestQueue,requestQueueThreadFinished;
 #warning 改为队列请求   返回一个发送一个
 
 - (id)init{
     self = [super init];
-    //urlToServer = @"http://222.85.149.6:88/GuiYangPost/";//@"chisifang.imwork.net:11246/GuiYangPost/";    communicatingInterface = @"off";
+    //urlToServer = @"http://222.85.149.6:8089/GuiYangPost/";//@"chisifang.imwork.net:11246/GuiYangPost/";    communicatingInterface = @"off";
     urlToServer = @"http://chisifang.imwork.net:11246/GuiYangPost/";
     alerts = [[UIAlertView alloc]init];
     isback =NO;
     requestCount = 0;
     timeout = 25;
+    
+    self.requestQueue = [[NSMutableArray alloc]init];
+    self.requestQueueThreadFinished = YES;
+    
 //    self.cacheDic = [ConnectionAPI readFileDicWithFileName:@"cacheDic.archiver"];
 //    if (self.cacheDic == nil) {
         self.cacheDic = [[NSMutableDictionary alloc]init];
@@ -113,6 +118,7 @@
     return [self getObjectData:obj];
 }
 
+#pragma 时间超时定义
 //时间超时定义
 -(void) handleTimer:(NSTimer *)timer
 {
@@ -126,6 +132,62 @@
         //alerts = [[UIAlertView alloc]initWithTitle:@"网络请求超时" message:@"请检查您的网络！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         
     }
+}
+
+#pragma 网络同步请求队列
+//添加请求入队
+- (void)addObjectForRequestQueueWithDci:(NSDictionary *)dic{
+    //每次将新增的请求加入到数组的最前面，即队尾
+    [self.requestQueue insertObject:dic atIndex:0];
+    NSLog(@"添加新请求入队,执行方法：%d",[[dic objectForKey:@"method"]intValue]);
+    if (self.requestQueueThreadFinished == YES) {
+        self.requestQueueThreadFinished = NO;
+        [self doRequestNow];
+    }
+}
+
+//执行数组中最后一个请求，即队头
+- (void)doRequestNow{
+//    if (self.requestQueue.count == 0) {
+//        return;
+//    }
+    
+    if (self.requestQueueThreadFinished == NO &&self.requestQueue.count == 0 ) {
+        //标志队列已空闲  所有请求已返回
+        self.requestQueueThreadFinished = YES;
+        return;
+    }else if ( self.requestQueue.count == 0 ){
+        return;
+    }
+    
+    NSDictionary * dic = [self.requestQueue objectAtIndex:self.requestQueue.count-1];
+    int method = [[dic objectForKey:@"method"]intValue];
+    switch (method) {
+        case 1:
+            //获取启动公告表单
+            [self getListWithToken:@"jiou" AndType:[dic objectForKey:@"type"] AndListPager:[dic objectForKey:@"pager"]];
+            break;
+        case 2:
+            //获取启动公告详情
+            [self getDetailViewWithToken:@"jiou" AndID:[dic objectForKey:@"ID"]];
+            break;
+        case 3:
+            //获取XML版本信息
+            [self getXMLDate];
+            break;
+        case 4:
+            //获取XML数据
+            [self getXMLDataWithFileName:[dic objectForKey:@"FileName"]];
+            break;
+        default:
+            break;
+    }
+    
+    //无论是否成功，删除队头已执行的请求求
+    [self.requestQueue removeLastObject];
+    NSLog(@"完成请求并出队");
+    //判断队列状态
+    
 }
 
 #pragma -mark 接口
@@ -404,12 +466,17 @@
 //         [alerts show];
 //        NSLog(@"alert没有按钮？？？？ %@",[error localizedDescription]);
 //    }
-   
+    //执行完毕  调用队列后续请求
+    [self doRequestNow];
     NSDictionary * d = [[NSDictionary alloc]initWithObjectsAndKeys:error,@"error" ,nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"fault" object:self userInfo:d];
     if ([[error localizedDescription] rangeOfString:@"timed out"].length != 0  || [[error localizedDescription] rangeOfString:@"请求超时"].length != 0) {
         NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:[error localizedDescription],@"timeOut", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"timeOut" object:self userInfo:dic];
+    }else if([[error localizedDescription] rangeOfString:@"The network connection was lost"].length != 0){
+        NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:[error localizedDescription],@"timeOut", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"lost" object:self userInfo:dic];
+
     }
 }
 
@@ -460,11 +527,18 @@
     //启动公告list
     else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsByType"] && [self.getXMLResults rangeOfString:@"启动公告"].length !=0 && [self.getXMLResults rangeOfString:@"listPager"].length !=0){
         NSString * ID = [[[resultDic objectForKey:@"data"]objectAtIndex:0]objectForKey:@"id"];
-        [self getDetailViewWithToken:@"jiou" AndID:ID];
+        ID = [NSString stringWithFormat:@"%@",ID];
+//        [self getDetailViewWithToken:@"jiou" AndID:ID];
+        NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:ID,@"ID",@"2",@"method", nil];
+        [self addObjectForRequestQueueWithDci:dic];
+        //执行完毕  调用队列后续请求
+        [self doRequestNow];
     }
     //启动公告detail
     else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsById"] && [self.getXMLResults rangeOfString:@"启动公告"].length !=0){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"qdgg" object:self userInfo:resultDic];
+        //执行完毕  调用队列后续请求
+        [self doRequestNow];
     }
     //禁限寄物品名录list
     else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsByType"] && [self.getXMLResults rangeOfString:@"禁限寄物品名录"].length !=0 && [self.getXMLResults rangeOfString:@"listPager"].length !=0){
@@ -498,10 +572,16 @@
     //xml版本
     else if ([communicatingInterface isEqualToString:@"baseUpdateApi/getXmlDate"]){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"getXmlDate" object:self userInfo:resultDic];
+        
+        //执行完毕  调用队列后续请求
+        [self doRequestNow];
     }
     //xml数据
     else if ([communicatingInterface isEqualToString:@"baseUpdateApi/getXmlFilebyJson"]){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"getXmlFilebyJson" object:self userInfo:resultDic];
+        
+        //执行完毕  调用队列后续请求
+        [self doRequestNow];
     }
     //获取表的详情
     else if ([communicatingInterface isEqualToString:[NSString stringWithFormat:@"bsdtApi/get%@",self.specialInterface]]){

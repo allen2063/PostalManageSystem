@@ -12,6 +12,7 @@
     AppDelegate *app;
     NSString * matchingElement;
     BOOL elementFound;
+    NSString * prefixion;
 }
 @property (strong,nonatomic)UILabel * titleLabel;
 @property (strong,nonatomic)UIWebView * webView;
