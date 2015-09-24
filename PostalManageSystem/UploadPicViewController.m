@@ -22,6 +22,7 @@
     UIImageView * firstImgView;
     UIImageView * secondImgView;
     BOOL uploadStates;
+    int uploadKinds;
 }
 @property (strong,nonatomic) UIImagePickerController * imagePicker;
 @property (strong,nonatomic) UIView * backgroundView;
@@ -45,12 +46,13 @@
     return self;
 }
 
--(id)initWithUploadState:(BOOL)uploadState AndUrl:(NSString *)url AndCountOfPic:(int)count AndFormName:(NSString *)formName{
+-(id)initWithUploadState:(BOOL)uploadState AndUrl:(NSString *)url AndCountOfPic:(int)count AndFormName:(NSString *)formName AndUpadateKind:(int)uploadKind{
     
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         self.view.backgroundColor = [UIColor clearColor];
     }
+    uploadKinds = uploadKind;
     uploadStates = uploadState;
     picCount = count;
     stepFlag = 1;
@@ -336,11 +338,21 @@
                 [alerts dismissWithClickedButtonIndex:0 animated:NO];
                 //将服务器返回的url存在本地  供详情列表提交时使用
                 self.picUrl = [resultDic objectForKey:@"url"];
+            if (uploadKinds == 0) {
                 //修改
                 NSString * interface = [app.selectedCellData objectForKey:@"type"];
                 NSString * url = [resultDic objectForKey:@"url"];
                 [_formData setObject:url forKey:@"imageUrl"];
                 [app.network editWithInterface:interface AndInfo:_formData AndExtraInfo:nil];
+            }
+            //表内上传  无需绑定flowID
+            else{
+                uploadSuccess = YES;
+                UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"上传成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                alert.delegate = self;
+                [alert show];
+                isUploading = NO;
+            }
         }else{
             [alerts dismissWithClickedButtonIndex:0 animated:NO];
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"上传失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

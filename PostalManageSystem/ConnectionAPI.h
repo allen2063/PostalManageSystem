@@ -29,6 +29,7 @@
 //读取文件
 +(NSMutableDictionary *)readFileDicWithFileName:(NSString *)flieName;
 +(NSString *)documentsPath:(NSString *)fileName;
++(NSString *)readTXTStringWithFileName:(NSString *)name;
 //md5加密
 + (NSString *)md5:(NSString *)str;
 //登陆

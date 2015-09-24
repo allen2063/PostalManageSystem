@@ -621,9 +621,9 @@
             UploadPicViewController * upload;
             NSString * typeName = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"typeName"];
             if ([typeName isEqualToString:@"撤销普遍服务网点"]||[typeName isEqualToString:@"停限业务"]) {
-                upload = [[UploadPicViewController alloc]initWithUploadState:YES AndUrl:nil AndCountOfPic:2 AndFormName:typeName];
+                upload = [[UploadPicViewController alloc]initWithUploadState:YES AndUrl:nil AndCountOfPic:2 AndFormName:typeName AndUploadKind:0];
             }else{
-                upload = [[UploadPicViewController alloc]initWithUploadState:YES AndUrl:nil AndCountOfPic:1 AndFormName:typeName];
+                upload = [[UploadPicViewController alloc]initWithUploadState:YES AndUrl:nil AndCountOfPic:1 AndFormName:typeName AndUploadKind:0];
             }
             //            upload.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
@@ -657,9 +657,9 @@
             UploadPicViewController * upload;
             NSString * typeName = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"typeName"];
             if ([typeName isEqualToString:@"撤销普遍服务网点"]||[typeName isEqualToString:@"停限业务"]) {
-                upload = [[UploadPicViewController alloc]initWithUploadState:YES AndUrl:nil AndCountOfPic:2 AndFormName:typeName];
+                upload = [[UploadPicViewController alloc]initWithUploadState:YES AndUrl:nil AndCountOfPic:2 AndFormName:typeName AndUploadKind:0];
             }else{
-                upload = [[UploadPicViewController alloc]initWithUploadState:YES AndUrl:nil AndCountOfPic:1 AndFormName:typeName];
+                upload = [[UploadPicViewController alloc]initWithUploadState:YES AndUrl:nil AndCountOfPic:1 AndFormName:typeName AndUploadKind:0];
 //                upload = [[UploadPicViewController alloc]initWithUploadState:NO AndUrl:@"http://img5.cache.netease.com/photo/0001/2015-09-22/B44FGIK900AN0001.jpg" AndCountOfPic:1 AndFormName:typeName];
             }
 //            upload.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -746,6 +746,9 @@
     NSDictionary * tempDic = [[NSDictionary alloc]initWithDictionary: [note userInfo]];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     if ([[tempDic objectForKey:@"result"] isEqualToString:@"1"]) {
+
+        //如果没被体检置为2  则为1    2为cell右滑后点击修改  在之前就置为2了
+
         if (app.ServerData != 2) {
             app.ServerData = 1;
         }
