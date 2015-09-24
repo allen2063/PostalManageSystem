@@ -434,19 +434,147 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     
     var app = UIApplication.sharedApplication().delegate as! AppDelegate
 
+    @IBOutlet var tap1: UITapGestureRecognizer!
+    @IBOutlet var tap2: UITapGestureRecognizer!
     override func viewDidLoad() {
         super.viewDidLoad()
-               if app.ServerData == 2 {
-                app.ServerData = 0
-                println("\(app.applyStopDic)")
-                var dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
-                var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
-                dict1.addEntriesFromDictionary(dict2 as NSDictionary as [NSObject : AnyObject])
-                
-                initTingZhi(dict1)
-//                initTingZhi(app.applyStopDic.valueForKey("info2") as! NSDictionary)
+        if app.ServerData == 0 {
+            fenGongSi.enabled = true
+            yingYeChangSuoMingCheng.enabled = true
+            beiShenQingDanWeiMingCheng.enabled = true
+            
+            shenQingZhuYaoYuanYin.enabled = true
+            niTingBanShiJianNian.enabled = true
+            niTingBanShiJianYue.enabled = true
+            
+            tap1.enabled = true
+            
+            changSuoDiZhiShi.enabled = true
+            changSuoDiZhiXian.enabled = true
+            changSuoDiJie.enabled = true
+            yingYeChangSuoMingCheng.enabled = true
+            
+            tap2.enabled = true
+            
+            jiTiYeWuMingCheng.enabled = true
+            yeWuJuTiQingXing.enabled = true
+            niCaiQuBuJiuCuoShi.enabled = true
+            zongTiFuWuShuiPing.enabled = true
+            
+            //拟停止或限制办理业务营业场所基本情况表
+            yingYeChangSuoMingCheng1.enabled = true
+            shangJiDanWei1.enabled = true
+            
+            XinJian.enabled = true
+            YouZhengHuiDui.enabled = true
+            MangRenDuWu.enabled = true
+            
+            YinShuaPin.enabled = true
+            
+            BaoGuo.enabled = true
+            LieShiBaoGuo.enabled = true
+            GuoJiaGuiDingBaoKanDeFaXing.enabled = true
+            
+            YiWuBingXinHan.enabled = true
+            
+            
+            XinJian1.enabled = true
+            
+            YouZhengHuiDui1.enabled = true
+            
+            MangRenDuWu1.enabled = true
+            
+            YinShuaPin1.enabled = true
+            
+            BaoGuo1.enabled = true
+            LieShiBaoGuo1.enabled = true
+            GuoJiaGuiDingBaoKanDeFaXing1.enabled = true
+            
+            YiWuBingXinHan1.enabled = true
+            
+            fuWuQuYu1.enabled = true
+            diZhi1.enabled = true
+            youBian1.enabled = true
+            lianXiRenXingMing1.enabled = true
+            lianXiDianHua1.enabled = true
         }
-        // Do any additional setup after loading the view.
+        
+        if app.ServerData == 1 {
+            fenGongSi.enabled = false
+            yingYeChangSuoMingCheng.enabled = false
+            beiShenQingDanWeiMingCheng.enabled = false
+            
+            shenQingZhuYaoYuanYin.enabled = false
+            niTingBanShiJianNian.enabled = false
+            niTingBanShiJianYue.enabled = false
+
+            tap1.enabled = false
+            
+            changSuoDiZhiShi.enabled = false
+            changSuoDiZhiXian.enabled = false
+            changSuoDiJie.enabled = false
+            yingYeChangSuoMingCheng.enabled = false
+            
+            tap2.enabled = false
+            
+            jiTiYeWuMingCheng.enabled = false
+            yeWuJuTiQingXing.enabled = false
+            niCaiQuBuJiuCuoShi.enabled = false
+            zongTiFuWuShuiPing.enabled = false
+            
+            //拟停止或限制办理业务营业场所基本情况表
+            yingYeChangSuoMingCheng1.enabled = false
+            shangJiDanWei1.enabled = false
+            
+            XinJian.enabled = false
+            YouZhengHuiDui.enabled = false
+            MangRenDuWu.enabled = false
+            
+            YinShuaPin.enabled = false
+            
+            BaoGuo.enabled = false
+            LieShiBaoGuo.enabled = false
+            GuoJiaGuiDingBaoKanDeFaXing.enabled = false
+            
+            YiWuBingXinHan.enabled = false
+            
+            
+            XinJian1.enabled = false
+            
+            YouZhengHuiDui1.enabled = false
+            
+            MangRenDuWu1.enabled = false
+            
+            YinShuaPin1.enabled = false
+            
+            BaoGuo1.enabled = false
+            LieShiBaoGuo1.enabled = false
+            GuoJiaGuiDingBaoKanDeFaXing1.enabled = false
+            
+            YiWuBingXinHan1.enabled = false
+            
+            fuWuQuYu1.enabled = false
+            diZhi1.enabled = false
+            youBian1.enabled = false
+            lianXiRenXingMing1.enabled = false
+            lianXiDianHua1.enabled = false
+            
+            var dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+            var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
+            dict1.addEntriesFromDictionary(dict2 as NSDictionary as [NSObject : AnyObject])
+            
+            initTingZhi(dict1)
+        }
+        
+        if app.ServerData == 2 {
+            app.ServerData = 0
+            println("\(app.applyStopDic)")
+            var dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+            var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
+            dict1.addEntriesFromDictionary(dict2 as NSDictionary as [NSObject : AnyObject])
+            
+            initTingZhi(dict1)
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
