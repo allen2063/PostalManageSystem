@@ -147,8 +147,29 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate {
         }
         
         if app.ServerData == 2 {
+            
+            println("进入恢复业务修改页面！！！！！！！")
             app.ServerData = 0
             initHuiFu(app.applyRestoreDic)
+            
+            qiYeMingCheng.enabled = true
+            
+            XinJian.enabled = true
+            YouZhengHuiDui.enabled = true
+            MangRenDuWu.enabled = true
+            YinShuaPin.enabled = true
+            BaoGuo.enabled = true
+            LieShiBaoGuo.enabled = true
+            GuoJiaGuiDingBaoKanDeFaXing.enabled = true
+            YiWuBingXinHan.enabled = true
+            
+            yingYeChangSUoMingCheng.enabled = true
+            diZhi.enabled = true
+            youBian.enabled = true
+            lianXIRenXIngMing.enabled = true
+            lianXiDianHua.enabled = true
+            huiFuBanLiShiJian.enabled = true
+            qiTaShuoMingShiXiang.enabled = true
         }
       
     }

@@ -434,6 +434,10 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     
     var app = UIApplication.sharedApplication().delegate as! AppDelegate
 
+    override func viewDidDisappear(animated: Bool) {
+        app.ServerData = 0
+    }
+    
     @IBOutlet var tap1: UITapGestureRecognizer!
     @IBOutlet var tap2: UITapGestureRecognizer!
     override func viewDidLoad() {
@@ -468,30 +472,19 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             XinJian.enabled = true
             YouZhengHuiDui.enabled = true
             MangRenDuWu.enabled = true
-            
             YinShuaPin.enabled = true
-            
             BaoGuo.enabled = true
             LieShiBaoGuo.enabled = true
             GuoJiaGuiDingBaoKanDeFaXing.enabled = true
-            
             YiWuBingXinHan.enabled = true
-            
-            
             XinJian1.enabled = true
-            
             YouZhengHuiDui1.enabled = true
-            
             MangRenDuWu1.enabled = true
-            
             YinShuaPin1.enabled = true
-            
             BaoGuo1.enabled = true
             LieShiBaoGuo1.enabled = true
             GuoJiaGuiDingBaoKanDeFaXing1.enabled = true
-            
             YiWuBingXinHan1.enabled = true
-            
             fuWuQuYu1.enabled = true
             diZhi1.enabled = true
             youBian1.enabled = true
@@ -513,7 +506,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             changSuoDiZhiShi.enabled = false
             changSuoDiZhiXian.enabled = false
             changSuoDiJie.enabled = false
-            yingYeChangSuoMingCheng.enabled = false
+            youZhengYingYeChangSuoMingCeng.enabled = false
             
             tap2.enabled = false
             
@@ -540,19 +533,13 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             
             
             XinJian1.enabled = false
-            
             YouZhengHuiDui1.enabled = false
-            
             MangRenDuWu1.enabled = false
-            
             YinShuaPin1.enabled = false
-            
             BaoGuo1.enabled = false
             LieShiBaoGuo1.enabled = false
             GuoJiaGuiDingBaoKanDeFaXing1.enabled = false
-            
             YiWuBingXinHan1.enabled = false
-            
             fuWuQuYu1.enabled = false
             diZhi1.enabled = false
             youBian1.enabled = false
@@ -567,13 +554,61 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         }
         
         if app.ServerData == 2 {
-            app.ServerData = 0
+//            app.ServerData = 0
             println("\(app.applyStopDic)")
             var dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
             var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
             dict1.addEntriesFromDictionary(dict2 as NSDictionary as [NSObject : AnyObject])
             
             initTingZhi(dict1)
+            
+            fenGongSi.enabled = true
+            yingYeChangSuoMingCheng.enabled = true
+            beiShenQingDanWeiMingCheng.enabled = true
+            
+            shenQingZhuYaoYuanYin.enabled = true
+            niTingBanShiJianNian.enabled = true
+            niTingBanShiJianYue.enabled = true
+            
+            tap1.enabled = true
+            
+            changSuoDiZhiShi.enabled = true
+            changSuoDiZhiXian.enabled = true
+            changSuoDiJie.enabled = true
+            yingYeChangSuoMingCheng.enabled = true
+            
+            tap2.enabled = true
+            
+            jiTiYeWuMingCheng.enabled = true
+            yeWuJuTiQingXing.enabled = true
+            niCaiQuBuJiuCuoShi.enabled = true
+            zongTiFuWuShuiPing.enabled = true
+            
+            //拟停止或限制办理业务营业场所基本情况表
+            yingYeChangSuoMingCheng1.enabled = true
+            shangJiDanWei1.enabled = true
+            
+            XinJian.enabled = true
+            YouZhengHuiDui.enabled = true
+            MangRenDuWu.enabled = true
+            YinShuaPin.enabled = true
+            BaoGuo.enabled = true
+            LieShiBaoGuo.enabled = true
+            GuoJiaGuiDingBaoKanDeFaXing.enabled = true
+            YiWuBingXinHan.enabled = true
+            XinJian1.enabled = true
+            YouZhengHuiDui1.enabled = true
+            MangRenDuWu1.enabled = true
+            YinShuaPin1.enabled = true
+            BaoGuo1.enabled = true
+            LieShiBaoGuo1.enabled = true
+            GuoJiaGuiDingBaoKanDeFaXing1.enabled = true
+            YiWuBingXinHan1.enabled = true
+            fuWuQuYu1.enabled = true
+            diZhi1.enabled = true
+            youBian1.enabled = true
+            lianXiRenXingMing1.enabled = true
+            lianXiDianHua1.enabled = true
         }
     }
     
@@ -582,37 +617,128 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         return true
     }
     
+    @IBOutlet weak var uploadBtn1: UIButton!
+    @IBOutlet weak var uploadBtn2: UIButton!
+    
     //图片上传
     @IBAction func uploadYingYeChangSuoGongShangYingYeZhiZhaoFuYinJian(sender: AnyObject) {
-        var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件")
         
-        if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-            uploadVC.providesPresentationContextTransitionStyle = true
-            uploadVC.definesPresentationContext = true
-            uploadVC.modalPresentationStyle = .OverCurrentContext
-            self.presentViewController(uploadVC ,animated: true, completion: nil)
-        } else {
-            self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-            self.presentViewController(uploadVC ,animated: false, completion: nil)
-            self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+        if app.ServerData == 0 {
+            var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件")
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                uploadVC.modalPresentationStyle = .OverCurrentContext
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
         }
+        
+        if app.ServerData == 1 {
+//            app.ServerData = 0
+            var dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+            
+            var picStr: AnyObject? = dict1.valueForKey("gsyyzzfyj")
+            println("\(picStr!.description)")
+//            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
+            
+            var uploadVC = UploadPicViewController(uploadState: false, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件")
+            
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                uploadVC.modalPresentationStyle = .OverCurrentContext
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
+        }
+        
+        if app.ServerData == 2 {
+            //            app.ServerData = 0
+            var dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+            
+            var picStr: AnyObject? = dict1.valueForKey("gsyyzzfyj")
+            println("\(picStr!.description)")
+            //            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
+            
+            var uploadVC = UploadPicViewController(uploadState: false, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件")
+            
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                uploadVC.modalPresentationStyle = .OverCurrentContext
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
+        }
+
 
     }
     
     @IBAction func uploadShenQingTingXianBanLiYeWuZhengMingWenJian(sender: AnyObject) {
-        var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件")
-        
-        if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-            uploadVC.providesPresentationContextTransitionStyle = true
-            uploadVC.definesPresentationContext = true
-            uploadVC.modalPresentationStyle = .OverCurrentContext
-            self.presentViewController(uploadVC ,animated: true, completion: nil)
-        } else {
-            self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-            self.presentViewController(uploadVC ,animated: false, completion: nil)
-            self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+        if app.ServerData == 0 {
+            var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件")
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                uploadVC.modalPresentationStyle = .OverCurrentContext
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
         }
-
+        
+        if app.ServerData == 1 {
+            app.ServerData = 0
+            var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
+            
+            var uploadVC = UploadPicViewController(uploadState: true, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件")
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                uploadVC.modalPresentationStyle = .OverCurrentContext
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
+        }
+        
+        if app.ServerData == 2 {
+            app.ServerData = 0
+            var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
+            
+            var uploadVC = UploadPicViewController(uploadState: true, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件")
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                uploadVC.modalPresentationStyle = .OverCurrentContext
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
+        }
+        
     }
     
 }

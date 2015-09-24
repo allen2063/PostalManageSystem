@@ -2437,6 +2437,8 @@
                         <outlet property="shenQingZhuYaoYuanYin" destination="qAC-3f-HFz" id="tYz-Lq-fwY"/>
                         <outlet property="tap1" destination="Lm4-7z-0UG" id="47G-XR-9d7"/>
                         <outlet property="tap2" destination="Pgo-cf-oEI" id="gCM-LV-NYU"/>
+                        <outlet property="uploadBtn1" destination="Ig1-0U-Odr" id="6nz-rv-Fac"/>
+                        <outlet property="uploadBtn2" destination="7c6-Cw-LI5" id="LAq-c5-afI"/>
                         <outlet property="yeWuJuTiQingXing" destination="cP9-0t-p1P" id="lmX-dx-25u"/>
                         <outlet property="yingYeChangSuoMingCheng" destination="1sk-Ha-E8L" id="itS-qz-rUG"/>
                         <outlet property="yingYeChangSuoMingCheng1" destination="PkE-vV-Jcu" id="tty-QH-hi4"/>

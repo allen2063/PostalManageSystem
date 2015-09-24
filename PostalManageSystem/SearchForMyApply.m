@@ -746,7 +746,9 @@
     NSDictionary * tempDic = [[NSDictionary alloc]initWithDictionary: [note userInfo]];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     if ([[tempDic objectForKey:@"result"] isEqualToString:@"1"]) {
-        app.ServerData = 1;
+        if (app.ServerData != 2) {
+            app.ServerData = 1;
+        }
         //申请新增
         if ([app.network.specialInterface isEqualToString: @"Szxwd"]) {
             app.applyAddDic = [tempDic objectForKey:@"info"];

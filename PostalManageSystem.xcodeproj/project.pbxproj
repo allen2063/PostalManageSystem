@@ -339,9 +339,9 @@
 			isa = PBXGroup;
 			children = (
 				56CE54EA1BA94ED70065518A /* ApplyRestoreBranchViewController.swift */,
+				56CE54EB1BA94ED70065518A /* ApplyStopBranchViewController.swift */,
 				56CE54E71BA94ED70065518A /* ApplyResignBranchViewController2.swift */,
 				56CE54E81BA94ED70065518A /* ApplyAddBranchViewController.swift */,
-				56CE54EB1BA94ED70065518A /* ApplyStopBranchViewController.swift */,
 				56CE54E91BA94ED70065518A /* ApplyPausedViewController.swift */,
 				56CE54EC1BA94ED70065518A /* ApplyChangeBranchViewController.swift */,
 				56CE54F51BA94EF00065518A /* Main.storyboard */,
