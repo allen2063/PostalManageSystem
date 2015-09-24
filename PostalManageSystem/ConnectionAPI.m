@@ -645,6 +645,15 @@
     return str;
 }
 
+//读取XML
++(NSString *)readTXTStringWithFileName:(NSString *)name
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:name ofType:@"txt"];
+    NSError * error;
+    NSString * str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+    return str;
+}
+
 +(NSString *)documentsPath:(NSString *)fileName {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];

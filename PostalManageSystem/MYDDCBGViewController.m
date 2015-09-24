@@ -29,7 +29,9 @@
         matchingElement = @"img";
         int headLabelHieght = UISCREENHEIGHT/7 < 70 ? UISCREENHEIGHT/7: 70;
 
-        self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, NAVIGATIONHEIGHT + headLabelHieght, UISCREENWIDTH, UISCREENHEIGHT-NAVIGATIONHEIGHT - headLabelHieght)];
+//        self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, NAVIGATIONHEIGHT + headLabelHieght, UISCREENWIDTH, UISCREENHEIGHT-NAVIGATIONHEIGHT - headLabelHieght)];
+        self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, NAVIGATIONHEIGHT , UISCREENWIDTH, UISCREENHEIGHT-NAVIGATIONHEIGHT)];
+
         self.webView.backgroundColor = [UIColor clearColor];
         self.webView.scrollView.bounces = YES;
         self.webView.delegate = self;
@@ -66,6 +68,10 @@
         writeLabel.textColor = UIColorFromRGBValue(0x9e9e9e);
         writeLabel.tag = 3;
         [headLabel addSubview:writeLabel];
+        
+        titleLabel.hidden = YES;
+        timeLabel.hidden = YES;
+        writeLabel.hidden = YES;
         
     }
     return self;
@@ -115,7 +121,7 @@
         
         NSMutableString * htmlString =[[NSMutableString alloc]initWithString: [detailDic objectForKey:@"details"]];
         
-        htmlString = [self adjustPicForScreen:htmlString];
+        htmlString = [self adjustPicForScreen:htmlString WithDetailDic:detailDic];
         
         self.webView.scalesPageToFit = NO;
         [self.webView loadHTMLString:htmlString baseURL:[NSURL URLWithString:htmlString]];
@@ -126,7 +132,7 @@
 }
 
 //在HTML代码中找到图片标签(<img) 并在后面添加图片的长宽标签(@" width=\"100%\" height=\"auto\" ")适应屏幕
-- (NSMutableString *)adjustPicForScreen:(NSMutableString *)htmlString{
+- (NSMutableString *)adjustPicForScreen:(NSMutableString *)htmlString WithDetailDic:(NSDictionary *)detailDic{
     htmlString = [[NSMutableString alloc]initWithString:htmlString];
     if ([htmlString rangeOfString:@"<img"].length>0) {
         NSString * tempString = [NSString stringWithFormat:@"%@",htmlString];
