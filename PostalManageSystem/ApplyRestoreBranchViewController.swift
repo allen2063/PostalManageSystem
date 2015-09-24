@@ -101,10 +101,54 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate {
     var app = UIApplication.sharedApplication().delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
+        if app.ServerData == 0 {
+            qiYeMingCheng.enabled = true
+    
+            XinJian.enabled = true
+            YouZhengHuiDui.enabled = true
+            MangRenDuWu.enabled = true
+            YinShuaPin.enabled = true
+            BaoGuo.enabled = true
+            LieShiBaoGuo.enabled = true
+            GuoJiaGuiDingBaoKanDeFaXing.enabled = true
+            YiWuBingXinHan.enabled = true
+            
+            yingYeChangSUoMingCheng.enabled = true
+            diZhi.enabled = true
+            youBian.enabled = true
+            lianXIRenXIngMing.enabled = true
+            lianXiDianHua.enabled = true
+            huiFuBanLiShiJian.enabled = true
+            qiTaShuoMingShiXiang.enabled = true
+        }
+        
+        if app.ServerData == 1 {
+            app.ServerData = 0
+
+            qiYeMingCheng.enabled = false
+            XinJian.enabled = false
+            YouZhengHuiDui.enabled = false
+            MangRenDuWu.enabled = false
+            YinShuaPin.enabled = false
+            BaoGuo.enabled = false
+            LieShiBaoGuo.enabled = false
+            GuoJiaGuiDingBaoKanDeFaXing.enabled = false
+            YiWuBingXinHan.enabled = false
+            
+            yingYeChangSUoMingCheng.enabled = false
+            diZhi.enabled = false
+            youBian.enabled = false
+            lianXIRenXIngMing.enabled = false
+            lianXiDianHua.enabled = false
+            huiFuBanLiShiJian.enabled = false
+            qiTaShuoMingShiXiang.enabled = false
+            
+            initHuiFu( app.applyRestoreDic)
+        }
         
         if app.ServerData == 2 {
             app.ServerData = 0
-            initHuiFu( app.applyRestoreDic)
+            initHuiFu(app.applyRestoreDic)
         }
       
     }
