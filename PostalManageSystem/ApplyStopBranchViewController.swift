@@ -624,7 +624,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     @IBAction func uploadYingYeChangSuoGongShangYingYeZhiZhaoFuYinJian(sender: AnyObject) {
         
         if app.ServerData == 0 {
-            var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件")
+            var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
                 uploadVC.providesPresentationContextTransitionStyle = true
@@ -646,7 +646,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             println("\(picStr!.description)")
 //            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
             
-            var uploadVC = UploadPicViewController(uploadState: false, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件")
+            var uploadVC = UploadPicViewController(uploadState: false, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
             
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
@@ -669,7 +669,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             println("\(picStr!.description)")
             //            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
             
-            var uploadVC = UploadPicViewController(uploadState: false, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件")
+            var uploadVC = UploadPicViewController(uploadState: false, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
             
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
@@ -689,7 +689,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     
     @IBAction func uploadShenQingTingXianBanLiYeWuZhengMingWenJian(sender: AnyObject) {
         if app.ServerData == 0 {
-            var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件")
+            var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
                 uploadVC.providesPresentationContextTransitionStyle = true
@@ -707,7 +707,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             app.ServerData = 0
             var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
             
-            var uploadVC = UploadPicViewController(uploadState: true, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件")
+            var uploadVC = UploadPicViewController(uploadState: true, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
                 uploadVC.providesPresentationContextTransitionStyle = true
@@ -725,7 +725,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             app.ServerData = 0
             var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
             
-            var uploadVC = UploadPicViewController(uploadState: true, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件")
+            var uploadVC = UploadPicViewController(uploadState: true, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
                 uploadVC.providesPresentationContextTransitionStyle = true
