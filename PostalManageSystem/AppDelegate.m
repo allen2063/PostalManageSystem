@@ -52,12 +52,15 @@
     UINavigationController * navCon = [[UINavigationController alloc] initWithRootViewController:mainViewController];
     self.window.rootViewController = navCon;
     [self.window makeKeyAndVisible];
-    //百度地图
-    [self initBDTT];
+   
     
-    //[self.network getXMLDataWithFileName:@"zipcode"];  //  provinces   cities  areas  zipcode
+    //加载画面
+    [GMDCircleLoader setOnView:self.window withTitle:@"加载中..." animated:YES];
 
-
+    //xml更新请求
+    //    [self.network getXMLDate];
+    NSDictionary * dics = [[NSDictionary alloc]initWithObjectsAndKeys:@"3",@"method", nil];
+    [self.network addObjectForRequestQueueWithDci:dics];
     
     //启动公告
     Pager * pager = [[Pager alloc]init];
@@ -67,10 +70,10 @@
     [self initQDGG];
     _backgroundView.alpha = 0.8;
     
-    //xml更新请求
-    //    [self.network getXMLDate];
-    NSDictionary * dics = [[NSDictionary alloc]initWithObjectsAndKeys:@"3",@"method", nil];
-    [self.network addObjectForRequestQueueWithDci:dics];
+    
+    
+    //百度地图
+    [self initBDTT];
 
     return YES;
 }
@@ -130,6 +133,10 @@
         [self.network addObjectForRequestQueueWithDci:dics];
         
         NSLog(@"!!!要更新  localFormBuildTimeDate：%@   serverFormBuildTimeDate%@",localFormBuildTimeDate,serverFormBuildTimeDate);
+    }else{
+        if (self.network.requestQueueThreadFinished) {
+            [GMDCircleLoader hideFromView:self.window animated:YES];
+        }
     }
     
 }
@@ -144,6 +151,9 @@
 
 //
 - (void)getXmlFilebyJson:(NSNotification *)note{
+    if (self.network.requestQueueThreadFinished) {
+        [GMDCircleLoader hideFromView:self.window animated:YES];
+    }
     //写入对应位置
     if (!isWriting) {
     isWriting = YES;
@@ -268,6 +278,9 @@
     if ([[dic objectForKey:@"result"]isEqualToString:@"1"]) {
         NSDictionary * data = [dic objectForKey:@"data"];
         
+        
+        
+        
         //设置标题
         UILabel * titleLabel = (UILabel *)[_backgroundView viewWithTag:1];
         titleLabel.text = [data objectForKey:@"title"];
@@ -283,6 +296,11 @@
         sepratorLine.backgroundColor = [UIColor lightGrayColor];
         [_backgroundView addSubview:sepratorLine];
         
+        //更改版式
+        titleLabel.hidden = YES;
+        authorTimelabel.hidden = YES;
+        sepratorLine.hidden = YES;
+        
         //添加确定按钮
         UIButton * cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         cancelBtn.frame = CGRectMake(0, _backgroundView.frame.size.height - 40, _backgroundView.frame.size.width, 40);
@@ -292,27 +310,29 @@
         [cancelBtn setTitleColor:[UIColor yellowColor]forState:UIControlStateNormal];
         [_backgroundView addSubview:cancelBtn];
         
-        //设置图片内容
-        if([[data objectForKey:@"imageUrl"] length] != 0){
-            NSString * url = [data objectForKey:@"imageUrl"];
-            NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
-            UIImage* image = [[UIImage alloc] initWithData:imageData];
-            UIImageView * imgView = [[UIImageView alloc]initWithImage:image];
-            //调整图片大小
-            //CGRect imgViewRect = imgView.frame;
-            CGFloat heightToWidthRatio = imgView.frame.size.height/imgView.frame.size.width;
-            imgView.frame = CGRectMake(0, 60, _backgroundView.frame.size.width, _backgroundView.frame.size.width * heightToWidthRatio);
-            
-            UITextView * detailTextView = (UITextView *)[_backgroundView viewWithTag:3];
-            detailTextView.frame = CGRectMake(0, 60 + imgView.frame.size.height, _backgroundView.frame.size.width, _backgroundView.frame.size.height - 60 - imgView.frame.size.height - cancelBtn.frame.size.height);
-            detailTextView.text = [data objectForKey:@"details"];
-            detailTextView.font = [UIFont systemFontOfSize:15];
-        }else{
+//        //设置图片内容
+//        if([[data objectForKey:@"imageUrl"] length] != 0){
+//            NSString * url = [data objectForKey:@"imageUrl"];
+//            NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
+//            UIImage* image = [[UIImage alloc] initWithData:imageData];
+//            UIImageView * imgView = [[UIImageView alloc]initWithImage:image];
+//            //调整图片大小
+//            //CGRect imgViewRect = imgView.frame;
+//            CGFloat heightToWidthRatio = imgView.frame.size.height/imgView.frame.size.width;
+//            imgView.frame = CGRectMake(0, 60, _backgroundView.frame.size.width, _backgroundView.frame.size.width * heightToWidthRatio);
+//            
+//            UITextView * detailTextView = (UITextView *)[_backgroundView viewWithTag:3];
+//            detailTextView.frame = CGRectMake(0, 60 + imgView.frame.size.height, _backgroundView.frame.size.width, _backgroundView.frame.size.height - 60 - imgView.frame.size.height - cancelBtn.frame.size.height);
+//            detailTextView.text = [data objectForKey:@"details"];
+//            detailTextView.font = [UIFont systemFontOfSize:15];
+//        }else{
             UIWebView * webView = (UIWebView *)[_backgroundView viewWithTag:3];
-            webView.frame = CGRectMake(0, 60 , _backgroundView.frame.size.width, _backgroundView.frame.size.height - 60 - cancelBtn.frame.size.height);
-            NSString * htmlString =@"然而电影艺术中的情色场景其实和别的场景在本质上没有太大区别，甚至还相对的更有表现性，通过展现人类最私密的情感，和最原始的欲望来揭示人性中最原本，也最普遍的东西：懦弱、恐惧、依赖、温暖、勾引、背叛，罪恶，或者是爱。国内对电影中*河蟹*场面的接受能力还是有限的，一些优秀的影片可能还因此被大刀一砍，再无缘和观众在电影院中见面。然而，即便在相对开放的欧美国家，尽管许多未删减的原版电影能够过审上映，影片中的情爱镜头仍会引起一波又一波的争议和批评，仿佛这是个人类亘古不变的话题，人们因此繁衍，却又因此获罪。今天八卦君为大家罗列了15部由于影片中的逼真情爱镜头而引起极大争议的电影，大家也一起评判一下，到底孰是孰非吧。丹麦导演拉斯·冯·提尔（Lars von Trier）执导的《女性瘾者》是一部讲述对*河蟹*病态依赖问题的电影，从一位女性瘾者的自述角度，讲述了她从出生到50岁的*河蟹*旅程。在这样的主题下，影片中出现大量*河蟹*场景也就情有可原了。然而，尽管电影包含的*河蟹*镜头看上去极为真实，主演们其实并没有真的“亲历亲为”。那么影片的拍摄是怎样实现的呢？事实上，希安·拉博夫（Shia LaBeouf），夏洛特·甘斯布（Charlotte Gainsbourg）和斯塔西·马汀（Stacy Martin）等演员在拍摄过程中，完全是穿着衣服的，他们会根据剧本的明确要求做出相应的动作，摆出具体的姿势。（想想就好尴尬呀~）其后，来自世界各地的*河蟹*演员们则会担任替身，拍摄那些比较棘手的色情场景。他们的身体会通过特效和主演们的身体合为一体，从而创造出真实和谐的*河蟹*场面。";//[data objectForKey:@"details"];
+//            webView.frame = CGRectMake(0, 60 , _backgroundView.frame.size.width, _backgroundView.frame.size.height - 60 - cancelBtn.frame.size.height);
+            webView.frame = CGRectMake(0, 0 , _backgroundView.frame.size.width, _backgroundView.frame.size.height - cancelBtn.frame.size.height);
+
+            NSString * htmlString =[data objectForKey:@"details"];//@"然而电影艺术中的情色场景其实和别的场景在本质上没有太大区别，甚至还相对的更有表现性，通过展现人类最私密的情感，和最原始的欲望来揭示人性中最原本，也最普遍的东西：懦弱、恐惧、依赖、温暖、勾引、背叛，罪恶，或者是爱。国内对电影中*河蟹*场面的接受能力还是有限的，一些优秀的影片可能还因此被大刀一砍，再无缘和观众在电影院中见面。然而，即便在相对开放的欧美国家，尽管许多未删减的原版电影能够过审上映，影片中的情爱镜头仍会引起一波又一波的争议和批评，仿佛这是个人类亘古不变的话题，人们因此繁衍，却又因此获罪。今天八卦君为大家罗列了15部由于影片中的逼真情爱镜头而引起极大争议的电影，大家也一起评判一下，到底孰是孰非吧。丹麦导演拉斯·冯·提尔（Lars von Trier）执导的《女性瘾者》是一部讲述对*河蟹*病态依赖问题的电影，从一位女性瘾者的自述角度，讲述了她从出生到50岁的*河蟹*旅程。在这样的主题下，影片中出现大量*河蟹*场景也就情有可原了。然而，尽管电影包含的*河蟹*镜头看上去极为真实，主演们其实并没有真的“亲历亲为”。那么影片的拍摄是怎样实现的呢？事实上，希安·拉博夫（Shia LaBeouf），夏洛特·甘斯布（Charlotte Gainsbourg）和斯塔西·马汀（Stacy Martin）等演员在拍摄过程中，完全是穿着衣服的，他们会根据剧本的明确要求做出相应的动作，摆出具体的姿势。（想想就好尴尬呀~）其后，来自世界各地的*河蟹*演员们则会担任替身，拍摄那些比较棘手的色情场景。他们的身体会通过特效和主演们的身体合为一体，从而创造出真实和谐的*河蟹*场面。";
             [webView loadHTMLString:htmlString baseURL:[NSURL URLWithString:htmlString]];
-        }
+//        }
         [self.window addSubview:_backgroundView];
         [self.window addSubview:_blackView];
         

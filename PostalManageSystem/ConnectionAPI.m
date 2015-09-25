@@ -536,9 +536,11 @@
     }
     //启动公告detail
     else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsById"] && [self.getXMLResults rangeOfString:@"启动公告"].length !=0){
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"qdgg" object:self userInfo:resultDic];
         //执行完毕  调用队列后续请求
         [self doRequestNow];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"qdgg" object:self userInfo:resultDic];
+        
     }
     //禁限寄物品名录list
     else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsByType"] && [self.getXMLResults rangeOfString:@"禁限寄物品名录"].length !=0 && [self.getXMLResults rangeOfString:@"listPager"].length !=0){
@@ -571,17 +573,17 @@
     }
     //xml版本
     else if ([communicatingInterface isEqualToString:@"baseUpdateApi/getXmlDate"]){
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"getXmlDate" object:self userInfo:resultDic];
-        
         //执行完毕  调用队列后续请求
         [self doRequestNow];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"getXmlDate" object:self userInfo:resultDic];
     }
     //xml数据
     else if ([communicatingInterface isEqualToString:@"baseUpdateApi/getXmlFilebyJson"]){
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"getXmlFilebyJson" object:self userInfo:resultDic];
-        
         //执行完毕  调用队列后续请求
         [self doRequestNow];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"getXmlFilebyJson" object:self userInfo:resultDic];
     }
     //获取表的详情
     else if ([communicatingInterface isEqualToString:[NSString stringWithFormat:@"bsdtApi/get%@",self.specialInterface]]){
