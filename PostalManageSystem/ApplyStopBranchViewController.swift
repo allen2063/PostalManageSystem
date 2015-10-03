@@ -230,6 +230,11 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     }
 
     @IBAction func commit(sender: AnyObject) {
+        
+//        println("\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj)")
+        println("\(uploadVCForPicURL1?.picUrl)")
+        
+        
         infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zgyzjtgsttfgsmc = fenGongSi.text
         infoOfYzyycstbhybyzpbfwywhtsfwywdsq.btyzyycsmc = yingYeChangSuoMingCheng.text
         infoOfYzyycstbhybyzpbfwywhtsfwywdsq.syzgljmc = beiShenQingDanWeiMingCheng.text
@@ -326,9 +331,9 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         infoOfNthybywyzyycsjbqkb.lxrxm = lianXiRenXingMing1.text
         infoOfNthybywyzyycsjbqkb.lxdh = lianXiDianHua1.text
         
-        println("\(ClassToJSON.getObjectData(infoOfYzyycstbhybyzpbfwywhtsfwywdsq))")
-        
-        println("\(ClassToJSON.getObjectData(infoOfNthybywyzyycsjbqkb))")
+//        println("\(ClassToJSON.getObjectData(infoOfYzyycstbhybyzpbfwywhtsfwywdsq))")
+//        
+//        println("\(ClassToJSON.getObjectData(infoOfNthybywyzyycsjbqkb))")
         
     }
     
@@ -620,6 +625,10 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     @IBOutlet weak var uploadBtn1: UIButton!
     @IBOutlet weak var uploadBtn2: UIButton!
     
+    
+    var uploadVCForPicURL1: UploadPicViewController?
+    var uploadVCForPicURL2: UploadPicViewController?
+    
     //图片上传
     @IBAction func uploadYingYeChangSuoGongShangYingYeZhiZhaoFuYinJian(sender: AnyObject) {
         
@@ -636,6 +645,9 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
                 self.presentViewController(uploadVC ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
+            
+            uploadVCForPicURL1 = uploadVC
+            println("\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj)")
         }
         
         if app.ServerData == 1 {
@@ -669,7 +681,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             println("\(picStr!.description)")
             //            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
             
-            var uploadVC = UploadPicViewController(uploadState: false, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
+            var uploadVC = UploadPicViewController(uploadState: true, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
             
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
@@ -701,13 +713,15 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
                 self.presentViewController(uploadVC ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
+            
+            uploadVCForPicURL2 = uploadVC
         }
         
         if app.ServerData == 1 {
-            app.ServerData = 0
-            var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
+//            app.ServerData = 0
+            var dict2 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
             
-            var uploadVC = UploadPicViewController(uploadState: true, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
+            var uploadVC = UploadPicViewController(uploadState: false, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
                 uploadVC.providesPresentationContextTransitionStyle = true
@@ -722,8 +736,8 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         }
         
         if app.ServerData == 2 {
-            app.ServerData = 0
-            var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
+//            app.ServerData = 0
+            var dict2 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
             
             var uploadVC = UploadPicViewController(uploadState: true, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
             
