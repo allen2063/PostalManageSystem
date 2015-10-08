@@ -205,8 +205,18 @@
         if(url.length > 10){
             NSString * url = [_formData objectForKey:@"imageUrl"];
             NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
-            _backgroudnImgView.image = [[UIImage alloc] initWithData:imageData];
-            [self adjustPicForDisplay:_backgroudnImgView.image];
+            UIImage * image = [[UIImage alloc] initWithData:imageData];
+            //验证图片是否下载正确
+            NSData * imgData = [ConnectionAPI picToStringWithImage:image];
+            if ([imgData isKindOfClass:[NSData class]]) {
+                _backgroudnImgView.image = [[UIImage alloc] initWithData:imageData];
+                [self adjustPicForDisplay:_backgroudnImgView.image];
+            }else{//图片加载失败
+                [GMDCircleLoader hideFromView:self.view animated:YES];
+                alerts = [[UIAlertView alloc]initWithTitle:nil message:@"图片加载失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alerts show];
+            }
+            
         }else{
             //没有图片  什么都不做
         }
