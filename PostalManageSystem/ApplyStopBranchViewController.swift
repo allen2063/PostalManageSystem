@@ -403,29 +403,29 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             YiWuBingXinHan.selected = true
         }
 
-        var ywsxArray2 = dict.valueForKey("xzblywsx") as! String
-        if (ywsxArray.rangeOfString("xj") != nil) {
+        let ywsxArray2 = dict.valueForKey("xzblywsx") as! String
+        if (ywsxArray2.rangeOfString("xj") != nil) {
             XinJian1.selected = true
         }
-        if (ywsxArray.rangeOfString("yzhd") != nil) {
+        if (ywsxArray2.rangeOfString("yzhd") != nil) {
             YouZhengHuiDui1.selected = true
         }
-        if (ywsxArray.rangeOfString("mrdw") != nil) {
+        if (ywsxArray2.rangeOfString("mrdw") != nil) {
             MangRenDuWu1.selected = true
         }
-        if (ywsxArray.rangeOfString("ysp") != nil) {
+        if (ywsxArray2.rangeOfString("ysp") != nil) {
             YinShuaPin1.selected = true
         }
-        if (ywsxArray.rangeOfString("bgs") != nil) {
+        if (ywsxArray2.rangeOfString("bgs") != nil) {
             BaoGuo1.selected = true
         }
-        if (ywsxArray.rangeOfString("gmlsyw") != nil) {
+        if (ywsxArray2.rangeOfString("gmlsyw") != nil) {
             LieShiBaoGuo1.selected = true
         }
-        if (ywsxArray.rangeOfString("gjgdbkdfx") != nil) {
+        if (ywsxArray2.rangeOfString("gjgdbkdfx") != nil) {
             GuoJiaGuiDingBaoKanDeFaXing1.selected = true
         }
-        if (ywsxArray.rangeOfString("ywbpcxh") != nil) {
+        if (ywsxArray2.rangeOfString("ywbpcxh") != nil) {
             YiWuBingXinHan1.selected = true
         }
         
@@ -445,6 +445,9 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     
     @IBOutlet var tap1: UITapGestureRecognizer!
     @IBOutlet var tap2: UITapGestureRecognizer!
+    @IBOutlet weak var commitBtn: UIButton!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if app.ServerData == 0 {
@@ -495,6 +498,9 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             youBian1.enabled = true
             lianXiRenXingMing1.enabled = true
             lianXiDianHua1.enabled = true
+            
+            commitBtn.enabled = true
+            commitBtn.setTitle("提交", forState: .Normal)
         }
         
         if app.ServerData == 1 {
@@ -556,6 +562,9 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             dict1.addEntriesFromDictionary(dict2 as NSDictionary as [NSObject : AnyObject])
             
             initTingZhi(dict1)
+            
+            commitBtn.enabled = false
+            commitBtn.setTitle("只可查看", forState: .Disabled)
         }
         
         if app.ServerData == 2 {
@@ -614,6 +623,9 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             youBian1.enabled = true
             lianXiRenXingMing1.enabled = true
             lianXiDianHua1.enabled = true
+            
+            commitBtn.enabled = true
+            commitBtn.setTitle("提交", forState: .Normal)
         }
     }
     
@@ -658,7 +670,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
 //            app.ServerData = 0
             let dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
             
-            let picStr: AnyObject? = dict1.valueForKey("gsyyzzfyj")
+            let picStr: AnyObject? = dict1.valueForKey("gsyyzzfyj") as! String
             print("\(picStr!.description)")
 //            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
             

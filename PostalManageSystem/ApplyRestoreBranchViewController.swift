@@ -120,6 +120,8 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate {
             lianXiDianHua.enabled = true
             huiFuBanLiShiJian.enabled = true
             qiTaShuoMingShiXiang.enabled = true
+            
+            commitBtn.enabled = true
         }
         
         if app.ServerData == 1 {
@@ -142,6 +144,9 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate {
             lianXiDianHua.enabled = false
             huiFuBanLiShiJian.enabled = false
             qiTaShuoMingShiXiang.enabled = false
+            
+            commitBtn.enabled = false
+            commitBtn.setTitle("只可查看", forState: .Disabled)
             
             initHuiFu( app.applyRestoreDic)
         }
@@ -170,11 +175,15 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate {
             lianXiDianHua.enabled = true
             huiFuBanLiShiJian.enabled = true
             qiTaShuoMingShiXiang.enabled = true
+            
+            commitBtn.enabled = true
         }
       
     }
 
+    @IBOutlet weak var commitBtn: UIButton!
     @IBAction func commit(sender: AnyObject) {
+        print("-------------------提交--------------------------")
         let infoOfHfblyzpbhtsfwywbgb = InfoOfHfblyzpbhtsfwywbgb()
         infoOfHfblyzpbhtsfwywbgb.yzyycsmc = qiYeMingCheng.text
         

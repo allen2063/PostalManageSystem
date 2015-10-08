@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PostalManageSystem/SearchForMyApply.m"
-            timestampString = "464789057.283114"
+            filePath = "PostalManageSystem/ApplyStopBranchViewController.swift"
+            timestampString = "465983747.308719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "604"
-            endingLineNumber = "604"
-            landmarkName = "-statusJuge:AndAction:AndIndexPath:"
+            startingLineNumber = "673"
+            endingLineNumber = "673"
+            landmarkName = "uploadYingYeChangSuoGongShangYingYeZhiZhaoFuYinJian(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
