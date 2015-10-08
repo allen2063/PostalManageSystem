@@ -1732,6 +1732,17 @@
                         <outlet property="qzqYingYeShiJianZhouJi" destination="CgE-QE-0P5" id="bKg-R7-C8E"/>
                         <outlet property="qzqYouZhengBianMa" destination="eSa-9k-RWT" id="o9k-2c-XYM"/>
                         <outlet property="qzqZhouTouDiPinCi" destination="jly-Y9-jYh" id="v5D-9y-j7P"/>
+                        <outlet property="tap1" destination="to7-aE-9Im" id="3bN-mG-F5z"/>
+                        <outlet property="tap10" destination="hq8-qV-EW5" id="69b-Pu-ZZC"/>
+                        <outlet property="tap11" destination="hYF-k8-0Cb" id="CHa-cW-F83"/>
+                        <outlet property="tap2" destination="gAb-Sy-BYf" id="Z8d-iX-04l"/>
+                        <outlet property="tap3" destination="EOA-mq-tEj" id="2jR-LE-DOE"/>
+                        <outlet property="tap4" destination="ELl-oO-LzO" id="mDs-LS-mkq"/>
+                        <outlet property="tap5" destination="uHs-Su-hDJ" id="ogQ-4e-AkA"/>
+                        <outlet property="tap6" destination="Vbq-gQ-HbB" id="9Yj-6b-QZK"/>
+                        <outlet property="tap7" destination="Xrk-dm-zXK" id="kp0-m8-g8T"/>
+                        <outlet property="tap8" destination="5S3-gX-gCz" id="YYB-lr-l8f"/>
+                        <outlet property="tap9" destination="2Kb-eN-egE" id="n5A-4M-7h0"/>
                         <outlet property="view" destination="hmW-mr-ESW" id="Dmz-za-3zh"/>
                     </connections>
                 </viewController>
@@ -2079,11 +2090,13 @@
                         <outlet property="buJiuCuoShi" destination="lFO-Sc-lnb" id="VrI-Bv-4gf"/>
                         <outlet property="changSuoMingCheng" destination="OHp-HM-NQk" id="qLd-Lr-krc"/>
                         <outlet property="chooseBanLiShiXiangLabel" destination="vCT-jZ-ITg" id="UBc-ju-ZSL"/>
+                        <outlet property="commitBtn" destination="9Br-VR-rm2" id="8VO-RF-MOj"/>
                         <outlet property="diZhi" destination="dRO-HB-qYD" id="uFu-Pn-lKz"/>
                         <outlet property="fuWuQuYu" destination="gMd-En-pRH" id="wxt-DF-RHF"/>
                         <outlet property="lianXiDianHua" destination="TAj-ub-oHp" id="F2S-my-cTS"/>
                         <outlet property="lianXiRenXingMing" destination="1P4-jo-ejZ" id="UWM-xY-A5d"/>
                         <outlet property="shangJiDanWei" destination="8cj-E3-9pg" id="1Im-RS-6xu"/>
+                        <outlet property="tap1" destination="3sm-99-fZa" id="FWC-OG-FeP"/>
                         <outlet property="youBian" destination="uW3-9R-gRA" id="2fw-z0-Zc4"/>
                         <outlet property="zanTingShiJian" destination="as5-m7-eAO" id="GNp-f2-fjI"/>
                         <outlet property="zanXianYuanYin" destination="mCI-wm-qyK" id="Uls-pg-B7p"/>

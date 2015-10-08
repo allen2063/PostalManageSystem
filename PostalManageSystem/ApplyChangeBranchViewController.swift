@@ -1121,6 +1121,23 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
     
     
     var app = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    override func viewDidDisappear(animated: Bool) {
+        app.ServerData = 0
+    }
+    
+    @IBOutlet var tap1: UITapGestureRecognizer!
+    @IBOutlet var tap2: UITapGestureRecognizer!
+    @IBOutlet var tap3: UITapGestureRecognizer!
+    @IBOutlet var tap4: UITapGestureRecognizer!
+    @IBOutlet var tap5: UITapGestureRecognizer!
+    @IBOutlet var tap6: UITapGestureRecognizer!
+    @IBOutlet var tap7: UITapGestureRecognizer!
+    @IBOutlet var tap8: UITapGestureRecognizer!
+    @IBOutlet var tap9: UITapGestureRecognizer!
+    @IBOutlet var tap10: UITapGestureRecognizer!
+    @IBOutlet var tap11: UITapGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         applyChangeBranchLocationView.hidden = true
@@ -1131,14 +1148,531 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
             print("\(self.view.debugDescription)")
             // Do any additional setup after loading the view.
         }
-        
         //服务器信息回填
-        if app.ServerData == 2 {
-            app.ServerData = 0
+        //------------------------------ServerData 0--------------------------------
         
+        if app.ServerData == 0 {
+           
+            mingChengBianGeng.enabled = true
+            jingYingShiJianBianGeng.enabled = true
+            jingYingFangShiBianGeng.enabled = true
+            changQuanXingZhiBianGeng.enabled = true
+            changSuoMingChengBianGengQian.enabled = true
+            dengJiBianHaoBianGengQian.enabled = true
+            bgqCangSuoDiZhiShi.enabled = true
+            bgqCangSuoDiZhiXian.enabled = true
+            bgqCangSuoDiZhiJie.enabled = true
+            bgqCangSuoDiZhiHao.enabled = true
+            bgqCangSuoDiZhiJingDu.enabled = true
+            bgqCangSuoDiZhiWeiDu.enabled = true
+            
+            bgqShangJiDanWei.enabled = true
+            
+            tap1.enabled = true
+            
+            bgqYouZhengBianMa.enabled = true
+            
+            tap2.enabled = true
+            
+            bgqKaiYeShiJian.enabled = true
+            
+            tap3.enabled = true
+            
+            bgqJianZhuMianJi.enabled = true
+            
+            bgqYingYeShiJianZhouJi.enabled = true
+            bgqYingYeShiJianZhiZhouJi.enabled = true
+            bgqYingYeShiJianJiDian.enabled = true
+            bgqYingYeShiJianZhiJiDian.enabled = true
+            bgqKaiXiangPinCi.enabled = true
+            bgqRiTouDiPinCi.enabled = true
+            bgqZhouTouDiPinCi.enabled = true
+        
+                XinJian.enabled = true
+                WuLiu.enabled = true
+                JiYou.enabled = true
+                BaoGuo.enabled = true
+                YinShuaPin.enabled = true
+                BaoKanLingShou.enabled = true
+                YouZhengChuXu.enabled = true
+                MangRenDuWu.enabled = true
+                TeKuaiZhuangDi.enabled = true
+                BaoKanDingYue.enabled = true
+                YouZhengHuiDui.enabled = true
+                YIWuBingXinHan.enabled = true
+                LieShiBaoGuo.enabled = true
+                QiTa.enabled = true
+            
+            //变更后
+            bghChangSuoMingCheng.enabled = true
+            bghChangSuoMingChengBianGengYuanYin.enabled = true
+            bghYingYeShiJianZhouJi.enabled = true
+            bghYingYeShiJianZhiZhouJi.enabled = true
+            bghYingYeShiJianJiDian.enabled = true
+            bghYingYeShiJianZhiJiDian.enabled = true
+            bghYingYeShiJianBianGengYuanYin.enabled = true
+            
+            tap4.enabled = true
+            
+            bghJingYingFangShiBianGengYuanYin.enabled = true
+            
+            tap5.enabled = true
+            
+            bghFangWuChanQuanBianGengYuanYin.enabled = true
+            bghChangSuoDiZhi.enabled = true
+            bghChangSuoDiZhiBianGengYuanYin.enabled = true
+
+            
+            //-------------------------迁址控件状态变化------------------------------
+            qzqChangSuoMingCheng.enabled = true
+            qzqDengJiBianHao.enabled = true
+            qzqChangSuoDiZhiShi.enabled = true
+            qzqChangSuoDiZhiXian.enabled = true
+            qzqChangSuoDiZhiJie.enabled = true
+            qzqChangSuoDiZhiHao.enabled = true
+            
+            qzqShangJiDanWei.enabled = true
+            
+            qzqYouZhengBianMa.enabled = true
+            
+            tap6.enabled = true
+            
+            tap7.enabled = true
+            
+            tap8.enabled = true
+            
+            qzqKaiYeShiJian.enabled = true
+            qzqJianZhuMianJi.enabled = true
+            
+            qzqYingYeShiJianZhouJi.enabled = true
+            qzqYingYeShiJianZhiZhouJi.enabled = true
+            qzqYingYeShiJianJiDian.enabled = true
+            qzqYingYeShiJianZhiJiDian.enabled = true
+            qzqKaiXiangPinCi.enabled = true
+            qzqZhouTouDiPinCi.enabled = true
+            qzqRiTouDiPinCi.enabled = true
+            
+                XinJian1.enabled = true
+                WuLiu1.enabled = true
+                JiYou1.enabled = true
+                BaoGuo1.enabled = true
+                YinShuaPin1.enabled = true
+                BaoKanLingShou1.enabled = true
+                YouZhengChuXu1.enabled = true
+                MangRenDuWu1.enabled = true
+                TeKuaiZhuangDi1.enabled = true
+                BaoKanDingYue1.enabled = true
+                YouZhengHuiDui1.enabled = true
+                YIWuBingXinHan1.enabled = true
+                LieShiBaoGuo1.enabled = true
+                QiTa1.enabled = true
+            
+            qzqQianZhiYuanYin.enabled = true
+            
+            //迁址后
+            qzhChangSuoDiZhiShi.enabled = true
+            qzhChangSuoDiZhiXian.enabled = true
+            qzhChangSuoDiZhiJie.enabled = true
+            qzhChangSuoDiZhiHao.enabled = true
+            
+            qzhYuYuanZhiZhiXianJuLi.enabled = true
+            
+             tap9.enabled = true
+            
+             tap10.enabled = true
+            
+            qzhKaiYeShiJian.enabled = true
+            
+             tap11.enabled = true
+            
+            qzhJianZhuMianJi.enabled = true
+            
+            qzhYingYeShiJianZhouJi.enabled = true
+            qzhYingYeShiJianZhiZhouJi.enabled = true
+            qzhYingYeShiJianJiDian.enabled = true
+            qzhYingYeShiJianZhiJiDian.enabled = true
+            qzhKaiXiangPinCi.enabled = true
+            qzhZhouTouDiPinCi.enabled = true
+            qzhRiTouDiPinCi.enabled = true
+            
+                XinJian2.enabled = true
+                WuLiu2.enabled = true
+                JiYou2.enabled = true
+                BaoGuo2.enabled = true
+                YinShuaPin2.enabled = true
+                BaoKanLingShou2.enabled = true
+                YouZhengChuXu2.enabled = true
+                MangRenDuWu2.enabled = true
+                TeKuaiZhuangDi2.enabled = true
+                BaoKanDingYue2.enabled = true
+                YouZhengHuiDui2.enabled = true
+                YIWuBingXinHan2.enabled = true
+                LieShiBaoGuo2.enabled = true
+                QiTa2.enabled = true
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        //------------------------------ServerData 1--------------------------------
+        
+        if app.ServerData == 1 {
             if app.applyChangeDic.valueForKey("bgsx") != nil {
+                
+                mingChengBianGeng.enabled = false
+                jingYingShiJianBianGeng.enabled = false
+                jingYingFangShiBianGeng.enabled = false
+                changQuanXingZhiBianGeng.enabled = false
+                changSuoMingChengBianGengQian.enabled = false
+                dengJiBianHaoBianGengQian.enabled = false
+                bgqCangSuoDiZhiShi.enabled = false
+                bgqCangSuoDiZhiXian.enabled = false
+                bgqCangSuoDiZhiJie.enabled = false
+                bgqCangSuoDiZhiHao.enabled = false
+                bgqCangSuoDiZhiJingDu.enabled = false
+                bgqCangSuoDiZhiWeiDu.enabled = false
+                
+                bgqShangJiDanWei.enabled = false
+                
+                tap1.enabled = false
+                
+                bgqYouZhengBianMa.enabled = false
+                
+                tap2.enabled = false
+                
+                bgqKaiYeShiJian.enabled = false
+                
+                tap3.enabled = false
+                
+                bgqJianZhuMianJi.enabled = false
+                
+                bgqYingYeShiJianZhouJi.enabled = false
+                bgqYingYeShiJianZhiZhouJi.enabled = false
+                bgqYingYeShiJianJiDian.enabled = false
+                bgqYingYeShiJianZhiJiDian.enabled = false
+                bgqKaiXiangPinCi.enabled = false
+                bgqRiTouDiPinCi.enabled = false
+                bgqZhouTouDiPinCi.enabled = false
+                
+                XinJian.enabled = false
+                WuLiu.enabled = false
+                JiYou.enabled = false
+                BaoGuo.enabled = false
+                YinShuaPin.enabled = false
+                BaoKanLingShou.enabled = false
+                YouZhengChuXu.enabled = false
+                MangRenDuWu.enabled = false
+                TeKuaiZhuangDi.enabled = false
+                BaoKanDingYue.enabled = false
+                YouZhengHuiDui.enabled = false
+                YIWuBingXinHan.enabled = false
+                LieShiBaoGuo.enabled = false
+                QiTa.enabled = false
+                
+                //变更后
+                bghChangSuoMingCheng.enabled = false
+                bghChangSuoMingChengBianGengYuanYin.enabled = false
+                bghYingYeShiJianZhouJi.enabled = false
+                bghYingYeShiJianZhiZhouJi.enabled = false
+                bghYingYeShiJianJiDian.enabled = false
+                bghYingYeShiJianZhiJiDian.enabled = false
+                bghYingYeShiJianBianGengYuanYin.enabled = false
+                
+                tap4.enabled = false
+                
+                bghJingYingFangShiBianGengYuanYin.enabled = false
+                
+                tap5.enabled = false
+                tap6.enabled = false
+                tap7.enabled = false
+                tap8.enabled = false
+                tap9.enabled = false
+                tap10.enabled = false
+                tap11.enabled = false
+                
+                
+                bghFangWuChanQuanBianGengYuanYin.enabled = false
+                bghChangSuoDiZhi.enabled = false
+                bghChangSuoDiZhiBianGengYuanYin.enabled = false
+                
                 initBianGengXinXi(app.applyChangeDic)
             } else {
+                
+                
+                //------------------------迁址控件状态变化--------------------------
+                qzqChangSuoMingCheng.enabled = false
+                qzqDengJiBianHao.enabled = false
+                qzqChangSuoDiZhiShi.enabled = false
+                qzqChangSuoDiZhiXian.enabled = false
+                qzqChangSuoDiZhiJie.enabled = false
+                qzqChangSuoDiZhiHao.enabled = false
+                
+                qzqShangJiDanWei.enabled = false
+                
+                qzqYouZhengBianMa.enabled = false
+                
+                tap1.enabled = false
+                tap2.enabled = false
+                tap3.enabled = false
+                tap4.enabled = false
+                tap5.enabled = false
+
+                tap6.enabled = false
+                
+                tap7.enabled = false
+                
+                tap8.enabled = false
+                
+                qzqKaiYeShiJian.enabled = false
+                qzqJianZhuMianJi.enabled = false
+                
+                qzqYingYeShiJianZhouJi.enabled = false
+                qzqYingYeShiJianZhiZhouJi.enabled = false
+                qzqYingYeShiJianJiDian.enabled = false
+                qzqYingYeShiJianZhiJiDian.enabled = false
+                qzqKaiXiangPinCi.enabled = false
+                qzqZhouTouDiPinCi.enabled = false
+                qzqRiTouDiPinCi.enabled = false
+                
+                XinJian1.enabled = false
+                WuLiu1.enabled = false
+                JiYou1.enabled = false
+                BaoGuo1.enabled = false
+                YinShuaPin1.enabled = false
+                BaoKanLingShou1.enabled = false
+                YouZhengChuXu1.enabled = false
+                MangRenDuWu1.enabled = false
+                TeKuaiZhuangDi1.enabled = false
+                BaoKanDingYue1.enabled = false
+                YouZhengHuiDui1.enabled = false
+                YIWuBingXinHan1.enabled = false
+                LieShiBaoGuo1.enabled = false
+                QiTa1.enabled = false
+                
+                qzqQianZhiYuanYin.enabled = false
+                
+                //迁址后
+                qzhChangSuoDiZhiShi.enabled = false
+                qzhChangSuoDiZhiXian.enabled = false
+                qzhChangSuoDiZhiJie.enabled = false
+                qzhChangSuoDiZhiHao.enabled = false
+                
+                qzhYuYuanZhiZhiXianJuLi.enabled = false
+                
+                tap9.enabled = false
+                
+                tap10.enabled = false
+                
+                qzhKaiYeShiJian.enabled = false
+                
+                tap11.enabled = false
+                
+                qzhJianZhuMianJi.enabled = false
+                
+                qzhYingYeShiJianZhouJi.enabled = false
+                qzhYingYeShiJianZhiZhouJi.enabled = false
+                qzhYingYeShiJianJiDian.enabled = false
+                qzhYingYeShiJianZhiJiDian.enabled = false
+                qzhKaiXiangPinCi.enabled = false
+                qzhZhouTouDiPinCi.enabled = false
+                qzhRiTouDiPinCi.enabled = false
+                
+                XinJian2.enabled = false
+                WuLiu2.enabled = false
+                JiYou2.enabled = false
+                BaoGuo2.enabled = false
+                YinShuaPin2.enabled = false
+                BaoKanLingShou2.enabled = false
+                YouZhengChuXu2.enabled = false
+                MangRenDuWu2.enabled = false
+                TeKuaiZhuangDi2.enabled = false
+                BaoKanDingYue2.enabled = false
+                YouZhengHuiDui2.enabled = false
+                YIWuBingXinHan2.enabled = false
+                LieShiBaoGuo2.enabled = false
+                QiTa2.enabled = false
+                
+                
+                
+                
+                
+                initBianGengQianZhi(app.applyChangeDic)
+            }
+        }
+        
+        
+        
+        
+        
+        
+        //------------------------------ServerData 2--------------------------------
+        if app.ServerData == 2 {
+            if app.applyChangeDic.valueForKey("bgsx") != nil {
+                
+                mingChengBianGeng.enabled = true
+                jingYingShiJianBianGeng.enabled = true
+                jingYingFangShiBianGeng.enabled = true
+                changQuanXingZhiBianGeng.enabled = true
+                changSuoMingChengBianGengQian.enabled = true
+                dengJiBianHaoBianGengQian.enabled = true
+                bgqCangSuoDiZhiShi.enabled = true
+                bgqCangSuoDiZhiXian.enabled = true
+                bgqCangSuoDiZhiJie.enabled = true
+                bgqCangSuoDiZhiHao.enabled = true
+                bgqCangSuoDiZhiJingDu.enabled = true
+                bgqCangSuoDiZhiWeiDu.enabled = true
+                
+                bgqShangJiDanWei.enabled = true
+                
+                tap1.enabled = true
+                
+                bgqYouZhengBianMa.enabled = true
+                
+                tap2.enabled = true
+                
+                bgqKaiYeShiJian.enabled = true
+                
+                tap3.enabled = true
+                
+                bgqJianZhuMianJi.enabled = true
+                
+                bgqYingYeShiJianZhouJi.enabled = true
+                bgqYingYeShiJianZhiZhouJi.enabled = true
+                bgqYingYeShiJianJiDian.enabled = true
+                bgqYingYeShiJianZhiJiDian.enabled = true
+                bgqKaiXiangPinCi.enabled = true
+                bgqRiTouDiPinCi.enabled = true
+                bgqZhouTouDiPinCi.enabled = true
+                
+                XinJian.enabled = true
+                WuLiu.enabled = true
+                JiYou.enabled = true
+                BaoGuo.enabled = true
+                YinShuaPin.enabled = true
+                BaoKanLingShou.enabled = true
+                YouZhengChuXu.enabled = true
+                MangRenDuWu.enabled = true
+                TeKuaiZhuangDi.enabled = true
+                BaoKanDingYue.enabled = true
+                YouZhengHuiDui.enabled = true
+                YIWuBingXinHan.enabled = true
+                LieShiBaoGuo.enabled = true
+                QiTa.enabled = true
+                
+                //变更后
+                bghChangSuoMingCheng.enabled = true
+                bghChangSuoMingChengBianGengYuanYin.enabled = true
+                bghYingYeShiJianZhouJi.enabled = true
+                bghYingYeShiJianZhiZhouJi.enabled = true
+                bghYingYeShiJianJiDian.enabled = true
+                bghYingYeShiJianZhiJiDian.enabled = true
+                bghYingYeShiJianBianGengYuanYin.enabled = true
+                
+                tap4.enabled = true
+                
+                bghJingYingFangShiBianGengYuanYin.enabled = true
+                
+                tap5.enabled = true
+                
+                bghFangWuChanQuanBianGengYuanYin.enabled = true
+                bghChangSuoDiZhi.enabled = true
+                bghChangSuoDiZhiBianGengYuanYin.enabled = true
+                
+                initBianGengXinXi(app.applyChangeDic)
+            } else {
+                
+                //-------------------------迁址控件状态变化------------------------------
+                qzqChangSuoMingCheng.enabled = true
+                qzqDengJiBianHao.enabled = true
+                qzqChangSuoDiZhiShi.enabled = true
+                qzqChangSuoDiZhiXian.enabled = true
+                qzqChangSuoDiZhiJie.enabled = true
+                qzqChangSuoDiZhiHao.enabled = true
+                
+                qzqShangJiDanWei.enabled = true
+                
+                qzqYouZhengBianMa.enabled = true
+                
+                tap6.enabled = true
+                
+                tap7.enabled = true
+                
+                tap8.enabled = true
+                
+                qzqKaiYeShiJian.enabled = true
+                qzqJianZhuMianJi.enabled = true
+                
+                qzqYingYeShiJianZhouJi.enabled = true
+                qzqYingYeShiJianZhiZhouJi.enabled = true
+                qzqYingYeShiJianJiDian.enabled = true
+                qzqYingYeShiJianZhiJiDian.enabled = true
+                qzqKaiXiangPinCi.enabled = true
+                qzqZhouTouDiPinCi.enabled = true
+                qzqRiTouDiPinCi.enabled = true
+                
+                XinJian1.enabled = true
+                WuLiu1.enabled = true
+                JiYou1.enabled = true
+                BaoGuo1.enabled = true
+                YinShuaPin1.enabled = true
+                BaoKanLingShou1.enabled = true
+                YouZhengChuXu1.enabled = true
+                MangRenDuWu1.enabled = true
+                TeKuaiZhuangDi1.enabled = true
+                BaoKanDingYue1.enabled = true
+                YouZhengHuiDui1.enabled = true
+                YIWuBingXinHan1.enabled = true
+                LieShiBaoGuo1.enabled = true
+                QiTa1.enabled = true
+                
+                qzqQianZhiYuanYin.enabled = true
+                
+                //迁址后
+                qzhChangSuoDiZhiShi.enabled = true
+                qzhChangSuoDiZhiXian.enabled = true
+                qzhChangSuoDiZhiJie.enabled = true
+                qzhChangSuoDiZhiHao.enabled = true
+                
+                qzhYuYuanZhiZhiXianJuLi.enabled = true
+                
+                tap9.enabled = true
+                
+                tap10.enabled = true
+                
+                qzhKaiYeShiJian.enabled = true
+                
+                tap11.enabled = true
+                
+                qzhJianZhuMianJi.enabled = true
+                
+                qzhYingYeShiJianZhouJi.enabled = true
+                qzhYingYeShiJianZhiZhouJi.enabled = true
+                qzhYingYeShiJianJiDian.enabled = true
+                qzhYingYeShiJianZhiJiDian.enabled = true
+                qzhKaiXiangPinCi.enabled = true
+                qzhZhouTouDiPinCi.enabled = true
+                qzhRiTouDiPinCi.enabled = true
+                
+                XinJian2.enabled = true
+                WuLiu2.enabled = true
+                JiYou2.enabled = true
+                BaoGuo2.enabled = true
+                YinShuaPin2.enabled = true
+                BaoKanLingShou2.enabled = true
+                YouZhengChuXu2.enabled = true
+                MangRenDuWu2.enabled = true
+                TeKuaiZhuangDi2.enabled = true
+                BaoKanDingYue2.enabled = true
+                YouZhengHuiDui2.enabled = true
+                YIWuBingXinHan2.enabled = true
+                LieShiBaoGuo2.enabled = true
+                QiTa2.enabled = true
+                
+                
                 initBianGengQianZhi(app.applyChangeDic)
             }
         }

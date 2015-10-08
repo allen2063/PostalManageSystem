@@ -118,13 +118,106 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
     }
 
     var app = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    override func viewDidDisappear(animated: Bool) {
+         app.ServerData = 0
+    }
+    
+    @IBOutlet var tap1: UITapGestureRecognizer!
+    @IBOutlet weak var commitBtn: UIButton!
+    
      override func viewDidLoad() {
         super.viewDidLoad()
+        if app.ServerData == 0 {
+            changSuoMingCheng.enabled = true
+            shangJiDanWei.enabled = true
+            
+            tap1.enabled = true
+            
+                XinJian.enabled = true
+                YouZhengHuiDui.enabled = true
+                MangRenDuWu.enabled = true
+                YinShuaPin.enabled = true
+                BaoGuo.enabled = true
+                LieShiBaoGuo.enabled = true
+                GuoJiaGuiDingBaoKanDeFaXing.enabled = true
+                YiWuBingXinHan.enabled = true
+            
+            fuWuQuYu.enabled = true
+            diZhi.enabled = true
+            youBian.enabled = true
+            lianXiRenXingMing.enabled = true
+            lianXiDianHua.enabled = true
+            zanTingShiJian.enabled = true
+            zanXianYuanYin.enabled = true
+            buJiuCuoShi.enabled = true
+            
+            commitBtn.enabled = true
+            commitBtn.setTitle("提交", forState: .Normal)
+        }
         
-        if app.ServerData == 2 {
-            app.ServerData = 0
+        
+        if app.ServerData == 1 {
+            
+            changSuoMingCheng.enabled = false
+            shangJiDanWei.enabled = false
+            
+            tap1.enabled = false
+            
+            XinJian.enabled = false
+            YouZhengHuiDui.enabled = false
+            MangRenDuWu.enabled = false
+            YinShuaPin.enabled = false
+            BaoGuo.enabled = false
+            LieShiBaoGuo.enabled = false
+            GuoJiaGuiDingBaoKanDeFaXing.enabled = false
+            YiWuBingXinHan.enabled = false
+            
+            fuWuQuYu.enabled = false
+            diZhi.enabled = false
+            youBian.enabled = false
+            lianXiRenXingMing.enabled = false
+            lianXiDianHua.enabled = false
+            zanTingShiJian.enabled = false
+            zanXianYuanYin.enabled = false
+            buJiuCuoShi.enabled = false
+
+            commitBtn.enabled = false
+            commitBtn.setTitle("只可查看", forState: .Disabled)
+            
             initZanTing(app.applyPauseDic)
         }
+        
+        if app.ServerData == 2 {
+            changSuoMingCheng.enabled = true
+            shangJiDanWei.enabled = true
+            
+            tap1.enabled = true
+            
+            XinJian.enabled = true
+            YouZhengHuiDui.enabled = true
+            MangRenDuWu.enabled = true
+            YinShuaPin.enabled = true
+            BaoGuo.enabled = true
+            LieShiBaoGuo.enabled = true
+            GuoJiaGuiDingBaoKanDeFaXing.enabled = true
+            YiWuBingXinHan.enabled = true
+            
+            fuWuQuYu.enabled = true
+            diZhi.enabled = true
+            youBian.enabled = true
+            lianXiRenXingMing.enabled = true
+            lianXiDianHua.enabled = true
+            zanTingShiJian.enabled = true
+            zanXianYuanYin.enabled = true
+            buJiuCuoShi.enabled = true
+            
+            commitBtn.enabled = true
+            commitBtn.setTitle("提交", forState: .Normal)
+            
+            initZanTing(app.applyPauseDic)
+        }
+
 //          NSNotificationCenter.defaultCenter().addObserver(self, selector: nil, name: UIKeyboardDidShowNotification, object: nil)
         }
     
