@@ -637,12 +637,11 @@
                 self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationFullScreen;
             }
             
-            //未上传照片  则无需加载图片
-//            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
-//            NSMutableString * flowID = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"flowId"];
-//            NSString * interface = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"type"];
-//            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
-//            [app.network getFlowIDWithInterface:interface ANdToken:@"jiou" AndFlowID:flowID];
+            //未上传照片  则无需加载图片  但仍需加载对应表的详细信息
+            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
+            NSMutableString * flowID = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"flowId"];
+            NSString * interface = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"type"];
+            [app.network getFlowIDWithInterface:interface ANdToken:@"jiou" AndFlowID:flowID];
         }else{
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"已审核" message:@"审核通过后只能上传照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
@@ -677,7 +676,6 @@
             [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
             NSMutableString * flowID = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"flowId"];
             NSString * interface = [[_dataListForDisplay objectAtIndex:indexPath.row]objectForKey:@"type"];
-            [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
             [app.network getFlowIDWithInterface:interface ANdToken:@"jiou" AndFlowID:flowID];
         }else{
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"已审核" message:@"审核通过后只能上传照片" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
