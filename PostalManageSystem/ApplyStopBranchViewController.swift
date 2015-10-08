@@ -232,7 +232,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     @IBAction func commit(sender: AnyObject) {
         
 //        println("\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj)")
-        println("\(uploadVCForPicURL1?.picUrl)")
+        print("\(uploadVCForPicURL1?.picUrl)")
         
         
         infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zgyzjtgsttfgsmc = fenGongSi.text
@@ -376,8 +376,8 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         yingYeChangSuoMingCheng1.text = dict.valueForKey("yzyycsmc") as! String
         shangJiDanWei1.text = dict.valueForKey("sjdw") as! String
         
-        var ywsxArray = dict.valueForKey("tzblywsx") as! String
-        println("\(ywsxArray)")
+        let ywsxArray = dict.valueForKey("tzblywsx") as! String
+        print("\(ywsxArray)")
         if (ywsxArray.rangeOfString("xj") != nil) {
             XinJian.selected = true
         }
@@ -551,8 +551,8 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             lianXiRenXingMing1.enabled = false
             lianXiDianHua1.enabled = false
             
-            var dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
-            var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
+            let dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+            let dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
             dict1.addEntriesFromDictionary(dict2 as NSDictionary as [NSObject : AnyObject])
             
             initTingZhi(dict1)
@@ -560,9 +560,9 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         
         if app.ServerData == 2 {
 //            app.ServerData = 0
-            println("\(app.applyStopDic)")
-            var dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
-            var dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
+            print("\(app.applyStopDic)")
+            let dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+            let dict2 = app.applyStopDic.valueForKey("info2") as! NSMutableDictionary
             dict1.addEntriesFromDictionary(dict2 as NSDictionary as [NSObject : AnyObject])
             
             initTingZhi(dict1)
@@ -633,12 +633,16 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     @IBAction func uploadYingYeChangSuoGongShangYingYeZhiZhaoFuYinJian(sender: AnyObject) {
         
         if app.ServerData == 0 {
-            var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
+            let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
                 uploadVC.providesPresentationContextTransitionStyle = true
                 uploadVC.definesPresentationContext = true
-                uploadVC.modalPresentationStyle = .OverCurrentContext
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
                 self.presentViewController(uploadVC ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
@@ -647,24 +651,28 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
             }
             
             uploadVCForPicURL1 = uploadVC
-            println("\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj)")
+            print("\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj)")
         }
         
         if app.ServerData == 1 {
 //            app.ServerData = 0
-            var dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+            let dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
             
-            var picStr: AnyObject? = dict1.valueForKey("gsyyzzfyj")
-            println("\(picStr!.description)")
+            let picStr: AnyObject? = dict1.valueForKey("gsyyzzfyj")
+            print("\(picStr!.description)")
 //            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
             
-            var uploadVC = UploadPicViewController(uploadState: false, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
+            let uploadVC = UploadPicViewController(uploadState: false, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
             
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
                 uploadVC.providesPresentationContextTransitionStyle = true
                 uploadVC.definesPresentationContext = true
-                uploadVC.modalPresentationStyle = .OverCurrentContext
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
                 self.presentViewController(uploadVC ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
@@ -675,19 +683,23 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         
         if app.ServerData == 2 {
             //            app.ServerData = 0
-            var dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+            let dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
             
-            var picStr: AnyObject? = dict1.valueForKey("gsyyzzfyj")
-            println("\(picStr!.description)")
+            let picStr: AnyObject? = dict1.valueForKey("gsyyzzfyj")
+            print("\(picStr!.description)")
             //            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
             
-            var uploadVC = UploadPicViewController(uploadState: true, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
+            let uploadVC = UploadPicViewController(uploadState: true, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
             
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
                 uploadVC.providesPresentationContextTransitionStyle = true
                 uploadVC.definesPresentationContext = true
-                uploadVC.modalPresentationStyle = .OverCurrentContext
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
                 self.presentViewController(uploadVC ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
@@ -701,12 +713,17 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     
     @IBAction func uploadShenQingTingXianBanLiYeWuZhengMingWenJian(sender: AnyObject) {
         if app.ServerData == 0 {
-            var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
+            let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
                 uploadVC.providesPresentationContextTransitionStyle = true
                 uploadVC.definesPresentationContext = true
-                uploadVC.modalPresentationStyle = .OverCurrentContext
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                    uploadVC.modalPresentationStyle = .CurrentContext
+                }
                 self.presentViewController(uploadVC ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
@@ -719,14 +736,18 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         
         if app.ServerData == 1 {
 //            app.ServerData = 0
-            var dict2 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+            let dict2 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
             
-            var uploadVC = UploadPicViewController(uploadState: false, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
+            let uploadVC = UploadPicViewController(uploadState: false, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
                 uploadVC.providesPresentationContextTransitionStyle = true
                 uploadVC.definesPresentationContext = true
-                uploadVC.modalPresentationStyle = .OverCurrentContext
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
                 self.presentViewController(uploadVC ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
@@ -737,14 +758,18 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         
         if app.ServerData == 2 {
 //            app.ServerData = 0
-            var dict2 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+            let dict2 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
             
-            var uploadVC = UploadPicViewController(uploadState: true, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
+            let uploadVC = UploadPicViewController(uploadState: true, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
                 uploadVC.providesPresentationContextTransitionStyle = true
                 uploadVC.definesPresentationContext = true
-                uploadVC.modalPresentationStyle = .OverCurrentContext
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
                 self.presentViewController(uploadVC ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext

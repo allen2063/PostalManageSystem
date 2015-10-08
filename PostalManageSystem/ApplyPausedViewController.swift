@@ -141,7 +141,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
 
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         //-----------------------------------------------------------
-        var rootView: UIScrollView = self.view as! UIScrollView
+        let rootView: UIScrollView = self.view as! UIScrollView
         if textField.frame.origin.y - rootView.contentOffset.y > 300 && (viewUp == false) {
             UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseOut, animations: {
                 rootView.contentOffset.y += 250
@@ -162,7 +162,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        var rootView: UIScrollView = self.view as! UIScrollView
+        let rootView: UIScrollView = self.view as! UIScrollView
         if viewUp == true {
             UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseOut, animations: {
                 rootView.contentOffset.y -= 250
@@ -181,7 +181,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        println("asdhgkajhsfgsdalfkjhasdkjflhasdkjlfhjksd")
+        print("asdhgkajhsfgsdalfkjhasdkjflhasdkjlfhjksd")
         if shouldDragDismiss && (viewUp == false) {
             UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseOut, animations: {
                 self.view.center.y += 350
@@ -204,7 +204,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
     }
     
     @IBAction func commit(sender: AnyObject) {
-        var infoOfZtbhxbyzpbfwhtsfwywdjb = InfoOfZtbhxbyzpbfwhtsfwywdjb()
+        let infoOfZtbhxbyzpbfwhtsfwywdjb = InfoOfZtbhxbyzpbfwhtsfwywdjb()
         infoOfZtbhxbyzpbfwhtsfwywdjb.yzyycsmc = changSuoMingCheng.text
         infoOfZtbhxbyzpbfwhtsfwywdjb.sjdw = shangJiDanWei.text
         
@@ -250,7 +250,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
         infoOfZtbhxbyzpbfwhtsfwywdjb.zstzblhzxzblywdyy = zanXianYuanYin.text
         infoOfZtbhxbyzpbfwhtsfwywdjb.zstzblhzxzblywqjyzqycqdbjcs = buJiuCuoShi.text
         
-       println("\(ClassToJSON.getObjectData(infoOfZtbhxbyzpbfwhtsfwywdjb))")
+       print("\(ClassToJSON.getObjectData(infoOfZtbhxbyzpbfwhtsfwywdjb))")
     }
     
     func initZanTing(dict: NSDictionary) {
@@ -264,7 +264,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
             chooseBanLiShiXiangLabel.text = "暂时限制办理业务事项"
         }
         
-        var ywsxArray = dict.valueForKey("xzblsx_ywfw") as! String
+        let ywsxArray = dict.valueForKey("xzblsx_ywfw") as! String
         if (ywsxArray.rangeOfString("xj") != nil) {
             XinJian.selected = true
         }

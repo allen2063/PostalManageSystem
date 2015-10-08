@@ -148,7 +148,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate {
         
         if app.ServerData == 2 {
             
-            println("进入恢复业务修改页面！！！！！！！")
+            print("进入恢复业务修改页面！！！！！！！")
             app.ServerData = 0
             initHuiFu(app.applyRestoreDic)
             
@@ -175,7 +175,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func commit(sender: AnyObject) {
-        var infoOfHfblyzpbhtsfwywbgb = InfoOfHfblyzpbhtsfwywbgb()
+        let infoOfHfblyzpbhtsfwywbgb = InfoOfHfblyzpbhtsfwywbgb()
         infoOfHfblyzpbhtsfwywbgb.yzyycsmc = qiYeMingCheng.text
         
         
@@ -215,15 +215,15 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate {
         
         app.network .sendFormToServerWithInterface("Hfyw", andUser: app.userData, andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb), andExtraInfo: nil)
         
-        println("\(infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx)")
-        println("\(ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb))")
+        print("\(infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx)")
+        print("\(ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb))")
         
     }
     
     func initHuiFu(dict: NSDictionary) {
         qiYeMingCheng.text = dict.valueForKey("yzyycsmc") as! String
         
-        var ywsxArray = dict.valueForKey("tzhxzblywsx") as! String
+        let ywsxArray = dict.valueForKey("tzhxzblywsx") as! String
         if (ywsxArray.rangeOfString("xj") != nil) {
             XinJian.selected = true
         }

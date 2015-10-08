@@ -250,7 +250,7 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     }
     
     @IBAction func commit(sender: AnyObject) {
-        var infoOfYzqyszyzyycsdjb = InfoOfYzqyszyzyycsdjb()
+        let infoOfYzqyszyzyycsdjb = InfoOfYzqyszyzyycsdjb()
         if (chooseShiXiang.text == "设置邮政普遍服务营业场所")  {
             infoOfYzqyszyzyycsdjb.sx = "szyzpbfwyycs"
         }
@@ -371,8 +371,8 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
             infoOfYzqyszyzyycsdjb.ywfw += ",qt"
         }
         
-        println("\(infoOfYzqyszyzyycsdjb.ywfw)")
-        println("\(ClassToJSON.getObjectData(infoOfYzqyszyzyycsdjb))")
+        print("\(infoOfYzqyszyzyycsdjb.ywfw)")
+        print("\(ClassToJSON.getObjectData(infoOfYzqyszyzyycsdjb))")
     }
     
 //    func init(dict: NSDictionary) {
@@ -380,14 +380,14 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
 //    }
     
     func initTianJia(dict: NSDictionary) {
-        println("进入初始化添加方法\(chooseShiXiang!.description)")
+        print("进入初始化添加方法\(chooseShiXiang!.description)")
         if (dict.valueForKey("sx") as! String == "szyzpbfwyycs")   {
             chooseShiXiang!.text! = "设置邮政普遍服务营业场所"
         }
         //崩溃   未初始化。。。
         if(dict.valueForKey("sx") as! String == "szqtyzyycs") {
             chooseShiXiang!.text! = "设置其他营业场所"
-            println("hahahahahahahahahahahahahahahah")
+            print("hahahahahahahahahahahahahahahah")
         }
         
         if (dict.valueForKey("jyfs") as! String == "zb")   {
@@ -460,7 +460,7 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         fuWuBanJing!.text = dict.valueForKey("fwbj") as! String
         fuWuRenKou!.text = dict.valueForKey("fwrk") as! String
 
-        var ywsxArray = dict.valueForKey("ywfw") as! String
+        let ywsxArray = dict.valueForKey("ywfw") as! String
         if (ywsxArray.rangeOfString("xj") != nil) {
             XinJian!.selected = true
         }
@@ -513,12 +513,16 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     
     //上传图片功能
     @IBAction func uploadYingYeRiQiChuoYang(sender: AnyObject) {
-        var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "营业日期戳样")
+        let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "营业日期戳样")
         
         if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
             uploadVC.providesPresentationContextTransitionStyle = true
             uploadVC.definesPresentationContext = true
-            uploadVC.modalPresentationStyle = .OverCurrentContext
+            if #available(iOS 8.0, *) {
+                uploadVC.modalPresentationStyle = .OverCurrentContext
+            } else {
+                // Fallback on earlier versions
+            }
             self.presentViewController(uploadVC ,animated: true, completion: nil)
         } else {
             self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
@@ -543,12 +547,17 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     }
     
     @IBAction func uploadTouDiRiQiChuoYang(sender: AnyObject) {
-        var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "投递日期戳样")
+        let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "投递日期戳样")
         
         if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
             uploadVC.providesPresentationContextTransitionStyle = true
             uploadVC.definesPresentationContext = true
-            uploadVC.modalPresentationStyle = .OverCurrentContext
+            if #available(iOS 8.0, *) {
+                uploadVC.modalPresentationStyle = .OverCurrentContext
+            } else {
+                // Fallback on earlier versions
+                uploadVC.modalPresentationStyle = .CurrentContext
+            }
             self.presentViewController(uploadVC ,animated: true, completion: nil)
         } else {
             self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext

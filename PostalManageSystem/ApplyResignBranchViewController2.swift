@@ -17,8 +17,8 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     
     @IBAction func resignPostSheetViewSegmentedControlValueChanged(sender: AnyObject) {
         if let segmentedControl = sender as? UISegmentedControl {
-            var index = segmentedControl.selectedSegmentIndex
-            println("Index: \(index)")
+            let index = segmentedControl.selectedSegmentIndex
+            print("Index: \(index)")
             switch index {
             case 0:
                 resignPostSheetView.hidden = true
@@ -468,7 +468,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     }
 
     @IBAction func commit(sender: AnyObject) {
-        var infoOfCxyzpbfwyycssq = InfoOfCxyzpbfwyycssq()
+        let infoOfCxyzpbfwyycssq = InfoOfCxyzpbfwyycssq()
         infoOfCxyzpbfwyycssq.zgyzjtfgsmc = shenQingDanWeiMingCheng.text
         infoOfCxyzpbfwyycssq.btyzpbfwyycsmc = niCheXiaoYouZhengChangSuoMingCheng.text
         infoOfCxyzpbfwyycssq.syzgljmc = beiShenQingDanWeiMingCheng.text
@@ -487,7 +487,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         
         
         
-        var infoOfNcxyzpbfwyycsjbqkb = InfoOfNcxyzpbfwyycsjbqkb()
+        let infoOfNcxyzpbfwyycsjbqkb = InfoOfNcxyzpbfwyycsjbqkb()
         infoOfNcxyzpbfwyycsjbqkb.yzcsmc = youZhengChangSuoMingCheng.text
         
         //infoOfNcxyzpbfwyycsjbqkb.jyfs = chooseJIngYingFangShi.text
@@ -621,7 +621,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     }
 
     @IBAction func commit2(sender: AnyObject) {
-        var infoOfyzqycxyzyycsdjb = InfoOfyzqycxyzyycsdjb()
+        let infoOfyzqycxyzyycsdjb = InfoOfyzqycxyzyycsdjb()
         infoOfyzqycxyzyycsdjb.yzyycsmc = yingYeChangSuoMingCheng1.text
         infoOfyzqycxyzyycsdjb.csdz_s = changSuoDiZhiShi1.text
         infoOfyzqycxyzyycsdjb.csdz_xqs = changSuoDiZhiXian1.text
@@ -739,10 +739,10 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     func initCheXiao(dict: NSDictionary, segmentedControlIndex index:Int)
     {
         if index == 0 {
-            var dict1 = dict.valueForKey("info1") as! NSDictionary
+            let dict1 = dict.valueForKey("info1") as! NSDictionary
 //            println("dsasdasdasdasdasdasdasdasd\(dict1.description)")
             initCheXiaoPuBianFuWuChangSuoShenQing(dict1)
-            var dict2 = dict.valueForKey("info2") as! NSDictionary
+            let dict2 = dict.valueForKey("info2") as! NSDictionary
             initCheXiaoPuBianFuWuChangSuo(dict2)
         }
         if index == 1 {
@@ -841,7 +841,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         riTouDiPinCi.text? = dict.valueForKey("rtdpc") as! String
         zhouTouDiPinCi.text? = dict.valueForKey("ztdpc") as! String
         
-        var ywsxArray = dict.valueForKey("ywfw") as! String
+        let ywsxArray = dict.valueForKey("ywfw") as! String
         if (ywsxArray.rangeOfString("xj") != nil) {
             XinJian.selected = true
         }
@@ -944,7 +944,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             chooseJIngYingFangShi1.text = "委办"
         }
         
-        var ywsxArray1 = dict.valueForKey("ywfw") as! String
+        let ywsxArray1 = dict.valueForKey("ywfw") as! String
         if (ywsxArray1.rangeOfString("xj") != nil) {
             XinJian1.selected = true
         }
@@ -996,12 +996,16 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     }
 
     @IBAction func uploadYIngYeZhiZhaoFuYinJian(sender: AnyObject) {
-         var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "拟撤销场所的工商营业执照复印件")
+         let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "拟撤销场所的工商营业执照复印件")
        
         if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
             uploadVC.providesPresentationContextTransitionStyle = true
             uploadVC.definesPresentationContext = true
-            uploadVC.modalPresentationStyle = .OverCurrentContext
+            if #available(iOS 8.0, *) {
+                uploadVC.modalPresentationStyle = .OverCurrentContext
+            } else {
+                // Fallback on earlier versions
+            }
             self.presentViewController(uploadVC ,animated: true, completion: nil)
         } else {
             self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
@@ -1013,12 +1017,16 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     
     
     @IBAction func uploadZhengMingWenJian(sender: AnyObject) {
-        var uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请拟撤销场所原因的证明文件")
+        let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请拟撤销场所原因的证明文件")
         
         if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
             uploadVC.providesPresentationContextTransitionStyle = true
             uploadVC.definesPresentationContext = true
-            uploadVC.modalPresentationStyle = .OverCurrentContext
+            if #available(iOS 8.0, *) {
+                uploadVC.modalPresentationStyle = .OverCurrentContext
+            } else {
+                // Fallback on earlier versions
+            }
             self.presentViewController(uploadVC ,animated: true, completion: nil)
         } else {
             self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext

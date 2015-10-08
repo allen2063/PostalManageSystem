@@ -669,12 +669,13 @@
 		56C59DC31B82DD5F00D96F08 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "IOS-developer";
 				TargetAttributes = {
 					56C59DCA1B82DD5F00D96F08 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = QRR5JC63ES;
 					};
 					56C59DE31B82DD5F00D96F08 = {
 						CreatedOnToolsVersion = 6.4;
@@ -956,6 +957,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PostalManageSystem/BaiduMap",
@@ -981,6 +983,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PostalManageSystem/BaiduMap",

@@ -24,8 +24,8 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var changePasswordView: UIView!
     @IBAction func changeUserInfoSegmentedControlValueChanged(sender: AnyObject) {
         if let segmentedControl = sender as? UISegmentedControl {
-            var index = segmentedControl.selectedSegmentIndex
-            println("Index: \(index)")
+            let index = segmentedControl.selectedSegmentIndex
+            print("Index: \(index)")
             switch index {
             case 0:
                 changeUserInfoView.hidden = false
@@ -47,7 +47,7 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func commitInChangeUserInfo(sender: AnyObject) {
-        var userInfo: ChangeUserInfo? = ChangeUserInfo()
+        let userInfo: ChangeUserInfo? = ChangeUserInfo()
         userInfo?.bianGengShiXiang = bianGengShiXiangTextField.text
         userInfo?.changSuoMingCheng = changSuoMingChengTextField.text
         userInfo?.dengJiBianHao = dengJiBianHaoTextField.text

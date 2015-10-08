@@ -15,8 +15,8 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
 
     @IBAction func changeBranchSegmentedControlValueChanged(sender: AnyObject) {
         if let segmentedControl = sender as? UISegmentedControl {
-            var index = segmentedControl.selectedSegmentIndex
-            println("Index: \(index)")
+            let index = segmentedControl.selectedSegmentIndex
+            print("Index: \(index)")
             switch index {
             case 0:
                 applyChangeBranchInfoView.hidden = false
@@ -739,7 +739,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
     //变更Commit
     @IBAction func commit(sender: AnyObject) {
         //变更前
-        var infoOfYzqyyzyycsbaxxbgdjb = InfoOfYzqyyzyycsbaxxbgdjb()
+        let infoOfYzqyyzyycsbaxxbgdjb = InfoOfYzqyyzyycsbaxxbgdjb()
         if mingChengBianGeng.selected {
             infoOfYzqyyzyycsbaxxbgdjb.bgsx += ",mcbg"
         }
@@ -898,12 +898,12 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         infoOfYzqyyzyycsbaxxbgdjb.csdz_bgh = bghChangSuoDiZhi.text
         infoOfYzqyyzyycsbaxxbgdjb.bgyy_bghcsmc = bghChangSuoDiZhiBianGengYuanYin.text
         
-        println("\(ClassToJSON.getObjectData(infoOfYzqyyzyycsbaxxbgdjb))")
+        print("\(ClassToJSON.getObjectData(infoOfYzqyyzyycsbaxxbgdjb))")
     }
     
     //迁址Commit
     @IBAction func commit2(sender: AnyObject) {
-        var infoOfYzpbfwyycsjjqzdjb = InfoOfYzpbfwyycsjjqzdjb()
+        let infoOfYzpbfwyycsjjqzdjb = InfoOfYzpbfwyycsjjqzdjb()
         infoOfYzpbfwyycsjjqzdjb.csmc_qzq = qzqChangSuoMingCheng.text
         infoOfYzpbfwyycsjjqzdjb.djbh_qzq = qzqDengJiBianHao.text
         infoOfYzpbfwyycsjjqzdjb.csdz_qzq_s = qzqChangSuoDiZhiShi.text
@@ -1115,7 +1115,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
 //        var app=UIApplication.sharedApplication().delegate as! AppDelegate
 //        app.network .sendFormToServerWithInterface("Jjqz", andInfo: ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb), andExtraInfo: nil)
 
-        println("\(ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb))")
+        print("\(ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb))")
         //ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb)
     }
     
@@ -1128,7 +1128,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         
         if let rootView = self.view as? UIScrollView {
             rootView.contentSize = CGSize(width: 320, height: 1561)
-            println("\(self.view.debugDescription)")
+            print("\(self.view.debugDescription)")
             // Do any additional setup after loading the view.
         }
         
@@ -1231,7 +1231,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
             bgqRiTouDiPinCi.text = dict.valueForKey("rtdpc_bgq") as! String
             bgqZhouTouDiPinCi.text = dict.valueForKey("ztdpc_bgq") as! String
             
-            var ywsxArray = dict.valueForKey("ywfw_bgq") as! String
+            let ywsxArray = dict.valueForKey("ywfw_bgq") as! String
             if (ywsxArray.rangeOfString("xj") != nil) {
                 XinJian.selected = true
             }
@@ -1376,7 +1376,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         qzqZhouTouDiPinCi.text = dict.valueForKey("rtdpc_qzq") as! String
         qzqRiTouDiPinCi.text = dict.valueForKey("ztdpc_qzq") as! String
     
-        var ywsxArray1 = dict.valueForKey("ywfw_qzq") as! String
+        let ywsxArray1 = dict.valueForKey("ywfw_qzq") as! String
         if (ywsxArray1.rangeOfString("xj") != nil) {
             XinJian1.selected = true
         }
@@ -1473,7 +1473,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         qzhZhouTouDiPinCi.text = dict.valueForKey("rtdpc_qzh") as! String
         qzhRiTouDiPinCi.text = dict.valueForKey("ztdpc_qzh") as! String
         
-        var ywsxArray2 = dict.valueForKey("ywfw_qzh") as! String
+        let ywsxArray2 = dict.valueForKey("ywfw_qzh") as! String
         if (ywsxArray2.rangeOfString("xj") != nil) {
             XinJian2.selected = true
         }
