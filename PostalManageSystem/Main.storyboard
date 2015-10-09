@@ -5618,6 +5618,9 @@
                                 <size key="value" width="320" height="1180"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="ypJ-vn-x5I" id="Zlq-9N-d4z"/>
+                        </connections>
                     </scrollView>
                     <navigationItem key="navigationItem" title="申请设置网点" id="QPx-el-IcG"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

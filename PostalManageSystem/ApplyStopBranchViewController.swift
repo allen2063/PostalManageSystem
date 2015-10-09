@@ -338,8 +338,8 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     }
     
     func initTingZhi(dict: NSDictionary) {
-        fenGongSi.text = dict.valueForKey("zgyzjtgsttfgsmc") as! String
-        yingYeChangSuoMingCheng.text = dict.valueForKey("btyzyycsmc") as! String
+        fenGongSi.text = dict.valueForKey("zgyzjtgsttfgsmc") as? String
+        yingYeChangSuoMingCheng.text = dict.valueForKey("btyzyycsmc") as? String
         beiShenQingDanWeiMingCheng.text = dict.valueForKey("syzgljmc") as! String
         
         shenQingZhuYaoYuanYin.text = dict.valueForKey("sqtzblhzxzywdzyyy") as! String

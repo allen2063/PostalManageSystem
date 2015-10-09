@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UITextFieldDelegate {
+class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UITextFieldDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var chooseShiXiang: UILabel!
     @IBOutlet weak var chooseJingYingFangShi: UILabel!
@@ -238,6 +238,32 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         }
     }
     
+    let bkView = UIView(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.size.height - 95, width: UIScreen.mainScreen().bounds.size.width, height: 70))
+    
+    
+    
+    func shenHeYiJianBtnAction() {
+        print("按钮生效")
+        let viewForShenHeYiJian = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 25))
+        viewForShenHeYiJian.backgroundColor = UIColor.blueColor()
+        bkView.addSubview(viewForShenHeYiJian)
+        
+//        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 25))
+//        label.text = "测试TMD"
+//        label.textColor = UIColor.greenColor()
+//        label.backgroundColor = UIColor.blueColor()
+//        viewForShenHeYiJian.addSubview(label)
+    }
+    
+    var i = 0
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        print("QQQQQQQQQQQQQQQQQQQQQQQQ\(++i)")
+        bkView.backgroundColor = UIColor.redColor()
+        bkView.frame.origin.y = (self.view as! UIScrollView).contentOffset.y + 500
+//        print("\(bkView.bounds.origin.y)")
+    }
+    
     var app = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidDisappear(animated: Bool) {
@@ -253,7 +279,6 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //-----------------------------ServerData 0-----------------------------
         
         if app.ServerData == 0 {
@@ -319,6 +344,19 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         //-----------------------------ServerData 1-----------------------------
         
         if app.ServerData == 1 {
+            
+            let stateValueFromServer = app.applyAddDic.valueForKey("state") as! Int
+            print(stateValueFromServer)
+            if stateValueFromServer == 1 || stateValueFromServer == 2 || stateValueFromServer == 3 {
+                bkView.backgroundColor = UIColor.redColor()
+                let btmOnBkView = UIButton(frame: CGRect(x: 10, y: 30, width: 150, height: 30))
+                btmOnBkView.setTitle("哈😄哈哈", forState: .Normal)
+                btmOnBkView.addTarget(self, action:Selector("shenHeYiJianBtnAction") , forControlEvents: .TouchUpInside)
+                self.view.addSubview(bkView)
+                bkView.addSubview(btmOnBkView)
+            }
+            
+            
             tap1.enabled = false
             tap2.enabled = false
             tap3.enabled = false
@@ -384,6 +422,17 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         //-----------------------------ServerData 2-----------------------------
         
         if app.ServerData == 2 {
+            
+            let stateValueFromServer = app.applyAddDic.valueForKey("state") as! Int
+            print(stateValueFromServer)
+            if stateValueFromServer == 1 || stateValueFromServer == 2 || stateValueFromServer == 3 {
+                bkView.backgroundColor = UIColor.redColor()
+                let btmOnBkView = UIButton(frame: CGRect(x: 10, y: 30, width: 150, height: 30))
+                self.view.addSubview(bkView)
+                bkView.addSubview(btmOnBkView)
+            }
+            
+            
             tap1.enabled = true
             tap2.enabled = true
             tap3.enabled = true
