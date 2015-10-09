@@ -5025,6 +5025,11 @@
                         <outlet property="shouRuYinShuaPin" destination="WNa-N7-dj0" id="aSB-Hc-WMm"/>
                         <outlet property="shuRuBaoGuo" destination="2Rc-Rl-OFd" id="oxE-fO-afL"/>
                         <outlet property="suoZaiDiDian" destination="qFT-Qd-C6C" id="5xS-S2-ksZ"/>
+                        <outlet property="tap1" destination="drF-09-8na" id="qn0-66-X5S"/>
+                        <outlet property="tap2" destination="EQq-VG-Bmb" id="73B-KN-EYC"/>
+                        <outlet property="tap3" destination="gfF-KC-4S8" id="Dpz-VU-dls"/>
+                        <outlet property="tap4" destination="ZNK-1P-T4m" id="xD6-jI-sge"/>
+                        <outlet property="tap5" destination="mxC-VJ-ddE" id="lZL-0V-PLt"/>
                         <outlet property="view" destination="Ur1-dt-ber" id="8oF-n6-Tpm"/>
                         <outlet property="yeWuLiangBaoGuo" destination="VST-6r-7fE" id="2nh-st-bdF"/>
                         <outlet property="yeWuLiangBaoKan" destination="c3Q-Pr-JEb" id="Pmz-KZ-xSl"/>

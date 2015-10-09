@@ -710,17 +710,255 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
 //        println("\(ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb))")
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        app.ServerData = 0
+    }
+    
+    @IBOutlet var tap1: UITapGestureRecognizer!
+    @IBOutlet var tap2: UITapGestureRecognizer!
+    @IBOutlet var tap3: UITapGestureRecognizer!
+    @IBOutlet var tap4: UITapGestureRecognizer!
+    @IBOutlet var tap5: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         resignPostSheetView.hidden = true
         SegmentedControl.frame.size.height = 40
         
-        if app.ServerData == 2 {
-            app.ServerData = 0
+        //------------------------------ServerData 0--------------------------------
+        
+        if app.ServerData == 0 {
+            shenQingDanWeiMingCheng.enabled = true
+            niCheXiaoYouZhengChangSuoMingCheng.enabled = true
+            beiShenQingDanWeiMingCheng.enabled = true
+            cheXiaoZHuYaoYuanYin.enabled = true
             
+            cheXiaoShiJianNian.enabled = true
+            cheXiaoShiJianYue.enabled = true
+            
+            cheXiaoDiZhiShi.enabled = true
+            cheXiaoDiZhiXian.enabled = true
+            cheXiaoDiZhiJie.enabled = true
+            
+            niCheXiaoYouZhengYingYeChangSuoMingCheng.enabled = true
+            niCaiQuTiDaiXingCuoShi.enabled = true
+            caiQuCuoShiHouFuWuShuiPing.enabled = true
+            
+            
+            youZhengChangSuoMingCheng.enabled = true
+            
+            tap1.enabled = true
+            tap2.enabled = true
+            tap3.enabled = true
+            tap4.enabled = true
+            tap5.enabled = true
+            
+            changSuoDiZhiShi.enabled = true
+            changSuoDiZhiXian.enabled = true
+            changSuoDiZhiJie.enabled = true
+            changSuoDiZhiHao.enabled = true
+            changSuoDiZhiJingDu.enabled = true
+            changSuoDiZhiWeiDu.enabled = true
+            
+            youZhengBianMa.enabled = true
+            shangJiDanWei.enabled = true
+            
+            yingYeChangSuoFuZeRen.enabled = true
+            YingYeChangSuoLianXiDianHua.enabled = true
+            
+            fuWuBanJing.enabled = true
+            
+            
+            fuWuRenKou.enabled = true
+            kaiYeShiJian.enabled = true
+            
+            
+            jianZhuMianJi.enabled = true
+            fuWuQuYu.enabled = true
+            
+            zhougYIngYeRiZhouJi.enabled = true
+            zhougYIngYeRiZhiZhouJi.enabled = true
+            riYingYeRiJiDian.enabled = true
+            riYingYeRiZhiJiDian.enabled = true
+            
+            kaiXIangPinCi.enabled = true
+            riTouDiPinCi.enabled = true
+            zhouTouDiPinCi.enabled = true
+            
+            XinJian.enabled = true
+            WuLiu.enabled = true
+            JiYou.enabled = true
+            BaoGuo.enabled = true
+            YinShuaPin.enabled = true
+            BaoKanLingShou.enabled = true
+            YouZhengChuXu.enabled = true
+            MangRenDuWu.enabled = true
+            TeKuaiZhuangDi.enabled = true
+            BaoKanDingYue.enabled = true
+            YouZhengHuiDui.enabled = true
+            YIWuBingXinHan.enabled = true
+            LieShiBaoGuo.enabled = true
+            QiTa.enabled = true
+            
+            
+            zongShouRu.enabled = true
+            shouRuHanJian.enabled = true
+            shuRuBaoGuo.enabled = true
+            shouRuYinShuaPin.enabled = true
+            shouRuHuiDui.enabled = true
+            shouRuBaoKan.enabled = true
+            shouRuDaiLiYeWu.enabled = true
+            shouRuQiTa.enabled = true
+            
+            yeWuLiangHanJian.enabled = true
+            yeWuLiangBaoGuo.enabled = true
+            yeWuLiangYinShuaPin.enabled = true
+            yeWuLiangHuiDui.enabled = true
+            yeWuLiangBaoKan.enabled = true
+            yeWuLiangDaiLiYeWu.enabled = true
+            
+            
+            yingYeChangSuoMingCheng1.enabled = true
+            changSuoDiZhiShi1.enabled = true
+            changSuoDiZhiXian1.enabled = true
+            changSuoDiZhiJie.enabled = true
+            changSuoDiZhiHao1.enabled = true
+            changSuoDiZhiJingDu.enabled = true
+            changSuoDiZhiWeiDu.enabled = true
+            
+            fuZeRen1.enabled = true
+            lianXiDianHua1.enabled = true
+            youZhengBianMa1.enabled = true
+            shangJiDanWei1.enabled = true
+            fuWuQuYu1.enabled = true
+            
+            tap1.enabled = true
+            tap2.enabled = true
+            tap3.enabled = true
+            tap4.enabled = true
+            tap5.enabled = true
+            
+            
+            XinJian1.enabled = true
+            WuLiu1.enabled = true
+            JiYou1.enabled = true
+            BaoGuo1.enabled = true
+            YinShuaPin1.enabled = true
+            BaoKanLingShou1.enabled = true
+            YouZhengChuXu1.enabled = true
+            MangRenDuWu1.enabled = true
+            TeKuaiZhuangDi1.enabled = true
+            BaoKanDingYue1.enabled = true
+            YouZhengHuiDui1.enabled = true
+            YIWuBingXinHan1.enabled = true
+            LieShiBaoGuo1.enabled = true
+            QiTa1.enabled = true
+            
+            qiTaShiXiang1.enabled = true
+            
+            cheXiaoYuanYin1.enabled = true
+            niCheXiaoRiQi1.enabled = true
+
+            
+        }
+        
+        
+        
+        //------------------------------ServerData 1--------------------------------
+        
+        if app.ServerData == 1 {
             if app.applyResignDic.count == 2 {
-//                println("\(app.applyResignDic.description)")
+                //                println("\(app.applyResignDic.description)")
+                
+                shenQingDanWeiMingCheng.enabled = false
+                niCheXiaoYouZhengChangSuoMingCheng.enabled = false
+                beiShenQingDanWeiMingCheng.enabled = false
+                cheXiaoZHuYaoYuanYin.enabled = false
+                
+                cheXiaoShiJianNian.enabled = false
+                cheXiaoShiJianYue.enabled = false
+                
+                cheXiaoDiZhiShi.enabled = false
+                cheXiaoDiZhiXian.enabled = false
+                cheXiaoDiZhiJie.enabled = false
+                
+                niCheXiaoYouZhengYingYeChangSuoMingCheng.enabled = false
+                niCaiQuTiDaiXingCuoShi.enabled = false
+                caiQuCuoShiHouFuWuShuiPing.enabled = false
+                
+                
+                youZhengChangSuoMingCheng.enabled = false
+                
+                tap1.enabled = false
+                tap2.enabled = false
+                tap3.enabled = false
+                tap4.enabled = false
+                tap5.enabled = false
+                
+                changSuoDiZhiShi.enabled = false
+                changSuoDiZhiXian.enabled = false
+                changSuoDiZhiJie.enabled = false
+                changSuoDiZhiHao.enabled = false
+                changSuoDiZhiJingDu.enabled = false
+                changSuoDiZhiWeiDu.enabled = false
+                
+                youZhengBianMa.enabled = false
+                shangJiDanWei.enabled = false
+                
+                yingYeChangSuoFuZeRen.enabled = false
+                YingYeChangSuoLianXiDianHua.enabled = false
+                
+                fuWuBanJing.enabled = false
+                
+                
+                fuWuRenKou.enabled = false
+                kaiYeShiJian.enabled = false
+                
+                
+                jianZhuMianJi.enabled = false
+                fuWuQuYu.enabled = false
+                
+                zhougYIngYeRiZhouJi.enabled = false
+                zhougYIngYeRiZhiZhouJi.enabled = false
+                riYingYeRiJiDian.enabled = false
+                riYingYeRiZhiJiDian.enabled = false
+                
+                kaiXIangPinCi.enabled = false
+                riTouDiPinCi.enabled = false
+                zhouTouDiPinCi.enabled = false
+                
+                XinJian.enabled = false
+                WuLiu.enabled = false
+                JiYou.enabled = false
+                BaoGuo.enabled = false
+                YinShuaPin.enabled = false
+                BaoKanLingShou.enabled = false
+                YouZhengChuXu.enabled = false
+                MangRenDuWu.enabled = false
+                TeKuaiZhuangDi.enabled = false
+                BaoKanDingYue.enabled = false
+                YouZhengHuiDui.enabled = false
+                YIWuBingXinHan.enabled = false
+                LieShiBaoGuo.enabled = false
+                QiTa.enabled = false
+                
+                
+                zongShouRu.enabled = false
+                shouRuHanJian.enabled = false
+                shuRuBaoGuo.enabled = false
+                shouRuYinShuaPin.enabled = false
+                shouRuHuiDui.enabled = false
+                shouRuBaoKan.enabled = false
+                shouRuDaiLiYeWu.enabled = false
+                shouRuQiTa.enabled = false
+                
+                yeWuLiangHanJian.enabled = false
+                yeWuLiangBaoGuo.enabled = false
+                yeWuLiangYinShuaPin.enabled = false
+                yeWuLiangHuiDui.enabled = false
+                yeWuLiangBaoKan.enabled = false
+                yeWuLiangDaiLiYeWu.enabled = false
+                
                 
                 initCheXiao(app.applyResignDic, segmentedControlIndex: 0)
                 
@@ -728,6 +966,206 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 //                    initCheXiao(app.applyResignDic, segmentedControlIndex: 0)
                 //                }
             } else {
+                
+                yingYeChangSuoMingCheng1.enabled = false
+                changSuoDiZhiShi1.enabled = false
+                changSuoDiZhiXian1.enabled = false
+                changSuoDiZhiJie.enabled = false
+                changSuoDiZhiHao1.enabled = false
+                changSuoDiZhiJingDu.enabled = false
+                changSuoDiZhiWeiDu.enabled = false
+                
+                fuZeRen1.enabled = false
+                lianXiDianHua1.enabled = false
+                youZhengBianMa1.enabled = false
+                shangJiDanWei1.enabled = false
+                fuWuQuYu1.enabled = false
+                
+                tap1.enabled = false
+                tap2.enabled = false
+                tap3.enabled = false
+                tap4.enabled = false
+                tap5.enabled = false
+                
+                
+                XinJian1.enabled = false
+                WuLiu1.enabled = false
+                JiYou1.enabled = false
+                BaoGuo1.enabled = false
+                YinShuaPin1.enabled = false
+                BaoKanLingShou1.enabled = false
+                YouZhengChuXu1.enabled = false
+                MangRenDuWu1.enabled = false
+                TeKuaiZhuangDi1.enabled = false
+                BaoKanDingYue1.enabled = false
+                YouZhengHuiDui1.enabled = false
+                YIWuBingXinHan1.enabled = false
+                LieShiBaoGuo1.enabled = false
+                QiTa1.enabled = false
+                
+                qiTaShiXiang1.enabled = false
+                
+                cheXiaoYuanYin1.enabled = false
+                niCheXiaoRiQi1.enabled = false
+
+                
+                initCheXiao(app.applyResignDic, segmentedControlIndex: 1)
+                //                initCheXiao(app.applyResignDic, segmentedControlIndex: 1)
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        //------------------------------ServerData 2--------------------------------
+        if app.ServerData == 2 {
+            if app.applyResignDic.count == 2 {
+//                println("\(app.applyResignDic.description)")
+                
+                shenQingDanWeiMingCheng.enabled = true
+                niCheXiaoYouZhengChangSuoMingCheng.enabled = true
+                beiShenQingDanWeiMingCheng.enabled = true
+                cheXiaoZHuYaoYuanYin.enabled = true
+                
+                cheXiaoShiJianNian.enabled = true
+                cheXiaoShiJianYue.enabled = true
+                
+                cheXiaoDiZhiShi.enabled = true
+                cheXiaoDiZhiXian.enabled = true
+                cheXiaoDiZhiJie.enabled = true
+                
+                niCheXiaoYouZhengYingYeChangSuoMingCheng.enabled = true
+                niCaiQuTiDaiXingCuoShi.enabled = true
+                caiQuCuoShiHouFuWuShuiPing.enabled = true
+                
+                
+                youZhengChangSuoMingCheng.enabled = true
+                
+                tap1.enabled = true
+                tap2.enabled = true
+                tap3.enabled = true
+                tap4.enabled = true
+                tap5.enabled = true
+                
+                changSuoDiZhiShi.enabled = true
+                changSuoDiZhiXian.enabled = true
+                changSuoDiZhiJie.enabled = true
+                changSuoDiZhiHao.enabled = true
+                changSuoDiZhiJingDu.enabled = true
+                changSuoDiZhiWeiDu.enabled = true
+                
+                youZhengBianMa.enabled = true
+                shangJiDanWei.enabled = true
+                
+                yingYeChangSuoFuZeRen.enabled = true
+                YingYeChangSuoLianXiDianHua.enabled = true
+                
+                fuWuBanJing.enabled = true
+                
+             
+                fuWuRenKou.enabled = true
+                kaiYeShiJian.enabled = true
+                
+                
+                jianZhuMianJi.enabled = true
+                fuWuQuYu.enabled = true
+                
+                zhougYIngYeRiZhouJi.enabled = true
+                zhougYIngYeRiZhiZhouJi.enabled = true
+                riYingYeRiJiDian.enabled = true
+                riYingYeRiZhiJiDian.enabled = true
+                
+                kaiXIangPinCi.enabled = true
+                riTouDiPinCi.enabled = true
+                zhouTouDiPinCi.enabled = true
+                
+                    XinJian.enabled = true
+                    WuLiu.enabled = true
+                    JiYou.enabled = true
+                    BaoGuo.enabled = true
+                    YinShuaPin.enabled = true
+                    BaoKanLingShou.enabled = true
+                    YouZhengChuXu.enabled = true
+                    MangRenDuWu.enabled = true
+                    TeKuaiZhuangDi.enabled = true
+                    BaoKanDingYue.enabled = true
+                    YouZhengHuiDui.enabled = true
+                    YIWuBingXinHan.enabled = true
+                    LieShiBaoGuo.enabled = true
+                    QiTa.enabled = true
+                
+                
+                zongShouRu.enabled = true
+                shouRuHanJian.enabled = true
+                shuRuBaoGuo.enabled = true
+                shouRuYinShuaPin.enabled = true
+                shouRuHuiDui.enabled = true
+                shouRuBaoKan.enabled = true
+                shouRuDaiLiYeWu.enabled = true
+                shouRuQiTa.enabled = true
+                
+                yeWuLiangHanJian.enabled = true
+                yeWuLiangBaoGuo.enabled = true
+                yeWuLiangYinShuaPin.enabled = true
+                yeWuLiangHuiDui.enabled = true
+                yeWuLiangBaoKan.enabled = true
+                yeWuLiangDaiLiYeWu.enabled = true
+                
+                
+                initCheXiao(app.applyResignDic, segmentedControlIndex: 0)
+                
+                //                if (app.applyResignDic.valueForKey("info2") != nil) {
+                //                    initCheXiao(app.applyResignDic, segmentedControlIndex: 0)
+                //                }
+            } else {
+                
+                
+                yingYeChangSuoMingCheng1.enabled = true
+                changSuoDiZhiShi1.enabled = true
+                changSuoDiZhiXian1.enabled = true
+                changSuoDiZhiJie.enabled = true
+                changSuoDiZhiHao1.enabled = true
+                changSuoDiZhiJingDu.enabled = true
+                changSuoDiZhiWeiDu.enabled = true
+                
+                fuZeRen1.enabled = true
+                lianXiDianHua1.enabled = true
+                youZhengBianMa1.enabled = true
+                shangJiDanWei1.enabled = true
+                fuWuQuYu1.enabled = true
+                
+                tap1.enabled = true
+                tap2.enabled = true
+                tap3.enabled = true
+                tap4.enabled = true
+                tap5.enabled = true
+                
+           
+                    XinJian1.enabled = true
+                    WuLiu1.enabled = true
+                    JiYou1.enabled = true
+                    BaoGuo1.enabled = true
+                    YinShuaPin1.enabled = true
+                    BaoKanLingShou1.enabled = true
+                    YouZhengChuXu1.enabled = true
+                    MangRenDuWu1.enabled = true
+                    TeKuaiZhuangDi1.enabled = true
+                    BaoKanDingYue1.enabled = true
+                    YouZhengHuiDui1.enabled = true
+                    YIWuBingXinHan1.enabled = true
+                    LieShiBaoGuo1.enabled = true
+                    QiTa1.enabled = true
+                
+                qiTaShiXiang1.enabled = true
+                
+                cheXiaoYuanYin1.enabled = true
+                niCheXiaoRiQi1.enabled = true
+                
+                
                 initCheXiao(app.applyResignDic, segmentedControlIndex: 1)
 //                initCheXiao(app.applyResignDic, segmentedControlIndex: 1)
             }

@@ -1495,11 +1495,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 YIWuBingXinHan2.enabled = false
                 LieShiBaoGuo2.enabled = false
                 QiTa2.enabled = false
-                
-                
-                
-                
-                
+ 
                 initBianGengQianZhi(app.applyChangeDic)
             }
         }
