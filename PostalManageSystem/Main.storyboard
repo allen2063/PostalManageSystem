@@ -5644,6 +5644,7 @@
                         <outlet property="chooseMenQianYouTong" destination="YCH-Tl-aJQ" id="blq-ic-xmT"/>
                         <outlet property="chooseSheZhiDiYu" destination="Wsr-MO-c0V" id="0Dc-Tm-fwa"/>
                         <outlet property="chooseShiXiang" destination="xG0-oC-NBB" id="fSi-2i-BIf"/>
+                        <outlet property="commitBtn" destination="VVe-lH-Db6" id="EDH-V6-mYg"/>
                         <outlet property="fuWuBanJing" destination="voR-jC-nTQ" id="ggV-D5-jDh"/>
                         <outlet property="fuWuQuYu" destination="zlL-wb-dZl" id="l5j-xp-aTI"/>
                         <outlet property="fuWuRenKou" destination="Ydw-sS-AkT" id="vUf-FL-3qE"/>
@@ -5657,6 +5658,11 @@
                         <outlet property="riTouDiPinCi" destination="gnh-KL-r77" id="4Pu-6T-dW3"/>
                         <outlet property="shangJiDanWei" destination="7m3-Pr-y3E" id="ngD-lX-2wE"/>
                         <outlet property="shi" destination="YJB-FC-oeX" id="Lxs-cZ-6QG"/>
+                        <outlet property="tap1" destination="JoP-zY-EKW" id="jpd-06-woa"/>
+                        <outlet property="tap2" destination="1Da-AC-CW0" id="CcR-ha-b5K"/>
+                        <outlet property="tap3" destination="gxq-2g-8ph" id="bOe-u8-8c8"/>
+                        <outlet property="tap4" destination="X8d-7h-zTp" id="SYf-HH-b9r"/>
+                        <outlet property="tap5" destination="rOL-su-fHi" id="cRK-g0-4Te"/>
                         <outlet property="view" destination="vc4-2Q-9be" id="mBo-jH-yKD"/>
                         <outlet property="weiDu" destination="8cw-MT-NHE" id="DuV-DN-Pgx"/>
                         <outlet property="xian" destination="G5L-ro-tba" id="QHJ-V5-eaq"/>

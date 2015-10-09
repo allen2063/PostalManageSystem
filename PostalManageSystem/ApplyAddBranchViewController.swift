@@ -240,11 +240,207 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     
     var app = UIApplication.sharedApplication().delegate as! AppDelegate
     
+    override func viewDidDisappear(animated: Bool) {
+        app.ServerData = 0
+    }
+    
+    @IBOutlet var tap1: UITapGestureRecognizer!
+    @IBOutlet var tap2: UITapGestureRecognizer!
+    @IBOutlet var tap3: UITapGestureRecognizer!
+    @IBOutlet var tap4: UITapGestureRecognizer!
+    @IBOutlet var tap5: UITapGestureRecognizer!
+    @IBOutlet weak var commitBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //-----------------------------ServerData 0-----------------------------
+        
+        if app.ServerData == 0 {
+            tap1.enabled = true
+            tap2.enabled = true
+            tap3.enabled = true
+            tap4.enabled = true
+            tap5.enabled = true
+            
+            changSuoMingCheng!.enabled = true
+            shi!.enabled = true
+            xian!.enabled = true
+            jieDao!.enabled = true
+            menPaiHao!.enabled = true
+            jingDu!.enabled = true
+            weiDu!.enabled = true
+            
+            youBian!.enabled = true
+            shangJiDanWei!.enabled = true
+            cangSuoFuZeRen!.enabled = true
+            lianXiDianHua!.enabled = true
+            
+            kaiYeShiJian!.enabled = true
+            
+            jianZhuMianJi!.enabled = true
+            yingYeShiJianZhouJi!.enabled = true
+            yingYeShiJianZhiZhouJi!.enabled = true
+            yingYeShiJianJiDian!.enabled = true
+            yingYeShiJianZhiJiDian!.enabled = true
+            
+            
+            zhouKaiQuTianShu!.enabled = true
+            riKaiQuPinCi!.enabled = true
+            
+            fuWuQuYu!.enabled = true
+            
+            zhouTouDiTianShu!.enabled = true
+            riTouDiPinCi!.enabled = true
+            
+            fuWuBanJing!.enabled = true
+            fuWuRenKou!.enabled = true
+            
+                XinJian!.enabled = true
+                WuLiu!.enabled = true
+                JiYou!.enabled = true
+                BaoGuo!.enabled = true
+                YinShuaPin!.enabled = true
+                BaoKanLingShou!.enabled = true
+                YouZhengChuXu!.enabled = true
+                MangRenDuWu!.enabled = true
+                TeKuaiZhuangDi!.enabled = true
+                BaoKanDingYue!.enabled = true
+                YouZhengHuiDui!.enabled = true
+                YIWuBingXinHan!.enabled = true
+                LieShiBaoGuo!.enabled = true
+                QiTa!.enabled = true
+
+            commitBtn.enabled = true
+            commitBtn.setTitle("提交", forState: .Normal)
+        }
+        
+        
+        //-----------------------------ServerData 1-----------------------------
+        
+        if app.ServerData == 1 {
+            tap1.enabled = false
+            tap2.enabled = false
+            tap3.enabled = false
+            tap4.enabled = false
+            tap5.enabled = false
+            
+            changSuoMingCheng!.enabled = false
+            shi!.enabled = false
+            xian!.enabled = false
+            jieDao!.enabled = false
+            menPaiHao!.enabled = false
+            jingDu!.enabled = false
+            weiDu!.enabled = false
+            
+            youBian!.enabled = false
+            shangJiDanWei!.enabled = false
+            cangSuoFuZeRen!.enabled = false
+            lianXiDianHua!.enabled = false
+            
+            kaiYeShiJian!.enabled = false
+            
+            jianZhuMianJi!.enabled = false
+            yingYeShiJianZhouJi!.enabled = false
+            yingYeShiJianZhiZhouJi!.enabled = false
+            yingYeShiJianJiDian!.enabled = false
+            yingYeShiJianZhiJiDian!.enabled = false
+            
+            
+            zhouKaiQuTianShu!.enabled = false
+            riKaiQuPinCi!.enabled = false
+            
+            fuWuQuYu!.enabled = false
+            
+            zhouTouDiTianShu!.enabled = false
+            riTouDiPinCi!.enabled = false
+            
+            fuWuBanJing!.enabled = false
+            fuWuRenKou!.enabled = false
+            
+            XinJian!.enabled = false
+            WuLiu!.enabled = false
+            JiYou!.enabled = false
+            BaoGuo!.enabled = false
+            YinShuaPin!.enabled = false
+            BaoKanLingShou!.enabled = false
+            YouZhengChuXu!.enabled = false
+            MangRenDuWu!.enabled = false
+            TeKuaiZhuangDi!.enabled = false
+            BaoKanDingYue!.enabled = false
+            YouZhengHuiDui!.enabled = false
+            YIWuBingXinHan!.enabled = false
+            LieShiBaoGuo!.enabled = false
+            QiTa!.enabled = false
+            
+            commitBtn.enabled = false
+            commitBtn.setTitle("只可查看", forState: .Disabled)
+            
+            initTianJia(app.applyAddDic)
+        }
+        
+        
+        
+        //-----------------------------ServerData 2-----------------------------
+        
         if app.ServerData == 2 {
-            app.ServerData = 0
+            tap1.enabled = true
+            tap2.enabled = true
+            tap3.enabled = true
+            tap4.enabled = true
+            tap5.enabled = true
+            
+            changSuoMingCheng!.enabled = true
+            shi!.enabled = true
+            xian!.enabled = true
+            jieDao!.enabled = true
+            menPaiHao!.enabled = true
+            jingDu!.enabled = true
+            weiDu!.enabled = true
+            
+            youBian!.enabled = true
+            shangJiDanWei!.enabled = true
+            cangSuoFuZeRen!.enabled = true
+            lianXiDianHua!.enabled = true
+            
+            kaiYeShiJian!.enabled = true
+            
+            jianZhuMianJi!.enabled = true
+            yingYeShiJianZhouJi!.enabled = true
+            yingYeShiJianZhiZhouJi!.enabled = true
+            yingYeShiJianJiDian!.enabled = true
+            yingYeShiJianZhiJiDian!.enabled = true
+            
+            
+            zhouKaiQuTianShu!.enabled = true
+            riKaiQuPinCi!.enabled = true
+            
+            fuWuQuYu!.enabled = true
+            
+            zhouTouDiTianShu!.enabled = true
+            riTouDiPinCi!.enabled = true
+            
+            fuWuBanJing!.enabled = true
+            fuWuRenKou!.enabled = true
+            
+            XinJian!.enabled = true
+            WuLiu!.enabled = true
+            JiYou!.enabled = true
+            BaoGuo!.enabled = true
+            YinShuaPin!.enabled = true
+            BaoKanLingShou!.enabled = true
+            YouZhengChuXu!.enabled = true
+            MangRenDuWu!.enabled = true
+            TeKuaiZhuangDi!.enabled = true
+            BaoKanDingYue!.enabled = true
+            YouZhengHuiDui!.enabled = true
+            YIWuBingXinHan!.enabled = true
+            LieShiBaoGuo!.enabled = true
+            QiTa!.enabled = true
+            
+            commitBtn.enabled = true
+            commitBtn.setTitle("提交", forState: .Normal)
+            
             initTianJia(app.applyAddDic)
         }
     }
@@ -513,22 +709,69 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     
     //上传图片功能
     @IBAction func uploadYingYeRiQiChuoYang(sender: AnyObject) {
-        let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "营业日期戳样")
-        
-        if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-            uploadVC.providesPresentationContextTransitionStyle = true
-            uploadVC.definesPresentationContext = true
-            if #available(iOS 8.0, *) {
-                uploadVC.modalPresentationStyle = .OverCurrentContext
+        if app.ServerData == 0 {
+            let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "营业日期戳样", andUploadKind: 1)
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
             } else {
-                // Fallback on earlier versions
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
-            self.presentViewController(uploadVC ,animated: true, completion: nil)
-        } else {
-            self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-            self.presentViewController(uploadVC ,animated: false, completion: nil)
-            self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
         }
+        
+        if app.ServerData == 1 {
+            let picValueFromDict = app.applyAddDic.valueForKey("yyrccy")
+//            let picValueFromDict = app.applyAddDic.valueForKey("tdrccy")
+            
+            let uploadVC = UploadPicViewController(uploadState: false, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "营业日期戳样", andUploadKind: 1)
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
+        }
+        
+        if app.ServerData == 2 {
+            let picValueFromDict = app.applyAddDic.valueForKey("yyrccy")
+            
+            let uploadVC = UploadPicViewController(uploadState: true, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "营业日期戳样", andUploadKind: 1)
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
+        }
+        
+        
         
 //        UploadPicViewController * upload = [[UploadPicViewController alloc]initWithCountOfPic:1 AndFormName:typeName];
         
@@ -547,24 +790,84 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     }
     
     @IBAction func uploadTouDiRiQiChuoYang(sender: AnyObject) {
-        let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "投递日期戳样")
-        
-        if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-            uploadVC.providesPresentationContextTransitionStyle = true
-            uploadVC.definesPresentationContext = true
-            if #available(iOS 8.0, *) {
-                uploadVC.modalPresentationStyle = .OverCurrentContext
+        if app.ServerData == 0 {
+            let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "投递日期戳样", andUploadKind: 1)
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                    uploadVC.modalPresentationStyle = .CurrentContext
+                }
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
             } else {
-                // Fallback on earlier versions
-                uploadVC.modalPresentationStyle = .CurrentContext
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
-            self.presentViewController(uploadVC ,animated: true, completion: nil)
-        } else {
-            self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-            self.presentViewController(uploadVC ,animated: false, completion: nil)
-            self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
         }
+        
+        
+        
+        
+        if app.ServerData == 1 {
+            let picValueFromDict = app.applyAddDic.valueForKey("tdrccy")
+            
+            let uploadVC = UploadPicViewController(uploadState: false, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "投递日期戳样", andUploadKind: 1)
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                    uploadVC.modalPresentationStyle = .CurrentContext
+                }
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
+        }
+
+        
+        
+        
+        if app.ServerData == 2 {
+            let picValueFromDict = app.applyAddDic.valueForKey("tdrccy")
+            
+            let uploadVC = UploadPicViewController(uploadState: true, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "投递日期戳样", andUploadKind: 1)
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                    uploadVC.modalPresentationStyle = .CurrentContext
+                }
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
+        }
+
+        
+        
+        
     }
+    
+    
+    
+    
     
     
 }
