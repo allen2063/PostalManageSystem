@@ -245,12 +245,6 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     
     var flag = 0
     func shenHeYiJianBtnAction() {
-//        let viewForShenHeYiJian = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 25))
-//        viewForShenHeYiJian.backgroundColor = UIColor.blueColor()
-//        bkView.addSubview(viewForShenHeYiJian)
-        
-        
-        
         label.textColor = UIColor.greenColor()
         label.backgroundColor = UIColor.blueColor()
         
