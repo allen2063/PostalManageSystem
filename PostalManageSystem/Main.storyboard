@@ -1604,6 +1604,9 @@
                                 <size key="value" width="320" height="1561"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="ZU5-i8-zma" id="xQv-vW-M7s"/>
+                        </connections>
                     </scrollView>
                     <navigationItem key="navigationItem" title="申请变更网点" id="iQg-Ut-X53"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -2625,6 +2628,9 @@
                                 <size key="value" width="320" height="1670"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="Yl0-yq-5Qa" id="Xbs-QN-ynM"/>
+                        </connections>
                     </scrollView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1670"/>
@@ -2914,6 +2920,9 @@
                                 <size key="value" width="320" height="740"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="Eej-cW-HkP" id="KzB-bH-F1d"/>
+                        </connections>
                     </scrollView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="740"/>

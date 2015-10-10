@@ -126,6 +126,49 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
     @IBOutlet var tap1: UITapGestureRecognizer!
     @IBOutlet weak var commitBtn: UIButton!
     
+    let bkView = UIView(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.size.height - 95, width: UIScreen.mainScreen().bounds.size.width, height: 70))
+    let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 30))
+    let btmOnBkView = UIButton(frame: CGRect(x: 0, y: 30, width: UIScreen.mainScreen().bounds.size.width, height: 40))
+    
+    
+    var flag = 0
+    func shenHeYiJianBtnAction() {
+        label.textColor = UIColor.greenColor()
+        label.backgroundColor = UIColor.blueColor()
+        
+        //        label.hidden = true
+        
+        if flag == 0 {
+            btmOnBkView.setTitle("隐藏审核状态", forState: .Normal)
+            flag = 1
+            print("\(flag)")
+            label.text = app.applyAddDic.valueForKey("sppl") as? String
+            label.textAlignment = .Center
+            //            viewForShenHeYiJian.addSubview(label)
+            //            label.hidden = false
+            bkView.addSubview(label)
+            //            print("\(flag)\(label)")
+        } else if flag == 1
+        {
+            btmOnBkView.setTitle("查看审核状态", forState: .Normal)
+            flag = 0
+            //            label.hidden = true
+            //            print("\(flag)\(label.superview)")
+            label.removeFromSuperview()
+            
+        }
+    }
+    
+    //    var i = 0
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        //        print("QQQQQQQQQQQQQQQQQQQQQQQQ\(++i)")
+        //        bkView.backgroundColor = UIColor.redColor()
+        bkView.frame.origin.y = (self.view as! UIScrollView).contentOffset.y + 500
+        //        print("\(bkView.bounds.origin.y)")
+    }
+    
+    
      override func viewDidLoad() {
         super.viewDidLoad()
         if app.ServerData == 0 {
@@ -159,6 +202,19 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
         
         if app.ServerData == 1 {
             
+            let stateValueFromServer = app.applyPauseDic.valueForKey("state") as! Int
+            print(stateValueFromServer)
+            if stateValueFromServer == 1 || stateValueFromServer == 2 || stateValueFromServer == 3 {
+                //                bkView.backgroundColor = UIColor.redColor()
+                //                let btmOnBkView = UIButton(frame: CGRect(x: 10, y: 30, width: 150, height: 30))
+                btmOnBkView.backgroundColor = UIColor.redColor()
+                btmOnBkView.setTitle("查看审核状态", forState: .Normal)
+                btmOnBkView.addTarget(self, action:Selector("shenHeYiJianBtnAction") , forControlEvents: .TouchUpInside)
+                self.view.addSubview(bkView)
+                bkView.addSubview(btmOnBkView)
+            }
+
+            
             changSuoMingCheng.enabled = false
             shangJiDanWei.enabled = false
             
@@ -189,6 +245,20 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
         }
         
         if app.ServerData == 2 {
+            
+            let stateValueFromServer = app.applyPauseDic.valueForKey("state") as! Int
+            print(stateValueFromServer)
+            if stateValueFromServer == 1 || stateValueFromServer == 2 || stateValueFromServer == 3 {
+                //                bkView.backgroundColor = UIColor.redColor()
+                //                let btmOnBkView = UIButton(frame: CGRect(x: 10, y: 30, width: 150, height: 30))
+                btmOnBkView.backgroundColor = UIColor.redColor()
+                btmOnBkView.setTitle("查看审核状态", forState: .Normal)
+                btmOnBkView.addTarget(self, action:Selector("shenHeYiJianBtnAction") , forControlEvents: .TouchUpInside)
+                self.view.addSubview(bkView)
+                bkView.addSubview(btmOnBkView)
+            }
+
+            
             changSuoMingCheng.enabled = true
             shangJiDanWei.enabled = true
             

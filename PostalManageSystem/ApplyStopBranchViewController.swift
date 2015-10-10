@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
+class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UIScrollViewDelegate {
     //停止或限制办理普遍和特殊服务申请
     var infoOfYzyycstbhybyzpbfwywhtsfwywdsq = InfoOfYzyycstbhybyzpbfwywhtsfwywdsq()
     
@@ -447,6 +447,48 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
     @IBOutlet var tap2: UITapGestureRecognizer!
     @IBOutlet weak var commitBtn: UIButton!
 
+    let bkView = UIView(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.size.height - 95, width: UIScreen.mainScreen().bounds.size.width, height: 70))
+    let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 30))
+    let btmOnBkView = UIButton(frame: CGRect(x: 0, y: 30, width: UIScreen.mainScreen().bounds.size.width, height: 40))
+    
+    
+    var flag = 0
+    func shenHeYiJianBtnAction() {
+        label.textColor = UIColor.greenColor()
+        label.backgroundColor = UIColor.blueColor()
+        
+        //        label.hidden = true
+        
+        if flag == 0 {
+            btmOnBkView.setTitle("隐藏审核状态", forState: .Normal)
+            flag = 1
+            print("\(flag)")
+            label.text = app.applyAddDic.valueForKey("sppl") as? String
+            label.textAlignment = .Center
+            //            viewForShenHeYiJian.addSubview(label)
+            //            label.hidden = false
+            bkView.addSubview(label)
+            //            print("\(flag)\(label)")
+        } else if flag == 1
+        {
+            btmOnBkView.setTitle("查看审核状态", forState: .Normal)
+            flag = 0
+            //            label.hidden = true
+            //            print("\(flag)\(label.superview)")
+            label.removeFromSuperview()
+            
+        }
+    }
+    
+    //    var i = 0
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        //        print("QQQQQQQQQQQQQQQQQQQQQQQQ\(++i)")
+        //        bkView.backgroundColor = UIColor.redColor()
+        bkView.frame.origin.y = (self.view as! UIScrollView).contentOffset.y + 500
+        //        print("\(bkView.bounds.origin.y)")
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -504,6 +546,21 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         }
         
         if app.ServerData == 1 {
+            
+            let stateValueFromServer1 = app.applyStopDic.valueForKey("info1")?.valueForKey("state") as? Int
+            let stateValueFromServer2 = app.applyStopDic.valueForKey("info1")?.valueForKey("state") as? Int
+            print(stateValueFromServer1)
+            if stateValueFromServer1 == 1 || stateValueFromServer1 == 2 || stateValueFromServer1 == 3 || stateValueFromServer2 == 1 || stateValueFromServer2 == 2 || stateValueFromServer2 == 3 {
+                //                bkView.backgroundColor = UIColor.redColor()
+                //                let btmOnBkView = UIButton(frame: CGRect(x: 10, y: 30, width: 150, height: 30))
+                btmOnBkView.backgroundColor = UIColor.redColor()
+                btmOnBkView.setTitle("查看审核状态", forState: .Normal)
+                btmOnBkView.addTarget(self, action:Selector("shenHeYiJianBtnAction") , forControlEvents: .TouchUpInside)
+                self.view.addSubview(bkView)
+                bkView.addSubview(btmOnBkView)
+            }
+
+            
             fenGongSi.enabled = false
             yingYeChangSuoMingCheng.enabled = false
             beiShenQingDanWeiMingCheng.enabled = false
@@ -568,6 +625,20 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate {
         }
         
         if app.ServerData == 2 {
+            
+            let stateValueFromServer1 = app.applyStopDic.valueForKey("info1")?.valueForKey("state") as? Int
+            let stateValueFromServer2 = app.applyStopDic.valueForKey("info1")?.valueForKey("state") as? Int
+            print(stateValueFromServer1)
+            if stateValueFromServer1 == 1 || stateValueFromServer1 == 2 || stateValueFromServer1 == 3 || stateValueFromServer2 == 1 || stateValueFromServer2 == 2 || stateValueFromServer2 == 3 {
+                //                bkView.backgroundColor = UIColor.redColor()
+                //                let btmOnBkView = UIButton(frame: CGRect(x: 10, y: 30, width: 150, height: 30))
+                btmOnBkView.backgroundColor = UIColor.redColor()
+                btmOnBkView.setTitle("查看审核状态", forState: .Normal)
+                btmOnBkView.addTarget(self, action:Selector("shenHeYiJianBtnAction") , forControlEvents: .TouchUpInside)
+                self.view.addSubview(bkView)
+                bkView.addSubview(btmOnBkView)
+            }
+            
 //            app.ServerData = 0
             print("\(app.applyStopDic)")
             let dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
