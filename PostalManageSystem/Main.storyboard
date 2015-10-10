@@ -5086,7 +5086,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="申请新增网点" id="nXP-Zf-ADM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="1180"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                             </imageView>
@@ -5615,7 +5615,7 @@
                         <animations/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
-                                <size key="value" width="320" height="1180"/>
+                                <size key="value" width="320" height="1250"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
@@ -5723,7 +5723,7 @@
         <image name="暂限办理业务" width="320" height="875"/>
         <image name="用户信息修改" width="320" height="504"/>
         <image name="申请恢复业务" width="320" height="740"/>
-        <image name="申请新增网点" width="320" height="1180"/>
+        <image name="申请新增网点" width="320" height="1300"/>
         <image name="申请网点信息变更" width="320" height="1550"/>
         <image name="申请网点就近迁址" width="320" height="1750"/>
         <image name="限制办理业务" width="319" height="1670"/>
