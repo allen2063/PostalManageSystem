@@ -689,8 +689,10 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         } else {
             
             print("邮政编码不符合要求")
-            youBian.attributedPlaceholder = NSAttributedString(string: "不符要求"
-                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+//            youBian.attributedPlaceholder = NSAttributedString(string: "不符要求"
+//                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            youBian.text = "不符要求"
+            youBian.textColor = UIColor.redColor()
         }
 
 
@@ -721,8 +723,10 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         } else {
             
             print("联系电话不符合要求")
-            lianXiDianHua.attributedPlaceholder = NSAttributedString(string: "不符要求"
-                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+//            lianXiDianHua.attributedPlaceholder = NSAttributedString(string: "不符要求"
+//                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            lianXiDianHua.text = "不符要求"
+            lianXiDianHua.textColor = UIColor.redColor()
         }
         
         if kaiYeShiJian.text != "" {
@@ -742,8 +746,10 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         } else {
             
             print("建筑面积不符合要求")
-            jianZhuMianJi.attributedPlaceholder = NSAttributedString(string: "不符要求"
-                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+//            jianZhuMianJi.attributedPlaceholder = NSAttributedString(string: "不符要求"
+//                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            jianZhuMianJi.text = "不符要求"
+            jianZhuMianJi.textColor = UIColor.redColor()
         }
         
         if yingYeShiJianZhouJi.text != "" {
@@ -850,8 +856,10 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         } else {
             
             print("服务半径不符合要求")
-            fuWuBanJing.attributedPlaceholder = NSAttributedString(string: "不符要求"
-                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+//            fuWuBanJing.attributedPlaceholder = NSAttributedString(string: "不符要求"
+//                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            fuWuBanJing.text = "不符要求"
+            fuWuBanJing.textColor = UIColor.redColor()
         }
        
         let isMatchFuWuRenKou = rxFuWuRenKou.isMatch(fuWuRenKou.text)
@@ -861,8 +869,10 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         } else {
             
             print("服务人口不符合要求")
-            fuWuRenKou.attributedPlaceholder = NSAttributedString(string: "不符要求"
-                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+//            fuWuRenKou.attributedPlaceholder = NSAttributedString(string: "不符要求"
+//                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            fuWuRenKou.text = "不符要求"
+            fuWuRenKou.textColor = UIColor.redColor()
         }
         
         

@@ -5201,7 +5201,7 @@
                                     <outlet property="delegate" destination="ypJ-vn-x5I" id="Cqa-9p-xTV"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮编" textAlignment="center" minimumFontSize="17" id="gTj-Fy-ruE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="6位数字，例XXXXXX" textAlignment="center" minimumFontSize="17" id="gTj-Fy-ruE">
                                 <rect key="frame" x="87" y="278" width="225" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
@@ -5231,7 +5231,7 @@
                                     <outlet property="delegate" destination="ypJ-vn-x5I" id="PSe-TF-YGQ"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="联系电话" textAlignment="center" minimumFontSize="17" id="ShU-4p-pK0">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="区号-号码或11位手机号" textAlignment="center" minimumFontSize="17" id="ShU-4p-pK0">
                                 <rect key="frame" x="87" y="392" width="225" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
