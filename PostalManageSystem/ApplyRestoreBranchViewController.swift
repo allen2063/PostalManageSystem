@@ -10,6 +10,8 @@ import UIKit
 
 class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
 
+    var rxYouBian = NSRegularExpression.rx("[1-9]\\d{5}(?!\\d)", ignoreCase:true)
+    var rxLianXiDianHua = NSRegularExpression.rx("((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)", ignoreCase:true)
     
     @IBOutlet weak var qiYeMingCheng: UITextField!
     @IBOutlet weak var yingYeChangSUoMingCheng: UITextField!
@@ -255,48 +257,154 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
     @IBOutlet weak var commitBtn: UIButton!
     @IBAction func commit(sender: AnyObject) {
         print("-------------------提交--------------------------")
+       var  COMMIT_OK = 0
         let infoOfHfblyzpbhtsfwywbgb = InfoOfHfblyzpbhtsfwywbgb()
-        infoOfHfblyzpbhtsfwywbgb.yzyycsmc = qiYeMingCheng.text
+
+        if qiYeMingCheng.text != "" {
+            COMMIT_OK += 1
+           infoOfHfblyzpbhtsfwywbgb.yzyycsmc = qiYeMingCheng.text
+        } else if (qiYeMingCheng.text == "")
+        {
+            
+            qiYeMingCheng.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+
+        if ((XinJian.selected || YouZhengHuiDui.selected || MangRenDuWu.selected || YinShuaPin.selected || BaoGuo.selected || LieShiBaoGuo.selected || GuoJiaGuiDingBaoKanDeFaXing.selected || YiWuBingXinHan.selected) == false) {
+            let alertView = UIAlertView(title: "须选择业务范围", message:  "业务范围不能为空", delegate: self, cancelButtonTitle: "返回编辑")
+            alertView.show()
+        } else {
+            COMMIT_OK += 1
+            if XinJian.selected {
+                infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += "xj"
+            }
+            if YouZhengHuiDui.selected {
+                infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",yzhd"
+            }
+            if MangRenDuWu.selected {
+                infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",mrdw"
+            }
+            if YinShuaPin.selected {
+                infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",ysp"
+            }
+            if BaoGuo.selected {
+                infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",bgs"
+            }
+            if LieShiBaoGuo.selected {
+                infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",gmlsyw"
+            }
+            if GuoJiaGuiDingBaoKanDeFaXing.selected {
+                infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",gjgdbkdfx"
+            }
+            if YiWuBingXinHan.selected {
+                infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",ywbpcxh"
+            }
+        }
+        
+    
+        if yingYeChangSUoMingCheng.text != "" {
+            COMMIT_OK += 1
+              infoOfHfblyzpbhtsfwywbgb.tzhzyzblywqyhyycsmc = yingYeChangSUoMingCheng.text
+        } else if (yingYeChangSUoMingCheng.text == "")
+        {
+            
+            yingYeChangSUoMingCheng.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
         
         
-        if XinJian.selected {
-            infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += "xj"
-        }
-        if YouZhengHuiDui.selected {
-            infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",yzhd"
-        }
-        if MangRenDuWu.selected {
-            infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",mrdw"
-        }
-        if YinShuaPin.selected {
-            infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",ysp"
-        }
-        if BaoGuo.selected {
-            infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",bgs"
-        }
-        if LieShiBaoGuo.selected {
-            infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",gmlsyw"
-        }
-        if GuoJiaGuiDingBaoKanDeFaXing.selected {
-            infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",gjgdbkdfx"
-        }
-        if YiWuBingXinHan.selected {
-            infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",ywbpcxh"
+        
+      
+        if diZhi.text != "" {
+            COMMIT_OK += 1
+              infoOfHfblyzpbhtsfwywbgb.dz = diZhi.text
+        } else if (diZhi.text == "")
+        {
+            
+            diZhi.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
-        infoOfHfblyzpbhtsfwywbgb.tzhzyzblywqyhyycsmc = yingYeChangSUoMingCheng.text
-        infoOfHfblyzpbhtsfwywbgb.dz = diZhi.text
-        infoOfHfblyzpbhtsfwywbgb.yzbm = youBian.text
-        infoOfHfblyzpbhtsfwywbgb.lxrxm = lianXIRenXIngMing.text
-        infoOfHfblyzpbhtsfwywbgb.lxdh = lianXiDianHua.text
-        infoOfHfblyzpbhtsfwywbgb.hfbldsj = huiFuBanLiShiJian.text
-        infoOfHfblyzpbhtsfwywbgb.qtxysmdsx = qiTaShuoMingShiXiang.text
+        
+        let isMatchYouBian = rxYouBian.isMatch(youBian.text)
+        if isMatchYouBian {
+            COMMIT_OK += 1
+            infoOfHfblyzpbhtsfwywbgb.yzbm = youBian.text
+        } else {
+            
+            print("邮政编码不符合要求")
+            //            youBian.attributedPlaceholder = NSAttributedString(string: "不符要求"
+            //                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            youBian.text = "不符要求"
+            youBian.textColor = UIColor.redColor()
+        }
         
         
-        app.network .sendFormToServerWithInterface("Hfyw", andUser: app.userData, andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb), andExtraInfo: nil)
+        if lianXIRenXIngMing.text != "" {
+            COMMIT_OK += 1
+            infoOfHfblyzpbhtsfwywbgb.lxrxm = lianXIRenXIngMing.text
+        } else if (lianXIRenXIngMing.text == "")
+        {
+            
+            lianXIRenXIngMing.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
         
-        print("\(infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx)")
-        print("\(ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb))")
+        
+        
+       
+        let isMatchLianXiDianHua = rxLianXiDianHua.isMatch(lianXiDianHua.text)
+        if isMatchLianXiDianHua {
+            COMMIT_OK += 1
+             infoOfHfblyzpbhtsfwywbgb.lxdh = lianXiDianHua.text
+        } else {
+            
+            print("联系电话不符合要求")
+            //            lianXiDianHua.attributedPlaceholder = NSAttributedString(string: "不符要求"
+            //                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            lianXiDianHua.text = "不符要求"
+            lianXiDianHua.textColor = UIColor.redColor()
+        }
+        
+        
+        
+       
+        if huiFuBanLiShiJian.text != "" {
+            COMMIT_OK += 1
+             infoOfHfblyzpbhtsfwywbgb.hfbldsj = huiFuBanLiShiJian.text
+        } else if (huiFuBanLiShiJian.text == "")
+        {
+            
+            huiFuBanLiShiJian.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        
+        
+       
+        if qiTaShuoMingShiXiang.text != "" {
+            COMMIT_OK += 1
+             infoOfHfblyzpbhtsfwywbgb.qtxysmdsx = qiTaShuoMingShiXiang.text
+        } else if (qiTaShuoMingShiXiang.text == "")
+        {
+            
+            qiTaShuoMingShiXiang.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        
+        app.network.sendFormToServerWithInterface("Hfyw", andUser: app.userData, andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb), andExtraInfo: nil)
+        
+        print("\(COMMIT_OK)", terminator: "\n")
+        
+        
+        if (COMMIT_OK == 9) {
+            let alertView = UIAlertView(title: "提交成功", message:  "", delegate: self, cancelButtonTitle: "完成")
+            alertView.show()
+            print("\(ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb))")
+        } else if (COMMIT_OK != 9) {
+            print("提交失败!!!!!!!!!!!!!!!!!!!!!!!!")
+        }
         
     }
     
