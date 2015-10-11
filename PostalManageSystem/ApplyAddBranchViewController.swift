@@ -10,6 +10,15 @@ import UIKit
 
 class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UITextFieldDelegate, UIScrollViewDelegate {
     
+    let COMMIT_OK = 1
+    var rxJingWeiDu = NSRegularExpression.rx("^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$", ignoreCase:true)
+    var rxYouBian = NSRegularExpression.rx("[1-9]\\d{5}(?!\\d)", ignoreCase:true)
+    var rxLianXiDianHua = NSRegularExpression.rx("((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)", ignoreCase:true)
+    var rxJianZhuMianJi = NSRegularExpression.rx("^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$", ignoreCase:true)
+    var rxFuWuRenKou = NSRegularExpression.rx("^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$", ignoreCase:true)
+    var rxFuWuBanJing = NSRegularExpression.rx("^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$", ignoreCase:true)
+    
+    
     @IBOutlet weak var chooseShiXiang: UILabel!
     @IBOutlet weak var chooseJingYingFangShi: UILabel!
     @IBOutlet weak var chooseFangWuChangQuan: UILabel!
@@ -516,6 +525,7 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     
     @IBAction func commit(sender: AnyObject) {
         let infoOfYzqyszyzyycsdjb = InfoOfYzqyszyzyycsdjb()
+        
         if (chooseShiXiang.text == "设置邮政普遍服务营业场所")  {
             infoOfYzqyszyzyycsdjb.sx = "szyzpbfwyycs"
         }
@@ -565,17 +575,65 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         infoOfYzqyszyzyycsdjb.csdz_xqs = xian.text
         infoOfYzqyszyzyycsdjb.csdz_jx = jieDao.text
         infoOfYzqyszyzyycsdjb.csdz_h = menPaiHao.text
-        infoOfYzqyszyzyycsdjb.csdz_jd = jingDu.text
-        infoOfYzqyszyzyycsdjb.csdz_wd = weiDu.text
         
-        infoOfYzqyszyzyycsdjb.yzbm = youBian.text
+        let isMatchJingDu = rxJingWeiDu.isMatch(jingDu.text)
+        if isMatchJingDu {
+            infoOfYzqyszyzyycsdjb.csdz_jd = jingDu.text
+            infoOfYzqyszyzyycsdjb.csdz_wd = weiDu.text
+        } else {
+            let alertView = UIAlertView(title: "经度不符合要求", message:  "最大值:27.366667 \n 最小值:26.183333", delegate: self, cancelButtonTitle: "返回编辑")
+            alertView.show()
+            print("经纬度不符合要求")
+            jingDu.attributedPlaceholder = NSAttributedString(string: "不符要求"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        let isMatchWeiDu = rxJingWeiDu.isMatch(weiDu.text)
+        if isMatchWeiDu {
+            infoOfYzqyszyzyycsdjb.csdz_wd = weiDu.text
+        } else {
+            let alertView = UIAlertView(title: "纬度不符合要求", message:  "最大值:107.283333 \n 最小值:106.116667", delegate: self, cancelButtonTitle: "返回编辑")
+            alertView.show()
+            print("经纬度不符合要求")
+            weiDu.attributedPlaceholder = NSAttributedString(string: "不符要求"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        let isMatchYouBian = rxYouBian.isMatch(youBian.text)
+        if isMatchYouBian {
+            infoOfYzqyszyzyycsdjb.yzbm = youBian.text
+        } else {
+            print("邮政编码不符合要求")
+            youBian.attributedPlaceholder = NSAttributedString(string: "不符要求"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+
+        
+  
         infoOfYzqyszyzyycsdjb.sjdw = shangJiDanWei.text
         infoOfYzqyszyzyycsdjb.yycsfzr = cangSuoFuZeRen.text
-        infoOfYzqyszyzyycsdjb.lxdh = lianXiDianHua.text
+        
+        let isMatchLianXiDianHua = rxLianXiDianHua.isMatch(lianXiDianHua.text)
+        if isMatchLianXiDianHua {
+           infoOfYzqyszyzyycsdjb.lxdh = lianXiDianHua.text
+        } else {
+            print("联系电话不符合要求")
+            lianXiDianHua.attributedPlaceholder = NSAttributedString(string: "不符要求"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
         
         infoOfYzqyszyzyycsdjb.kysj = kaiYeShiJian.text
 
-        infoOfYzqyszyzyycsdjb.jzmj = jianZhuMianJi.text
+        let isMatchJianZhuMianJi = rxJianZhuMianJi.isMatch(jianZhuMianJi.text)
+        if isMatchJianZhuMianJi {
+            infoOfYzqyszyzyycsdjb.jzmj = jianZhuMianJi.text
+        } else {
+            print("建筑面积不符合要求")
+            jianZhuMianJi.attributedPlaceholder = NSAttributedString(string: "不符要求"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
         infoOfYzqyszyzyycsdjb.zyyr_ks = yingYeShiJianZhouJi.text
         infoOfYzqyszyzyycsdjb.zyyr_js = yingYeShiJianZhiZhouJi.text
         infoOfYzqyszyzyycsdjb.ryysj_ks = yingYeShiJianJiDian.text
@@ -590,8 +648,24 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         infoOfYzqyszyzyycsdjb.ztdts = zhouTouDiTianShu.text
         infoOfYzqyszyzyycsdjb.rtdpc = riTouDiPinCi.text
         
-        infoOfYzqyszyzyycsdjb.fwbj = fuWuBanJing.text
-        infoOfYzqyszyzyycsdjb.fwrk = fuWuRenKou.text
+      
+        let isMatchFuWuBanJing = rxFuWuBanJing.isMatch(fuWuBanJing.text)
+        if isMatchFuWuBanJing {
+              infoOfYzqyszyzyycsdjb.fwbj = fuWuBanJing.text
+        } else {
+            print("服务半径不符合要求")
+            fuWuBanJing.attributedPlaceholder = NSAttributedString(string: "不符要求"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+       
+        let isMatchFuWuRenKou = rxFuWuRenKou.isMatch(fuWuRenKou.text)
+        if isMatchFuWuRenKou {
+             infoOfYzqyszyzyycsdjb.fwrk = fuWuRenKou.text
+        } else {
+            print("服务人口不符合要求")
+            fuWuRenKou.attributedPlaceholder = NSAttributedString(string: "不符要求"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
         
         if XinJian.selected {
             infoOfYzqyszyzyycsdjb.ywfw += "xj"

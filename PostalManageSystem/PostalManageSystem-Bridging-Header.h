@@ -5,3 +5,4 @@
 #import "ClassToJSON.h"
 #import "AppDelegate.h"
 #import "UploadPicViewController.h"
+#import "RegExCategories.h"
