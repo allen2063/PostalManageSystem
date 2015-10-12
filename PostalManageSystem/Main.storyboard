@@ -3020,6 +3020,7 @@
                                         </state>
                                         <connections>
                                             <action selector="commitInChangeUserInfo:" destination="Zjh-kC-fIU" eventType="touchUpInside" id="2He-RD-6Db"/>
+                                            <action selector="commitInChangeUserPassword:" destination="Zjh-kC-fIU" eventType="touchUpInside" id="vom-iW-gHI"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -3035,7 +3036,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="变更事项" textAlignment="center" minimumFontSize="17" id="89w-QU-mol">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="账号" textAlignment="center" minimumFontSize="17" id="89w-QU-mol">
                                         <rect key="frame" x="96" y="13" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3045,7 +3046,7 @@
                                             <outlet property="delegate" destination="Zjh-kC-fIU" id="VDM-gx-VmV"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="场所名称" textAlignment="center" minimumFontSize="17" id="jdx-RE-FhH">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="center" minimumFontSize="17" id="jdx-RE-FhH">
                                         <rect key="frame" x="96" y="51" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3055,7 +3056,7 @@
                                             <outlet property="delegate" destination="Zjh-kC-fIU" id="ZEu-KC-pao"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="登记编号" textAlignment="center" minimumFontSize="17" id="az2-gZ-ADJ">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="姓名" textAlignment="center" minimumFontSize="17" id="az2-gZ-ADJ">
                                         <rect key="frame" x="96" y="89" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3065,7 +3066,7 @@
                                             <outlet property="delegate" destination="Zjh-kC-fIU" id="1bv-VO-VKn"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="上级单位" textAlignment="center" minimumFontSize="17" id="zh1-Z8-5hR">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="地址" textAlignment="center" minimumFontSize="17" id="zh1-Z8-5hR">
                                         <rect key="frame" x="96" y="165" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3075,7 +3076,7 @@
                                             <outlet property="delegate" destination="Zjh-kC-fIU" id="X4U-cf-Ehf"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮政编码" textAlignment="center" minimumFontSize="17" id="Aen-eH-PNs">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="联系电话" textAlignment="center" minimumFontSize="17" id="Aen-eH-PNs">
                                         <rect key="frame" x="96" y="203" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3085,7 +3086,7 @@
                                             <outlet property="delegate" destination="Zjh-kC-fIU" id="ywT-kz-WGC"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="场所地址" textAlignment="center" minimumFontSize="17" id="uHo-8r-3f8">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="电子邮箱" textAlignment="center" minimumFontSize="17" id="uHo-8r-3f8">
                                         <rect key="frame" x="96" y="127" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3125,10 +3126,19 @@
                         <outlet property="changSuoMingChengTextField" destination="jdx-RE-FhH" id="huH-q6-aOU"/>
                         <outlet property="changePasswordView" destination="c6a-B8-xPY" id="eab-Dt-Cbb"/>
                         <outlet property="changeUserInfoView" destination="zPR-2O-wSP" id="3fy-Fh-JuJ"/>
+                        <outlet property="chongXinShuRuMiMa" destination="TRU-5q-bv4" id="tnf-qC-Uae"/>
                         <outlet property="dengJiBianHaoTextField" destination="az2-gZ-ADJ" id="NLA-1N-rf5"/>
+                        <outlet property="diZhi" destination="uHo-8r-3f8" id="Muv-cy-oKp"/>
+                        <outlet property="dianZiYouXiang" destination="Aen-eH-PNs" id="Mr4-ce-wGx"/>
+                        <outlet property="jiuMiMa" destination="zMO-by-nfh" id="qq0-rp-qj2"/>
+                        <outlet property="lianXiDianHua" destination="zh1-Z8-5hR" id="vzs-F0-rkT"/>
+                        <outlet property="miMa" destination="jdx-RE-FhH" id="orN-mN-2go"/>
                         <outlet property="segmentedControl" destination="8ZY-mI-JZA" id="Oam-G8-JnM"/>
                         <outlet property="shangJiDanWeiTextField" destination="zh1-Z8-5hR" id="CbO-Qe-Qk9"/>
+                        <outlet property="xinMiMa" destination="oS6-Rd-xGU" id="lSJ-2D-3Ki"/>
+                        <outlet property="xingMing" destination="az2-gZ-ADJ" id="E77-IU-QO9"/>
                         <outlet property="youZhengBianMaTextField" destination="Aen-eH-PNs" id="Fav-w8-m9I"/>
+                        <outlet property="zhangHao" destination="89w-QU-mol" id="VYR-Yl-XwK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zb5-nL-XGj" userLabel="First Responder" sceneMemberID="firstResponder"/>

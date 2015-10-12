@@ -381,7 +381,7 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
                 btmOnBkView.addTarget(self, action:Selector("shenHeYiJianBtnAction") , forControlEvents: .TouchUpInside)
                 self.view.addSubview(bkView)
                 bkView.addSubview(btmOnBkView)
-                bkView.backgroundColor = UIColor(red: 199/255, green: 228/255, blue: 226/255, alpha: 1)
+                
 
             }
             

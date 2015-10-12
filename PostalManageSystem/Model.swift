@@ -125,6 +125,18 @@ class ApplyResignBranch : NSObject {
     
 }
 
+class BaseUser: NSObject {
+    var userId: Int?;
+    var userName: String?;
+    var userPass: String?;
+    var address: String?;
+    var realName: String?;
+    var teleNumber: String?;
+    var mailBox: String?;
+    var userType: String?;	// web或app
+}
+
+
 /**
 *
 * @ClassName: InfoOfYzqyszyzyycsdjb

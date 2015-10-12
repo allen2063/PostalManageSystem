@@ -13,12 +13,18 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     
-    @IBOutlet weak var bianGengShiXiangTextField: UITextField!
-    @IBOutlet weak var changSuoMingChengTextField: UITextField!
-    @IBOutlet weak var dengJiBianHaoTextField: UITextField!
-    @IBOutlet weak var changSuoDiZhiTextField: UITextField!
-    @IBOutlet weak var shangJiDanWeiTextField: UITextField!
-    @IBOutlet weak var youZhengBianMaTextField: UITextField!
+    @IBOutlet weak var zhangHao: UITextField!
+    @IBOutlet weak var miMa: UITextField!
+    @IBOutlet weak var xingMing: UITextField!
+    @IBOutlet weak var diZhi: UITextField!
+    @IBOutlet weak var lianXiDianHua: UITextField!
+    @IBOutlet weak var dianZiYouXiang: UITextField!
+    
+    @IBOutlet weak var jiuMiMa: UITextField!
+    @IBOutlet weak var xinMiMa: UITextField!
+    @IBOutlet weak var chongXinShuRuMiMa: UITextField!
+    
+    
 
     @IBOutlet weak var changeUserInfoView: UIView!
     @IBOutlet weak var changePasswordView: UIView!
@@ -46,16 +52,22 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
 
     }
     
+    @IBAction func commitInChangeUserPassword(sender: AnyObject) {
+        //该方法在修改密码segment中，点击提交时触发
+        //jiuMiMa.text，xinMiMa.text，chongXinShuRuMiMa.text分别对应界面三个文本框输入的内容
+    }
+    
     @IBAction func commitInChangeUserInfo(sender: AnyObject) {
-        let userInfo: ChangeUserInfo? = ChangeUserInfo()
-        userInfo?.bianGengShiXiang = bianGengShiXiangTextField.text
-        userInfo?.changSuoMingCheng = changSuoMingChengTextField.text
-        userInfo?.dengJiBianHao = dengJiBianHaoTextField.text
-        userInfo?.changSuoDiZhi = changSuoDiZhiTextField.text
-        userInfo?.shangJiDanWei = shangJiDanWeiTextField.text
-        userInfo?.youZhengBianMa = youZhengBianMaTextField.text
-        
-//        println("\(ClassToJSON.getObjectData(userInfo))")
+        //该方法在修改用户信息segment中，点击提交时触发
+        let userInfo1: BaseUser = BaseUser()
+        userInfo1.userName = zhangHao.text
+        userInfo1.userPass = miMa.text
+        userInfo1.realName = xingMing.text
+        userInfo1.address = diZhi.text
+        userInfo1.teleNumber = lianXiDianHua.text
+        userInfo1.mailBox = dianZiYouXiang.text
+
+        print("\(ClassToJSON.getObjectData(userInfo1))")
         
         
     }
@@ -70,21 +82,4 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         segmentedControl.frame.size.height = 40
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
