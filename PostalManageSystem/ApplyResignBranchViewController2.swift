@@ -762,6 +762,8 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     }
 
     
+    @IBOutlet weak var commitBtn1: UIButton!
+    @IBOutlet weak var commitBtn2: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -902,7 +904,8 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             cheXiaoYuanYin1.enabled = true
             niCheXiaoRiQi1.enabled = true
 
-            
+            commitBtn1.hidden = false
+            commitBtn2.hidden = false
         }
         
         
@@ -910,8 +913,11 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         //------------------------------ServerData 1--------------------------------
         
         if app.ServerData == 1 {
+            
             if app.applyResignDic.count == 2 {
                 //                println("\(app.applyResignDic.description)")
+                commitBtn1.hidden = true
+//                commitBtn2.hidden = true
                 
                 shenQingDanWeiMingCheng.enabled = false
                 niCheXiaoYouZhengChangSuoMingCheng.enabled = false
@@ -1011,14 +1017,16 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 //                    initCheXiao(app.applyResignDic, segmentedControlIndex: 0)
                 //                }
             } else {
+//                commitBtn1.hidden = true
+                commitBtn2.hidden = true
                 
                 yingYeChangSuoMingCheng1.enabled = false
                 changSuoDiZhiShi1.enabled = false
                 changSuoDiZhiXian1.enabled = false
-                changSuoDiZhiJie.enabled = false
+                changSuoDiZhiJie1.enabled = false
                 changSuoDiZhiHao1.enabled = false
-                changSuoDiZhiJingDu.enabled = false
-                changSuoDiZhiWeiDu.enabled = false
+                changSuoDiZhiJingDu1.enabled = false
+                changSuoDiZhiWeiDu1.enabled = false
                 
                 fuZeRen1.enabled = false
                 lianXiDianHua1.enabled = false
@@ -1072,6 +1080,9 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         if app.ServerData == 2 {
             if app.applyResignDic.count == 2 {
 //                println("\(app.applyResignDic.description)")
+                
+                commitBtn1.hidden = false
+//                commitBtn2.hidden = true
                 
                 shenQingDanWeiMingCheng.enabled = true
                 niCheXiaoYouZhengChangSuoMingCheng.enabled = true
@@ -1184,6 +1195,8 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 //                }
             } else {
                 
+//                commitBtn1.hidden = true
+                commitBtn2.hidden = false
                 
                 yingYeChangSuoMingCheng1.enabled = true
                 changSuoDiZhiShi1.enabled = true
@@ -1533,44 +1546,138 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
 
     }
 
+    //上传图片功能
     @IBAction func uploadYIngYeZhiZhaoFuYinJian(sender: AnyObject) {
-         let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "拟撤销场所的工商营业执照复印件")
-       
-        if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-            uploadVC.providesPresentationContextTransitionStyle = true
-            uploadVC.definesPresentationContext = true
-            if #available(iOS 8.0, *) {
-                uploadVC.modalPresentationStyle = .OverCurrentContext
+        
+        if app.ServerData == 0 {
+            let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "拟撤销场所的工商营业执照复印件", andUploadKind: 1)
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
             } else {
-                // Fallback on earlier versions
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
-            self.presentViewController(uploadVC ,animated: true, completion: nil)
-        } else {
-            self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-            self.presentViewController(uploadVC ,animated: false, completion: nil)
-            self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+        }
+        
+        if app.ServerData == 1 {
+            let picValueFromDict = (app.applyResignDic.valueForKey("info1"))?.valueForKey("gsyyzzfyj")
+            
+            let uploadVC = UploadPicViewController(uploadState: false, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "拟撤销场所的工商营业执照复印件", andUploadKind: 1)
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
+
+        }
+        
+        if app.ServerData == 2 {
+            let picValueFromDict = (app.applyResignDic.valueForKey("info1"))?.valueForKey("gsyyzzfyj")
+            
+            let uploadVC = UploadPicViewController(uploadState: true, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "拟撤销场所的工商营业执照复印件", andUploadKind: 1)
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
+
         }
 
     }
     
     
     @IBAction func uploadZhengMingWenJian(sender: AnyObject) {
-        let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请拟撤销场所原因的证明文件")
         
-        if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-            uploadVC.providesPresentationContextTransitionStyle = true
-            uploadVC.definesPresentationContext = true
-            if #available(iOS 8.0, *) {
-                uploadVC.modalPresentationStyle = .OverCurrentContext
+        if app.ServerData == 0 {
+            let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请拟撤销场所原因的证明文件", andUploadKind: 1)
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
             } else {
-                // Fallback on earlier versions
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
-            self.presentViewController(uploadVC ,animated: true, completion: nil)
-        } else {
-            self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-            self.presentViewController(uploadVC ,animated: false, completion: nil)
-            self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
         }
-
+        
+        if app.ServerData == 1 {
+            let picValueFromDict = (app.applyResignDic.valueForKey("info1"))?.valueForKey("zmwj")
+            
+            let uploadVC = UploadPicViewController(uploadState: false, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "申请拟撤销场所原因的证明文件", andUploadKind: 1)
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
+        }
+        
+        if app.ServerData == 2 {
+            let picValueFromDict = (app.applyResignDic.valueForKey("info1"))?.valueForKey("zmwj")
+            
+            let uploadVC = UploadPicViewController(uploadState: true, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "申请拟撤销场所原因的证明文件", andUploadKind: 1)
+            
+            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+                uploadVC.providesPresentationContextTransitionStyle = true
+                uploadVC.definesPresentationContext = true
+                if #available(iOS 8.0, *) {
+                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                } else {
+                    // Fallback on earlier versions
+                }
+                self.presentViewController(uploadVC ,animated: true, completion: nil)
+            } else {
+                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+            }
+        }
+        
+        
     }
 }

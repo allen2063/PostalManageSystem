@@ -167,7 +167,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
             huiFuBanLiShiJian.enabled = true
             qiTaShuoMingShiXiang.enabled = true
             
-            commitBtn.enabled = true
+            commitBtn.hidden = false
         }
         
         if app.ServerData == 1 {
@@ -205,8 +205,10 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
             huiFuBanLiShiJian.enabled = false
             qiTaShuoMingShiXiang.enabled = false
             
-            commitBtn.enabled = false
-            commitBtn.setTitle("只可查看", forState: .Disabled)
+//            commitBtn.enabled = false
+//            commitBtn.setTitle("只可查看", forState: .Disabled)
+
+            commitBtn.hidden = true
             
             initHuiFu(app.applyRestoreDic)
         }
@@ -249,7 +251,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
             huiFuBanLiShiJian.enabled = true
             qiTaShuoMingShiXiang.enabled = true
             
-            commitBtn.enabled = true
+            commitBtn.hidden = false
         }
       
     }

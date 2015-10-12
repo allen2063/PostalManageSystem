@@ -360,8 +360,10 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
                 LieShiBaoGuo!.enabled = true
                 QiTa!.enabled = true
 
-            commitBtn.enabled = true
-            commitBtn.setTitle("提交", forState: .Normal)
+//            commitBtn.enabled = true
+//            commitBtn.setTitle("提交", forState: .Normal)
+            
+            commitBtn.hidden = false
         }
         
         
@@ -436,8 +438,10 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
             LieShiBaoGuo!.enabled = false
             QiTa!.enabled = false
             
-            commitBtn.enabled = false
-            commitBtn.setTitle("只可查看", forState: .Disabled)
+//            commitBtn.enabled = false
+//            commitBtn.setTitle("只可查看", forState: .Disabled)
+            
+            commitBtn.hidden = true
             
             initTianJia(app.applyAddDic)
         }
@@ -515,8 +519,10 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
             LieShiBaoGuo!.enabled = true
             QiTa!.enabled = true
             
-            commitBtn.enabled = true
-            commitBtn.setTitle("提交", forState: .Normal)
+//            commitBtn.enabled = true
+//            commitBtn.setTitle("提交", forState: .Normal)
+            
+            commitBtn.hidden = false
             
             initTianJia(app.applyAddDic)
         }

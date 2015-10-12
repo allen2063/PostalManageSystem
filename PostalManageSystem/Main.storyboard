@@ -1698,6 +1698,8 @@
                         <outlet property="chooseSuoZaiDiDian" destination="zRa-HD-bRj" id="B3u-Cv-R5r"/>
                         <outlet property="chooseSuoZaiDiDian1" destination="YIp-Is-LtW" id="U0P-1E-fpD"/>
                         <outlet property="chooseSuoZaiDiDian2" destination="yjC-aD-snU" id="qSj-ZK-xjG"/>
+                        <outlet property="commitBtn1" destination="agW-Zh-Y8J" id="P5I-eM-eZM"/>
+                        <outlet property="commitBtn2" destination="XNk-VS-HMs" id="GtO-k1-4kg"/>
                         <outlet property="dengJiBianHaoBianGengQian" destination="h4c-gC-Y1c" id="pW8-Ua-NW5"/>
                         <outlet property="jingYingFangShiBianGeng" destination="nZz-bb-Fsj" id="pak-4v-bLi"/>
                         <outlet property="jingYingShiJianBianGeng" destination="UBY-Bx-1Xp" id="Um9-M9-4cQ"/>
@@ -4407,30 +4409,6 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eHv-6s-fkZ">
-                                        <rect key="frame" x="45" y="2070" width="100" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <animations/>
-                                        <color key="backgroundColor" red="0.76339353860000003" green="0.87403446230000004" blue="0.86592318189999995" alpha="0.64000000000000001" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="取消">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XR0-RW-GPo">
-                                        <rect key="frame" x="176" y="2070" width="100" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <animations/>
-                                        <color key="backgroundColor" red="0.38823529410000002" green="0.4549019608" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="提交">
-                                            <color key="titleColor" red="0.73725490199999999" green="0.87058823529999996" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="commit:" destination="vNI-Tx-XDl" eventType="touchUpInside" id="wA8-vh-rRG"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务区域:" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bGT-eo-Rov">
                                         <rect key="frame" x="10" y="1279" width="68" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -4517,6 +4495,20 @@
                                         </state>
                                         <connections>
                                             <action selector="uploadZhengMingWenJian:" destination="vNI-Tx-XDl" eventType="touchUpInside" id="800-Vo-Wjc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XR0-RW-GPo">
+                                        <rect key="frame" x="54" y="2061" width="222" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.4549019608" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="提交">
+                                            <color key="titleColor" red="0.73725490199999999" green="0.87058823529999996" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="commit:" destination="vNI-Tx-XDl" eventType="touchUpInside" id="wA8-vh-rRG"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -5007,6 +4999,8 @@
                         <outlet property="chooseJIngYingFangShi1" destination="EQj-5R-i4e" id="0Ba-ma-Zyk"/>
                         <outlet property="chooseSuoZaiDiDian" destination="qFT-Qd-C6C" id="Bup-6F-UNr"/>
                         <outlet property="chooseSuoZaiDiDian1" destination="VtR-qp-b3i" id="H3k-lg-YFf"/>
+                        <outlet property="commitBtn1" destination="XR0-RW-GPo" id="eRR-lH-IjB"/>
+                        <outlet property="commitBtn2" destination="Q7g-bT-hp5" id="Wn4-8x-bAa"/>
                         <outlet property="fangWuChanQuan" destination="jp0-1j-Je4" id="qy2-NJ-7m0"/>
                         <outlet property="fuWuBanJing" destination="VQH-36-bTV" id="1B2-xi-oR8"/>
                         <outlet property="fuWuQuYu" destination="1HA-Nd-RWv" id="fw4-5A-2Gh"/>

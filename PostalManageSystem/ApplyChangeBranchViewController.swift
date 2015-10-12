@@ -1178,6 +1178,9 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         //        print("\(bkView.bounds.origin.y)")
     }
     
+    @IBOutlet weak var commitBtn1: UIButton!
+    @IBOutlet weak var commitBtn2: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         applyChangeBranchLocationView.hidden = true
@@ -1192,7 +1195,9 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         //------------------------------ServerData 0--------------------------------
         
         if app.ServerData == 0 {
-           
+            commitBtn1.hidden = false
+            commitBtn2.hidden = false
+            
             mingChengBianGeng.enabled = true
             jingYingShiJianBianGeng.enabled = true
             jingYingFangShiBianGeng.enabled = true
@@ -1363,6 +1368,9 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         if app.ServerData == 1 {
             if app.applyChangeDic.valueForKey("bgsx") != nil {
                 
+                commitBtn1.hidden = true
+//                commitBtn2.hidden = false
+                
                 mingChengBianGeng.enabled = false
                 jingYingShiJianBianGeng.enabled = false
                 jingYingFangShiBianGeng.enabled = false
@@ -1442,7 +1450,8 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 initBianGengXinXi(app.applyChangeDic)
             } else {
                 
-                
+//                commitBtn1.hidden = false
+                commitBtn2.hidden = true
                 //------------------------迁址控件状态变化--------------------------
                 qzqChangSuoMingCheng.enabled = false
                 qzqDengJiBianHao.enabled = false
@@ -1549,6 +1558,9 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         if app.ServerData == 2 {
             if app.applyChangeDic.valueForKey("bgsx") != nil {
                 
+                commitBtn1.hidden = false
+//                commitBtn2.hidden = false
+                
                 mingChengBianGeng.enabled = true
                 jingYingShiJianBianGeng.enabled = true
                 jingYingFangShiBianGeng.enabled = true
@@ -1620,6 +1632,9 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 
                 initBianGengXinXi(app.applyChangeDic)
             } else {
+                
+//                commitBtn1.hidden = false
+                commitBtn2.hidden = false
                 
                 //-------------------------迁址控件状态变化------------------------------
                 qzqChangSuoMingCheng.enabled = true
