@@ -22,13 +22,13 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 applyChangeBranchInfoView.hidden = false
                 applyChangeBranchLocationView.hidden = true
                 if let rootView = self.view as? UIScrollView {
-                    rootView.contentSize = CGSize(width: 320, height: 1570)
+                    rootView.contentSize = CGSize(width: 320, height: 1670)
                 }
             case 1:
                 applyChangeBranchInfoView.hidden = true
                 applyChangeBranchLocationView.hidden = false
                 if let rootView = self.view as? UIScrollView {
-                    rootView.contentSize = CGSize(width: 320, height: 1779)
+                    rootView.contentSize = CGSize(width: 320, height: 1879)
                 }
             default:
                 break;
@@ -1138,14 +1138,16 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
     @IBOutlet var tap10: UITapGestureRecognizer!
     @IBOutlet var tap11: UITapGestureRecognizer!
     
-    let bkView = UIView(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.size.height - 95, width: UIScreen.mainScreen().bounds.size.width, height: 70))
-    let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 30))
-    let btmOnBkView = UIButton(frame: CGRect(x: 0, y: 30, width: UIScreen.mainScreen().bounds.size.width, height: 40))
+    let bkView = UIView(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.size.height - 80, width: UIScreen.mainScreen().bounds.size.width, height: 80))
+    let label = UILabel(frame: CGRect(x: 45, y: 5, width: UIScreen.mainScreen().bounds.size.width - 80, height: 30))
+    let btmOnBkView = UIButton(frame: CGRect(x: 45, y: 40, width: UIScreen.mainScreen().bounds.size.width - 80, height: 30))
+
     
     var flag = 0
     func shenHeYiJianBtnAction() {
-        label.textColor = UIColor.greenColor()
-        label.backgroundColor = UIColor.blueColor()
+        label.textColor = UIColor.blackColor()
+        label.backgroundColor = UIColor(red: 199/255, green: 228/255, blue: 226/255, alpha: 1)
+
         
         //        label.hidden = true
         
@@ -1174,7 +1176,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         
         //        print("QQQQQQQQQQQQQQQQQQQQQQQQ\(++i)")
         //        bkView.backgroundColor = UIColor.redColor()
-        bkView.frame.origin.y = (self.view as! UIScrollView).contentOffset.y + 500
+        bkView.frame.origin.y = (self.view as! UIScrollView).contentOffset.y + UIScreen.mainScreen().bounds.size.height - bkView.frame.size.height
         //        print("\(bkView.bounds.origin.y)")
     }
     
@@ -1187,7 +1189,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         SegmentedControl.frame.size.height = 40
         
         if let rootView = self.view as? UIScrollView {
-            rootView.contentSize = CGSize(width: 320, height: 1561)
+            rootView.contentSize = CGSize(width: 320, height: 1670)
             print("\(self.view.debugDescription)")
             // Do any additional setup after loading the view.
         }
@@ -1749,7 +1751,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         applyChangeBranchInfoView.hidden = false
         applyChangeBranchLocationView.hidden = true
         if let rootView = self.view as? UIScrollView {
-            rootView.contentSize = CGSize(width: 320, height: 1570)
+            rootView.contentSize = CGSize(width: 320, height: 1670)
             
             let stateValueFromServer = app.applyChangeDic.valueForKey("state") as? Int
             print(stateValueFromServer)
@@ -1761,6 +1763,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 btmOnBkView.addTarget(self, action:Selector("shenHeYiJianBtnAction") , forControlEvents: .TouchUpInside)
                 self.view.addSubview(bkView)
                 bkView.addSubview(btmOnBkView)
+                bkView.backgroundColor = UIColor(red: 199/255, green: 228/255, blue: 226/255, alpha: 1)
             }
 
             
@@ -1922,7 +1925,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         applyChangeBranchInfoView.hidden = true
         applyChangeBranchLocationView.hidden = false
         if let rootView = self.view as? UIScrollView {
-            rootView.contentSize = CGSize(width: 320, height: 1779)
+            rootView.contentSize = CGSize(width: 320, height: 1879)
             
             let stateValueFromServer = app.applyChangeDic.valueForKey("state") as? Int
             print(stateValueFromServer)
@@ -1934,6 +1937,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 btmOnBkView.addTarget(self, action:Selector("shenHeYiJianBtnAction") , forControlEvents: .TouchUpInside)
                 self.view.addSubview(bkView)
                 bkView.addSubview(btmOnBkView)
+                bkView.backgroundColor = UIColor(red: 199/255, green: 228/255, blue: 226/255, alpha: 1)
             }
 
             

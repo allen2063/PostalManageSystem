@@ -126,15 +126,14 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
     @IBOutlet var tap1: UITapGestureRecognizer!
     @IBOutlet weak var commitBtn: UIButton!
     
-    let bkView = UIView(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.size.height - 95, width: UIScreen.mainScreen().bounds.size.width, height: 70))
-    let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 30))
-    let btmOnBkView = UIButton(frame: CGRect(x: 0, y: 30, width: UIScreen.mainScreen().bounds.size.width, height: 40))
-    
+    let bkView = UIView(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.size.height - 80, width: UIScreen.mainScreen().bounds.size.width, height: 80))
+    let label = UILabel(frame: CGRect(x: 45, y: 5, width: UIScreen.mainScreen().bounds.size.width - 80, height: 30))
+    let btmOnBkView = UIButton(frame: CGRect(x: 45, y: 40, width: UIScreen.mainScreen().bounds.size.width - 80, height: 30))
     
     var flag = 0
     func shenHeYiJianBtnAction() {
-        label.textColor = UIColor.greenColor()
-        label.backgroundColor = UIColor.blueColor()
+        label.textColor = UIColor.blackColor()
+        label.backgroundColor = UIColor(red: 199/255, green: 228/255, blue: 226/255, alpha: 1)
         
         //        label.hidden = true
         
@@ -164,7 +163,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
         
         //        print("QQQQQQQQQQQQQQQQQQQQQQQQ\(++i)")
         //        bkView.backgroundColor = UIColor.redColor()
-        bkView.frame.origin.y = (self.view as! UIScrollView).contentOffset.y + 500
+        bkView.frame.origin.y = (self.view as! UIScrollView).contentOffset.y + UIScreen.mainScreen().bounds.size.height - bkView.frame.size.height
         //        print("\(bkView.bounds.origin.y)")
     }
     
@@ -195,8 +194,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
             zanXianYuanYin.enabled = true
             buJiuCuoShi.enabled = true
             
-            commitBtn.enabled = true
-            commitBtn.setTitle("提交", forState: .Normal)
+            commitBtn.hidden = false
         }
         
         
@@ -212,6 +210,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
                 btmOnBkView.addTarget(self, action:Selector("shenHeYiJianBtnAction") , forControlEvents: .TouchUpInside)
                 self.view.addSubview(bkView)
                 bkView.addSubview(btmOnBkView)
+                bkView.backgroundColor = UIColor(red: 199/255, green: 228/255, blue: 226/255, alpha: 1)
             }
 
             
@@ -238,8 +237,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
             zanXianYuanYin.enabled = false
             buJiuCuoShi.enabled = false
 
-            commitBtn.enabled = false
-            commitBtn.setTitle("只可查看", forState: .Disabled)
+            commitBtn.hidden = true
             
             initZanTing(app.applyPauseDic)
         }
@@ -256,6 +254,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
                 btmOnBkView.addTarget(self, action:Selector("shenHeYiJianBtnAction") , forControlEvents: .TouchUpInside)
                 self.view.addSubview(bkView)
                 bkView.addSubview(btmOnBkView)
+                bkView.backgroundColor = UIColor(red: 199/255, green: 228/255, blue: 226/255, alpha: 1)
             }
 
             
@@ -282,8 +281,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
             zanXianYuanYin.enabled = true
             buJiuCuoShi.enabled = true
             
-            commitBtn.enabled = true
-            commitBtn.setTitle("提交", forState: .Normal)
+            commitBtn.hidden = false
             
             initZanTing(app.applyPauseDic)
         }

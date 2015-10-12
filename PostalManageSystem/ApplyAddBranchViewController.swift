@@ -284,7 +284,7 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         
 //        print("QQQQQQQQQQQQQQQQQQQQQQQQ\(++i)")
 //        bkView.backgroundColor = UIColor.redColor()
-        bkView.frame.origin.y = (self.view as! UIScrollView).contentOffset.y + 490
+        bkView.frame.origin.y = (self.view as! UIScrollView).contentOffset.y + UIScreen.mainScreen().bounds.size.height - bkView.frame.size.height
 //        print("\(bkView.bounds.origin.y)")
     }
     

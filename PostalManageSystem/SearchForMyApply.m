@@ -754,6 +754,9 @@
         if ([app.network.specialInterface isEqualToString: @"Szxwd"]) {
             app.applyAddDic = [tempDic objectForKey:@"info"];
             ApplyAddBranchViewController * applyAddBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyAddBranchVC"];
+            app.titleForCurrentPage = @"查询新增网点";
+            [applyAddBranchVC setTitle:app.titleForCurrentPage];
+            //改颜色代码
             [self.navigationController pushViewController:applyAddBranchVC animated:YES];
         }
         //申请撤销网店  有时2个info       对应一个VC  两个页面   3各表   seg0是Cxpbfwwd  2个表   seg1是Cxfpbfwwd 1个表
@@ -761,12 +764,17 @@
             if (tempDic.count == 2) {
                 app.applyResignDic = [tempDic objectForKey:@"info"];
                 ApplyResignBranchViewController2 * applyResignBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyResignBranchVC"];
+                app.titleForCurrentPage = @"查询撤销网点";
+                [applyResignBranchVC setTitle:app.titleForCurrentPage];
+                //改颜色代码
                 [self.navigationController pushViewController:applyResignBranchVC animated:YES];
             }else{
                 NSDictionary * info1Dic = [tempDic objectForKey:@"info1"];
                 NSDictionary * info2Dic = [tempDic objectForKey:@"info2"];
                 app.applyResignDic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:info1Dic,@"info1",info2Dic,@"info2", nil];
                 ApplyResignBranchViewController2 * applyResignBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyResignBranchVC"];
+                app.titleForCurrentPage = @"查询撤销网点";
+                [applyResignBranchVC setTitle:app.titleForCurrentPage];
                 [self.navigationController pushViewController:applyResignBranchVC animated:YES];
             }
         }
@@ -774,12 +782,18 @@
         else if ([app.network.specialInterface isEqualToString: @"Baxxbg"] || [app.network.specialInterface isEqualToString: @"Jjqz"]){
             app.applyChangeDic = [tempDic objectForKey:@"info"];
             ApplyChangeBranchViewController * applyChangeBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyChangeBranchVC"];
+            app.titleForCurrentPage = @"查询更改网点";
+            [applyChangeBranchVC setTitle:app.titleForCurrentPage];
+            //改颜色代码
             [self.navigationController pushViewController:applyChangeBranchVC animated:YES];
         }
         //申请暂停限业务
         else if ([app.network.specialInterface isEqualToString: @"Ztxyw"]){
             app.applyPauseDic = [tempDic objectForKey:@"info"];
             ApplyPausedViewController * applyPausedBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyPausedBranchVC"];
+            app.titleForCurrentPage = @"查询暂停网点";
+            [applyPausedBranchVC setTitle:app.titleForCurrentPage];
+            //改颜色代码
             [self.navigationController pushViewController:applyPausedBranchVC animated:YES];
         }
         //申请停限业务   2个表  两个info
@@ -788,12 +802,18 @@
             NSDictionary * info2Dic = [tempDic objectForKey:@"info2"];
             app.applyStopDic = [[NSMutableDictionary alloc]initWithObjectsAndKeys:info1Dic,@"info1",info2Dic,@"info2", nil];
             ApplyStopBranchViewController * applyStopBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyStopBranchVC"];
+            app.titleForCurrentPage = @"查询停止网点";
+            [applyStopBranchVC setTitle:app.titleForCurrentPage];
+            //改颜色代码
             [self.navigationController pushViewController:applyStopBranchVC animated:YES];
         }
         //申请恢复
         else if ([app.network.specialInterface isEqualToString: @"Hfyw"]){
                 app.applyRestoreDic = [tempDic objectForKey:@"info"];
                 ApplyRestoreBranchViewController * applyRestoreBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyRestoreBranchVC"];
+            app.titleForCurrentPage = @"查询恢复网点";
+            [applyRestoreBranchVC setTitle:app.titleForCurrentPage];
+            //改颜色代码
                 [self.navigationController pushViewController:applyRestoreBranchVC animated:YES];
         }
 
