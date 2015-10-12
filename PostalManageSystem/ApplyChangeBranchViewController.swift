@@ -1195,6 +1195,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         //------------------------------ServerData 0--------------------------------
         
         if app.ServerData == 0 {
+            SegmentedControl.enabled = true
             commitBtn1.hidden = false
             commitBtn2.hidden = false
             
@@ -1366,10 +1367,12 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         //------------------------------ServerData 1--------------------------------
         
         if app.ServerData == 1 {
+            SegmentedControl.enabled = false
+            
             if app.applyChangeDic.valueForKey("bgsx") != nil {
                 
                 commitBtn1.hidden = true
-//                commitBtn2.hidden = false
+                commitBtn2.hidden = true
                 
                 mingChengBianGeng.enabled = false
                 jingYingShiJianBianGeng.enabled = false
@@ -1450,7 +1453,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 initBianGengXinXi(app.applyChangeDic)
             } else {
                 
-//                commitBtn1.hidden = false
+                commitBtn1.hidden = true
                 commitBtn2.hidden = true
                 //------------------------迁址控件状态变化--------------------------
                 qzqChangSuoMingCheng.enabled = false
@@ -1556,6 +1559,8 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         
         //------------------------------ServerData 2--------------------------------
         if app.ServerData == 2 {
+            SegmentedControl.enabled = false
+            
             if app.applyChangeDic.valueForKey("bgsx") != nil {
                 
                 commitBtn1.hidden = false

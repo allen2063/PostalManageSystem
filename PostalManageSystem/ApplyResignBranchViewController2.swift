@@ -773,6 +773,8 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         //------------------------------ServerData 0--------------------------------
         
         if app.ServerData == 0 {
+            SegmentedControl.enabled = true
+            
             shenQingDanWeiMingCheng.enabled = true
             niCheXiaoYouZhengChangSuoMingCheng.enabled = true
             beiShenQingDanWeiMingCheng.enabled = true
@@ -913,6 +915,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         //------------------------------ServerData 1--------------------------------
         
         if app.ServerData == 1 {
+            SegmentedControl.enabled = false
             
             if app.applyResignDic.count == 2 {
                 //                println("\(app.applyResignDic.description)")
@@ -1070,14 +1073,10 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         }
         
         
-        
-        
-        
-        
-        
-        
         //------------------------------ServerData 2--------------------------------
         if app.ServerData == 2 {
+            SegmentedControl.enabled = false
+            
             if app.applyResignDic.count == 2 {
 //                println("\(app.applyResignDic.description)")
                 
