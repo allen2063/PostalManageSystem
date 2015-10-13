@@ -8,6 +8,8 @@
 
 #import "BaiduMap.h"
 #import "MyAnimatedAnnotationView.h"
+#import "GeneralTableViewCell.h"
+
 
 #define BTNHEIGHT 44
 
@@ -83,7 +85,7 @@
         [self.view addSubview:locationImgView];
         
         _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _searchBtn.frame = CGRectMake(UISCREENWIDTH - OffsetX + 45, UISCREENHEIGHT - 60, 45, BTNHEIGHT);
+        _searchBtn.frame = CGRectMake(UISCREENWIDTH - OffsetX + 44, UISCREENHEIGHT - 60, 45, BTNHEIGHT);
         _searchBtn.backgroundColor = [UIColor whiteColor];
         _searchBtn.alpha = 0.8;
         [_searchBtn.layer setMasksToBounds:YES];
@@ -119,7 +121,7 @@
         [self.view addSubview:zoomInImgView];
         
         _zoomOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _zoomOutBtn.frame = CGRectMake(UISCREENWIDTH - OffsetX + 45, UISCREENHEIGHT - 164, 45, BTNHEIGHT);
+        _zoomOutBtn.frame = CGRectMake(UISCREENWIDTH - OffsetX + 45, UISCREENHEIGHT - 163, 45, BTNHEIGHT);
         _zoomOutBtn.backgroundColor = [UIColor whiteColor];
         _zoomOutBtn.alpha = 0.8;
         [_zoomOutBtn.layer setMasksToBounds:YES];
@@ -420,10 +422,12 @@
     BMKCoordinateRegion region;
     region.center.latitude  = tempCoordinate.latitude;
     region.center.longitude = tempCoordinate.longitude;
+    region.span.latitudeDelta  = 0.5;
+    region.span.longitudeDelta = 0.5;
     #warning 根据zoom调这里
     _mapView.region = region;
     _mapView.zoomLevel = zoom;
-    NSLog(@"tempCoordinate%f %f",tempCoordinate.latitude , tempCoordinate.latitude);
+    NSLog(@"tempCoordinate%f %f %d",tempCoordinate.latitude , tempCoordinate.latitude,zoom);
 }
 
 // 根据anntation生成对应的View
@@ -561,8 +565,20 @@
         //    cell.backgroundColor = UIColorFromRGBValue(0x028e45);
         //    cell.textLabel.textColor = [UIColor yellowColor];
     }else{
-        cell.textLabel.text = [_informationDataList objectAtIndex:indexPath.row];
+        //自定义cell
+        GeneralTableViewCell * cell = [[GeneralTableViewCell alloc]init];
+        cell.frame = CGRectMake(0, 0, _informationTbaleView.frame.size.width, 63);
+        cell.titleLabel.frame = CGRectMake(15, 0, _informationTbaleView.frame.size.width-15, 63);
+        cell.titleLabel.numberOfLines = 2;
+        
+        cell.titleLabel.text = [_informationDataList objectAtIndex:indexPath.row];
+
+
+//        cell.textLabel.text = [_informationDataList objectAtIndex:indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.alpha = 0.8;
+        
+        return cell;
     }
     cell.alpha = 0.8;
 
@@ -641,6 +657,12 @@
     return headString;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == _informationTbaleView) {
+        return 63.0;
+    }else
+        return 44;
+}
 
 - (void)showTableViewWithTableView:(UITableView *)tableView{
     [self.view bringSubviewToFront:blackView];
@@ -654,7 +676,7 @@
         [self.view bringSubviewToFront:_informationTbaleView];
         _informationTbaleView.hidden = NO;
         [UIView animateWithDuration:0.3 animations:^{
-            _informationTbaleView.frame = CGRectMake(UISCREENWIDTH/10 , NAVIGATIONHEIGHT + 60, UISCREENWIDTH*4/5, 30+44*5);
+            _informationTbaleView.frame = CGRectMake(UISCREENWIDTH/10 , NAVIGATIONHEIGHT + 60, UISCREENWIDTH*4/5, 22+63*5);
             _informationTbaleView.center = self.view.center;
             blackView.alpha = 0.5;
         }];
