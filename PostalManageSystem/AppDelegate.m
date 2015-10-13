@@ -29,9 +29,10 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getXmlDate:) name:@"getXmlDate" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getXmlFilebyJson:) name:@"getXmlFilebyJson" object:nil];
 
-    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGBValue(0x028e45)];//邮政的绿色
+//    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGBValue(0x028e45)];//邮政的绿色
+    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGBValue(0xea0d0d)];//邮政的红色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    [[UINavigationBar appearance] setTintColor:[UIColor yellowColor]];    //导航栏按钮颜色
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];    //导航栏按钮颜色
     self.titleForCurrentPage = @"邮政普遍服务信息管理系统";
     self.login = NO;
     self.network = [[ConnectionAPI alloc]init];
@@ -278,9 +279,6 @@
     if ([[dic objectForKey:@"result"]isEqualToString:@"1"]) {
         NSDictionary * data = [dic objectForKey:@"data"];
         
-        
-        
-        
         //设置标题
         UILabel * titleLabel = (UILabel *)[_backgroundView viewWithTag:1];
         titleLabel.text = [data objectForKey:@"title"];
@@ -306,8 +304,8 @@
         cancelBtn.frame = CGRectMake(0, _backgroundView.frame.size.height - 40, _backgroundView.frame.size.width, 40);
         [cancelBtn addTarget:self action:@selector(cancelView) forControlEvents:UIControlEventTouchUpInside];
         [cancelBtn setTitle:@"确定" forState:UIControlStateNormal];
-        cancelBtn.backgroundColor = UIColorFromRGBValue(0x028e45);
-        [cancelBtn setTitleColor:[UIColor yellowColor]forState:UIControlStateNormal];
+        cancelBtn.backgroundColor = UIColorFromRGBValue(0xea0d0d);
+        [cancelBtn setTitleColor:[UIColor whiteColor]forState:UIControlStateNormal];
         [_backgroundView addSubview:cancelBtn];
         
 //        //设置图片内容

@@ -60,7 +60,7 @@
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-    self.titleLabel.textColor = [UIColor yellowColor];
+    self.titleLabel.textColor = [UIColor whiteColor];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.text = app.titleForCurrentPage;
     self.navigationItem.titleView = self.titleLabel;
@@ -199,16 +199,16 @@
         UIButton * loginBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         loginBtn.frame = CGRectMake(0, 0, UISCREENWIDTH*2/3, 40);
         loginBtn.center = CGPointMake(UISCREENWIDTH/2, NAVIGATIONHEIGHT+150);
-        loginBtn.backgroundColor = UIColorFromRGBValue(0x028e45);
+        loginBtn.backgroundColor = UIColorFromRGBValue(0xea0d0d);
         //绘制圆角矩形按钮和边线
         [loginBtn.layer setMasksToBounds:YES];
         [loginBtn.layer setCornerRadius:10.0]; //设置矩形四个圆角半径
         [loginBtn.layer setBorderWidth:1.0];   //边框宽度
         CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-        CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 2/255.0, 142/255.0, 69/255.0, 1 });
+        CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 234/255.0, 13/255.0, 13/255.0, 1 });
         [loginBtn.layer setBorderColor:colorref];//边框颜色
         [loginBtn setTitle:@"登陆" forState:UIControlStateNormal] ;
-        [loginBtn setTitleColor:[UIColor yellowColor]forState:UIControlStateNormal];
+        [loginBtn setTitleColor:[UIColor whiteColor]forState:UIControlStateNormal];
         loginBtn.titleLabel.font = [UIFont systemFontOfSize:17];
         loginBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
@@ -382,8 +382,8 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     }
     cell.textLabel.text = [self.dataList objectAtIndex:indexPath.row];
-    cell.backgroundColor = UIColorFromRGBValue(0x028e45);
-    cell.textLabel.textColor = [UIColor yellowColor];
+    cell.backgroundColor = UIColorFromRGBValue(0xea0d0d);
+    cell.textLabel.textColor = [UIColor whiteColor];
     cell.alpha = 0.8;
     return cell;
 }

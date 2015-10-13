@@ -175,7 +175,7 @@
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
     _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.font = [UIFont boldSystemFontOfSize:20];
-    _titleLabel.textColor = [UIColor yellowColor];
+    _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.text = app.titleForCurrentPage;
     self.navigationItem.titleView = _titleLabel;
