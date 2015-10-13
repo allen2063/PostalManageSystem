@@ -2980,7 +2980,7 @@
                                         <animations/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入旧密码" textAlignment="center" minimumFontSize="17" id="zMO-by-nfh">
-                                        <rect key="frame" x="86" y="51" width="216" height="30"/>
+                                        <rect key="frame" x="86" y="14" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2990,7 +2990,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入新密码" textAlignment="center" minimumFontSize="17" id="oS6-Rd-xGU">
-                                        <rect key="frame" x="86" y="95" width="216" height="30"/>
+                                        <rect key="frame" x="86" y="58" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -3000,7 +3000,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请重复输入密码" textAlignment="center" minimumFontSize="17" id="TRU-5q-bv4">
-                                        <rect key="frame" x="95" y="141" width="207" height="30"/>
+                                        <rect key="frame" x="95" y="104" width="207" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -3010,7 +3010,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vs3-bo-RGt">
-                                        <rect key="frame" x="14" y="199" width="294" height="30"/>
+                                        <rect key="frame" x="14" y="150" width="294" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.8862745098" green="0.0" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -3121,23 +3121,17 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
-                        <outlet property="bianGengShiXiangTextField" destination="89w-QU-mol" id="t0O-x7-b8s"/>
-                        <outlet property="changSuoDiZhiTextField" destination="uHo-8r-3f8" id="dfo-aZ-sNy"/>
-                        <outlet property="changSuoMingChengTextField" destination="jdx-RE-FhH" id="huH-q6-aOU"/>
-                        <outlet property="changePasswordView" destination="c6a-B8-xPY" id="eab-Dt-Cbb"/>
-                        <outlet property="changeUserInfoView" destination="zPR-2O-wSP" id="3fy-Fh-JuJ"/>
+                        <outlet property="changePasswordView" destination="c6a-B8-xPY" id="fS9-6Y-Fcs"/>
+                        <outlet property="changeUserInfoView" destination="zPR-2O-wSP" id="oxi-WI-ngB"/>
                         <outlet property="chongXinShuRuMiMa" destination="TRU-5q-bv4" id="tnf-qC-Uae"/>
-                        <outlet property="dengJiBianHaoTextField" destination="az2-gZ-ADJ" id="NLA-1N-rf5"/>
                         <outlet property="diZhi" destination="uHo-8r-3f8" id="Muv-cy-oKp"/>
                         <outlet property="dianZiYouXiang" destination="Aen-eH-PNs" id="Mr4-ce-wGx"/>
                         <outlet property="jiuMiMa" destination="zMO-by-nfh" id="qq0-rp-qj2"/>
                         <outlet property="lianXiDianHua" destination="zh1-Z8-5hR" id="vzs-F0-rkT"/>
                         <outlet property="miMa" destination="jdx-RE-FhH" id="orN-mN-2go"/>
                         <outlet property="segmentedControl" destination="8ZY-mI-JZA" id="Oam-G8-JnM"/>
-                        <outlet property="shangJiDanWeiTextField" destination="zh1-Z8-5hR" id="CbO-Qe-Qk9"/>
                         <outlet property="xinMiMa" destination="oS6-Rd-xGU" id="lSJ-2D-3Ki"/>
                         <outlet property="xingMing" destination="az2-gZ-ADJ" id="E77-IU-QO9"/>
-                        <outlet property="youZhengBianMaTextField" destination="Aen-eH-PNs" id="Fav-w8-m9I"/>
                         <outlet property="zhangHao" destination="89w-QU-mol" id="VYR-Yl-XwK"/>
                     </connections>
                 </viewController>
