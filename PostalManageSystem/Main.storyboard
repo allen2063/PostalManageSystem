@@ -1679,7 +1679,7 @@
                         <outlet property="bgqShangJiDanWei" destination="t0K-Zb-LyX" id="J26-UD-X6C"/>
                         <outlet property="bgqYingYeShiJianJiDian" destination="8mw-b2-LEe" id="392-8G-Y3D"/>
                         <outlet property="bgqYingYeShiJianZhiJiDian" destination="ici-Pt-sZY" id="ly9-z3-DfT"/>
-                        <outlet property="bgqYingYeShiJianZhiZhouJi" destination="8mw-b2-LEe" id="Yvc-D7-0tE"/>
+                        <outlet property="bgqYingYeShiJianZhiZhouJi" destination="Yqo-Y6-3Dg" id="YuT-bx-gu3"/>
                         <outlet property="bgqYingYeShiJianZhouJi" destination="4Ki-2s-Z05" id="62j-LM-Adp"/>
                         <outlet property="bgqYouZhengBianMa" destination="TwO-T3-t2y" id="bAg-n5-LH7"/>
                         <outlet property="bgqZhouTouDiPinCi" destination="fNn-31-Nam" id="az1-RU-dIP"/>
