@@ -126,7 +126,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
             //            print("\(flag)\(label)")
         } else if flag == 1
         {
-            btmOnBkView.setTitle("查看审核状态", forState: .Normal)
+            btmOnBkView.setTitle("查看审核意见", forState: .Normal)
             flag = 0
             //            label.hidden = true
             //            print("\(flag)\(label.superview)")
@@ -178,7 +178,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
                 //                bkView.backgroundColor = UIColor.redColor()
                 //                let btmOnBkView = UIButton(frame: CGRect(x: 10, y: 30, width: 150, height: 30))
                 btmOnBkView.backgroundColor = UIColor.redColor()
-                btmOnBkView.setTitle("查看审核状态", forState: .Normal)
+                btmOnBkView.setTitle("查看审核意见", forState: .Normal)
                 btmOnBkView.addTarget(self, action:Selector("shenHeYiJianBtnAction") , forControlEvents: .TouchUpInside)
                 self.view.addSubview(bkView)
                 bkView.addSubview(btmOnBkView)
@@ -222,7 +222,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
                 //                bkView.backgroundColor = UIColor.redColor()
                 //                let btmOnBkView = UIButton(frame: CGRect(x: 10, y: 30, width: 150, height: 30))
                 btmOnBkView.backgroundColor = UIColor.redColor()
-                btmOnBkView.setTitle("查看审核状态", forState: .Normal)
+                btmOnBkView.setTitle("查看审核意见", forState: .Normal)
                 btmOnBkView.addTarget(self, action:Selector("shenHeYiJianBtnAction") , forControlEvents: .TouchUpInside)
                 self.view.addSubview(bkView)
                 bkView.addSubview(btmOnBkView)
