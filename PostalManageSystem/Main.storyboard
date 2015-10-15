@@ -2984,7 +2984,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                         <connections>
                                             <outlet property="delegate" destination="Zjh-kC-fIU" id="lKA-qu-ZgJ"/>
                                         </connections>
@@ -2994,7 +2994,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                         <connections>
                                             <outlet property="delegate" destination="Zjh-kC-fIU" id="JOA-4Y-EVk"/>
                                         </connections>
@@ -3004,7 +3004,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                         <connections>
                                             <outlet property="delegate" destination="Zjh-kC-fIU" id="Jsp-oS-Obg"/>
                                         </connections>
@@ -3019,7 +3019,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="commitInChangeUserInfo:" destination="Zjh-kC-fIU" eventType="touchUpInside" id="2He-RD-6Db"/>
                                             <action selector="commitInChangeUserPassword:" destination="Zjh-kC-fIU" eventType="touchUpInside" id="vom-iW-gHI"/>
                                         </connections>
                                     </button>
@@ -3229,11 +3228,11 @@
                                             <outlet property="delegate" destination="vNI-Tx-XDl" id="ps9-mV-4N2"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="市" textAlignment="center" minimumFontSize="17" id="cXA-s4-Tap">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="市" textAlignment="center" minimumFontSize="11" id="cXA-s4-Tap">
                                         <rect key="frame" x="138" y="349" width="41" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <outlet property="delegate" destination="vNI-Tx-XDl" id="nsw-F9-Xha"/>
@@ -3278,7 +3277,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮政场所名称" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="GlL-cC-gA8">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮政场所名称" textAlignment="center" minimumFontSize="17" id="GlL-cC-gA8">
                                         <rect key="frame" x="124" y="691" width="188" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3320,7 +3319,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="市" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="mxP-gk-QiU">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="市" textAlignment="center" minimumFontSize="17" id="mxP-gk-QiU">
                                         <rect key="frame" x="91" y="767" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3331,7 +3330,7 @@
                                             <outlet property="delegate" destination="vNI-Tx-XDl" id="6cj-gU-0ES"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="县/区" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="kbR-Dm-aeb">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="县/区" textAlignment="center" minimumFontSize="17" id="kbR-Dm-aeb">
                                         <rect key="frame" x="186" y="767" width="61" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3342,7 +3341,7 @@
                                             <outlet property="delegate" destination="vNI-Tx-XDl" id="Nrl-Or-51s"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="街(乡)" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="uHI-hO-UqW">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="街(乡)" textAlignment="center" minimumFontSize="17" id="uHI-hO-UqW">
                                         <rect key="frame" x="10" y="805" width="168" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3353,7 +3352,7 @@
                                             <outlet property="delegate" destination="vNI-Tx-XDl" id="d5f-vR-6XS"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="号" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="Jsy-tG-o7n">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="号" textAlignment="center" minimumFontSize="17" id="Jsy-tG-o7n">
                                         <rect key="frame" x="226" y="805" width="58" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3414,7 +3413,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="经度" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="yUI-i1-Fh8">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="经度" textAlignment="center" minimumFontSize="17" id="yUI-i1-Fh8">
                                         <rect key="frame" x="54" y="843" width="99" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3425,7 +3424,7 @@
                                             <outlet property="delegate" destination="vNI-Tx-XDl" id="9NI-R4-kfF"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="纬度" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="W3G-l5-7UQ">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="纬度" textAlignment="center" minimumFontSize="17" id="W3G-l5-7UQ">
                                         <rect key="frame" x="200" y="843" width="114" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3445,7 +3444,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮政编码" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="ged-hr-s8l">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮政编码" textAlignment="center" minimumFontSize="17" id="ged-hr-s8l">
                                         <rect key="frame" x="91" y="881" width="223" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3465,7 +3464,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="上级单位" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="r8c-vr-OQ6">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="上级单位" textAlignment="center" minimumFontSize="17" id="r8c-vr-OQ6">
                                         <rect key="frame" x="91" y="919" width="136" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3507,7 +3506,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="营业场所负责人" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="9M2-jC-LpY">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="营业场所负责人" textAlignment="center" minimumFontSize="17" id="9M2-jC-LpY">
                                         <rect key="frame" x="126" y="995" width="188" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3536,7 +3535,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="服务半径" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="VQH-36-bTV">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="服务半径" textAlignment="center" minimumFontSize="17" id="VQH-36-bTV">
                                         <rect key="frame" x="86" y="1033" width="182" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3547,7 +3546,7 @@
                                             <outlet property="delegate" destination="vNI-Tx-XDl" id="cph-ho-a8t"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="服务人口" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="MrC-iH-P2F">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="服务人口" textAlignment="center" minimumFontSize="17" id="MrC-iH-P2F">
                                         <rect key="frame" x="86" y="1067" width="182" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3576,7 +3575,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="开业时间" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="wi7-kP-I9S">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="开业时间" textAlignment="center" minimumFontSize="17" id="wi7-kP-I9S">
                                         <rect key="frame" x="87" y="1138" width="227" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3618,7 +3617,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="建筑面积" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="4St-Fv-m0J">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="建筑面积" textAlignment="center" minimumFontSize="17" id="4St-Fv-m0J">
                                         <rect key="frame" x="86" y="1214" width="178" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3662,7 +3661,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="周几" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="pyc-h9-pBu">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="周几" textAlignment="center" minimumFontSize="17" id="pyc-h9-pBu">
                                         <rect key="frame" x="105" y="1285" width="79" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3673,7 +3672,7 @@
                                             <outlet property="delegate" destination="vNI-Tx-XDl" id="ycu-hl-cW6"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="周几" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="3IH-li-tvj">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="周几" textAlignment="center" minimumFontSize="17" id="3IH-li-tvj">
                                         <rect key="frame" x="220" y="1285" width="94" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3693,7 +3692,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="几点" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="35p-Kt-6on">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="几点" textAlignment="center" minimumFontSize="17" id="35p-Kt-6on">
                                         <rect key="frame" x="95" y="1323" width="79" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3712,7 +3711,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="几点" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="ALO-XL-bl2">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="几点" textAlignment="center" minimumFontSize="17" id="ALO-XL-bl2">
                                         <rect key="frame" x="209" y="1323" width="79" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3747,7 +3746,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="周投递频次" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="qdO-3q-mXK">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="周投递频次" textAlignment="center" minimumFontSize="17" id="qdO-3q-mXK">
                                         <rect key="frame" x="147" y="1437" width="167" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3774,7 +3773,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="开箱频次" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="dKY-4F-t8b">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="开箱频次" textAlignment="center" minimumFontSize="17" id="dKY-4F-t8b">
                                         <rect key="frame" x="135" y="1361" width="179" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -3785,7 +3784,7 @@
                                             <outlet property="delegate" destination="vNI-Tx-XDl" id="cbs-Gr-Gkh"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="日投递频次" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="TXl-fr-gdx">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="日投递频次" textAlignment="center" minimumFontSize="17" id="TXl-fr-gdx">
                                         <rect key="frame" x="147" y="1399" width="167" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -4409,7 +4408,7 @@
                                             <outlet property="delegate" destination="vNI-Tx-XDl" id="0dx-WE-EDS"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="联系电话" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="gpd-ph-rKi">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="联系电话" textAlignment="center" minimumFontSize="17" id="gpd-ph-rKi">
                                         <rect key="frame" x="138" y="957" width="176" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
@@ -4444,11 +4443,11 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="县" textAlignment="center" minimumFontSize="17" id="Jxy-qM-NpA">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="县" textAlignment="center" minimumFontSize="11" id="Jxy-qM-NpA">
                                         <rect key="frame" x="195" y="349" width="52" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <outlet property="delegate" destination="vNI-Tx-XDl" id="r9E-h1-m8n"/>

@@ -58,24 +58,34 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
     @IBAction func commitInChangeUserPassword(sender: AnyObject) {
         //该方法在修改密码segment中，点击提交时触发
         //jiuMiMa.text，xinMiMa.text，chongXinShuRuMiMa.text分别对应界面三个文本框输入的内容
-        let userPassword = NSMutableDictionary(dictionary: app.userData)
+        let userInfo = NSMutableDictionary(dictionary: app.userData)
         
         let oldPassFromServer = app.userData.valueForKey("userPass") as? String
-        if (ConnectionAPI.md5(jiuMiMa.text) == oldPassFromServer) {
-            let alert = UIAlertView(title: "请重新输入新密码", message: "新旧密码不能一样", delegate: nil, cancelButtonTitle: "返回重新编辑")
-            alert.show()
-        } else if (jiuMiMa.text == "") || (xinMiMa.text == "") || (chongXinShuRuMiMa.text == ""){
+        print(ConnectionAPI.md5(jiuMiMa.text))
+        print(oldPassFromServer)
+        
+        if (jiuMiMa.text == "") || (xinMiMa.text == "") || (chongXinShuRuMiMa.text == ""){
             jiuMiMa.attributedPlaceholder = NSAttributedString(string: "不为空"
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             xinMiMa.attributedPlaceholder = NSAttributedString(string: "不为空"
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
             chongXinShuRuMiMa.attributedPlaceholder = NSAttributedString(string: "不为空"
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
-        } else {
-            let alert = UIAlertView(title: "设置新密码成功", message: "", delegate: nil, cancelButtonTitle: "完成")
+        } else if (ConnectionAPI.md5(jiuMiMa.text) != oldPassFromServer) {
+            let alert = UIAlertView(title: "旧密码错误", message: "请输入正确的旧密码", delegate: nil, cancelButtonTitle: "返回重新编辑")
             alert.show()
-            userInfo.userPass = xinMiMa.text
+        } else if (jiuMiMa.text == xinMiMa.text) {
+            let alert = UIAlertView(title: "新旧密码相同", message: "请重新输入密码", delegate: nil, cancelButtonTitle: "返回重新编辑")
+            alert.show()
+        } else if xinMiMa.text != chongXinShuRuMiMa.text {
+            let alert = UIAlertView(title: "重新输入密码错误", message: "重新输入的密码与新设置的密码不一致", delegate: nil, cancelButtonTitle: "返回重新编辑")
+            alert.show()
+        } else {
+//            let alert = UIAlertView(title: "设置新密码成功", message: "", delegate: nil, cancelButtonTitle: "完成")
+//            alert.show()
+            userInfo.setValue(xinMiMa.text!, forKey: "realName")
             print(ClassToJSON.getObjectData(userInfo))
+            app.network.editUserInfoWithBaseUser(userInfo as [NSObject : AnyObject])
         }
     }
     
