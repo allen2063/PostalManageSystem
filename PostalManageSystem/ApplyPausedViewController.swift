@@ -170,6 +170,15 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
     
      override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
+        //        labelNav.backgroundColor = UIColor.clearColor
+        labelNav.font = UIFont.boldSystemFontOfSize(20)
+        labelNav.textColor = UIColor.whiteColor()
+        labelNav.textAlignment = .Center
+        labelNav.text = "申请暂停/暂限办理业务"
+        self.navigationItem.titleView = labelNav
+        
         if app.ServerData == 0 {
             changSuoMingCheng.enabled = true
             shangJiDanWei.enabled = true

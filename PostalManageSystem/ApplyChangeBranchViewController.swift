@@ -1842,6 +1842,15 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
+        //        labelNav.backgroundColor = UIColor.clearColor
+        labelNav.font = UIFont.boldSystemFontOfSize(20)
+        labelNav.textColor = UIColor.whiteColor()
+        labelNav.textAlignment = .Center
+        labelNav.text = "申请变更网点"
+        self.navigationItem.titleView = labelNav
+        
         applyChangeBranchLocationView.hidden = true
         SegmentedControl.frame.size.height = 40
         

@@ -247,26 +247,27 @@
     switch (btn.tag) {
             
         case 1:
-            app.titleForCurrentPage = @"用户信息修改";
-            //            bsdt = [bsdt init];
-            [changeUserInfoVC setTitle:app.titleForCurrentPage];
+//            app.titleForCurrentPage = @"用户信息修改";
+//            //            bsdt = [bsdt init];
+//            [changeUserInfoVC setTitle:app.titleForCurrentPage];
             //在以下每一个case中改变各viewController的title的颜色
             //改颜色代码
             
             [self.navigationController pushViewController:changeUserInfoVC animated:YES];
+            
             break;
         case 2:
-            app.titleForCurrentPage = @"申请设置网点";
-            //            bsdt = [bsdt init];
-            [applyAddBranchVC setTitle:app.titleForCurrentPage];
+//            app.titleForCurrentPage = @"申请设置网点";
+//            //            bsdt = [bsdt init];
+//            [applyAddBranchVC setTitle:app.titleForCurrentPage];
             //改颜色代码
             [self.navigationController pushViewController:applyAddBranchVC animated:YES];
 //            printf("%@", applyAddBranchVC.chooseShiXiang);
             break;
         case 3:
         {
-            app.titleForCurrentPage = @"申请撤销网点";
-            [applyResignBranchVC setTitle:app.titleForCurrentPage];
+//            app.titleForCurrentPage = @"申请撤销网点";
+//            [applyResignBranchVC setTitle:app.titleForCurrentPage];
             //改颜色代码
             [self.navigationController pushViewController:applyResignBranchVC animated:YES];
         }
@@ -274,8 +275,8 @@
             
         case 4:
         {
-            app.titleForCurrentPage = @"申请变更网点";
-            [applyChangeBranchVC setTitle:app.titleForCurrentPage];
+//            app.titleForCurrentPage = @"申请变更网点";
+//            [applyChangeBranchVC setTitle:app.titleForCurrentPage];
             //改颜色代码
             [self.navigationController pushViewController:applyChangeBranchVC animated:YES];
         }
@@ -283,8 +284,8 @@
             
         case 5:
         {
-            app.titleForCurrentPage = @"申请暂停/暂限办理业务";
-            [applyPausedBranchVC setTitle:app.titleForCurrentPage];
+//            app.titleForCurrentPage = @"申请暂停/暂限办理业务";
+//            [applyPausedBranchVC setTitle:app.titleForCurrentPage];
             //改颜色代码
             [self.navigationController pushViewController:applyPausedBranchVC animated:YES];
         }
@@ -292,16 +293,16 @@
             
         case 6:
         {
-            app.titleForCurrentPage = @"申请停止/限制办理业务";
-            [applyStopBranchVC setTitle:app.titleForCurrentPage];
+//            app.titleForCurrentPage = @"申请停止/限制办理业务";
+//            [applyStopBranchVC setTitle:app.titleForCurrentPage];
             //改颜色代码
             [self.navigationController pushViewController:applyStopBranchVC animated:YES];
         }
             break;
         case 7:
         {
-            app.titleForCurrentPage = @"申请恢复办理业务";
-            [applyRestoreBranchVC setTitle:app.titleForCurrentPage];
+//            app.titleForCurrentPage = @"申请恢复办理业务";
+//            [applyRestoreBranchVC setTitle:app.titleForCurrentPage];
             //改颜色代码
             [self.navigationController pushViewController:applyRestoreBranchVC animated:YES];
         }

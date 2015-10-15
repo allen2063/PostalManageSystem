@@ -100,6 +100,15 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
+//        labelNav.backgroundColor = UIColor.clearColor
+        labelNav.font = UIFont.boldSystemFontOfSize(20)
+        labelNav.textColor = UIColor.whiteColor()
+        labelNav.textAlignment = .Center
+        labelNav.text = "用户信息修改"
+        
+        self.navigationItem.titleView = labelNav
+        
         segmentedControl.frame.size.height = 40
         
         zhangHao.text = app.userData.valueForKey("userName") as? String

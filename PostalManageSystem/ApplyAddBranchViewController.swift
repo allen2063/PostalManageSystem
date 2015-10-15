@@ -10,6 +10,10 @@ import UIKit
 
 class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UITextFieldDelegate, UIScrollViewDelegate {
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.textColor = UIColor.blackColor()
+    }
+    
     var rxJingWeiDu = NSRegularExpression.rx("^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$", ignoreCase:true)
     var rxYouBian = NSRegularExpression.rx("[1-9]\\d{5}(?!\\d)", ignoreCase:true)
     var rxLianXiDianHua = NSRegularExpression.rx("((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)", ignoreCase:true)
@@ -303,6 +307,15 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
+        //        labelNav.backgroundColor = UIColor.clearColor
+        labelNav.font = UIFont.boldSystemFontOfSize(20)
+        labelNav.textColor = UIColor.whiteColor()
+        labelNav.textAlignment = .Center
+        labelNav.text = "申请设置网点"
+        
+        self.navigationItem.titleView = labelNav
         //-----------------------------ServerData 0-----------------------------
         
         if app.ServerData == 0 {

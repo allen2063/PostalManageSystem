@@ -230,106 +230,317 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
     }
 
     @IBAction func commit(sender: AnyObject) {
-        
+        var COMMIT_OK = 0
 //        println("\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj)")
         print("\(uploadVCForPicURL1?.picUrl)")
         
+        if fenGongSi.text != "" {
+            COMMIT_OK += 1
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zgyzjtgsttfgsmc = fenGongSi.text
+        } else if (fenGongSi.text == "")
+        {
+            
+            fenGongSi.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
         
-        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zgyzjtgsttfgsmc = fenGongSi.text
+        if yingYeChangSuoMingCheng.text != "" {
+            COMMIT_OK += 1
         infoOfYzyycstbhybyzpbfwywhtsfwywdsq.btyzyycsmc = yingYeChangSuoMingCheng.text
-        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.syzgljmc = beiShenQingDanWeiMingCheng.text
+        } else if (yingYeChangSuoMingCheng.text == "")
+        {
+            
+            yingYeChangSuoMingCheng.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
         
-        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.sqtzblhzxzywdzyyy = shenQingZhuYaoYuanYin.text
-        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzblsj_n = niTingBanShiJianNian.text
-        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzblsj_y = niTingBanShiJianYue.text
+        if beiShenQingDanWeiMingCheng.text != "" {
+            COMMIT_OK += 1
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.syzgljmc = beiShenQingDanWeiMingCheng.text
+        } else if (beiShenQingDanWeiMingCheng.text == "")
+        {
+            
+            beiShenQingDanWeiMingCheng.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        if shenQingZhuYaoYuanYin.text != "" {
+            COMMIT_OK += 1
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.sqtzblhzxzywdzyyy = shenQingZhuYaoYuanYin.text
+        } else if (shenQingZhuYaoYuanYin.text == "")
+        {
+            
+            shenQingZhuYaoYuanYin.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        if niTingBanShiJianNian.text != "" {
+            COMMIT_OK += 1
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzblsj_n = niTingBanShiJianNian.text
+        } else if (niTingBanShiJianNian.text == "")
+        {
+            
+            niTingBanShiJianNian.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        if niTingBanShiJianYue.text != "" {
+            COMMIT_OK += 1
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzblsj_y = niTingBanShiJianYue.text
+        } else if (niTingBanShiJianYue.text == "")
+        {
+            
+            niTingBanShiJianYue.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
         
         //infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbl = chooseBanLiShiXiangLabel.text
-        if (chooseBanLiShiXiangLabel.text == "停止办理")  {
-            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbl = "tzbl"
+        if  chooseBanLiShiXiangLabel.text == "未选择" {
+            chooseBanLiShiXiangLabel.textColor = UIColor.redColor()
+        } else {
+            
+            COMMIT_OK += 1
+            if (chooseBanLiShiXiangLabel.text == "停止办理")  {
+                infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbl = "tzbl"
+            }
+            if(chooseBanLiShiXiangLabel.text == "限制办理") {
+                infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbl = "xzbl"
+            }
         }
-        if(chooseBanLiShiXiangLabel.text == "限制办理") {
-            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbl = "xzbl"
+        
+        if changSuoDiZhiShi.text != "" {
+            COMMIT_OK += 1
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbldz_s =  changSuoDiZhiShi.text
+        } else if (changSuoDiZhiShi.text == "")
+        {
+            
+            changSuoDiZhiShi.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
+
+        if changSuoDiZhiXian.text != "" {
+            COMMIT_OK += 1
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbldz_xqs = changSuoDiZhiXian.text
+        } else if (changSuoDiZhiXian.text == "")
+        {
+            
+            changSuoDiZhiXian.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+
+        if changSuoDiJie.text != "" {
+            COMMIT_OK += 1
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbldz_jx = changSuoDiJie.text
+        } else if (changSuoDiJie.text == "")
+        {
+            
+            changSuoDiJie.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+
         
-        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbldz_s =  changSuoDiZhiShi.text
-        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbldz_xqs = changSuoDiZhiXian.text
-        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbldz_jx = changSuoDiJie.text
-        
-        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzyycsmc = yingYeChangSuoMingCheng.text
-        
+        if yingYeChangSuoMingCheng.text != "" {
+            COMMIT_OK += 1
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzyycsmc = yingYeChangSuoMingCheng.text
+        } else if (yingYeChangSuoMingCheng.text == "")
+        {
+            
+            yingYeChangSuoMingCheng.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+
         //infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzpbfwywhtsfwyw = chooseTingXianBanLiYeWuZhongLei.text
-        if (chooseTingXianBanLiYeWuZhongLei.text == "邮政普遍服务业务")  {
-            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzpbfwywhtsfwyw = "yzpbfwyw"
-        }
-        if (chooseTingXianBanLiYeWuZhongLei.text == "特殊服务业务") {
-            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzpbfwywhtsfwyw = "tsfwyw"
+        if  chooseTingXianBanLiYeWuZhongLei.text == "未选择" {
+            chooseTingXianBanLiYeWuZhongLei.textColor = UIColor.redColor()
+        } else {
+            
+            COMMIT_OK += 1
+            if (chooseTingXianBanLiYeWuZhongLei.text == "邮政普遍服务业务")  {
+                infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzpbfwywhtsfwyw = "yzpbfwyw"
+            }
+            if (chooseTingXianBanLiYeWuZhongLei.text == "特殊服务业务") {
+                infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzpbfwywhtsfwyw = "tsfwyw"
+            }
         }
         
-        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.jtywmc = jiTiYeWuMingCheng.text
-        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.xzblywdjtqx = yeWuJuTiQingXing.text
-        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.cqdbjcs = niCaiQuBuJiuCuoShi.text
-        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzpbfwztsp = zongTiFuWuShuiPing.text
+        if jiTiYeWuMingCheng.text != "" {
+            COMMIT_OK += 1
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.jtywmc = jiTiYeWuMingCheng.text
+        } else if (jiTiYeWuMingCheng.text == "")
+        {
+            
+            jiTiYeWuMingCheng.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+
+        if yeWuJuTiQingXing.text != "" {
+            COMMIT_OK += 1
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.xzblywdjtqx = yeWuJuTiQingXing.text
+        } else if (yeWuJuTiQingXing.text == "")
+        {
+            
+            yeWuJuTiQingXing.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        if niCaiQuBuJiuCuoShi.text != "" {
+            COMMIT_OK += 1
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.cqdbjcs = niCaiQuBuJiuCuoShi.text
+        } else if (niCaiQuBuJiuCuoShi.text == "")
+        {
+            
+            niCaiQuBuJiuCuoShi.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        if zongTiFuWuShuiPing.text != "" {
+            COMMIT_OK += 1
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzpbfwztsp = zongTiFuWuShuiPing.text
+        } else if (zongTiFuWuShuiPing.text == "")
+        {
+            
+            zongTiFuWuShuiPing.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
         
         //拟停止或限制办理业务营业场所基本情况表
-       infoOfNthybywyzyycsjbqkb.yzyycsmc = yingYeChangSuoMingCheng1.text
-        infoOfNthybywyzyycsjbqkb.sjdw = shangJiDanWei1.text
-        
-        if XinJian.selected {
-             infoOfNthybywyzyycsjbqkb.tzblywsx += "xj"
-        }
-        if YouZhengHuiDui.selected {
-            infoOfNthybywyzyycsjbqkb.tzblywsx += ",yzhd"
-        }
-        if MangRenDuWu.selected {
-            infoOfNthybywyzyycsjbqkb.tzblywsx += ",mrdw"
-        }
-        if YinShuaPin.selected {
-            infoOfNthybywyzyycsjbqkb.tzblywsx += ",ysp"
-        }
-        if BaoGuo.selected {
-           infoOfNthybywyzyycsjbqkb.tzblywsx += ",bgs"
-        }
-        if LieShiBaoGuo.selected {
-            infoOfNthybywyzyycsjbqkb.tzblywsx += ",gmlsyw"
-        }
-        if GuoJiaGuiDingBaoKanDeFaXing.selected {
-            infoOfNthybywyzyycsjbqkb.tzblywsx += ",gjgdbkdfx"
-        }
-        if YiWuBingXinHan.selected {
-            infoOfNthybywyzyycsjbqkb.tzblywsx += ",ywbpcxh"
+        if yingYeChangSuoMingCheng1.text != "" {
+            COMMIT_OK += 1
+            infoOfNthybywyzyycsjbqkb.yzyycsmc = yingYeChangSuoMingCheng1.text
+        } else if (yingYeChangSuoMingCheng1.text == "")
+        {
+            
+            yingYeChangSuoMingCheng1.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
+        if shangJiDanWei1.text != "" {
+            COMMIT_OK += 1
+            infoOfNthybywyzyycsjbqkb.sjdw = shangJiDanWei1.text
+        } else if (shangJiDanWei1.text == "")
+        {
+            
+            shangJiDanWei1.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        if ((XinJian.selected || YouZhengHuiDui.selected || MangRenDuWu.selected || YinShuaPin.selected || BaoGuo.selected || LieShiBaoGuo.selected || GuoJiaGuiDingBaoKanDeFaXing.selected || YiWuBingXinHan.selected) == false)
+        {
+            
+            let alertView = UIAlertView(title: "须选择停止办理业务事项", message:  "停止办理业务事项不能为空", delegate: self, cancelButtonTitle: "返回编辑")
+            alertView.show()
+        } else {
+            COMMIT_OK += 1
+            if XinJian.selected {
+                infoOfNthybywyzyycsjbqkb.tzblywsx += "xj"
+            }
+            if YouZhengHuiDui.selected {
+                infoOfNthybywyzyycsjbqkb.tzblywsx += ",yzhd"
+            }
+            if MangRenDuWu.selected {
+                infoOfNthybywyzyycsjbqkb.tzblywsx += ",mrdw"
+            }
+            if YinShuaPin.selected {
+                infoOfNthybywyzyycsjbqkb.tzblywsx += ",ysp"
+            }
+            if BaoGuo.selected {
+                infoOfNthybywyzyycsjbqkb.tzblywsx += ",bgs"
+            }
+            if LieShiBaoGuo.selected {
+                infoOfNthybywyzyycsjbqkb.tzblywsx += ",gmlsyw"
+            }
+            if GuoJiaGuiDingBaoKanDeFaXing.selected {
+                infoOfNthybywyzyycsjbqkb.tzblywsx += ",gjgdbkdfx"
+            }
+            if YiWuBingXinHan.selected {
+                infoOfNthybywyzyycsjbqkb.tzblywsx += ",ywbpcxh"
+            }
+        }
+    
         //---------------
-        if XinJian1.selected {
-            infoOfNthybywyzyycsjbqkb.xzblywsx += "xj"
-        }
-        if YouZhengHuiDui1.selected {
-            infoOfNthybywyzyycsjbqkb.xzblywsx += ",yzhd"
-        }
-        if MangRenDuWu1.selected {
-            infoOfNthybywyzyycsjbqkb.xzblywsx += ",mrdw"
-        }
-        if YinShuaPin1.selected {
-            infoOfNthybywyzyycsjbqkb.xzblywsx += ",ysp"
-        }
-        if BaoGuo1.selected {
-            infoOfNthybywyzyycsjbqkb.xzblywsx += ",bgs"
-        }
-        if LieShiBaoGuo1.selected {
-            infoOfNthybywyzyycsjbqkb.xzblywsx += ",lsywbg"
-        }
-        if GuoJiaGuiDingBaoKanDeFaXing1.selected {
-            infoOfNthybywyzyycsjbqkb.xzblywsx += ",gjgdbkdfx"
-        }
-        if YiWuBingXinHan1.selected {
-            infoOfNthybywyzyycsjbqkb.xzblywsx += ",ywbpcxh"
+        if ((XinJian1.selected || YouZhengHuiDui1.selected || MangRenDuWu1.selected || YinShuaPin1.selected || BaoGuo1.selected || LieShiBaoGuo1.selected || GuoJiaGuiDingBaoKanDeFaXing1.selected || YiWuBingXinHan1.selected) == false)
+        {
+            
+            let alertView = UIAlertView(title: "须选择限制办理业务事项", message:  "限制办理业务事项不能为空", delegate: self, cancelButtonTitle: "返回编辑")
+            alertView.show()
+        } else {
+            COMMIT_OK += 1
+            if XinJian1.selected {
+                infoOfNthybywyzyycsjbqkb.xzblywsx += "xj"
+            }
+            if YouZhengHuiDui1.selected {
+                infoOfNthybywyzyycsjbqkb.xzblywsx += ",yzhd"
+            }
+            if MangRenDuWu1.selected {
+                infoOfNthybywyzyycsjbqkb.xzblywsx += ",mrdw"
+            }
+            if YinShuaPin1.selected {
+                infoOfNthybywyzyycsjbqkb.xzblywsx += ",ysp"
+            }
+            if BaoGuo1.selected {
+                infoOfNthybywyzyycsjbqkb.xzblywsx += ",bgs"
+            }
+            if LieShiBaoGuo1.selected {
+                infoOfNthybywyzyycsjbqkb.xzblywsx += ",lsywbg"
+            }
+            if GuoJiaGuiDingBaoKanDeFaXing1.selected {
+                infoOfNthybywyzyycsjbqkb.xzblywsx += ",gjgdbkdfx"
+            }
+            if YiWuBingXinHan1.selected {
+                infoOfNthybywyzyycsjbqkb.xzblywsx += ",ywbpcxh"
+            }
         }
         
-        infoOfNthybywyzyycsjbqkb.tbhxbywyzyycsdfwqy = fuWuQuYu1.text
-        infoOfNthybywyzyycsjbqkb.dz = diZhi1.text
-        infoOfNthybywyzyycsjbqkb.yzbm = youBian1.text
-        infoOfNthybywyzyycsjbqkb.lxrxm = lianXiRenXingMing1.text
-        infoOfNthybywyzyycsjbqkb.lxdh = lianXiDianHua1.text
+        if fuWuQuYu1.text != "" {
+            COMMIT_OK += 1
+            infoOfNthybywyzyycsjbqkb.tbhxbywyzyycsdfwqy = fuWuQuYu1.text
+        } else if (fuWuQuYu1.text == "")
+        {
+            
+            fuWuQuYu1.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+
+        if diZhi1.text != "" {
+            COMMIT_OK += 1
+            infoOfNthybywyzyycsjbqkb.dz = diZhi1.text
+        } else if (diZhi1.text == "")
+        {
+            
+            diZhi1.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        if youBian1.text != "" {
+            COMMIT_OK += 1
+            infoOfNthybywyzyycsjbqkb.yzbm = youBian1.text
+        } else if (youBian1.text == "")
+        {
+            
+            youBian1.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        if lianXiRenXingMing1.text != "" {
+            COMMIT_OK += 1
+            infoOfNthybywyzyycsjbqkb.lxrxm = lianXiRenXingMing1.text
+        } else if (lianXiRenXingMing1.text == "")
+        {
+            
+            lianXiRenXingMing1.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
+        if lianXiDianHua1.text != "" {
+            COMMIT_OK += 1
+            infoOfNthybywyzyycsjbqkb.lxdh = lianXiDianHua1.text
+        } else if (lianXiDianHua1.text == "")
+        {
+            
+            lianXiDianHua1.attributedPlaceholder = NSAttributedString(string: "不为空"
+                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        }
+        
         
 //        println("\(ClassToJSON.getObjectData(infoOfYzyycstbhybyzpbfwywhtsfwywdsq))")
 //        
@@ -340,11 +551,11 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
     func initTingZhi(dict: NSDictionary) {
         fenGongSi.text = dict.valueForKey("zgyzjtgsttfgsmc") as? String
         yingYeChangSuoMingCheng.text = dict.valueForKey("btyzyycsmc") as? String
-        beiShenQingDanWeiMingCheng.text = dict.valueForKey("syzgljmc") as! String
+        beiShenQingDanWeiMingCheng.text = dict.valueForKey("syzgljmc") as? String
         
-        shenQingZhuYaoYuanYin.text = dict.valueForKey("sqtzblhzxzywdzyyy") as! String
-        niTingBanShiJianNian.text = dict.valueForKey("tzblhzxzblsj_n") as! String
-        niTingBanShiJianYue.text = dict.valueForKey("tzblhzxzblsj_y") as! String
+        shenQingZhuYaoYuanYin.text = dict.valueForKey("sqtzblhzxzywdzyyy") as? String
+        niTingBanShiJianNian.text = dict.valueForKey("tzblhzxzblsj_n") as? String
+        niTingBanShiJianYue.text = dict.valueForKey("tzblhzxzblsj_y") as? String
         
         //infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbl = chooseBanLiShiXiangLabel.text
         if (dict.valueForKey("tzblhzxzbl") as! String == "tzbl")   {
@@ -492,6 +703,15 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
+        //        labelNav.backgroundColor = UIColor.clearColor
+        labelNav.font = UIFont.boldSystemFontOfSize(20)
+        labelNav.textColor = UIColor.whiteColor()
+        labelNav.textAlignment = .Center
+        labelNav.text = "申请停止/限制办理业务"
+        self.navigationItem.titleView = labelNav
+        
         if app.ServerData == 0 {
             fenGongSi.enabled = true
             yingYeChangSuoMingCheng.enabled = true
