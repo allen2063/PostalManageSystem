@@ -484,7 +484,6 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             let alert = UIAlertView(title: "提交失败", message: "", delegate: nil, cancelButtonTitle: "确定")
             alert.show()
         }
-        
     }
 
     @IBAction func commit(sender: AnyObject) {
@@ -1098,8 +1097,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             
             if app.ServerData == 2 {
                   app.network.editWithInterface("bsdtApi/edit", andInfo: ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq) , andExtraInfo: ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))
-            }
-          
+            } 
         }
 //        println("\(ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq))")
 //        println("\(ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))")
@@ -1429,6 +1427,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         super.viewDidLoad()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/add", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/edit", object: nil)
         
         let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
         //        labelNav.backgroundColor = UIColor.clearColor
