@@ -207,7 +207,7 @@
         CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
         CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 234/255.0, 13/255.0, 13/255.0, 1 });
         [loginBtn.layer setBorderColor:colorref];//边框颜色
-        [loginBtn setTitle:@"登陆" forState:UIControlStateNormal] ;
+        [loginBtn setTitle:@"登录" forState:UIControlStateNormal] ;
         [loginBtn setTitleColor:[UIColor whiteColor]forState:UIControlStateNormal];
         loginBtn.titleLabel.font = [UIFont systemFontOfSize:17];
         loginBtn.titleLabel.textAlignment = NSTextAlignmentCenter;

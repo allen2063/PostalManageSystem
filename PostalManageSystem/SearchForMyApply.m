@@ -112,7 +112,7 @@
     //默认选择
     segmentControl.selectedSegmentIndex=0;
     //设置背景色
-    segmentControl.tintColor=UIColorFromRGBValue(0xb3d5bd);
+    segmentControl.tintColor=UIColorFromRGBValue(0xea8d8d); // 0xea8d8d 0xb3d5bd
     //设置监听事件
     [segmentControl addTarget:self action:@selector(change) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segmentControl];
@@ -120,7 +120,7 @@
     [segmentControl.layer setCornerRadius:0.0]; //设置矩形四个圆角半径
     [segmentControl.layer setBorderWidth:2.0];   //边框宽度
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 2/255.0, 142/255.0, 69/255.0, 1 });
+    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 234/255.0, 13/255.0, 13/255.0, 1 });
     [segmentControl.layer setBorderColor:colorref];//边框颜色
     
     allApplySearch = [[UIView alloc]initWithFrame:CGRectMake(0, NAVIGATIONHEIGHT + segmentControl.frame.size.height, UISCREENWIDTH, 150)];
@@ -186,8 +186,8 @@
     submitBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     submitBtn.frame = CGRectMake(10 + stateTextField.frame.origin.x + stateTextField.frame.size.width, 20+ 90, UISCREENWIDTH/5, 30);
     [submitBtn setTitle:@"提交" forState:UIControlStateNormal];
-    submitBtn.backgroundColor = UIColorFromRGBValue(0x028e45);
-    [submitBtn setTitleColor:[UIColor yellowColor]forState:UIControlStateNormal];
+    submitBtn.backgroundColor = UIColorFromRGBValue(0xea0d0d);
+    [submitBtn setTitleColor:[UIColor whiteColor]forState:UIControlStateNormal];
     [submitBtn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
     [allApplySearch addSubview:submitBtn];
     
@@ -240,8 +240,8 @@
     submitBtn2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     submitBtn2.frame = CGRectMake(10 + stateTextField.frame.origin.x + stateTextField.frame.size.width, 15+ 60, UISCREENWIDTH/5, 30);
     [submitBtn2 setTitle:@"提交" forState:UIControlStateNormal];
-    submitBtn2.backgroundColor = UIColorFromRGBValue(0x028e45);
-    [submitBtn2 setTitleColor:[UIColor yellowColor]forState:UIControlStateNormal];
+    submitBtn2.backgroundColor = UIColorFromRGBValue(0xea0d0d);
+    [submitBtn2 setTitleColor:[UIColor whiteColor]forState:UIControlStateNormal];
     [submitBtn2 addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
     [myApplySearch addSubview:submitBtn2];
     

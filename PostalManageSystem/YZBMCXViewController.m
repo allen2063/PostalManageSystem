@@ -95,7 +95,7 @@
     [self.zipCodeText.layer setCornerRadius:8.0]; //设置矩形四个圆角半径
     [self.zipCodeText.layer setBorderWidth:2.0];   //边框宽度
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 2/255.0, 142/255.0, 69/255.0, 1 });
+    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 234/255.0, 13/255.0, 13/255.0, 1});
     [self.zipCodeText.layer setBorderColor:colorref];//边框颜色
     self.zipCodeText.center = CGPointMake(self.view.center.x, UISCREENHEIGHT/2.5);
     self.zipCodeText.delegate = self;
@@ -112,7 +112,7 @@
     [self.districtLabel.layer setCornerRadius:8.0]; //设置矩形四个圆角半径
     [self.districtLabel.layer setBorderWidth:2.0];   //边框宽度
      colorSpace = CGColorSpaceCreateDeviceRGB();
-     colorref = CGColorCreate(colorSpace,(CGFloat[]){ 2/255.0, 142/255.0, 69/255.0, 1 });
+     colorref = CGColorCreate(colorSpace,(CGFloat[]){ 234/255.0, 13/255.0, 13/255.0, 1 });
     [self.districtLabel.layer setBorderColor:colorref];//边框颜色
     self.districtLabel.center = CGPointMake(self.view.center.x, UISCREENHEIGHT/2.5);
     self.districtLabel.tag = 30;
@@ -135,7 +135,7 @@
     //默认选择
     segmentControl.selectedSegmentIndex=0;
     //设置背景色
-    segmentControl.tintColor=UIColorFromRGBValue(0xb3d5bd);
+    segmentControl.tintColor=UIColorFromRGBValue(0xea8d8d); //0xb3d5bd  0xea0d0d
     //设置监听事件
     [segmentControl addTarget:self action:@selector(change) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segmentControl];
@@ -143,9 +143,9 @@
     [segmentControl.layer setCornerRadius:0.0]; //设置矩形四个圆角半径
     [segmentControl.layer setBorderWidth:2.0];   //边框宽度
     colorSpace = CGColorSpaceCreateDeviceRGB();
-    colorref = CGColorCreate(colorSpace,(CGFloat[]){ 2/255.0, 142/255.0, 69.0/255.0, 1 });
+    colorref = CGColorCreate(colorSpace,(CGFloat[]){ 234/255.0, 13/255.0, 13/255.0, 1 });
     [segmentControl.layer setBorderColor:colorref];//边框颜色
-    segmentControl.backgroundColor = UIColorFromRGBValue(0xffffff);
+    segmentControl.backgroundColor = UIColorFromRGBValue(0xffffff);//0xffffff   0xea8d8d
     instructionLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, NAVIGATIONHEIGHT*2, UISCREENWIDTH-20, 30)];
     instructionLabel.text = @"您选择的查询地区是：";
     [self.view addSubview:instructionLabel];
@@ -158,8 +158,8 @@
     }else{
         searchBtn.center = CGPointMake(self.view.center.x, self.view.center.y +20);
     }
-    searchBtn.backgroundColor = UIColorFromRGBValue(0x028e45);
-    [searchBtn setTitleColor:[UIColor yellowColor]forState:UIControlStateNormal];
+    searchBtn.backgroundColor = UIColorFromRGBValue(0xea0d0d);
+    [searchBtn setTitleColor:[UIColor whiteColor]forState:UIControlStateNormal];
     [searchBtn addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:searchBtn];
     
@@ -172,7 +172,7 @@
     [informationLabel.layer setCornerRadius:8.0]; //设置矩形四个圆角半径
     [informationLabel.layer setBorderWidth:2.0];   //边框宽度
      colorSpace = CGColorSpaceCreateDeviceRGB();
-     colorref = CGColorCreate(colorSpace,(CGFloat[]){ 2/255.0, 142/255.0, 69.0/255.0, 1 });
+     colorref = CGColorCreate(colorSpace,(CGFloat[]){ 234/255.0, 13/255.0, 13/255.0, 1 });
     [informationLabel.layer setBorderColor:colorref];//边框颜色
     informationLabel.numberOfLines = 2;
     [self.view addSubview:informationLabel];
