@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UIScrollViewDelegate {
+class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UIScrollViewDelegate, UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.textColor = UIColor.blackColor()
+    }
     //停止或限制办理普遍和特殊服务申请
     var infoOfYzyycstbhybyzpbfwywhtsfwywdsq = InfoOfYzyycstbhybyzpbfwywhtsfwywdsq()
     
@@ -228,11 +232,24 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
             
         }
     }
+    
+    func commitResult(notification: NSNotification) {
+        let noteDic: NSDictionary = notification.userInfo!
+        let result: String = (noteDic.valueForKey("result") as? String)!
+        
+        if (result == "1") {
+            let alert = UIAlertView(title: "提交成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        } else {
+            let alert = UIAlertView(title: "提交失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        }
+    }
 
     @IBAction func commit(sender: AnyObject) {
         var COMMIT_OK = 0
 //        println("\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj)")
-        print("\(uploadVCForPicURL1?.picUrl)")
+//        print("\(uploadVCForPicURL1?.picUrl)")
         
         if fenGongSi.text != "" {
             COMMIT_OK += 1
@@ -339,13 +356,13 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         }
 
         
-        if yingYeChangSuoMingCheng.text != "" {
+        if youZhengYingYeChangSuoMingCeng.text != "" {
             COMMIT_OK += 1
-            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzyycsmc = yingYeChangSuoMingCheng.text
-        } else if (yingYeChangSuoMingCheng.text == "")
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzyycsmc = youZhengYingYeChangSuoMingCeng.text
+        } else if (youZhengYingYeChangSuoMingCeng.text == "")
         {
             
-            yingYeChangSuoMingCheng.attributedPlaceholder = NSAttributedString(string: "不为空"
+            youZhengYingYeChangSuoMingCeng.attributedPlaceholder = NSAttributedString(string: "不为空"
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
 
@@ -424,13 +441,48 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
-        if ((XinJian.selected || YouZhengHuiDui.selected || MangRenDuWu.selected || YinShuaPin.selected || BaoGuo.selected || LieShiBaoGuo.selected || GuoJiaGuiDingBaoKanDeFaXing.selected || YiWuBingXinHan.selected) == false)
+//        if ((XinJian.selected || YouZhengHuiDui.selected || MangRenDuWu.selected || YinShuaPin.selected || BaoGuo.selected || LieShiBaoGuo.selected || GuoJiaGuiDingBaoKanDeFaXing.selected || YiWuBingXinHan.selected) == false)
+//        {
+//            
+//            let alertView = UIAlertView(title: "须选择停止办理业务事项", message:  "停止办理业务事项不能为空", delegate: self, cancelButtonTitle: "返回编辑")
+//            alertView.show()
+//        } else {
+//            COMMIT_OK += 1
+//            if XinJian.selected {
+//                infoOfNthybywyzyycsjbqkb.tzblywsx += "xj"
+//            }
+//            if YouZhengHuiDui.selected {
+//                infoOfNthybywyzyycsjbqkb.tzblywsx += ",yzhd"
+//            }
+//            if MangRenDuWu.selected {
+//                infoOfNthybywyzyycsjbqkb.tzblywsx += ",mrdw"
+//            }
+//            if YinShuaPin.selected {
+//                infoOfNthybywyzyycsjbqkb.tzblywsx += ",ysp"
+//            }
+//            if BaoGuo.selected {
+//                infoOfNthybywyzyycsjbqkb.tzblywsx += ",bgs"
+//            }
+//            if LieShiBaoGuo.selected {
+//                infoOfNthybywyzyycsjbqkb.tzblywsx += ",gmlsyw"
+//            }
+//            if GuoJiaGuiDingBaoKanDeFaXing.selected {
+//                infoOfNthybywyzyycsjbqkb.tzblywsx += ",gjgdbkdfx"
+//            }
+//            if YiWuBingXinHan.selected {
+//                infoOfNthybywyzyycsjbqkb.tzblywsx += ",ywbpcxh"
+//            }
+//        }
+    
+        //---------------
+        if (((XinJian1.selected || YouZhengHuiDui1.selected || MangRenDuWu1.selected || YinShuaPin1.selected || BaoGuo1.selected || LieShiBaoGuo1.selected || GuoJiaGuiDingBaoKanDeFaXing1.selected || YiWuBingXinHan1.selected) == false) && ((XinJian.selected || YouZhengHuiDui.selected || MangRenDuWu.selected || YinShuaPin.selected || BaoGuo.selected || LieShiBaoGuo.selected || GuoJiaGuiDingBaoKanDeFaXing.selected || YiWuBingXinHan.selected) == false))
         {
             
-            let alertView = UIAlertView(title: "须选择停止办理业务事项", message:  "停止办理业务事项不能为空", delegate: self, cancelButtonTitle: "返回编辑")
+            let alertView = UIAlertView(title: "停办业务事项和限办业务事项不能同时为空", message:  "", delegate: self, cancelButtonTitle: "返回编辑")
             alertView.show()
         } else {
             COMMIT_OK += 1
+            
             if XinJian.selected {
                 infoOfNthybywyzyycsjbqkb.tzblywsx += "xj"
             }
@@ -455,16 +507,8 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
             if YiWuBingXinHan.selected {
                 infoOfNthybywyzyycsjbqkb.tzblywsx += ",ywbpcxh"
             }
-        }
-    
-        //---------------
-        if ((XinJian1.selected || YouZhengHuiDui1.selected || MangRenDuWu1.selected || YinShuaPin1.selected || BaoGuo1.selected || LieShiBaoGuo1.selected || GuoJiaGuiDingBaoKanDeFaXing1.selected || YiWuBingXinHan1.selected) == false)
-        {
             
-            let alertView = UIAlertView(title: "须选择限制办理业务事项", message:  "限制办理业务事项不能为空", delegate: self, cancelButtonTitle: "返回编辑")
-            alertView.show()
-        } else {
-            COMMIT_OK += 1
+            //----------------不同时为空2---------------
             if XinJian1.selected {
                 infoOfNthybywyzyycsjbqkb.xzblywsx += "xj"
             }
@@ -511,15 +555,19 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
-        if youBian1.text != "" {
+        let isMatchYouBian = rxYouBian.isMatch(youBian1.text)
+        if isMatchYouBian {
             COMMIT_OK += 1
             infoOfNthybywyzyycsjbqkb.yzbm = youBian1.text
-        } else if (youBian1.text == "")
-        {
+        } else {
             
-            youBian1.attributedPlaceholder = NSAttributedString(string: "不为空"
-                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            print("邮政编码不符合要求")
+            //            youBian.attributedPlaceholder = NSAttributedString(string: "不符要求"
+            //                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            youBian1.text = "不符要求"
+            youBian1.textColor = UIColor.redColor()
         }
+
         
         if lianXiRenXingMing1.text != "" {
             COMMIT_OK += 1
@@ -531,14 +579,29 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
-        if lianXiDianHua1.text != "" {
+        let isMatchLianXiDianHua = rxLianXiDianHua.isMatch(lianXiDianHua1.text)
+        if isMatchLianXiDianHua {
             COMMIT_OK += 1
             infoOfNthybywyzyycsjbqkb.lxdh = lianXiDianHua1.text
-        } else if (lianXiDianHua1.text == "")
-        {
+        } else {
             
-            lianXiDianHua1.attributedPlaceholder = NSAttributedString(string: "不为空"
-                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            print("联系电话不符合要求")
+            //            lianXiDianHua.attributedPlaceholder = NSAttributedString(string: "不符要求"
+            //                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            lianXiDianHua1.text = "不符要求"
+            lianXiDianHua1.textColor = UIColor.redColor()
+        }
+        
+        print("\(COMMIT_OK)", terminator: "\n")
+        
+        if (COMMIT_OK == 24) {
+            if app.ServerData == 0 {
+                app.network.editWithInterface("bsdtApi/add", andInfo: ClassToJSON.getObjectData(infoOfYzyycstbhybyzpbfwywhtsfwywdsq) , andExtraInfo: ClassToJSON.getObjectData(infoOfNthybywyzyycsjbqkb))
+            }
+            
+            if app.ServerData == 2 {
+                app.network.editWithInterface("bsdtApi/edit", andInfo: ClassToJSON.getObjectData(infoOfYzyycstbhybyzpbfwywhtsfwywdsq) , andExtraInfo: ClassToJSON.getObjectData(infoOfNthybywyzyycsjbqkb))
+            }
         }
         
         
@@ -703,6 +766,9 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/add", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/edit", object: nil)
         
         let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
         //        labelNav.backgroundColor = UIColor.clearColor
