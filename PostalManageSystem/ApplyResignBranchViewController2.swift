@@ -652,24 +652,36 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
 
-        if changSuoDiZhiJingDu.text != "" {
+        let isMatchJingDu = rxJingWeiDu.isMatch(changSuoDiZhiJingDu.text)
+        if isMatchJingDu {
             COMMIT_OK += 1
             infoOfNcxyzpbfwyycsjbqkb.csdz_jd = changSuoDiZhiJingDu.text
-        } else if (changSuoDiZhiJingDu.text == "")
-        {
-            changSuoDiZhiJingDu.attributedPlaceholder = NSAttributedString(string: "不为空"
+        } else {
+            let alertView = UIAlertView(title: "经度不符合要求", message:  "经度最大值:27.366667 最小值:26.183333", delegate: self, cancelButtonTitle: "返回编辑")
+            alertView.show()
+            //            let label = UILabel(frame: CGRect(x: jingDu.frame.origin.x, y: jingDu.frame.origin.y + 40, width: 100, height: 100))
+            //            label.backgroundColor = UIColor.blueColor()
+            
+            print("经度不符合要求")
+            changSuoDiZhiJingDu.attributedPlaceholder = NSAttributedString(string: "不符要求"
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
-        if changSuoDiZhiWeiDu.text != "" {
+        let isMatchWeiDu = rxJingWeiDu.isMatch(changSuoDiZhiWeiDu.text)
+        if isMatchWeiDu {
             COMMIT_OK += 1
             infoOfNcxyzpbfwyycsjbqkb.csdz_wd = changSuoDiZhiWeiDu.text
-        } else if (changSuoDiZhiWeiDu.text == "")
-        {
-            changSuoDiZhiWeiDu.attributedPlaceholder = NSAttributedString(string: "不为空"
+        } else {
+            
+            let alertView = UIAlertView(title: "纬度不符合要求", message:  "纬度最大值:107.283333 最小值:106.116667", delegate: self, cancelButtonTitle: "返回编辑")
+            alertView.show()
+            
+            print("纬度不符合要求")
+            changSuoDiZhiWeiDu.attributedPlaceholder = NSAttributedString(string: "不符要求"
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
-
+        
+   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if youZhengBianMa.text != "" {
             COMMIT_OK += 1
             infoOfNcxyzpbfwyycsjbqkb.yzbm = youZhengBianMa.text

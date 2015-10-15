@@ -125,6 +125,7 @@
 		56CE5BA51B9ADAFE008D3B75 /* DJRefreshTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE5B991B9ADAFE008D3B75 /* DJRefreshTopView.m */; };
 		56CE5BA61B9ADAFE008D3B75 /* DJRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE5B9B1B9ADAFE008D3B75 /* DJRefreshView.m */; };
 		56E508191B9596E100DB22A7 /* ConnectionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E508181B9596E100DB22A7 /* ConnectionAPI.m */; };
+		DC0DF21C1BCF83CC000D19B6 /* RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DF21B1BCF83CC000D19B6 /* RegularExpression.swift */; settings = {ASSET_TAGS = (); }; };
 		DC23CC9B1BCA32B200FEF7F9 /* RegExCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = DC23CC9A1BCA32B200FEF7F9 /* RegExCategories.m */; settings = {ASSET_TAGS = (); }; };
 		DC3554501BA9AE7B00F7F3CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC35544F1BA9AE7B00F7F3CB /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -297,6 +298,7 @@
 		56CE5B9B1B9ADAFE008D3B75 /* DJRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJRefreshView.m; sourceTree = "<group>"; };
 		56E508171B9596E100DB22A7 /* ConnectionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionAPI.h; sourceTree = "<group>"; };
 		56E508181B9596E100DB22A7 /* ConnectionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionAPI.m; sourceTree = "<group>"; };
+		DC0DF21B1BCF83CC000D19B6 /* RegularExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpression.swift; sourceTree = "<group>"; };
 		DC23CC991BCA32B200FEF7F9 /* RegExCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegExCategories.h; sourceTree = "<group>"; };
 		DC23CC9A1BCA32B200FEF7F9 /* RegExCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegExCategories.m; sourceTree = "<group>"; };
 		DC35544F1BA9AE7B00F7F3CB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			children = (
 				DC23CC991BCA32B200FEF7F9 /* RegExCategories.h */,
 				DC23CC9A1BCA32B200FEF7F9 /* RegExCategories.m */,
+				DC0DF21B1BCF83CC000D19B6 /* RegularExpression.swift */,
 				56CE54EA1BA94ED70065518A /* ApplyRestoreBranchViewController.swift */,
 				56CE54EB1BA94ED70065518A /* ApplyStopBranchViewController.swift */,
 				56CE54E91BA94ED70065518A /* ApplyPausedViewController.swift */,
@@ -825,6 +828,7 @@
 				56C59E341B831DFC00D96F08 /* YZBMCXViewController.m in Sources */,
 				56B535881B8718B400238BE6 /* BSDTViewController.m in Sources */,
 				56C59DD41B82DD5F00D96F08 /* AppDelegate.m in Sources */,
+				DC0DF21C1BCF83CC000D19B6 /* RegularExpression.swift in Sources */,
 				56CE5BA61B9ADAFE008D3B75 /* DJRefreshView.m in Sources */,
 				56C59DD11B82DD5F00D96F08 /* main.m in Sources */,
 				56BFF5411B8AF2AB00D5E896 /* BSDTDetailViewController.m in Sources */,

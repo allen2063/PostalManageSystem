@@ -14,12 +14,12 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         textField.textColor = UIColor.blackColor()
     }
     
-    var rxJingWeiDu = NSRegularExpression.rx("^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$", ignoreCase:true)
-    var rxYouBian = NSRegularExpression.rx("[1-9]\\d{5}(?!\\d)", ignoreCase:true)
-    var rxLianXiDianHua = NSRegularExpression.rx("((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)", ignoreCase:true)
-    var rxJianZhuMianJi = NSRegularExpression.rx("^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$", ignoreCase:true)
-    var rxFuWuRenKou = NSRegularExpression.rx("^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$", ignoreCase:true)
-    var rxFuWuBanJing = NSRegularExpression.rx("^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$", ignoreCase:true)
+//    var rxJingWeiDu = NSRegularExpression.rx("^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$", ignoreCase:true)
+//    var rxYouBian = NSRegularExpression.rx("[1-9]\\d{5}(?!\\d)", ignoreCase:true)
+//    var rxLianXiDianHua = NSRegularExpression.rx("((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)", ignoreCase:true)
+//    var rxJianZhuMianJi = NSRegularExpression.rx("^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$", ignoreCase:true)
+//    var rxFuWuRenKou = NSRegularExpression.rx("^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$", ignoreCase:true)
+//    var rxFuWuBanJing = NSRegularExpression.rx("^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$", ignoreCase:true)
     
     
     @IBOutlet weak var chooseShiXiang: UILabel!
@@ -681,12 +681,12 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
             infoOfYzqyszyzyycsdjb.csdz_jd = jingDu.text
         } else {
             
-            let alertView = UIAlertView(title: "经纬度不符合要求", message:  "经度最大值:27.366667 最小值:26.183333 \n纬度最大值:107.283333 最小值:106.116667", delegate: self, cancelButtonTitle: "返回编辑")
+            let alertView = UIAlertView(title: "经度不符合要求", message:  "经度最大值:27.366667 最小值:26.183333", delegate: self, cancelButtonTitle: "返回编辑")
                 alertView.show()
 //            let label = UILabel(frame: CGRect(x: jingDu.frame.origin.x, y: jingDu.frame.origin.y + 40, width: 100, height: 100))
 //            label.backgroundColor = UIColor.blueColor()
             
-            print("经纬度不符合要求")
+            print("经度不符合要求")
             jingDu.attributedPlaceholder = NSAttributedString(string: "不符要求"
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
@@ -697,10 +697,10 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
             infoOfYzqyszyzyycsdjb.csdz_wd = weiDu.text
         } else {
             
-            let alertView = UIAlertView(title: "经纬度不符合要求", message:  "经度最大值:27.366667 最小值:26.183333 \n纬度最大值:107.283333 最小值:106.116667", delegate: self, cancelButtonTitle: "返回编辑")
+            let alertView = UIAlertView(title: "纬度不符合要求", message:  "纬度最大值:107.283333 最小值:106.116667", delegate: self, cancelButtonTitle: "返回编辑")
                 alertView.show()
             
-            print("经纬度不符合要求")
+            print("纬度不符合要求")
             weiDu.attributedPlaceholder = NSAttributedString(string: "不符要求"
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
