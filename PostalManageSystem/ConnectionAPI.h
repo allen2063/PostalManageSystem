@@ -60,6 +60,8 @@
 - (void)sendFormToServerWithInterface:(NSString *)interface AndUser:(id)user AndInfo:(id)info AndExtraInfo:(id)extraInfo;
 //加入同步请求队列
 - (void)addObjectForRequestQueueWithDci:(NSDictionary *)dic;
+//修改用户信息
+- (void)editUserInfoWithBaseUser:(NSDictionary *)baseUser;
 @property (strong, nonatomic) NSMutableData *webData;
 @property (strong, nonatomic) NSURLConnection *conn;
 @property (strong, nonatomic) NSMutableString *getXMLResults;

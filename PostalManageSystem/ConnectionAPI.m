@@ -425,7 +425,7 @@
     }
 }
 
-- (void)editWithInterface:(NSString *)interface AndInfo:(NSDictionary *)info AndExtraInfo:(id)extraInfo;{
+- (void)editWithInterface:(NSString *)interface AndInfo:(NSDictionary *)info AndExtraInfo:(id)extraInfo{
     communicatingInterface = [NSString stringWithFormat:@"bsdtApi/edit%@",interface];
     self.specialInterface = interface;
     if (extraInfo == nil) {
@@ -433,6 +433,12 @@
     }else{
         [self withInterface:communicatingInterface andArgument1Name:@"token" andArgument1Value:@"jiou" andArgument2Name:@"info1" andArgument2Value:info andArgument3Name:@"info2" andArgument3Value:extraInfo];
     }
+}
+
+- (void)editUserInfoWithBaseUser:(NSDictionary *)baseUser{
+    self.specialInterface = @"manageApi/editUser";
+    communicatingInterface = @"manageApi/editUser";
+    [self withInterface:communicatingInterface andArgument1Name:@"token" andArgument1Value:@"jiou" andArgument2Name:@"info" andArgument2Value:baseUser];
 }
 
 - (void)deleteWithInterface:(NSString *)interface AndFlowID:(NSString *)flowID{
@@ -597,6 +603,10 @@
     //删除接口返回
     else if ([communicatingInterface isEqualToString:[NSString stringWithFormat:@"bsdtApi/del%@",self.specialInterface]]){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"bsdtApi/del" object:self userInfo:resultDic];
+    }
+    //用户信息修改接口
+    else if ([communicatingInterface isEqualToString:[NSString stringWithFormat:@"manageApi/editUser"]]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"manageApi/editUser" object:self userInfo:resultDic];
     }
 }
 
