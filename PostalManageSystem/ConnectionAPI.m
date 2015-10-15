@@ -415,7 +415,7 @@
     [self withInterface:communicatingInterface andArgument1Name:@"token" andArgument1Value:@"jiou" andArgument2Name:@"fileName" andArgument2Value:fileName];
 }
 
-- (void)sendFormToServerWithInterface:(NSString *)interface AndUser:(id)user AndInfo:(id)info AndExtraInfo:(id)extraInfo{
+- (void)addWithInterface:(NSString *)interface AndUser:(id)user AndInfo:(id)info AndExtraInfo:(id)extraInfo{
     communicatingInterface = [NSString stringWithFormat:@"bsdtApi/add%@",interface];
     self.specialInterface = interface;
     if (extraInfo == nil) {
@@ -438,7 +438,7 @@
 - (void)editUserInfoWithBaseUser:(NSDictionary *)baseUser{
     self.specialInterface = @"manageApi/editUser";
     communicatingInterface = @"manageApi/editUser";
-    [self withInterface:communicatingInterface andArgument1Name:@"token" andArgument1Value:@"jiou" andArgument2Name:@"info" andArgument2Value:baseUser];
+    [self withInterface:communicatingInterface andArgument1Name:@"token" andArgument1Value:@"jiou" andArgument2Name:@"baseUser" andArgument2Value:baseUser];
 }
 
 - (void)deleteWithInterface:(NSString *)interface AndFlowID:(NSString *)flowID{
@@ -595,6 +595,10 @@
     //获取表的详情
     else if ([communicatingInterface isEqualToString:[NSString stringWithFormat:@"bsdtApi/get%@",self.specialInterface]]){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"bsdtApi/get" object:self userInfo:resultDic];
+    }
+    //新增接口返回
+    else if ([communicatingInterface isEqualToString:[NSString stringWithFormat:@"bsdtApi/add%@",self.specialInterface]]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"bsdtApi/add" object:self userInfo:resultDic];
     }
     //修改接口返回
     else if ([communicatingInterface isEqualToString:[NSString stringWithFormat:@"bsdtApi/edit%@",self.specialInterface]]){

@@ -1770,7 +1770,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
             }
         }
 //        var app=UIApplication.sharedApplication().delegate as! AppDelegate
-//        app.network .sendFormToServerWithInterface("Jjqz", andInfo: ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb), andExtraInfo: nil)
+//        app.network .addWithInterface("Jjqz", andInfo: ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb), andExtraInfo: nil)
 
         print("\(ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb))")
         //ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb)

@@ -57,7 +57,7 @@
 //获取XML数据
 - (void)getXMLDataWithFileName:(NSString *)fileName;
 //发送表详情
-- (void)sendFormToServerWithInterface:(NSString *)interface AndUser:(id)user AndInfo:(id)info AndExtraInfo:(id)extraInfo;
+- (void)addWithInterface:(NSString *)interface AndUser:(id)user AndInfo:(id)info AndExtraInfo:(id)extraInfo;
 //加入同步请求队列
 - (void)addObjectForRequestQueueWithDci:(NSDictionary *)dic;
 //修改用户信息

@@ -53,7 +53,6 @@
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelView)];
     [self.blackView addGestureRecognizer:recognizer];
 
-    
     //获取单例
     app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     //设置导航栏label

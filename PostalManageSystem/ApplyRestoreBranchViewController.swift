@@ -406,7 +406,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
         }
         
         
-        app.network.sendFormToServerWithInterface("Hfyw", andUser: app.userData, andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb), andExtraInfo: nil)
+        app.network.addWithInterface("Hfyw", andUser: app.userData, andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb), andExtraInfo: nil)
         
         print("\(COMMIT_OK)", terminator: "\n")
         
