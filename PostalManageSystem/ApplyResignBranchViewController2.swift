@@ -682,14 +682,19 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         }
         
    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if youZhengBianMa.text != "" {
+        let isMatchYouBian = rxYouBian.isMatch(youZhengBianMa.text)
+        if isMatchYouBian {
             COMMIT_OK += 1
             infoOfNcxyzpbfwyycsjbqkb.yzbm = youZhengBianMa.text
-        } else if (youZhengBianMa.text == "")
-        {
-            youZhengBianMa.attributedPlaceholder = NSAttributedString(string: "不为空"
-                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        } else {
+            
+            print("邮政编码不符合要求")
+            //            youBian.attributedPlaceholder = NSAttributedString(string: "不符要求"
+            //                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            youZhengBianMa.text = "不符要求"
+            youZhengBianMa.textColor = UIColor.redColor()
         }
+
         
         if shangJiDanWei.text != "" {
             COMMIT_OK += 1
@@ -709,7 +714,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             yingYeChangSuoFuZeRen.attributedPlaceholder = NSAttributedString(string: "不为空"
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
-
+////////////
         if YingYeChangSuoLianXiDianHua.text != "" {
             COMMIT_OK += 1
             infoOfNcxyzpbfwyycsjbqkb.yycslxdh = YingYeChangSuoLianXiDianHua.text

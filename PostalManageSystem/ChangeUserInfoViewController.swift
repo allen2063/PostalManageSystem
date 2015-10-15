@@ -24,6 +24,8 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var xinMiMa: UITextField!
     @IBOutlet weak var chongXinShuRuMiMa: UITextField!
     
+    @IBOutlet weak var commitBtn1: UIButton!
+    @IBOutlet weak var commitBtn2: UIButton!
     
 
     @IBOutlet weak var changeUserInfoView: UIView!
@@ -45,6 +47,7 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
                 if let rootView = self.view as? UIScrollView {
                     rootView.contentSize = CGSize(width: 320, height: 1779)
                 }
+                
             default:
                 break;
             }
@@ -55,6 +58,8 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
     @IBAction func commitInChangeUserPassword(sender: AnyObject) {
         //该方法在修改密码segment中，点击提交时触发
         //jiuMiMa.text，xinMiMa.text，chongXinShuRuMiMa.text分别对应界面三个文本框输入的内容
+        let userPassword = NSMutableDictionary(dictionary: app.userData)
+        
         let oldPassFromServer = app.userData.valueForKey("userPass") as? String
         if (ConnectionAPI.md5(jiuMiMa.text) == oldPassFromServer) {
             let alert = UIAlertView(title: "请重新输入新密码", message: "新旧密码不能一样", delegate: nil, cancelButtonTitle: "返回重新编辑")
@@ -79,15 +84,22 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
     @IBAction func commitInChangeUserInfo(sender: AnyObject) {
         //该方法在修改用户信息segment中，点击提交时触发
         
+        let userInfo = NSMutableDictionary(dictionary: app.userData)
+        
 //        userInfo1.userName = zhangHao.text
 //        userInfo1.userPass = miMa.text
-        userInfo.realName = xingMing.text
-        userInfo.address = diZhi.text
-        userInfo.teleNumber = lianXiDianHua.text
-        userInfo.mailBox = dianZiYouXiang.text
-
-        print("\(ClassToJSON.getObjectData(userInfo))")
+        userInfo.setValue(xingMing!.text!, forKey: "realName")
+        userInfo.setValue(diZhi!.text!, forKey: "address")
+        userInfo.setValue(lianXiDianHua!.text!, forKey: "teleNumber")
+        userInfo.setValue(dianZiYouXiang!.text!, forKey: "mailBox")
         
+//        userInfo.realName = xingMing.text
+//        userInfo.address = diZhi.text
+//        userInfo.teleNumber = lianXiDianHua.text
+//        userInfo.mailBox = dianZiYouXiang.text
+
+//        print("\(ClassToJSON.getObjectData(userInfo))")
+        app.network.editUserInfoWithBaseUser(userInfo as [NSObject : AnyObject])
         
     }
     
@@ -97,6 +109,20 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
     }
     
     var app = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    func commitResult(notification: NSNotification) {
+        let noteDic: NSDictionary = notification.userInfo!
+        let result: String = (noteDic.valueForKey("result") as? String)!
+        
+        if (result == "1") {
+            let alert = UIAlertView(title: "提交成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        } else {
+            let alert = UIAlertView(title: "提交失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,6 +135,8 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
         
         self.navigationItem.titleView = labelNav
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "manageApi/editUser", object: nil)
+        
         segmentedControl.frame.size.height = 40
         
         zhangHao.text = app.userData.valueForKey("userName") as? String
@@ -119,6 +147,5 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
         diZhi.text = app.userData.valueForKey("address") as? String
         lianXiDianHua.text = app.userData.valueForKey("teleNumber") as? String
         dianZiYouXiang.text = app.userData.valueForKey("mailBox") as? String
-        
     }
 }
