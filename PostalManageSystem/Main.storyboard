@@ -1812,7 +1812,7 @@
         <scene sceneID="X5q-HW-GjL">
             <objects>
                 <viewController storyboardIdentifier="applyPausedBranchVC" title="申请暂停/暂限办理业务" id="Cq7-hj-Aeg" customClass="ApplyPausedViewController" customModule="PostalManageSystem" customModuleProvider="target" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" id="vBN-Xv-thb">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" keyboardDismissMode="onDrag" id="vBN-Xv-thb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="875"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

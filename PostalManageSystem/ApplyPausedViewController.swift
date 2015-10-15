@@ -9,6 +9,10 @@
 import UIKit
 
 class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UITextFieldDelegate, UIScrollViewDelegate {
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.textColor = UIColor.blackColor()
+    }
+    
     @IBOutlet weak var changSuoMingCheng: UITextField!
     @IBOutlet weak var shangJiDanWei: UITextField!
     @IBOutlet weak var fuWuQuYu: UITextField!
@@ -170,6 +174,9 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
     
      override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/add", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/edit", object: nil)
         
         let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
         //        labelNav.backgroundColor = UIColor.clearColor
@@ -351,7 +358,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        print("asdhgkajhsfgsdalfkjhasdkjflhasdkjlfhjksd")
+        print("scrollViewWillBeginDragging")
         if shouldDragDismiss && (viewUp == false) {
             UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseOut, animations: {
                 self.view.center.y += 350
@@ -371,6 +378,19 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
 //            })
 //            self.viewUp = true
 //        }
+    }
+    
+    func commitResult(notification: NSNotification) {
+        let noteDic: NSDictionary = notification.userInfo!
+        let result: String = (noteDic.valueForKey("result") as? String)!
+        
+        if (result == "1") {
+            let alert = UIAlertView(title: "提交成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        } else {
+            let alert = UIAlertView(title: "提交失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        }
     }
     
     @IBAction func commit(sender: AnyObject) {
@@ -466,14 +486,17 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
-        if youBian.text != "" {
+        let isMatchYouBian = rxYouBian.isMatch(youBian.text)
+        if isMatchYouBian {
             COMMIT_OK += 1
             infoOfZtbhxbyzpbfwhtsfwywdjb.yzbm = youBian.text
-        } else if (youBian.text == "")
-        {
+        } else {
             
-            youBian.attributedPlaceholder = NSAttributedString(string: "不为空"
-                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            print("邮政编码不符合要求")
+            //            youBian.attributedPlaceholder = NSAttributedString(string: "不符要求"
+            //                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            youBian.text = "不符要求"
+            youBian.textColor = UIColor.redColor()
         }
         
         if lianXiRenXingMing.text != "" {
@@ -486,15 +509,19 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
-        if lianXiDianHua.text != "" {
+        let isMatchLianXiDianHua = rxLianXiDianHua.isMatch(lianXiDianHua.text)
+        if isMatchLianXiDianHua {
             COMMIT_OK += 1
             infoOfZtbhxbyzpbfwhtsfwywdjb.lxdh = lianXiDianHua.text
-        } else if (lianXiDianHua.text == "")
-        {
+        } else {
             
-            lianXiDianHua.attributedPlaceholder = NSAttributedString(string: "不为空"
-                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            print("联系电话不符合要求")
+            //            lianXiDianHua.attributedPlaceholder = NSAttributedString(string: "不符要求"
+            //                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            lianXiDianHua.text = "不符要求"
+            lianXiDianHua.textColor = UIColor.redColor()
         }
+
         
         if zanTingShiJian.text != "" {
             COMMIT_OK += 1
@@ -526,7 +553,18 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
-       print("\(ClassToJSON.getObjectData(infoOfZtbhxbyzpbfwhtsfwywdjb))")
+        print("\(COMMIT_OK)", terminator: "\n")
+        
+        if (COMMIT_OK == 11) {
+            if app.ServerData == 0 {
+                app.network.editWithInterface("bsdtApi/add", andInfo: ClassToJSON.getObjectData(infoOfZtbhxbyzpbfwhtsfwywdjb) , andExtraInfo: nil)
+            }
+            
+            if app.ServerData == 2 {
+                app.network.editWithInterface("bsdtApi/edit", andInfo: ClassToJSON.getObjectData(infoOfZtbhxbyzpbfwhtsfwywdjb) , andExtraInfo: nil)
+            }
+        }
+//       print("\(ClassToJSON.getObjectData(infoOfZtbhxbyzpbfwhtsfwywdjb))")
     }
     
     func initZanTing(dict: NSDictionary) {
