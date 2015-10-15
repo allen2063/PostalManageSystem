@@ -2837,7 +2837,7 @@
                                     <outlet property="delegate" destination="Eej-cW-HkP" id="zyF-94-0XJ"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="联系方式" textAlignment="center" minimumFontSize="17" id="bi1-6s-NV6">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="地址" textAlignment="center" minimumFontSize="17" id="bi1-6s-NV6">
                                 <rect key="frame" x="109" y="334" width="203" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>

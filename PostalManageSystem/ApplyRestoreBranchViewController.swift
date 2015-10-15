@@ -10,6 +10,10 @@ import UIKit
 
 class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
 
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.textColor = UIColor.blackColor()
+    }
+    
     var rxYouBian = NSRegularExpression.rx("[1-9]\\d{5}(?!\\d)", ignoreCase:true)
     var rxLianXiDianHua = NSRegularExpression.rx("((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)", ignoreCase:true)
     
@@ -148,6 +152,9 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/add", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/edit", object: nil)
+        
         let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
         //        labelNav.backgroundColor = UIColor.clearColor
         labelNav.font = UIFont.boldSystemFontOfSize(20)
@@ -265,6 +272,19 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
             commitBtn.hidden = false
         }
       
+    }
+    
+    func commitResult(notification: NSNotification) {
+        let noteDic: NSDictionary = notification.userInfo!
+        let result: String = (noteDic.valueForKey("result") as? String)!
+        
+        if (result == "1") {
+            let alert = UIAlertView(title: "提交成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        } else {
+            let alert = UIAlertView(title: "提交失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        }
     }
 
     @IBOutlet weak var commitBtn: UIButton!
@@ -406,17 +426,31 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
         }
         
         
-        app.network.addWithInterface("Hfyw", andUser: app.userData, andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb), andExtraInfo: nil)
+
+        
+//        print("\(COMMIT_OK)", terminator: "\n")
+//        
+//        
+//        if (COMMIT_OK == 9) {
+//            let alertView = UIAlertView(title: "提交成功", message:  "", delegate: self, cancelButtonTitle: "完成")
+//            alertView.show()
+//            print("\(ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb))")
+//        } else if (COMMIT_OK != 9) {
+//            print("提交失败!!!!!!!!!!!!!!!!!!!!!!!!")
+//        }
         
         print("\(COMMIT_OK)", terminator: "\n")
         
-        
         if (COMMIT_OK == 9) {
-            let alertView = UIAlertView(title: "提交成功", message:  "", delegate: self, cancelButtonTitle: "完成")
-            alertView.show()
-            print("\(ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb))")
-        } else if (COMMIT_OK != 9) {
-            print("提交失败!!!!!!!!!!!!!!!!!!!!!!!!")
+            if app.ServerData == 0 {
+                app.network.addWithInterface("Hfyw", andUser: app.userData, andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb), andExtraInfo: nil)
+                
+//                app.network.editWithInterface("bsdtApi/add", andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb) , andExtraInfo: nil)
+            }
+            
+            if app.ServerData == 2 {
+                app.network.editWithInterface("bsdtApi/edit", andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb) , andExtraInfo: nil)
+            }
         }
         
     }
