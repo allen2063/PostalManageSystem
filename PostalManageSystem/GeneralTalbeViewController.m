@@ -186,8 +186,11 @@
         for (id dic in self.tempDataList) {
             [self.dataList addObject:dic];
         }
-        
-        [self addDataWithDirection:directionForNow];
+        //主线程中更新UI  否则iOS中可能崩溃
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 更UI
+            [self addDataWithDirection:directionForNow];
+        });
     }
 }
 

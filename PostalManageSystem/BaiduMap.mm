@@ -98,7 +98,7 @@
         [self.view addSubview:_searchBtn];
         
         UIImageView * searchImgView = [[UIImageView alloc]initWithFrame:CGRectMake(UISCREENWIDTH - OffsetX + 45 + BTNHEIGHT*1/10,UISCREENHEIGHT - 60 + BTNHEIGHT/10, BTNHEIGHT*4/5, BTNHEIGHT*4/5)];
-        searchImgView.image = [UIImage imageNamed:@"chazhao"];
+        searchImgView.image = [UIImage imageNamed:@"mapsearch"];
         searchImgView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:searchImgView];
         
