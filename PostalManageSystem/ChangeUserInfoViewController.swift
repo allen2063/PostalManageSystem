@@ -83,9 +83,12 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
         } else {
 //            let alert = UIAlertView(title: "设置新密码成功", message: "", delegate: nil, cancelButtonTitle: "完成")
 //            alert.show()
-            userInfo.setValue(xinMiMa.text!, forKey: "realName")
+            let passwordJiaMi: String = ConnectionAPI.md5(xinMiMa.text!)
+            userInfo.setValue(passwordJiaMi, forKey: "userPass")
             print(ClassToJSON.getObjectData(userInfo))
             app.network.editUserInfoWithBaseUser(userInfo as [NSObject : AnyObject])
+            
+            
         }
     }
     
@@ -127,6 +130,15 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
         if (result == "1") {
             let alert = UIAlertView(title: "提交成功", message: "", delegate: nil, cancelButtonTitle: "确定")
             alert.show()
+            
+//            xingMing.text = app.userData.valueForKey("realName") as? String
+//            diZhi.text = app.userData.valueForKey("address") as? String
+//            lianXiDianHua.text = app.userData.valueForKey("teleNumber") as? String
+//            dianZiYouXiang.text = app.userData.valueForKey("mailBox") as? String
+            
+            app.login = false
+            self.navigationController?.popViewControllerAnimated(true)
+            
         } else {
             let alert = UIAlertView(title: "提交失败", message: "", delegate: nil, cancelButtonTitle: "确定")
             alert.show()

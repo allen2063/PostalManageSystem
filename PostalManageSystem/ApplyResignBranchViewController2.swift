@@ -1092,11 +1092,12 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         
         if (COMMIT_OK == 40) {
             if app.ServerData == 0 {
-                  app.network.editWithInterface("bsdtApi/add", andInfo: ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq) , andExtraInfo: ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))
+//                  app.network.editWithInterface("bsdtApi/add", andInfo: ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq) , andExtraInfo: ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))
+                app.network.addWithInterface("Cxpbfww", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq), andExtraInfo: ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))
             }
             
             if app.ServerData == 2 {
-                  app.network.editWithInterface("bsdtApi/edit", andInfo: ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq) , andExtraInfo: ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))
+                  app.network.editWithInterface("Cxpbfww", andInfo: ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq) , andExtraInfo: ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))
             } 
         }
 //        println("\(ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq))")
@@ -1355,11 +1356,12 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         
         if (COMMIT_OK == 18) {
             if app.ServerData == 0 {
-                app.network.editWithInterface("bsdtApi/add", andInfo: ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb) , andExtraInfo:nil)
+//                app.network.editWithInterface("Cxfpbfwwd", andInfo: ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb) , andExtraInfo:nil)
+                app.network.addWithInterface("Cxpbfww", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb), andExtraInfo: nil)
             }
             
             if app.ServerData == 2 {
-                app.network.editWithInterface("bsdtApi/edit", andInfo: ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb) , andExtraInfo:nil)
+                app.network.editWithInterface("Cxfpbfwwd", andInfo: ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb) , andExtraInfo:nil)
             }
         }
     
