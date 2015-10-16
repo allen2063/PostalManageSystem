@@ -2697,7 +2697,7 @@
         <scene sceneID="7kS-Th-yf6">
             <objects>
                 <viewController storyboardIdentifier="applyRestoreBranchVC" title="申请恢复业务" id="Eej-cW-HkP" customClass="ApplyRestoreBranchViewController" customModule="PostalManageSystem" customModuleProvider="target" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" keyboardDismissMode="onDrag" id="TtR-zt-62u">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" id="TtR-zt-62u">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="740"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

@@ -14,26 +14,48 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
         textField.textColor = UIColor.blackColor()
     }
     
-//    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-//        let rootView = self.view as! UIScrollView
-//        
-//        print(rootView.contentOffset.y + 64)
-//    }
-//    
-//    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-//        let rootView = self.view as! UIScrollView
-//        
-//        let realContentOffsetY = rootView.contentOffset.y + 64
-//        
-//        let shouldPutUpHeight = (200 - (UIScreen.mainScreen().bounds.size.height + realContentOffsetY) - textField.frame.origin.y) + textField.frame.size.height + 20
-//        
-//        if ((textField.frame.origin.y - realContentOffsetY) > 200)
-//        {
-//            rootView.bounds.origin.y -= shouldPutUpHeight
-//        }
-//        
-//        return true
-//    }
+    //当键盘出现或改变时调用
+    var positionChangeY: CGFloat?
+    
+    func keyboardWillShow(aNotification: NSNotification)
+    {
+        let userInfo: NSDictionary = aNotification.userInfo!
+        let aValue: NSValue = (userInfo.objectForKey(UIKeyboardFrameEndUserInfoKey) as? NSValue)!
+        let keyboardRect: CGRect = aValue.CGRectValue()
+        let keyboardHeight: CGFloat = keyboardRect.size.height
+        
+        let rootView = self.view as! UIScrollView
+        
+        let realContentOffsetY = rootView.contentOffset.y
+        
+        if (UIScreen.mainScreen().bounds.height < keyboardHeight + textFieldHeight! - realContentOffsetY)
+        {
+            rootView.contentSize = CGSize(width: 320, height: 960)
+            UIView.animateWithDuration(0.3, animations: {
+                self.positionChangeY = rootView.contentOffset.y
+                
+                rootView.contentOffset.y = (keyboardHeight + self.textFieldHeight! ) - (UIScreen.mainScreen().bounds.height)
+                
+            })
+        }
+    }
+    
+    func keyboardWillHide(aNotification: NSNotification)
+    {
+        let rootView = self.view as! UIScrollView
+        
+        rootView.contentSize = CGSize(width: 320, height: 840)
+        UIView.animateWithDuration(0.3, animations: {
+            rootView.contentOffset.y = self.positionChangeY!
+        })
+    }
+    
+    var textFieldHeight: CGFloat?
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        textFieldHeight = textField.frame.size.height + textField.frame.origin.y
+        return true
+    }
     
     var rxYouBian = NSRegularExpression.rx("[1-9]\\d{5}(?!\\d)", ignoreCase:true)
     var rxLianXiDianHua = NSRegularExpression.rx("((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)", ignoreCase:true)
@@ -179,6 +201,13 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/add", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/edit", object: nil)
+        
+        //增加监听，当键盘出现或改变时收出消息
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: "UIKeyboardWillShowNotification", object: nil)
+         //增加监听，当键退出时收出消息
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: "UIKeyboardWillHideNotification", object: nil)
+
+        
         
         let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
         //        labelNav.backgroundColor = UIColor.clearColor
