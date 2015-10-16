@@ -14,6 +14,12 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
         textField.textColor = UIColor.blackColor()
     }
     
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        self.view.center.y = textField.center.y - textField.frame.height
+        
+        return true
+    }
+    
     var rxYouBian = NSRegularExpression.rx("[1-9]\\d{5}(?!\\d)", ignoreCase:true)
     var rxLianXiDianHua = NSRegularExpression.rx("((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)", ignoreCase:true)
     
@@ -449,7 +455,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
             }
             
             if app.ServerData == 2 {
-                app.network.editWithInterface("bsdtApi/edit", andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb) , andExtraInfo: nil)
+                app.network.editWithInterface("Hfyw", andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb) , andExtraInfo: nil)
             }
         }
         
