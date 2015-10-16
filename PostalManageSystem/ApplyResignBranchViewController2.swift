@@ -1365,7 +1365,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             }
         }
     
-        ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb)
+//        ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb)
         
 //        println("\(ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb))")
     }

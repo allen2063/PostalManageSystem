@@ -890,7 +890,6 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
             COMMIT_OK += 1
             infoOfYzqyszyzyycsdjb.fwrk = fuWuRenKou.text
         } else {
-            
             print("服务人口不符合要求")
 //            fuWuRenKou.attributedPlaceholder = NSAttributedString(string: "不符要求"
 //                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
@@ -954,13 +953,24 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         print("\(COMMIT_OK)", terminator: "\n")
         
 //        print("\(infoOfYzqyszyzyycsdjb.ywfw)")
-        if (COMMIT_OK == 30) {
-            let alertView = UIAlertView(title: "提交成功", message:  "", delegate: self, cancelButtonTitle: "完成")
-            alertView.show()
-            print("\(ClassToJSON.getObjectData(infoOfYzqyszyzyycsdjb))")
-        } else if (COMMIT_OK != 30) {
-            print("提交失败!!!!!!!!!!!!!!!!!!!!!!!!")
+//        if (COMMIT_OK == 30) {
+//            let alertView = UIAlertView(title: "提交成功", message:  "", delegate: self, cancelButtonTitle: "完成")
+//            alertView.show()
+//            print("\(ClassToJSON.getObjectData(infoOfYzqyszyzyycsdjb))")
+//        } else if (COMMIT_OK != 30) {
+//            print("提交失败!!!!!!!!!!!!!!!!!!!!!!!!")
+//        }
+        
+        if app.ServerData == 0 {
+            //                app.network.editWithInterface("Cxfpbfwwd", andInfo: ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb) , andExtraInfo:nil)
+            app.network.addWithInterface("Szxwd", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfYzqyszyzyycsdjb), andExtraInfo: nil)
         }
+        
+        if app.ServerData == 2 {
+            app.network.editWithInterface("Szxwd", andInfo: ClassToJSON.getObjectData(infoOfYzqyszyzyycsdjb) , andExtraInfo:nil)
+        }
+
+        
     }
     
 //    func init(dict: NSDictionary) {
