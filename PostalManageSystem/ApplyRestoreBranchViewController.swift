@@ -208,7 +208,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
             }
 
             
-            app.ServerData = 0
+//            app.ServerData = 0
 
             qiYeMingCheng.enabled = false
             XinJian.enabled = false
@@ -253,7 +253,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
 
             
             print("进入恢复业务修改页面！！！！！！！")
-            app.ServerData = 0
+//            app.ServerData = 0
             initHuiFu(app.applyRestoreDic)
             
             qiYeMingCheng.enabled = true

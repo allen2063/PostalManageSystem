@@ -548,6 +548,7 @@
                     [self statusJuge:statusString AndAction:@"delete" AndIndexPath:indexPath];
                 }else if ([actionString isEqualToString:@"edit"]){
                     statusString = [[[_dataListForDisplay objectAtIndex:row] objectForKey:@"status"]stringValue];
+                    app.ServerData = 2;
                     [self statusJuge:statusString AndAction:@"edit" AndIndexPath:indexPath];
                 }else if ([actionString isEqualToString:@"upload"]){
                     app.selectedCellData = [_dataListForDisplay objectAtIndex:indexPath.row];
@@ -730,13 +731,12 @@
     }else{
         
     }
-
      [self addDataWithDirection:directionForNow];
 }
 
 //表的详情返回
 - (void)formDataBack:(NSNotification *)note{
-    //判断是点击左滑按钮后的cell按钮返回  还是点击cell的返回
+    //判断是点击左滑按钮后的cell按钮返回  还是点击cell的返回   已无作用  通过app.ServerData来判断是修改还是查看 
     if (!didSelectedCell) {
         return;
     }
@@ -745,7 +745,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     if ([[tempDic objectForKey:@"result"] isEqualToString:@"1"]) {
 
-        //如果没被体检置为2  则为1    2为cell右滑后点击修改  在之前就置为2了
+        //如果没被提前置为2  则为1    2为cell右滑后点击修改  1为点击修改
 
         if (app.ServerData != 2) {
             app.ServerData = 1;
