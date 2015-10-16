@@ -31,9 +31,9 @@
 
 - (id)init{
     self = [super init];
-    //urlToServer = @"http://222.85.149.6:8089/GuiYangPost/";
+    urlToServer = @"http://222.85.149.6:8089/GuiYangPost/";
     //@"chisifang.imwork.net:11246/GuiYangPost/";    communicatingInterface = @"off";
-    urlToServer = @"http://chisifang.imwork.net:11246/GuiYangPost/";
+    //rurlToServer = @"http://chisifang.imwork.net:11246/GuiYangPost/";
     alerts = [[UIAlertView alloc]init];
     isback =NO;
     requestCount = 0;
