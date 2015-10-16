@@ -9,16 +9,31 @@
 import UIKit
 
 class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
-
+    
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.textColor = UIColor.blackColor()
     }
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        self.view.center.y = textField.center.y - textField.frame.height
-        
-        return true
-    }
+//    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+//        let rootView = self.view as! UIScrollView
+//        
+//        print(rootView.contentOffset.y + 64)
+//    }
+//    
+//    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+//        let rootView = self.view as! UIScrollView
+//        
+//        let realContentOffsetY = rootView.contentOffset.y + 64
+//        
+//        let shouldPutUpHeight = (200 - (UIScreen.mainScreen().bounds.size.height + realContentOffsetY) - textField.frame.origin.y) + textField.frame.size.height + 20
+//        
+//        if ((textField.frame.origin.y - realContentOffsetY) > 200)
+//        {
+//            rootView.bounds.origin.y -= shouldPutUpHeight
+//        }
+//        
+//        return true
+//    }
     
     var rxYouBian = NSRegularExpression.rx("[1-9]\\d{5}(?!\\d)", ignoreCase:true)
     var rxLianXiDianHua = NSRegularExpression.rx("((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)", ignoreCase:true)
@@ -154,6 +169,10 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
         //        print("\(bkView.bounds.origin.y)")
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        app.ServerData = 0
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -287,6 +306,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
         if (result == "1") {
             let alert = UIAlertView(title: "提交成功", message: "", delegate: nil, cancelButtonTitle: "确定")
             alert.show()
+            
         } else {
             let alert = UIAlertView(title: "提交失败", message: "", delegate: nil, cancelButtonTitle: "确定")
             alert.show()
@@ -309,6 +329,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
 
+        var stringForEdit = ""
         if ((XinJian.selected || YouZhengHuiDui.selected || MangRenDuWu.selected || YinShuaPin.selected || BaoGuo.selected || LieShiBaoGuo.selected || GuoJiaGuiDingBaoKanDeFaXing.selected || YiWuBingXinHan.selected) == false) {
             let alertView = UIAlertView(title: "须选择业务范围", message:  "业务范围不能为空", delegate: self, cancelButtonTitle: "返回编辑")
             alertView.show()
@@ -316,27 +337,35 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
             COMMIT_OK += 1
             if XinJian.selected {
                 infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += "xj"
+                stringForEdit += "xj"
             }
             if YouZhengHuiDui.selected {
                 infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",yzhd"
+                stringForEdit += ",yzhd"
             }
             if MangRenDuWu.selected {
                 infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",mrdw"
+                stringForEdit += ",mrdw"
             }
             if YinShuaPin.selected {
                 infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",ysp"
+                stringForEdit += ",ysp"
             }
             if BaoGuo.selected {
                 infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",bgs"
+                stringForEdit += ",bgs"
             }
             if LieShiBaoGuo.selected {
                 infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",gmlsyw"
+                stringForEdit += ",gmlsyw"
             }
             if GuoJiaGuiDingBaoKanDeFaXing.selected {
                 infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",gjgdbkdfx"
+                stringForEdit += ",gjgdbkdfx"
             }
             if YiWuBingXinHan.selected {
                 infoOfHfblyzpbhtsfwywbgb.tzhxzblywsx += ",ywbpcxh"
+                stringForEdit += ",ywbpcxh"
             }
         }
         
@@ -455,7 +484,19 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
             }
             
             if app.ServerData == 2 {
-                app.network.editWithInterface("Hfyw", andInfo: ClassToJSON.getObjectData(infoOfHfblyzpbhtsfwywbgb) , andExtraInfo: nil)
+                app.applyRestoreDic.setValue(qiYeMingCheng.text, forKey: "yzyycsmc")
+                app.applyRestoreDic.setValue(stringForEdit, forKey: "tzhxzblywsx")
+                app.applyRestoreDic.setValue(yingYeChangSUoMingCheng.text, forKey: "tzhzyzblywqyhyycsmc")
+                app.applyRestoreDic.setValue(diZhi.text, forKey: "dz")
+                app.applyRestoreDic.setValue(youBian.text, forKey: "yzbm")
+                app.applyRestoreDic.setValue(lianXIRenXIngMing.text, forKey: "lxrxm")
+                app.applyRestoreDic.setValue(lianXiDianHua.text, forKey: "lxdh")
+                app.applyRestoreDic.setValue(huiFuBanLiShiJian.text, forKey: "hfbldsj")
+                app.applyRestoreDic.setValue(qiTaShuoMingShiXiang.text, forKey: "qtxysmdsx")
+                
+                
+                
+                app.network.editWithInterface("Hfyw", andInfo: app.applyRestoreDic as [NSObject : AnyObject], andExtraInfo: nil)
             }
         }
         

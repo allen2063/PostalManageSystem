@@ -308,6 +308,9 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/add", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/edit", object: nil)
+        
         let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
         //        labelNav.backgroundColor = UIColor.clearColor
         labelNav.font = UIFont.boldSystemFontOfSize(20)
@@ -542,6 +545,20 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
             commitBtn.hidden = false
             
             initTianJia(app.applyAddDic)
+        }
+    }
+    
+    func commitResult(notification: NSNotification) {
+        let noteDic: NSDictionary = notification.userInfo!
+        let result: String = (noteDic.valueForKey("result") as? String)!
+        
+        if (result == "1") {
+            let alert = UIAlertView(title: "提交成功", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+            
+        } else {
+            let alert = UIAlertView(title: "提交失败", message: "", delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
         }
     }
     
@@ -897,7 +914,7 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
             fuWuRenKou.textColor = UIColor.redColor()
         }
         
-        
+        var stringForEdit = ""
         if ((XinJian.selected || WuLiu.selected || JiYou.selected || BaoGuo.selected || YinShuaPin.selected || BaoKanLingShou.selected || YouZhengChuXu.selected || MangRenDuWu.selected || TeKuaiZhuangDi.selected || BaoKanDingYue.selected || YouZhengHuiDui.selected || YIWuBingXinHan.selected || LieShiBaoGuo.selected || QiTa.selected) == false)
         {
             
@@ -907,45 +924,59 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
             COMMIT_OK += 1
             if XinJian.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += "xj"
+                stringForEdit += "xj"
             }
             if WuLiu.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += ",wl"
+                stringForEdit += ",wl"
             }
             if JiYou.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += ",jy"
+                stringForEdit += ",jy"
             }
             if BaoGuo.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += ",bgs"
+                stringForEdit += ",bgs"
             }
             if YinShuaPin.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += ",ysp"
+                stringForEdit += ",ysp"
             }
             if BaoKanLingShou.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += ",bkls"
+                stringForEdit += ",bkls"
             }
             if YouZhengChuXu.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += ",yzcx"
+                stringForEdit += ",yzcx"
             }
             if MangRenDuWu.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += ",mrdw"
+                stringForEdit += ",mrdw"
             }
             if TeKuaiZhuangDi.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += ",tkzd"
+                stringForEdit += ",tkzd"
             }
             if BaoKanDingYue.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += ",bkdy"
+                stringForEdit += ",bkdy"
             }
             if YouZhengHuiDui.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += ",yzhd"
+                stringForEdit += ",yzhd"
             }
             if YIWuBingXinHan.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += ",ywbxh"
+                stringForEdit += ",ywbxh"
             }
             if LieShiBaoGuo.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += ",lsywbg"
+                stringForEdit += ",lsywbg"
             }
             if QiTa.selected {
                 infoOfYzqyszyzyycsdjb.ywfw += ",qt"
+                stringForEdit += ",qt"
             }
         
         }
@@ -960,17 +991,54 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
 //        } else if (COMMIT_OK != 30) {
 //            print("提交失败!!!!!!!!!!!!!!!!!!!!!!!!")
 //        }
-        
-        if app.ServerData == 0 {
-            //                app.network.editWithInterface("Cxfpbfwwd", andInfo: ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb) , andExtraInfo:nil)
-            app.network.addWithInterface("Szxwd", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfYzqyszyzyycsdjb), andExtraInfo: nil)
-        }
-        
-        if app.ServerData == 2 {
-            app.network.editWithInterface("Szxwd", andInfo: ClassToJSON.getObjectData(infoOfYzqyszyzyycsdjb) , andExtraInfo:nil)
-        }
-
-        
+        if (COMMIT_OK == 30) {
+            
+            if app.ServerData == 0 {
+                //                app.network.editWithInterface("Cxfpbfwwd", andInfo: ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb) , andExtraInfo:nil)
+                app.network.addWithInterface("Szxwd", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfYzqyszyzyycsdjb), andExtraInfo: nil)
+            }
+            
+            if app.ServerData == 2 {
+                app.applyAddDic.setValue(chooseShiXiang.text, forKey: "sx")
+                app.applyAddDic.setValue(changSuoMingCheng.text, forKey: "yzyycsmc")
+                app.applyAddDic.setValue(chooseJingYingFangShi.text, forKey: "jyfs")
+                app.applyAddDic.setValue(shi.text, forKey: "csdz_s")
+                app.applyAddDic.setValue(xian.text, forKey: "csdz_xqs")
+                app.applyAddDic.setValue(jieDao.text, forKey: "csdz_jx")
+                app.applyAddDic.setValue(menPaiHao.text, forKey: "csdz_h")
+                app.applyAddDic.setValue(jingDu.text, forKey: "csdz_jd")
+                app.applyAddDic.setValue(weiDu.text, forKey: "csdz_wd")
+                app.applyAddDic.setValue(youBian.text, forKey: "yzbm")
+                
+                app.applyAddDic.setValue(shangJiDanWei.text, forKey: "sjdw")
+                app.applyAddDic.setValue(cangSuoFuZeRen.text, forKey: "yycsfzr")
+                app.applyAddDic.setValue(lianXiDianHua.text, forKey: "lxdh")
+                app.applyAddDic.setValue(chooseSheZhiDiYu.text, forKey: "szdy")
+                app.applyAddDic.setValue(kaiYeShiJian.text, forKey: "kysj")
+                app.applyAddDic.setValue(chooseFangWuChangQuan.text, forKey: "fwcq")
+                app.applyAddDic.setValue(jianZhuMianJi.text, forKey: "jzmj")
+                
+                app.applyAddDic.setValue(yingYeShiJianZhouJi.text, forKey: "zyyr_ks")
+                app.applyAddDic.setValue(yingYeShiJianZhiZhouJi.text, forKey: "zyyr_js")
+                app.applyAddDic.setValue(yingYeShiJianJiDian.text, forKey: "ryysj_ks")
+                app.applyAddDic.setValue(yingYeShiJianZhiJiDian.text, forKey: "ryysj_js")
+                app.applyAddDic.setValue(chooseMenQianYouTong.text, forKey: "mqyt")
+                app.applyAddDic.setValue(zhouKaiQuTianShu.text, forKey: "zkqts")
+                
+                app.applyAddDic.setValue(riKaiQuPinCi.text, forKey: "rkqpc")
+                app.applyAddDic.setValue(fuWuQuYu.text, forKey: "fwqy")
+                app.applyAddDic.setValue(zhouTouDiTianShu.text, forKey: "ztdts")
+                app.applyAddDic.setValue(riTouDiPinCi.text, forKey: "rtdpc")
+                
+                app.applyAddDic.setValue(fuWuBanJing.text, forKey: "fwbj")
+                app.applyAddDic.setValue(fuWuRenKou.text, forKey: "fwrk")
+                app.applyAddDic.setValue(stringForEdit, forKey: "ywfw")
+                
+                app.network.editWithInterface("Szxwd", andInfo: app.applyAddDic as [NSObject : AnyObject] , andExtraInfo:nil)
+            }
+            
+    }
+    
     }
     
 //    func init(dict: NSDictionary) {
@@ -985,7 +1053,7 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         //崩溃   未初始化。。。
         if(dict.valueForKey("sx") as! String == "szqtyzyycs") {
             chooseShiXiang!.text! = "设置其他营业场所"
-            print("hahahahahahahahahahahahahahahah")
+//            print("hahahahahahahahahahahahahahahah")
         }
         
         if (dict.valueForKey("jyfs") as! String == "zb")   {
