@@ -165,8 +165,9 @@
     [qysqcxBtn addTarget:self action:@selector(jumpPageForBSDT:) forControlEvents:UIControlEventTouchUpInside];
     qysqcxBtn.tag = 8;
     [self.view addSubview:qysqcxBtn];
-    
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
     if (!app.login) {
         self.loginView = [[UIView alloc]initWithFrame:self.view.bounds];
         self.loginView.backgroundColor = [UIColor whiteColor];
