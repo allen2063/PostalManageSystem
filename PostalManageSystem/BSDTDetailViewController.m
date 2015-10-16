@@ -108,7 +108,11 @@
     NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardRect = [aValue CGRectValue];
     int keyboardHeight = keyboardRect.size.height;
-    if ((keyboardHeight - (UISCREENHEIGHT - textFieldHeight)+NAVIGATIONHEIGHT >0)&&[currentView isKindOfClass:[UIScrollView class]]) {   //判断键盘是否会遮到输入框   是则调整画面
+//    if ((keyb÷oardHeight - (UISCREENHEIGHT - textFieldHeight)+NAVIGATIONHEIGHT >0)&&[currentView isKindOfClass:[UIScrollView class]]) {   //判断键盘是否会遮到输入框   是则调整画面
+    UIScrollView * temp = (UIScrollView * )currentView;
+    tempOffset = temp.contentOffset;
+    if (( UISCREENHEIGHT < keyboardHeight + textFieldHeight -tempOffset.y )&&[currentView isKindOfClass:[UIScrollView class]]) {
+
         UIScrollView * temp = (UIScrollView * )currentView;
         tempOffset = temp.contentOffset;
         [UIView animateWithDuration:0.3 animations:^{
