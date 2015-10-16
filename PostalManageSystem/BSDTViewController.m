@@ -195,6 +195,8 @@
         passwordTextField.leftView = passwordImageView;
         passwordTextField.leftViewMode = UITextFieldViewModeAlways;
         passwordTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+        passwordTextField.clearButtonMode = UITextFieldViewModeAlways;
+
         [self.loginView addSubview:passwordTextField];
         
         UIButton * loginBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
