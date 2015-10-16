@@ -243,7 +243,7 @@
     ApplyPausedViewController * applyPausedBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyPausedBranchVC"];
     ApplyStopBranchViewController * applyStopBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyStopBranchVC"];
     ApplyRestoreBranchViewController * applyRestoreBranchVC = [storyboard instantiateViewControllerWithIdentifier:@"applyRestoreBranchVC"];
-    BSDTDetailViewController * bsdt = [BSDTDetailViewController alloc];
+//    BSDTDetailViewController * bsdt = [BSDTDetailViewController alloc];
 //    UploadPicViewController * uploadPic = [[UploadPicViewController alloc]init];
     //提前初始化查询  以接受服务器返回数据
     _search = [SearchForMyApply alloc];
@@ -260,13 +260,13 @@
             
             break;
         case 2:
-            app.titleForCurrentPage = @"申请新增网点";
-                        bsdt = [bsdt init];
-            [self.navigationController pushViewController:bsdt animated:YES];
+//            app.titleForCurrentPage = @"申请新增网点";
+//                        bsdt = [bsdt init];
+//            [self.navigationController pushViewController:bsdt animated:YES];
 
 //            [applyAddBranchVC setTitle:app.titleForCurrentPage];
             //改颜色代码
-//            [self.navigationController pushViewController:applyAddBranchVC animated:YES];
+            [self.navigationController pushViewController:applyAddBranchVC animated:YES];
 //            printf("%@", applyAddBranchVC.chooseShiXiang);
             break;
         case 3:
