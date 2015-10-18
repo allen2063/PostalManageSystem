@@ -474,6 +474,8 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
 //            }
 //        }
     
+        var stringForEdit1 = ""
+         var stringForEdit2 = ""
         //---------------
         if (((XinJian1.selected || YouZhengHuiDui1.selected || MangRenDuWu1.selected || YinShuaPin1.selected || BaoGuo1.selected || LieShiBaoGuo1.selected || GuoJiaGuiDingBaoKanDeFaXing1.selected || YiWuBingXinHan1.selected) == false) && ((XinJian.selected || YouZhengHuiDui.selected || MangRenDuWu.selected || YinShuaPin.selected || BaoGuo.selected || LieShiBaoGuo.selected || GuoJiaGuiDingBaoKanDeFaXing.selected || YiWuBingXinHan.selected) == false))
         {
@@ -485,53 +487,70 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
             
             if XinJian.selected {
                 infoOfNthybywyzyycsjbqkb.tzblywsx += "xj"
+                stringForEdit1 += "xj"
             }
             if YouZhengHuiDui.selected {
                 infoOfNthybywyzyycsjbqkb.tzblywsx += ",yzhd"
+                stringForEdit1 += ",yzhd"
             }
             if MangRenDuWu.selected {
                 infoOfNthybywyzyycsjbqkb.tzblywsx += ",mrdw"
+                stringForEdit1 += ",mrdw"
             }
             if YinShuaPin.selected {
                 infoOfNthybywyzyycsjbqkb.tzblywsx += ",ysp"
+                stringForEdit1 += ",ysp"
             }
             if BaoGuo.selected {
                 infoOfNthybywyzyycsjbqkb.tzblywsx += ",bgs"
+                stringForEdit1 += ",bgs"
             }
             if LieShiBaoGuo.selected {
                 infoOfNthybywyzyycsjbqkb.tzblywsx += ",gmlsyw"
+                stringForEdit1 += ",gmlsyw"
             }
             if GuoJiaGuiDingBaoKanDeFaXing.selected {
                 infoOfNthybywyzyycsjbqkb.tzblywsx += ",gjgdbkdfx"
+                stringForEdit1 += ",gjgdbkdfx"
             }
             if YiWuBingXinHan.selected {
                 infoOfNthybywyzyycsjbqkb.tzblywsx += ",ywbpcxh"
+                stringForEdit1 += ",ywbpcxh"
             }
             
+           
             //----------------不同时为空2---------------
             if XinJian1.selected {
                 infoOfNthybywyzyycsjbqkb.xzblywsx += "xj"
+                stringForEdit2 += "xj"
             }
             if YouZhengHuiDui1.selected {
                 infoOfNthybywyzyycsjbqkb.xzblywsx += ",yzhd"
+                stringForEdit2 += ",yzhd"
             }
             if MangRenDuWu1.selected {
                 infoOfNthybywyzyycsjbqkb.xzblywsx += ",mrdw"
+                stringForEdit2 += ",mrdw"
             }
             if YinShuaPin1.selected {
                 infoOfNthybywyzyycsjbqkb.xzblywsx += ",ysp"
+                stringForEdit2 += ",ysp"
             }
             if BaoGuo1.selected {
                 infoOfNthybywyzyycsjbqkb.xzblywsx += ",bgs"
+                stringForEdit2 += ",bgs"
             }
             if LieShiBaoGuo1.selected {
                 infoOfNthybywyzyycsjbqkb.xzblywsx += ",lsywbg"
+                stringForEdit2 += ",lsywbg"
             }
             if GuoJiaGuiDingBaoKanDeFaXing1.selected {
                 infoOfNthybywyzyycsjbqkb.xzblywsx += ",gjgdbkdfx"
+                stringForEdit2 += ",gjgdbkdfx"
             }
             if YiWuBingXinHan1.selected {
                 infoOfNthybywyzyycsjbqkb.xzblywsx += ",ywbpcxh"
+                stringForEdit2 += ",ywbpcxh"
             }
         }
         
@@ -596,11 +615,41 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         
         if (COMMIT_OK == 24) {
             if app.ServerData == 0 {
-                app.network.editWithInterface("bsdtApi/add", andInfo: ClassToJSON.getObjectData(infoOfYzyycstbhybyzpbfwywhtsfwywdsq) , andExtraInfo: ClassToJSON.getObjectData(infoOfNthybywyzyycsjbqkb))
+                app.network.addWithInterface("Txyw", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfYzyycstbhybyzpbfwywhtsfwywdsq), andExtraInfo: ClassToJSON.getObjectData(infoOfNthybywyzyycsjbqkb))
+                
             }
             
             if app.ServerData == 2 {
-                app.network.editWithInterface("bsdtApi/edit", andInfo: ClassToJSON.getObjectData(infoOfYzyycstbhybyzpbfwywhtsfwywdsq) , andExtraInfo: ClassToJSON.getObjectData(infoOfNthybywyzyycsjbqkb))
+                let info1 = app.applyStopDic.valueForKey("info1")
+                info1!.setValue(fenGongSi.text, forKey: "zgyzjtgsttfgsmc")
+                info1!.setValue(yingYeChangSuoMingCheng.text, forKey: "btyzyycsmc")
+                info1!.setValue(beiShenQingDanWeiMingCheng.text, forKey: "syzgljmc")
+                info1!.setValue(shenQingZhuYaoYuanYin.text, forKey: "sqtzblhzxzywdzyyy")
+                info1!.setValue(niTingBanShiJianNian.text, forKey: "tzblhzxzblsj_n")
+                info1!.setValue(niTingBanShiJianYue.text, forKey: "tzblhzxzblsj_y")
+                info1!.setValue(chooseBanLiShiXiangLabel.text, forKey: "tzblhzxzbl")
+                info1!.setValue(changSuoDiZhiShi.text, forKey: "tzblhzxzbldz_s")
+                info1!.setValue(changSuoDiZhiXian.text, forKey: "tzblhzxzbldz_xqs")
+                info1!.setValue(changSuoDiJie.text, forKey: "tzblhzxzbldz_jx")
+                info1!.setValue(youZhengYingYeChangSuoMingCeng.text, forKey: "yzyycsmc")
+                info1!.setValue(chooseTingXianBanLiYeWuZhongLei.text, forKey: "yzpbfwywhtsfwyw")
+                info1!.setValue(jiTiYeWuMingCheng.text, forKey: "jtywmc")
+                info1!.setValue(yeWuJuTiQingXing.text, forKey: "xzblywdjtqx")
+                info1!.setValue(niCaiQuBuJiuCuoShi.text, forKey: "cqdbjcs")
+                info1!.setValue(zongTiFuWuShuiPing.text, forKey: "yzpbfwztsp")
+                
+                let info2 = app.applyStopDic.valueForKey("info2")
+                info2!.setValue(yingYeChangSuoMingCheng1.text, forKey: "yzyycsmc")
+                info2!.setValue(shangJiDanWei1.text, forKey: "sjdw")
+                info2!.setValue(stringForEdit1, forKey: "tzblywsx")
+                info2!.setValue(stringForEdit2, forKey: "xzblywsx")
+                info2!.setValue(fuWuQuYu1.text, forKey: "tbhxbywyzyycsdfwqy")
+                info2!.setValue(diZhi1.text, forKey: "dz")
+                info2!.setValue(youBian1.text, forKey: "yzbm")
+                info2!.setValue(lianXiRenXingMing1.text, forKey: "lxrxm")
+                info2!.setValue(lianXiDianHua1.text, forKey: "lxdh")
+                
+                app.network.editWithInterface("Txyw", andInfo: info1 as! [NSObject : AnyObject] , andExtraInfo: info2 as! [NSObject : AnyObject])
             }
         }
         
@@ -631,7 +680,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         changSuoDiZhiShi.text = dict.valueForKey("tzblhzxzbldz_s") as! String
         changSuoDiZhiXian.text = dict.valueForKey("tzblhzxzbldz_xqs") as! String
         changSuoDiJie.text = dict.valueForKey("tzblhzxzbldz_jx") as! String
-        yingYeChangSuoMingCheng.text = dict.valueForKey("yzyycsmc") as! String
+        youZhengYingYeChangSuoMingCeng.text = dict.valueForKey("yzyycsmc") as! String
         
         //infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzpbfwywhtsfwyw = chooseTingXianBanLiYeWuZhongLei.text
         if (dict.valueForKey("yzpbfwywhtsfwyw") as! String == "yzpbfwyw")  {

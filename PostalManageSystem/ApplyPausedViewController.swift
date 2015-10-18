@@ -432,6 +432,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
             }
         }
         
+        var stringForEdit = ""
         if ((XinJian.selected || YouZhengHuiDui.selected || MangRenDuWu.selected || YinShuaPin.selected || BaoGuo.selected || LieShiBaoGuo.selected || GuoJiaGuiDingBaoKanDeFaXing.selected || YiWuBingXinHan.selected) == false)
         {
             
@@ -441,27 +442,35 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
             COMMIT_OK += 1
             if XinJian.selected {
                 infoOfZtbhxbyzpbfwhtsfwywdjb.xzblsx_ywfw += "xj"
+                stringForEdit += "xj"
             }
             if YouZhengHuiDui.selected {
                 infoOfZtbhxbyzpbfwhtsfwywdjb.xzblsx_ywfw += ",yzhd"
+                stringForEdit += ",yzhd"
             }
             if MangRenDuWu.selected {
                 infoOfZtbhxbyzpbfwhtsfwywdjb.xzblsx_ywfw += ",mrdw"
+                stringForEdit += ",mrdw"
             }
             if YinShuaPin.selected {
                 infoOfZtbhxbyzpbfwhtsfwywdjb.xzblsx_ywfw += ",ysp"
+                stringForEdit += ",ysp"
             }
             if BaoGuo.selected {
                 infoOfZtbhxbyzpbfwhtsfwywdjb.xzblsx_ywfw += ",bgs"
+                stringForEdit += ",bgs"
             }
             if LieShiBaoGuo.selected {
                 infoOfZtbhxbyzpbfwhtsfwywdjb.xzblsx_ywfw += ",gmlsyw"
+                stringForEdit += ",gmlsyw"
             }
             if GuoJiaGuiDingBaoKanDeFaXing.selected {
                 infoOfZtbhxbyzpbfwhtsfwywdjb.xzblsx_ywfw += ",gjgdbkdfx"
+                stringForEdit += ",gjgdbkdfx"
             }
             if YiWuBingXinHan.selected {
                 infoOfZtbhxbyzpbfwhtsfwywdjb.xzblsx_ywfw += ",ywbpcxh"
+                stringForEdit += ",ywbpcxh"
             }
         }
         
@@ -555,13 +564,27 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
         
         print("\(COMMIT_OK)", terminator: "\n")
         
-        if (COMMIT_OK == 11) {
+        if (COMMIT_OK == 12) {
             if app.ServerData == 0 {
-                app.network.editWithInterface("bsdtApi/add", andInfo: ClassToJSON.getObjectData(infoOfZtbhxbyzpbfwhtsfwywdjb) , andExtraInfo: nil)
+                app.network.addWithInterface("Ztxyw", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfZtbhxbyzpbfwhtsfwywdjb), andExtraInfo: nil)
             }
             
             if app.ServerData == 2 {
-                app.network.editWithInterface("bsdtApi/edit", andInfo: ClassToJSON.getObjectData(infoOfZtbhxbyzpbfwhtsfwywdjb) , andExtraInfo: nil)
+                app.applyResignDic.setValue(changSuoMingCheng.text, forKey: "yzyycsmc")
+                app.applyResignDic.setValue(shangJiDanWei.text, forKey: "sjdw")
+                app.applyResignDic.setValue(chooseBanLiShiXiangLabel.text, forKey: "xzblsx")
+                app.applyResignDic.setValue(stringForEdit, forKey: "xzblsx_ywfw")
+                app.applyResignDic.setValue(fuWuQuYu.text, forKey: "zstzblhzxzblywdyzyycsdfwqy")
+                app.applyResignDic.setValue(diZhi.text, forKey: "dz")
+                app.applyResignDic.setValue(youBian.text, forKey: "yzbm")
+                app.applyResignDic.setValue(lianXiRenXingMing.text, forKey: "lxrxm")
+                app.applyResignDic.setValue(lianXiDianHua.text, forKey: "lxdh")
+                app.applyResignDic.setValue(zanTingShiJian.text, forKey: "zstzblhzxzblywdsj")
+                app.applyResignDic.setValue(zanXianYuanYin.text, forKey: "zstzblhzxzblywdyy")
+                app.applyResignDic.setValue(buJiuCuoShi.text, forKey: "zstzblhzxzblywqjyzqycqdbjcs")
+                
+                app.network.editWithInterface("Ztxyw", andInfo: app.applyPauseDic as [NSObject : AnyObject] , andExtraInfo:nil)
+                
             }
         }
 //       print("\(ClassToJSON.getObjectData(infoOfZtbhxbyzpbfwhtsfwywdjb))")
@@ -606,6 +629,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
         
         fuWuQuYu.text = dict.valueForKey("zstzblhzxzblywdyzyycsdfwqy") as! String
         dict.valueForKey("dz") as! String
+        diZhi.text = dict.valueForKey("dz") as! String
         youBian.text = dict.valueForKey("yzbm") as! String
         lianXiRenXingMing.text = dict.valueForKey("lxrxm") as! String
         lianXiDianHua.text = dict.valueForKey("lxdh") as! String

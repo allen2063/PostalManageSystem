@@ -760,6 +760,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         //变更前
         let infoOfYzqyyzyycsbaxxbgdjb = InfoOfYzqyyzyycsbaxxbgdjb()
         
+        var bianGengShiXiangForEdit = ""
         if ((mingChengBianGeng.selected || jingYingShiJianBianGeng.selected || jingYingFangShiBianGeng.selected || changQuanXingZhiBianGeng.selected) == false)
         {
             let alertView = UIAlertView(title: "须选择变更事项", message:  "变更事项不能为空", delegate: self, cancelButtonTitle: "返回编辑")
@@ -768,15 +769,19 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
             COMMIT_OK += 1
             if mingChengBianGeng.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.bgsx += ",mcbg"
+                bianGengShiXiangForEdit += ",mcbg"
             }
             if jingYingShiJianBianGeng.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.bgsx += ",yysjbg"
+                bianGengShiXiangForEdit += ",yysjbg"
             }
             if  jingYingFangShiBianGeng.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.bgsx += ",jyfsbg"
+                bianGengShiXiangForEdit += ",jyfsbg"
             }
             if  changQuanXingZhiBianGeng.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.bgsx += ",cqxzbg"
+                bianGengShiXiangForEdit += ",cqxzbg"
             }
         }
         
@@ -1043,6 +1048,8 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
+        
+        var stringForEdit = ""
         if ((XinJian.selected || WuLiu.selected || JiYou.selected || BaoGuo.selected || YinShuaPin.selected || BaoKanLingShou.selected || YouZhengChuXu.selected || MangRenDuWu.selected || TeKuaiZhuangDi.selected || BaoKanDingYue.selected || YouZhengHuiDui.selected || YIWuBingXinHan.selected || LieShiBaoGuo.selected || QiTa.selected) == false)
         {
             
@@ -1054,48 +1061,63 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
             if XinJian.selected {
                 if infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq == "" {
                     infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += "xj"
+                    stringForEdit += "xj"
                 } else {
                     infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",xj"
+                    stringForEdit += ",xj"
                 }
             }
             if WuLiu.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",wl"
+                stringForEdit += ",wl"
             }
             if JiYou.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",jy"
+                stringForEdit += ",jy"
             }
             if BaoGuo.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",bgs"
+                stringForEdit += ",bgs"
             }
             if YinShuaPin.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",ysp"
+                stringForEdit += ",ysp"
             }
             if BaoKanLingShou.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",bkls"
+                stringForEdit += ",bkls"
             }
             if YouZhengChuXu.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",yzcx"
+                stringForEdit += ",yzcx"
             }
             if MangRenDuWu.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",mrdw"
+                stringForEdit += ",mrdw"
             }
             if TeKuaiZhuangDi.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",tkzd"
+                stringForEdit += ",tkzd"
             }
             if BaoKanDingYue.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",bkdy"
+                stringForEdit += ",bkdy"
             }
             if YouZhengHuiDui.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",yzhd"
+                stringForEdit += ",yzhd"
             }
             if YIWuBingXinHan.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",ywbxh"
+                stringForEdit += ",ywbxh"
             }
             if LieShiBaoGuo.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",lsywbg"
+                stringForEdit += ",lsywbg"
             }
             if QiTa.selected {
                 infoOfYzqyyzyycsbaxxbgdjb.ywfw_bgq += ",qt"
+                stringForEdit += ",qt"
             }
         }
         
@@ -1250,11 +1272,54 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         
         if (COMMIT_OK == 25) {
             if app.ServerData == 0 {
-                app.network.editWithInterface("bsdtApi/add", andInfo: ClassToJSON.getObjectData(infoOfYzqyyzyycsbaxxbgdjb) , andExtraInfo: nil)
+                app.network.addWithInterface("Baxxbg", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfYzqyyzyycsbaxxbgdjb), andExtraInfo: nil)
+     
             }
             
             if app.ServerData == 2 {
-                app.network.editWithInterface("bsdtApi/edit", andInfo: ClassToJSON.getObjectData(infoOfYzqyyzyycsbaxxbgdjb) , andExtraInfo: nil)
+            
+                app.applyChangeDic.setValue(bianGengShiXiangForEdit, forKey: "bgsx")
+                app.applyChangeDic.setValue(changSuoMingChengBianGengQian.text, forKey: "csmc_bgq")
+                app.applyChangeDic.setValue(dengJiBianHaoBianGengQian.text, forKey: "djbh_bgq")
+                app.applyChangeDic.setValue(bgqCangSuoDiZhiShi.text, forKey: "csdz_bgq_s")
+                app.applyChangeDic.setValue(bgqCangSuoDiZhiXian.text, forKey: "csdz_bgq_xqs")
+                app.applyChangeDic.setValue(bgqCangSuoDiZhiJie.text, forKey: "csdz_bgq_jx")
+                app.applyChangeDic.setValue(bgqCangSuoDiZhiHao.text, forKey: "csdz_bgq_h")
+                app.applyChangeDic.setValue(bgqCangSuoDiZhiJingDu.text, forKey: "csdz_bgq_jd")
+                app.applyChangeDic.setValue(bgqCangSuoDiZhiWeiDu.text, forKey: "csdz_bgq_wd")
+                app.applyChangeDic.setValue(bgqShangJiDanWei.text, forKey: "sjdw_bgq")
+                app.applyChangeDic.setValue(chooseJingYingFangShiBianGengQian.text, forKey: "jyfs_bgq")
+                app.applyChangeDic.setValue(bgqYouZhengBianMa.text, forKey: "yzbm_bgq")
+                app.applyChangeDic.setValue(chooseSuoZaiDiDian.text, forKey: "szdy_bgq")
+                app.applyChangeDic.setValue(bgqKaiYeShiJian.text, forKey: "kysj_bgq")
+                app.applyChangeDic.setValue(chooseFangWuChangQuanBianGengQian.text, forKey: "fwcq_bgq")
+                app.applyChangeDic.setValue(bgqJianZhuMianJi.text, forKey: "jzmj_bgq")
+                app.applyChangeDic.setValue(bgqYingYeShiJianZhouJi.text, forKey: "zyyr_bgq_ks")
+                app.applyChangeDic.setValue(bgqYingYeShiJianZhiZhouJi.text, forKey: "zyyr_bgq_js")
+                app.applyChangeDic.setValue(bgqYingYeShiJianJiDian.text, forKey: "ryysj_bgq_ks")
+                app.applyChangeDic.setValue(bgqYingYeShiJianZhiJiDian.text, forKey: "ryysj_bgq_js")
+                app.applyChangeDic.setValue(bgqKaiXiangPinCi.text, forKey: "kxpc_bgq")
+                app.applyChangeDic.setValue(bgqRiTouDiPinCi.text, forKey: "rtdpc_bgq")
+                app.applyChangeDic.setValue(bgqZhouTouDiPinCi.text, forKey: "ztdpc_bgq")
+                app.applyChangeDic.setValue(stringForEdit, forKey: "ywfw_bgq")
+                
+                
+                app.applyChangeDic.setValue(bghChangSuoMingCheng.text, forKey: "csmc_bgh")
+                app.applyChangeDic.setValue(bghChangSuoMingChengBianGengYuanYin.text, forKey: "bgyy_bghcsmc")
+                app.applyChangeDic.setValue(bghYingYeShiJianZhouJi.text, forKey: "zyyr_bgh_ks")
+                app.applyChangeDic.setValue(bghYingYeShiJianZhiZhouJi.text, forKey: "zyyr_bgh_js")
+                app.applyChangeDic.setValue(bghYingYeShiJianJiDian.text, forKey: "ryysj_bgh_ks")
+                app.applyChangeDic.setValue(bghYingYeShiJianZhiJiDian.text, forKey: "ryysj_bgh_js")
+                app.applyChangeDic.setValue(bghYingYeShiJianBianGengYuanYin.text, forKey: "bgyy_bghyysj")
+                app.applyChangeDic.setValue(chooseJIngYingFangShi.text, forKey: "jyfs_bgh")
+                app.applyChangeDic.setValue(bghJingYingFangShiBianGengYuanYin.text, forKey: "bgyy_bghjyfs")
+                app.applyChangeDic.setValue(chooseFangWuChangQuan.text, forKey: "fwcq_bgh")
+                app.applyChangeDic.setValue(bghFangWuChanQuanBianGengYuanYin.text, forKey: "bgyy_bghfwcq")
+                app.applyChangeDic.setValue(bghChangSuoDiZhi.text, forKey: "csdz_bgh")
+                app.applyChangeDic.setValue(bghChangSuoDiZhiBianGengYuanYin.text, forKey: "bgyy_bghcsmc")
+
+                
+                app.network.editWithInterface("Baxxbg", andInfo: app.applyChangeDic as [NSObject : AnyObject] , andExtraInfo: nil)
             }
         }
 //        print("\(ClassToJSON.getObjectData(infoOfYzqyyzyycsbaxxbgdjb))")
@@ -1475,7 +1540,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         
         if qzqZhouTouDiPinCi.text != "" {
             COMMIT_OK += 1
-            infoOfYzpbfwyycsjjqzdjb.rtdpc_qzq = qzqZhouTouDiPinCi.text
+            infoOfYzpbfwyycsjjqzdjb.ztdpc_qzq = qzqZhouTouDiPinCi.text
         } else if (qzqZhouTouDiPinCi.text == "")
         {
             
@@ -1485,7 +1550,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         
         if qzqRiTouDiPinCi.text != "" {
             COMMIT_OK += 1
-            infoOfYzpbfwyycsjjqzdjb.ztdpc_qzq = qzqRiTouDiPinCi.text
+            infoOfYzpbfwyycsjjqzdjb.rtdpc_qzq = qzqRiTouDiPinCi.text
         } else if (qzqRiTouDiPinCi.text == "")
         {
             
@@ -1493,6 +1558,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
+        var stringForEdit1 = ""
         if ((XinJian1.selected || WuLiu1.selected || JiYou1.selected || BaoGuo1.selected || YinShuaPin1.selected || BaoKanLingShou1.selected || YouZhengChuXu1.selected || MangRenDuWu1.selected || TeKuaiZhuangDi1.selected || BaoKanDingYue1.selected || YouZhengHuiDui1.selected || YIWuBingXinHan1.selected || LieShiBaoGuo1.selected || QiTa1.selected) == false)
         {
             
@@ -1503,48 +1569,63 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
             if XinJian1.selected {
                 if infoOfYzpbfwyycsjjqzdjb.ywfw_qzq == "" {
                     infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += "xj"
+                    stringForEdit1 += "xj"
                 } else {
                     infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",xj"
+                    stringForEdit1 += ",xj"
                 }
             }
             if WuLiu1.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",wl"
+                stringForEdit1 += ",wl"
             }
             if JiYou1.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",jy"
+                stringForEdit1 += ",jy"
             }
             if BaoGuo1.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",bgs"
+                stringForEdit1 += ",bgs"
             }
             if YinShuaPin1.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",ysp"
+                stringForEdit1 += ",ysp"
             }
             if BaoKanLingShou1.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",bkls"
+                stringForEdit1 += ",bkls"
             }
             if YouZhengChuXu1.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",yzcx"
+                stringForEdit1 += ",yzcx"
             }
             if MangRenDuWu1.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",mrdw"
+                stringForEdit1 += ",mrdw"
             }
             if TeKuaiZhuangDi1.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",tkzd"
+                stringForEdit1 += ",tkzd"
             }
             if BaoKanDingYue1.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",bkdy"
+                stringForEdit1 += ",bkdy"
             }
             if YouZhengHuiDui1.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",yzhd"
+                stringForEdit1 += ",yzhd"
             }
             if YIWuBingXinHan1.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",ywbxh"
+                stringForEdit1 += ",ywbxh"
             }
             if LieShiBaoGuo1.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",lsywbg"
+                stringForEdit1 += ",lsywbg"
             }
             if QiTa1.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzq += ",qt"
+                stringForEdit1 += ",qt"
             }
         }
         
@@ -1752,7 +1833,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         
         if qzhZhouTouDiPinCi.text != "" {
             COMMIT_OK += 1
-            infoOfYzpbfwyycsjjqzdjb.rtdpc_qzh = qzhZhouTouDiPinCi.text
+            infoOfYzpbfwyycsjjqzdjb.ztdpc_qzh = qzhZhouTouDiPinCi.text
         } else if (qzhZhouTouDiPinCi.text == "")
         {
             
@@ -1762,7 +1843,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         
         if qzhRiTouDiPinCi.text != "" {
             COMMIT_OK += 1
-            infoOfYzpbfwyycsjjqzdjb.ztdpc_qzh = qzhRiTouDiPinCi.text
+            infoOfYzpbfwyycsjjqzdjb.rtdpc_qzh = qzhRiTouDiPinCi.text
         } else if (qzhRiTouDiPinCi.text == "")
         {
             
@@ -1770,6 +1851,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
+        var stringForEdit2 = ""
         if ((XinJian2.selected || WuLiu2.selected || JiYou2.selected || BaoGuo2.selected || YinShuaPin2.selected || BaoKanLingShou2.selected || YouZhengChuXu2.selected || MangRenDuWu2.selected || TeKuaiZhuangDi2.selected || BaoKanDingYue2.selected || YouZhengHuiDui2.selected || YIWuBingXinHan2.selected || LieShiBaoGuo2.selected || QiTa2.selected) == false)
         {
             
@@ -1781,48 +1863,63 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
             if XinJian2.selected {
                 if infoOfYzpbfwyycsjjqzdjb.ywfw_qzh == "" {
                     infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += "xj"
+                    stringForEdit2 += "xj"
                 } else {
                     infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",xj"
+                    stringForEdit2 += ",xj"
                 }
             }
             if WuLiu2.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",wl"
+                stringForEdit2 += ",wl"
             }
             if JiYou2.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",jy"
+                stringForEdit2 += ",jy"
             }
             if BaoGuo2.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",bgs"
+                stringForEdit2 += ",bgs"
             }
             if YinShuaPin2.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",ysp"
+                stringForEdit2 += ",ysp"
             }
             if BaoKanLingShou2.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",bkls"
+                stringForEdit2 += ",bkls"
             }
             if YouZhengChuXu2.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",yzcx"
+                stringForEdit2 += ",yzcx"
             }
             if MangRenDuWu2.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",mrdw"
+                stringForEdit2 += ",mrdw"
             }
             if TeKuaiZhuangDi2.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",tkzd"
+                stringForEdit2 += ",tkzd"
             }
             if BaoKanDingYue2.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",bkdy"
+                stringForEdit2 += ",bkdy"
             }
             if YouZhengHuiDui2.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",yzhd"
+                stringForEdit2 += ",yzhd"
             }
             if YIWuBingXinHan2.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",ywbxh"
+                stringForEdit2 += ",ywbxh"
             }
             if LieShiBaoGuo2.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",lsywbg"
+                stringForEdit2 += ",lsywbg"
             }
             if QiTa2.selected {
                 infoOfYzpbfwyycsjjqzdjb.ywfw_qzh += ",qt"
+                stringForEdit2 += ",qt"
             }
         }
         //        var app=UIApplication.sharedApplication().delegate as! AppDelegate
@@ -1832,11 +1929,57 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         
         if (COMMIT_OK == 39) {
             if app.ServerData == 0 {
-                app.network.editWithInterface("bsdtApi/add", andInfo: ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb) , andExtraInfo: nil)
+                
+                app.network.addWithInterface("Jjqz", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb), andExtraInfo: nil)
             }
             
             if app.ServerData == 2 {
-                app.network.editWithInterface("bsdtApi/edit", andInfo: ClassToJSON.getObjectData(infoOfYzpbfwyycsjjqzdjb) , andExtraInfo: nil)
+                
+                app.applyChangeDic.setValue(qzqChangSuoMingCheng.text, forKey: "csmc_qzq")
+                app.applyChangeDic.setValue(qzqDengJiBianHao.text, forKey: "djbh_qzq")
+                app.applyChangeDic.setValue(qzqChangSuoDiZhiShi.text, forKey: "csdz_qzq_s")
+                app.applyChangeDic.setValue(qzqChangSuoDiZhiXian.text, forKey: "csdz_qzq_xqs")
+                app.applyChangeDic.setValue(qzqChangSuoDiZhiJie.text, forKey: "csdz_qzq_jx")
+                app.applyChangeDic.setValue(qzqChangSuoDiZhiHao.text, forKey: "csdz_qzq_h")
+                app.applyChangeDic.setValue(qzqShangJiDanWei.text, forKey: "sjdw_qzq")
+                app.applyChangeDic.setValue(qzqYouZhengBianMa.text, forKey: "yzbm_qzq")
+                app.applyChangeDic.setValue(chooseJIngYingFangShi1.text, forKey: "jyfs_qzq")
+                app.applyChangeDic.setValue(chooseFangWuChangQuan1.text, forKey: "fwcq_qzq")
+                app.applyChangeDic.setValue(chooseSuoZaiDiDian1.text, forKey: "szdy_qzq")
+                app.applyChangeDic.setValue(qzqKaiYeShiJian.text, forKey: "kysj_qzq")
+                app.applyChangeDic.setValue(qzqJianZhuMianJi.text, forKey: "jzmj_qzq")
+                app.applyChangeDic.setValue(qzqYingYeShiJianZhouJi.text, forKey: "zyyr_qzq_ks")
+                app.applyChangeDic.setValue(qzqYingYeShiJianZhiZhouJi.text, forKey: "zyyr_qzq_js")
+                app.applyChangeDic.setValue(qzqYingYeShiJianJiDian.text, forKey: "ryysj_qzq_ks")
+                app.applyChangeDic.setValue(qzqYingYeShiJianZhiJiDian.text, forKey: "ryysj_qzq_js")
+                app.applyChangeDic.setValue(qzqKaiXiangPinCi.text, forKey: "kxpc_qzq")
+                app.applyChangeDic.setValue(qzqZhouTouDiPinCi.text, forKey: "ztdpc_qzq")
+                app.applyChangeDic.setValue(qzqRiTouDiPinCi.text, forKey: "rtdpc_qzq")
+                app.applyChangeDic.setValue(stringForEdit1, forKey: "ywfw_qzq")
+                app.applyChangeDic.setValue(qzqQianZhiYuanYin.text, forKey: "qzyy_qzq")
+                
+                
+                app.applyChangeDic.setValue(qzhChangSuoDiZhiShi.text, forKey: "csdz_qzh_s")
+                app.applyChangeDic.setValue(qzhChangSuoDiZhiXian.text, forKey: "csdz_qzh_xqs")
+                app.applyChangeDic.setValue(qzhChangSuoDiZhiJie.text, forKey: "csdz_qzh_jx")
+                app.applyChangeDic.setValue(qzhChangSuoDiZhiHao.text, forKey: "csdz_qzh_h")
+                app.applyChangeDic.setValue(qzhYuYuanZhiZhiXianJuLi.text, forKey: "yyzzxjl_qzh")
+                app.applyChangeDic.setValue(chooseJIngYingFangShi2.text, forKey: "jyfs_qzh")
+                app.applyChangeDic.setValue(qzhyouZhengBianMa.text, forKey: "yzbm_qzh")
+                app.applyChangeDic.setValue(chooseSuoZaiDiDian2.text, forKey: "szdy_qzh")
+                app.applyChangeDic.setValue(qzhKaiYeShiJian.text, forKey: "kysj_qzh")
+                app.applyChangeDic.setValue(chooseFangWuChangQuan2.text, forKey: "fwcq_qzh")
+                app.applyChangeDic.setValue(qzhJianZhuMianJi.text, forKey: "jzmj_qzh")
+                app.applyChangeDic.setValue(qzhYingYeShiJianZhouJi.text, forKey: "zyyr_qzh_ks")
+                app.applyChangeDic.setValue(qzhYingYeShiJianZhiZhouJi.text, forKey: "zyyr_qzh_js")
+                app.applyChangeDic.setValue(qzhYingYeShiJianJiDian.text, forKey: "ryysj_qzh_ks")
+                app.applyChangeDic.setValue(qzhYingYeShiJianZhiJiDian.text, forKey: "ryysj_qzh_js")
+                app.applyChangeDic.setValue(qzhKaiXiangPinCi.text, forKey: "kxpc_qzh")
+                app.applyChangeDic.setValue(qzhZhouTouDiPinCi.text, forKey: "ztdpc_qzh")
+                app.applyChangeDic.setValue(qzhRiTouDiPinCi.text, forKey: "rtdpc_qzh")
+                app.applyChangeDic.setValue(stringForEdit2, forKey: "ywfw_qzh")
+                
+                app.network.editWithInterface("Jjqz", andInfo: app.applyChangeDic as [NSObject : AnyObject] , andExtraInfo: nil)
             }
         }
         
@@ -2793,6 +2936,8 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
             if(dict.valueForKey("jyfs_qzh") as! String == "wb") {
                 chooseJIngYingFangShi2.text = "委办"
             }
+            
+            qzhyouZhengBianMa.text = dict.valueForKey("yzbm_qzh") as! String
             
             if(dict.valueForKey("szdy_qzh") as! String == "csdq") {
                 chooseSuoZaiDiDian2.text = "城市地区"

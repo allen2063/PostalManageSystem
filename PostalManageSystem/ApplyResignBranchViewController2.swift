@@ -907,7 +907,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
 
-        
+        var stringForEdit = ""
         if ((XinJian.selected || WuLiu.selected || JiYou.selected || BaoGuo.selected || YinShuaPin.selected || BaoKanLingShou.selected || YouZhengChuXu.selected || MangRenDuWu.selected || TeKuaiZhuangDi.selected || BaoKanDingYue.selected || YouZhengHuiDui.selected || YIWuBingXinHan.selected || LieShiBaoGuo.selected || QiTa.selected) == false)
         {
             
@@ -918,45 +918,59 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             
             if XinJian.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += "xj"
+                stringForEdit += "xj"
             }
             if WuLiu.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += ",wl"
+                stringForEdit += ",wl"
             }
             if JiYou.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += ",jy"
+                stringForEdit += ",jy"
             }
             if BaoGuo.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += ",bgs"
+                stringForEdit += ",bgs"
             }
             if YinShuaPin.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += ",ysp"
+                stringForEdit += ",ysp"
             }
             if BaoKanLingShou.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += ",bkls"
+                stringForEdit += ",bkls"
             }
             if YouZhengChuXu.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += ",yzcx"
+                stringForEdit += ",yzcx"
             }
             if MangRenDuWu.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += ",mrdw"
+                stringForEdit += ",mrdw"
             }
             if TeKuaiZhuangDi.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += ",tkzd"
+                stringForEdit += ",tkzd"
             }
             if BaoKanDingYue.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += ",bkdy"
+                stringForEdit += ",bkdy"
             }
             if YouZhengHuiDui.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += ",yzhd"
+                stringForEdit += ",yzhd"
             }
             if YIWuBingXinHan.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += ",ywbxh"
+                stringForEdit += ",ywbxh"
             }
             if LieShiBaoGuo.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += ",lsywbg"
+                stringForEdit += ",lsywbg"
             }
             if QiTa.selected {
                 infoOfNcxyzpbfwyycsjbqkb.ywfw += ",qt"
+                stringForEdit += ",qt"
             }
         }
         
@@ -1097,8 +1111,68 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             }
             
             if app.ServerData == 2 {
-                  app.network.editWithInterface("Cxpbfww", andInfo: ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq) , andExtraInfo: ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))
-            } 
+                let info1 = app.applyResignDic.valueForKey("info1")
+                info1!.setValue(shenQingDanWeiMingCheng.text, forKey: "zgyzjtfgsmc")
+                info1!.setValue(niCheXiaoYouZhengChangSuoMingCheng.text, forKey: "btyzpbfwyycsmc")
+                info1!.setValue(beiShenQingDanWeiMingCheng.text, forKey: "syzgljmc")
+                info1!.setValue(cheXiaoZHuYaoYuanYin.text, forKey: "sqcxdzyyy")
+                info1!.setValue(cheXiaoShiJianNian.text, forKey: "cxsj_n")
+                info1!.setValue(cheXiaoShiJianYue.text, forKey: "cxsj_y")
+                info1!.setValue(cheXiaoDiZhiShi.text, forKey: "cxdz_s")
+                info1!.setValue(cheXiaoDiZhiXian.text, forKey: "cxdz_xqs")
+                info1!.setValue(cheXiaoDiZhiJie.text, forKey: "cxdz_jx")
+                info1!.setValue(niCheXiaoYouZhengYingYeChangSuoMingCheng.text, forKey: "yzpbfwyycsmc")
+                info1!.setValue(niCaiQuTiDaiXingCuoShi.text, forKey: "ncqdtdxcs")
+                info1!.setValue(caiQuCuoShiHouFuWuShuiPing.text, forKey: "yzpbyycsszhyzpbfwztsp")
+            
+                let info2 = app.applyResignDic.valueForKey("info2")
+                info2!.setValue(youZhengChangSuoMingCheng.text, forKey: "yzcsmc")
+                info2!.setValue(chooseJIngYingFangShi.text, forKey: "jyfs")
+                info2!.setValue(changSuoDiZhiShi.text, forKey: "csdz_s")
+                info2!.setValue(changSuoDiZhiXian.text, forKey: "csdz_xqs")
+                info2!.setValue(changSuoDiZhiJie.text, forKey: "csdz_jx")
+                info2!.setValue(changSuoDiZhiHao.text, forKey: "csdz_h")
+                info2!.setValue(changSuoDiZhiJingDu.text, forKey: "csdz_jd")
+                info2!.setValue(changSuoDiZhiWeiDu.text, forKey: "csdz_wd")
+                info2!.setValue(youZhengBianMa.text, forKey: "yzbm")
+                info2!.setValue(shangJiDanWei.text, forKey: "sjdw")
+                info2!.setValue(yingYeChangSuoFuZeRen.text, forKey: "yycsf")
+                info2!.setValue(YingYeChangSuoLianXiDianHua.text, forKey: "yycslxdh")
+                info2!.setValue(fuWuBanJing.text, forKey: "fwbj")
+                info2!.setValue(chooseSuoZaiDiDian.text, forKey: "szdd")
+                info2!.setValue(fuWuRenKou.text, forKey: "fwrk")
+                info2!.setValue(kaiYeShiJian.text, forKey: "kysj")
+                info2!.setValue(chooseFangWuChangQuan.text, forKey: "fwcq")
+                info2!.setValue(jianZhuMianJi.text, forKey: "jzmj")
+                info2!.setValue(fuWuQuYu.text, forKey: "fwqy")
+                info2!.setValue(zhougYIngYeRiZhouJi.text, forKey: "zyyr_ks")
+                info2!.setValue(zhougYIngYeRiZhiZhouJi.text, forKey: "zyyr_js")
+                info2!.setValue(riYingYeRiJiDian.text, forKey: "ryysj_ks")
+                info2!.setValue(riYingYeRiZhiJiDian.text, forKey: "ryysj_js")
+                info2!.setValue(kaiXIangPinCi.text, forKey: "kxpc")
+                info2!.setValue(riTouDiPinCi.text, forKey: "rtdpc")
+                info2!.setValue(zhouTouDiPinCi.text, forKey: "ztdpc")
+                info2!.setValue(stringForEdit, forKey: "ywfw")
+                info2!.setValue(zongShouRu.text, forKey: "ncxyzpbfwyycszsr")
+                info2!.setValue(shouRuHanJian.text, forKey: "yycsjyndywsrhj")
+                info2!.setValue(shuRuBaoGuo.text, forKey: "yycsjyndywsrbg")
+                info2!.setValue(shouRuYinShuaPin.text, forKey: "yycsjyndywsrysp")
+                info2!.setValue(shouRuHuiDui.text, forKey: "yycsjyndywsrhd")
+                info2!.setValue(shouRuBaoKan.text, forKey: "yycsjyndywsrbk")
+                info2!.setValue(shouRuDaiLiYeWu.text, forKey: "yycsjyndywsrdlyw")
+                info2!.setValue(shouRuQiTa.text, forKey: "yycsjyndywsrqt")
+                info2!.setValue(yeWuLiangHanJian.text, forKey: "yycsjynzyywlhj")
+                info2!.setValue(yeWuLiangBaoGuo.text, forKey: "yycsjynzyywlbg")
+                info2!.setValue(yeWuLiangYinShuaPin.text, forKey: "yycsjynzyywlysp")
+                info2!.setValue(yeWuLiangHuiDui.text, forKey: "yycsjynzyywlhd")
+                info2!.setValue(yeWuLiangBaoKan.text, forKey: "yycsjynzyywlbk")
+                info2!.setValue(yeWuLiangDaiLiYeWu.text, forKey: "yycsjynzyywldlyw")
+                
+                app.network.editWithInterface("Cxpbfwwd", andInfo: info1 as! [NSObject : AnyObject] , andExtraInfo:info2 as! [NSObject : AnyObject])
+                
+                
+//                  app.network.editWithInterface("Cxpbfww", andInfo: ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq) , andExtraInfo: ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))
+            }
         }
 //        println("\(ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq))")
 //        println("\(ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))")
@@ -2173,10 +2247,10 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         yingYeChangSuoMingCheng1.text = dict.valueForKey("yzyycsmc") as! String
         changSuoDiZhiShi1.text = dict.valueForKey("csdz_s") as! String
         changSuoDiZhiXian1.text = dict.valueForKey("csdz_xqs") as! String
-        changSuoDiZhiJie.text = dict.valueForKey("csdz_jx") as! String
+        changSuoDiZhiJie1.text = dict.valueForKey("csdz_jx") as! String
         changSuoDiZhiHao1.text = dict.valueForKey("csdz_h") as! String
-        changSuoDiZhiJingDu.text = dict.valueForKey("csdz_jd") as! String
-        changSuoDiZhiWeiDu.text = dict.valueForKey("csdz_wd") as! String
+        changSuoDiZhiJingDu1.text = dict.valueForKey("csdz_jd") as! String
+        changSuoDiZhiWeiDu1.text = dict.valueForKey("csdz_wd") as! String
         
         fuZeRen1.text = dict.valueForKey("fzr") as! String
         lianXiDianHua1.text = dict.valueForKey("lxdh") as! String
