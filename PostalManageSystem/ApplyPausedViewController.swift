@@ -13,6 +13,50 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
         textField.textColor = UIColor.blackColor()
     }
     
+    //当键盘出现或改变时调用
+    var positionChangeY: CGFloat?
+    
+    func keyboardWillShow(aNotification: NSNotification)
+    {
+        let userInfo: NSDictionary = aNotification.userInfo!
+        let aValue: NSValue = (userInfo.objectForKey(UIKeyboardFrameEndUserInfoKey) as? NSValue)!
+        let keyboardRect: CGRect = aValue.CGRectValue()
+        let keyboardHeight: CGFloat = keyboardRect.size.height
+        
+        let rootView = self.view as! UIScrollView
+        
+        let realContentOffsetY = rootView.contentOffset.y
+        
+        if (UIScreen.mainScreen().bounds.height < keyboardHeight + textFieldHeight! - realContentOffsetY)
+        {
+            rootView.contentSize = CGSize(width: 320, height: 1075)
+            UIView.animateWithDuration(0.3, animations: {
+                self.positionChangeY = rootView.contentOffset.y
+                
+                rootView.contentOffset.y = (keyboardHeight + self.textFieldHeight! ) - (UIScreen.mainScreen().bounds.height)
+                
+            })
+        }
+    }
+    
+    func keyboardWillHide(aNotification: NSNotification)
+    {
+        let rootView = self.view as! UIScrollView
+        
+        rootView.contentSize = CGSize(width: 320, height: 975)
+        UIView.animateWithDuration(0.3, animations: {
+            rootView.contentOffset.y = self.positionChangeY!
+        })
+    }
+    
+    var textFieldHeight: CGFloat?
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        textFieldHeight = textField.frame.size.height + textField.frame.origin.y
+        return true
+    }
+    
+    
     @IBOutlet weak var changSuoMingCheng: UITextField!
     @IBOutlet weak var shangJiDanWei: UITextField!
     @IBOutlet weak var fuWuQuYu: UITextField!
@@ -178,6 +222,11 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/add", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/edit", object: nil)
         
+        //增加监听，当键盘出现或改变时收出消息
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: "UIKeyboardWillShowNotification", object: nil)
+        //增加监听，当键退出时收出消息
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: "UIKeyboardWillHideNotification", object: nil)
+        
         let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
         //        labelNav.backgroundColor = UIColor.clearColor
         labelNav.font = UIFont.boldSystemFontOfSize(20)
@@ -316,38 +365,38 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
     var viewUp: Bool = false
     var shouldDragDismiss: Bool = false
 
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        //-----------------------------------------------------------
-        let rootView: UIScrollView = self.view as! UIScrollView
-        if textField.frame.origin.y - rootView.contentOffset.y > 300 && (viewUp == false) {
-            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseOut, animations: {
-                rootView.contentOffset.y += 250
-//                self.view.center.y -= 300
-                }, completion: nil)
-            viewUp = true
-            shouldDragDismiss = true
-        }
-        //-----------------------------------------------------------
-//        if textField == zanTingShiJian {
-//            UIView.animateWithDuration(0.3, animations: {
-//                self.view.center.y -= 216
-//            })
-//            self.viewUp = true
+//    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+//        //-----------------------------------------------------------
+//        let rootView: UIScrollView = self.view as! UIScrollView
+//        if textField.frame.origin.y - rootView.contentOffset.y > 300 && (viewUp == false) {
+//            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseOut, animations: {
+//                rootView.contentOffset.y += 250
+////                self.view.center.y -= 300
+//                }, completion: nil)
+//            viewUp = true
+//            shouldDragDismiss = true
 //        }
-        return true
-    }
+//        //-----------------------------------------------------------
+////        if textField == zanTingShiJian {
+////            UIView.animateWithDuration(0.3, animations: {
+////                self.view.center.y -= 216
+////            })
+////            self.viewUp = true
+////        }
+//        return true
+//    }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        let rootView: UIScrollView = self.view as! UIScrollView
-        if viewUp == true {
-            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseOut, animations: {
-                rootView.contentOffset.y -= 250
-//                self.view.center.y += 300
-                }, completion: nil)
-            viewUp = false
-            shouldDragDismiss = false
-        }
+//        let rootView: UIScrollView = self.view as! UIScrollView
+//        if viewUp == true {
+//            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseOut, animations: {
+//                rootView.contentOffset.y -= 250
+////                self.view.center.y += 300
+//                }, completion: nil)
+//            viewUp = false
+//            shouldDragDismiss = false
+//        }
 //        if textField == zanTingShiJian {
 //            UIView.animateWithDuration(0.3, animations: {
 //                self.view.center.y += 216
@@ -359,14 +408,14 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         print("scrollViewWillBeginDragging")
-        if shouldDragDismiss && (viewUp == false) {
-            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseOut, animations: {
-                self.view.center.y += 350
-                }, completion: nil)
-            
-            viewUp = false
-            shouldDragDismiss = false
-        }
+//        if shouldDragDismiss && (viewUp == false) {
+//            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseOut, animations: {
+//                self.view.center.y += 350
+//                }, completion: nil)
+//            
+//            viewUp = false
+//            shouldDragDismiss = false
+//        }
 //        if self.viewUp {
 //            UIView.animateWithDuration(0.3, animations: {
 //                self.view.center.y += 216
@@ -592,7 +641,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
     
     func initZanTing(dict: NSDictionary) {
         changSuoMingCheng.text = dict.valueForKey("yzyycsmc") as! String
-        shangJiDanWei.text = dict.valueForKey("sjdw") as! String
+        shangJiDanWei.text = dict.valueForKey("sjdw") as? String
         
         if (dict.valueForKey("xzblsx") as! String == "zstzblywsx")  {
             chooseBanLiShiXiangLabel.text = "暂时停止办理业务事项"
@@ -627,15 +676,15 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
             YiWuBingXinHan.selected = true
         }
         
-        fuWuQuYu.text = dict.valueForKey("zstzblhzxzblywdyzyycsdfwqy") as! String
+        fuWuQuYu.text = dict.valueForKey("zstzblhzxzblywdyzyycsdfwqy") as? String
         dict.valueForKey("dz") as! String
-        diZhi.text = dict.valueForKey("dz") as! String
-        youBian.text = dict.valueForKey("yzbm") as! String
-        lianXiRenXingMing.text = dict.valueForKey("lxrxm") as! String
-        lianXiDianHua.text = dict.valueForKey("lxdh") as! String
-        zanTingShiJian.text = dict.valueForKey("zstzblhzxzblywdsj") as! String
-        zanXianYuanYin.text = dict.valueForKey("zstzblhzxzblywdyy") as! String
-        buJiuCuoShi.text = dict.valueForKey("zstzblhzxzblywqjyzqycqdbjcs") as! String
+        diZhi.text = dict.valueForKey("dz") as? String
+        youBian.text = dict.valueForKey("yzbm") as? String
+        lianXiRenXingMing.text = dict.valueForKey("lxrxm") as? String
+        lianXiDianHua.text = dict.valueForKey("lxdh") as? String
+        zanTingShiJian.text = dict.valueForKey("zstzblhzxzblywdsj") as? String
+        zanXianYuanYin.text = dict.valueForKey("zstzblhzxzblywdyy") as? String
+        buJiuCuoShi.text = dict.valueForKey("zstzblhzxzblywqjyzqycqdbjcs") as? String
     }
 
     

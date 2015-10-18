@@ -10,6 +10,55 @@ import UIKit
 
 class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate, UITextFieldDelegate, UIScrollViewDelegate {
     
+    //当键盘出现或改变时调用
+    var positionChangeY: CGFloat?
+    
+    func keyboardWillShow(aNotification: NSNotification)
+    {
+        print("func keyboardWillShow")
+        
+        let userInfo: NSDictionary = aNotification.userInfo!
+        let aValue: NSValue = (userInfo.objectForKey(UIKeyboardFrameEndUserInfoKey) as? NSValue)!
+        let keyboardRect: CGRect = aValue.CGRectValue()
+        let keyboardHeight: CGFloat = keyboardRect.size.height
+        
+        let rootView = self.view as! UIScrollView
+        
+        let realContentOffsetY = rootView.contentOffset.y
+        
+        if (UIScreen.mainScreen().bounds.height < keyboardHeight + textFieldHeight! - realContentOffsetY)
+        {
+            rootView.contentSize = CGSize(width: 320, height: 1300)
+            UIView.animateWithDuration(0.3, animations: {
+                self.positionChangeY = rootView.contentOffset.y
+                
+                rootView.contentOffset.y = (keyboardHeight + self.textFieldHeight! ) - (UIScreen.mainScreen().bounds.height)
+                
+            })
+        }
+    }
+    
+    func keyboardWillHide(aNotification: NSNotification)
+    {
+        print("func keyboardWillHide")
+        
+        let rootView = self.view as! UIScrollView
+        
+        rootView.contentSize = CGSize(width: 320, height: 1250)
+        UIView.animateWithDuration(0.3, animations: {
+            rootView.contentOffset.y = self.positionChangeY!
+        })
+    }
+    
+    var textFieldHeight: CGFloat?
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        print("func textFieldShouldBeginEditing")
+        
+        textFieldHeight = textField.frame.size.height + textField.frame.origin.y
+        return true
+    }
+    
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.textColor = UIColor.blackColor()
     }
@@ -1537,6 +1586,11 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/add", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/edit", object: nil)
+        
+        //增加监听，当键盘出现或改变时收出消息
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: "UIKeyboardWillShowNotification", object: nil)
+        //增加监听，当键退出时收出消息
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: "UIKeyboardWillHideNotification", object: nil)
         
         let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
         //        labelNav.backgroundColor = UIColor.clearColor

@@ -14,12 +14,50 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         textField.textColor = UIColor.blackColor()
     }
     
-//    var rxJingWeiDu = NSRegularExpression.rx("^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$", ignoreCase:true)
-//    var rxYouBian = NSRegularExpression.rx("[1-9]\\d{5}(?!\\d)", ignoreCase:true)
-//    var rxLianXiDianHua = NSRegularExpression.rx("((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)", ignoreCase:true)
-//    var rxJianZhuMianJi = NSRegularExpression.rx("^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$", ignoreCase:true)
-//    var rxFuWuRenKou = NSRegularExpression.rx("^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$", ignoreCase:true)
-//    var rxFuWuBanJing = NSRegularExpression.rx("^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$", ignoreCase:true)
+    
+    //当键盘出现或改变时调用
+    var positionChangeY: CGFloat?
+    
+    func keyboardWillShow(aNotification: NSNotification)
+    {
+        let userInfo: NSDictionary = aNotification.userInfo!
+        let aValue: NSValue = (userInfo.objectForKey(UIKeyboardFrameEndUserInfoKey) as? NSValue)!
+        let keyboardRect: CGRect = aValue.CGRectValue()
+        let keyboardHeight: CGFloat = keyboardRect.size.height
+        
+        let rootView = self.view as! UIScrollView
+        
+        let realContentOffsetY = rootView.contentOffset.y
+        
+        if (UIScreen.mainScreen().bounds.height < keyboardHeight + textFieldHeight! - realContentOffsetY)
+        {
+//            rootView.contentSize = CGSize(width: 320, height: 1350)
+            UIView.animateWithDuration(0.3, animations: {
+                self.positionChangeY = rootView.contentOffset.y
+                
+                rootView.contentOffset.y = (keyboardHeight + self.textFieldHeight! ) - (UIScreen.mainScreen().bounds.height)
+                
+            })
+        }
+    }
+    
+    func keyboardWillHide(aNotification: NSNotification)
+    {
+        let rootView = self.view as! UIScrollView
+        
+//        rootView.contentSize = CGSize(width: 320, height: 1250)
+        UIView.animateWithDuration(0.3, animations: {
+            rootView.contentOffset.y = self.positionChangeY!
+        })
+    }
+    
+    var textFieldHeight: CGFloat?
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        textFieldHeight = textField.frame.size.height + textField.frame.origin.y
+        return true
+    }
+
     
     
     @IBOutlet weak var chooseShiXiang: UILabel!
@@ -310,6 +348,11 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/add", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/edit", object: nil)
+        
+        //增加监听，当键盘出现或改变时收出消息
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: "UIKeyboardWillShowNotification", object: nil)
+        //增加监听，当键退出时收出消息
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: "UIKeyboardWillHideNotification", object: nil)
         
         let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
         //        labelNav.backgroundColor = UIColor.clearColor
@@ -1093,38 +1136,38 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
             chooseMenQianYouTong!.text = "无"
         }
         
-        changSuoMingCheng!.text = dict.valueForKey("yzyycsmc") as! String
-        shi!.text = dict.valueForKey("csdz_s") as! String
-        xian!.text = dict.valueForKey("csdz_xqs") as! String
-        jieDao!.text = dict.valueForKey("csdz_jx") as! String
-        menPaiHao!.text = dict.valueForKey("csdz_h") as! String
-        jingDu!.text = dict.valueForKey("csdz_jd") as! String
-        weiDu!.text = dict.valueForKey("csdz_wd") as! String
+        changSuoMingCheng!.text = dict.valueForKey("yzyycsmc") as? String
+        shi!.text = dict.valueForKey("csdz_s") as? String
+        xian!.text = dict.valueForKey("csdz_xqs") as? String
+        jieDao!.text = dict.valueForKey("csdz_jx") as? String
+        menPaiHao!.text = dict.valueForKey("csdz_h") as? String
+        jingDu!.text = dict.valueForKey("csdz_jd") as? String
+        weiDu!.text = dict.valueForKey("csdz_wd") as? String
         
-        youBian!.text = dict.valueForKey("yzbm") as! String
-        shangJiDanWei!.text = dict.valueForKey("sjdw") as! String
-        cangSuoFuZeRen!.text = dict.valueForKey("yycsfzr") as! String
-        lianXiDianHua!.text = dict.valueForKey("lxdh") as! String
+        youBian!.text = dict.valueForKey("yzbm") as? String
+        shangJiDanWei!.text = dict.valueForKey("sjdw") as? String
+        cangSuoFuZeRen!.text = dict.valueForKey("yycsfzr") as? String
+        lianXiDianHua!.text = dict.valueForKey("lxdh") as? String
         
-        kaiYeShiJian!.text = dict.valueForKey("kysj") as! String
+        kaiYeShiJian!.text = dict.valueForKey("kysj") as? String
         
-        jianZhuMianJi!.text = dict.valueForKey("jzmj") as! String
-        yingYeShiJianZhouJi!.text = dict.valueForKey("zyyr_ks") as! String
-        yingYeShiJianZhiZhouJi!.text = dict.valueForKey("zyyr_js") as! String
-        yingYeShiJianJiDian!.text = dict.valueForKey("ryysj_ks") as! String
-        yingYeShiJianZhiJiDian!.text = dict.valueForKey("ryysj_js") as! String
+        jianZhuMianJi!.text = dict.valueForKey("jzmj") as? String
+        yingYeShiJianZhouJi!.text = dict.valueForKey("zyyr_ks") as? String
+        yingYeShiJianZhiZhouJi!.text = dict.valueForKey("zyyr_js") as? String
+        yingYeShiJianJiDian!.text = dict.valueForKey("ryysj_ks") as? String
+        yingYeShiJianZhiJiDian!.text = dict.valueForKey("ryysj_js") as? String
         
         
-        zhouKaiQuTianShu!.text = dict.valueForKey("zkqts") as! String
-        riKaiQuPinCi!.text = dict.valueForKey("rkqpc") as! String
+        zhouKaiQuTianShu!.text = dict.valueForKey("zkqts") as? String
+        riKaiQuPinCi!.text = dict.valueForKey("rkqpc") as? String
         
-        fuWuQuYu!.text = dict.valueForKey("fwqy") as! String
+        fuWuQuYu!.text = dict.valueForKey("fwqy") as? String
         
-        zhouTouDiTianShu!.text = dict.valueForKey("ztdts") as! String
-        riTouDiPinCi!.text = dict.valueForKey("rtdpc") as! String
+        zhouTouDiTianShu!.text = dict.valueForKey("ztdts") as? String
+        riTouDiPinCi!.text = dict.valueForKey("rtdpc") as? String
         
-        fuWuBanJing!.text = dict.valueForKey("fwbj") as! String
-        fuWuRenKou!.text = dict.valueForKey("fwrk") as! String
+        fuWuBanJing!.text = dict.valueForKey("fwbj") as? String
+        fuWuRenKou!.text = dict.valueForKey("fwrk") as? String
 
         let ywsxArray = dict.valueForKey("ywfw") as! String
         if (ywsxArray.rangeOfString("xj") != nil) {

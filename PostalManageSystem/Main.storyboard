@@ -114,7 +114,7 @@
         <scene sceneID="6za-90-nIg">
             <objects>
                 <viewController storyboardIdentifier="applyChangeBranchVC" id="ZU5-i8-zma" customClass="ApplyChangeBranchViewController" customModule="PostalManageSystem" customModuleProvider="target" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" keyboardDismissMode="onDrag" id="hmW-mr-ESW">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" id="hmW-mr-ESW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="3779"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1812,7 +1812,7 @@
         <scene sceneID="X5q-HW-GjL">
             <objects>
                 <viewController storyboardIdentifier="applyPausedBranchVC" title="申请暂停/暂限办理业务" id="Cq7-hj-Aeg" customClass="ApplyPausedViewController" customModule="PostalManageSystem" customModuleProvider="target" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" keyboardDismissMode="onDrag" id="vBN-Xv-thb">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" id="vBN-Xv-thb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="875"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -2117,7 +2117,7 @@
         <scene sceneID="PvO-h3-IFA">
             <objects>
                 <viewController storyboardIdentifier="applyStopBranchVC" title="申请停限业务" id="Yl0-yq-5Qa" customClass="ApplyStopBranchViewController" customModule="PostalManageSystem" customModuleProvider="target" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" keyboardDismissMode="onDrag" id="XKM-XZ-5he">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" id="XKM-XZ-5he">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1670"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -3145,7 +3145,7 @@
         <scene sceneID="dYh-xF-24M">
             <objects>
                 <viewController storyboardIdentifier="applyResignBranchVC" title="申请撤销网点" id="vNI-Tx-XDl" customClass="ApplyResignBranchViewController2" customModule="PostalManageSystem" customModuleProvider="target" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" keyboardDismissMode="onDrag" id="Ur1-dt-ber">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" id="Ur1-dt-ber">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="3500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -5065,7 +5065,7 @@
         <scene sceneID="9YF-cZ-4Zx">
             <objects>
                 <viewController storyboardIdentifier="applyAddBranchVC" title="申请设置网点" id="ypJ-vn-x5I" customClass="ApplyAddBranchViewController" customModule="PostalManageSystem" customModuleProvider="target" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" keyboardDismissMode="onDrag" id="vc4-2Q-9be">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" id="vc4-2Q-9be">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -5120,7 +5120,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="ypJ-vn-x5I" id="LZr-YY-LEe"/>
+                                    <outlet property="delegate" destination="ypJ-vn-x5I" id="3zQ-XK-uXj"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="市" textAlignment="center" minimumFontSize="12" id="YJB-FC-oeX">

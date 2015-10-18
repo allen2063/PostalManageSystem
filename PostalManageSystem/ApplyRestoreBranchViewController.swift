@@ -532,7 +532,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
     }
     
     func initHuiFu(dict: NSDictionary) {
-        qiYeMingCheng.text = dict.valueForKey("yzyycsmc") as! String
+        qiYeMingCheng.text = dict.valueForKey("yzyycsmc") as? String
         
         let ywsxArray = dict.valueForKey("tzhxzblywsx") as! String
         if (ywsxArray.rangeOfString("xj") != nil) {
@@ -560,13 +560,13 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
             YiWuBingXinHan.selected = true
         }
         
-        yingYeChangSUoMingCheng.text = dict.valueForKey("tzhzyzblywqyhyycsmc") as! String
-        diZhi.text = dict.valueForKey("dz") as! String
-        youBian.text = dict.valueForKey("yzbm") as! String
-        lianXIRenXIngMing.text = dict.valueForKey("lxrxm") as! String
-        lianXiDianHua.text = dict.valueForKey("lxdh") as! String
-        huiFuBanLiShiJian.text = dict.valueForKey("hfbldsj") as! String
-        qiTaShuoMingShiXiang.text = dict.valueForKey("qtxysmdsx") as! String
+        yingYeChangSUoMingCheng.text = dict.valueForKey("tzhzyzblywqyhyycsmc") as? String
+        diZhi.text = dict.valueForKey("dz") as? String
+        youBian.text = dict.valueForKey("yzbm") as? String
+        lianXIRenXIngMing.text = dict.valueForKey("lxrxm") as? String
+        lianXiDianHua.text = dict.valueForKey("lxdh") as? String
+        huiFuBanLiShiJian.text = dict.valueForKey("hfbldsj") as? String
+        qiTaShuoMingShiXiang.text = dict.valueForKey("qtxysmdsx") as? String
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

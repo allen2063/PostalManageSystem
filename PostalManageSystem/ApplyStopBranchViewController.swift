@@ -10,9 +10,62 @@ import UIKit
 
 class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UIScrollViewDelegate, UITextFieldDelegate {
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.textColor = UIColor.blackColor()
     }
+    
+    
+    //当键盘出现或改变时调用
+    var positionChangeY: CGFloat?
+    
+    func keyboardWillShow(aNotification: NSNotification)
+    {
+        let userInfo: NSDictionary = aNotification.userInfo!
+        let aValue: NSValue = (userInfo.objectForKey(UIKeyboardFrameEndUserInfoKey) as? NSValue)!
+        let keyboardRect: CGRect = aValue.CGRectValue()
+        let keyboardHeight: CGFloat = keyboardRect.size.height
+        
+        let rootView = self.view as! UIScrollView
+        
+        let realContentOffsetY = rootView.contentOffset.y
+        
+        if (UIScreen.mainScreen().bounds.height < keyboardHeight + textFieldHeight! - realContentOffsetY)
+        {
+//            rootView.contentSize = CGSize(width: 320, height: 1870)
+            UIView.animateWithDuration(0.3, animations: {
+                self.positionChangeY = rootView.contentOffset.y
+                
+                rootView.contentOffset.y = (keyboardHeight + self.textFieldHeight! ) - (UIScreen.mainScreen().bounds.height)
+                
+            })
+        }
+    }
+    
+    func keyboardWillHide(aNotification: NSNotification)
+    {
+//        let rootView = self.view as! UIScrollView
+//        
+////        rootView.contentSize = CGSize(width: 320, height: 1770)
+//        UIView.animateWithDuration(0.3, animations: {
+//            rootView.contentOffset.y = self.positionChangeY!
+//        })
+    }
+    
+    var textFieldHeight: CGFloat?
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        textFieldHeight = textField.frame.size.height + textField.frame.origin.y
+        return true
+    }
+    
+    
+    
+    
     //停止或限制办理普遍和特殊服务申请
     var infoOfYzyycstbhybyzpbfwywhtsfwywdsq = InfoOfYzyycstbhybyzpbfwywhtsfwywdsq()
     
@@ -677,10 +730,10 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
             chooseBanLiShiXiangLabel.text = "限制办理"
         }
         
-        changSuoDiZhiShi.text = dict.valueForKey("tzblhzxzbldz_s") as! String
-        changSuoDiZhiXian.text = dict.valueForKey("tzblhzxzbldz_xqs") as! String
-        changSuoDiJie.text = dict.valueForKey("tzblhzxzbldz_jx") as! String
-        youZhengYingYeChangSuoMingCeng.text = dict.valueForKey("yzyycsmc") as! String
+        changSuoDiZhiShi.text = dict.valueForKey("tzblhzxzbldz_s") as? String
+        changSuoDiZhiXian.text = dict.valueForKey("tzblhzxzbldz_xqs") as? String
+        changSuoDiJie.text = dict.valueForKey("tzblhzxzbldz_jx") as? String
+        youZhengYingYeChangSuoMingCeng.text = dict.valueForKey("yzyycsmc") as? String
         
         //infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzpbfwywhtsfwyw = chooseTingXianBanLiYeWuZhongLei.text
         if (dict.valueForKey("yzpbfwywhtsfwyw") as! String == "yzpbfwyw")  {
@@ -690,14 +743,14 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
             chooseTingXianBanLiYeWuZhongLei.text = "特殊服务业务"
         }
         
-        jiTiYeWuMingCheng.text = dict.valueForKey("jtywmc") as! String
-        yeWuJuTiQingXing.text = dict.valueForKey("xzblywdjtqx") as! String
-        niCaiQuBuJiuCuoShi.text = dict.valueForKey("cqdbjcs") as! String
-        zongTiFuWuShuiPing.text = dict.valueForKey("yzpbfwztsp") as! String
+        jiTiYeWuMingCheng.text = dict.valueForKey("jtywmc") as? String
+        yeWuJuTiQingXing.text = dict.valueForKey("xzblywdjtqx") as? String
+        niCaiQuBuJiuCuoShi.text = dict.valueForKey("cqdbjcs") as? String
+        zongTiFuWuShuiPing.text = dict.valueForKey("yzpbfwztsp") as? String
         
         //拟停止或限制办理业务营业场所基本情况表
-        yingYeChangSuoMingCheng1.text = dict.valueForKey("yzyycsmc") as! String
-        shangJiDanWei1.text = dict.valueForKey("sjdw") as! String
+        yingYeChangSuoMingCheng1.text = dict.valueForKey("yzyycsmc") as? String
+        shangJiDanWei1.text = dict.valueForKey("sjdw") as? String
         
         let ywsxArray = dict.valueForKey("tzblywsx") as! String
         print("\(ywsxArray)")
@@ -752,11 +805,11 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
             YiWuBingXinHan1.selected = true
         }
         
-        fuWuQuYu1.text = dict.valueForKey("tbhxbywyzyycsdfwqy") as! String
-        diZhi1.text = dict.valueForKey("dz") as! String
-        youBian1.text = dict.valueForKey("yzbm") as! String
-        lianXiRenXingMing1.text = dict.valueForKey("lxrxm") as! String
-        lianXiDianHua1.text = dict.valueForKey("lxdh") as! String
+        fuWuQuYu1.text = dict.valueForKey("tbhxbywyzyycsdfwqy") as? String
+        diZhi1.text = dict.valueForKey("dz") as? String
+        youBian1.text = dict.valueForKey("yzbm") as? String
+        lianXiRenXingMing1.text = dict.valueForKey("lxrxm") as? String
+        lianXiDianHua1.text = dict.valueForKey("lxdh") as? String
 
     }
     
@@ -818,6 +871,12 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/add", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("commitResult:"), name: "bsdtApi/edit", object: nil)
+        
+        //增加监听，当键盘出现或改变时收出消息
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: "UIKeyboardWillShowNotification", object: nil)
+        //增加监听，当键退出时收出消息
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: "UIKeyboardWillHideNotification", object: nil)
+        
         
         let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
         //        labelNav.backgroundColor = UIColor.clearColor
@@ -1032,11 +1091,6 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
             
             commitBtn.hidden = false
         }
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
     
     @IBOutlet weak var uploadBtn1: UIButton!
