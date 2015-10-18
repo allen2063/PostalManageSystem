@@ -9,6 +9,9 @@
 import UIKit
 
 class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate, UITextFieldDelegate, UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        print("dragging.................................................................................................")
+    }
     
     //当键盘出现或改变时调用
     var positionChangeY: CGFloat?
@@ -28,7 +31,12 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         
         if (UIScreen.mainScreen().bounds.height < keyboardHeight + textFieldHeight! - realContentOffsetY)
         {
-            rootView.contentSize = CGSize(width: 320, height: 1300)
+            if SegmentedControl.selectedSegmentIndex == 0 {
+//                rootView.contentSize = CGSize(width: 320, height: 2290)
+            } else {
+                rootView.contentSize = CGSize(width: 320, height: 940)
+            }
+            
             UIView.animateWithDuration(0.3, animations: {
                 self.positionChangeY = rootView.contentOffset.y
                 
@@ -44,7 +52,12 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         
         let rootView = self.view as! UIScrollView
         
-        rootView.contentSize = CGSize(width: 320, height: 1250)
+        if SegmentedControl.selectedSegmentIndex == 0 {
+//            rootView.contentSize = CGSize(width: 320, height: 2190)
+        } else {
+            rootView.contentSize = CGSize(width: 320, height: 840)
+        }
+
         UIView.animateWithDuration(0.3, animations: {
             rootView.contentOffset.y = self.positionChangeY!
         })
@@ -55,7 +68,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         print("func textFieldShouldBeginEditing")
         
-        textFieldHeight = textField.frame.size.height + textField.frame.origin.y
+        textFieldHeight = textField.frame.size.height + textField.frame.origin.y + 42
         return true
     }
     
@@ -2132,21 +2145,21 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
 
 
         //属性预置
-        shenQingDanWeiMingCheng.text = dict.valueForKey("zgyzjtfgsmc") as! String
-        niCheXiaoYouZhengChangSuoMingCheng.text = dict.valueForKey("btyzpbfwyycsmc") as! String
-        beiShenQingDanWeiMingCheng.text = dict.valueForKey("syzgljmc") as! String
-        cheXiaoZHuYaoYuanYin.text = dict.valueForKey("sqcxdzyyy") as! String
+        shenQingDanWeiMingCheng.text = dict.valueForKey("zgyzjtfgsmc") as? String
+        niCheXiaoYouZhengChangSuoMingCheng.text = dict.valueForKey("btyzpbfwyycsmc") as? String
+        beiShenQingDanWeiMingCheng.text = dict.valueForKey("syzgljmc") as? String
+        cheXiaoZHuYaoYuanYin.text = dict.valueForKey("sqcxdzyyy") as? String
         
-        cheXiaoShiJianNian.text = dict.valueForKey("cxsj_n") as! String
-        cheXiaoShiJianYue.text = dict.valueForKey("cxsj_y") as! String
+        cheXiaoShiJianNian.text = dict.valueForKey("cxsj_n") as? String
+        cheXiaoShiJianYue.text = dict.valueForKey("cxsj_y") as? String
         
-        cheXiaoDiZhiShi.text = dict.valueForKey("cxdz_s") as! String
-        cheXiaoDiZhiXian.text = dict.valueForKey("cxdz_xqs") as! String
-        cheXiaoDiZhiJie.text = dict.valueForKey("cxdz_jx") as! String
+        cheXiaoDiZhiShi.text = dict.valueForKey("cxdz_s") as? String
+        cheXiaoDiZhiXian.text = dict.valueForKey("cxdz_xqs") as? String
+        cheXiaoDiZhiJie.text = dict.valueForKey("cxdz_jx") as? String
         
-        niCheXiaoYouZhengYingYeChangSuoMingCheng.text = dict.valueForKey("yzpbfwyycsmc") as! String
-        niCaiQuTiDaiXingCuoShi.text = dict.valueForKey("ncqdtdxcs") as! String
-        caiQuCuoShiHouFuWuShuiPing.text = dict.valueForKey("yzpbyycsszhyzpbfwztsp") as! String
+        niCheXiaoYouZhengYingYeChangSuoMingCheng.text = dict.valueForKey("yzpbfwyycsmc") as? String
+        niCaiQuTiDaiXingCuoShi.text = dict.valueForKey("ncqdtdxcs") as? String
+        caiQuCuoShiHouFuWuShuiPing.text = dict.valueForKey("yzpbyycsszhyzpbfwztsp") as? String
     }
     
     func initCheXiaoPuBianFuWuChangSuo(dict: NSDictionary){
@@ -2200,7 +2213,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             chooseFangWuChangQuan.text? = "其他"
         }
     
-        jianZhuMianJi.text = dict.valueForKey("jzmj") as! String
+        jianZhuMianJi.text = dict.valueForKey("jzmj") as? String
         fuWuQuYu.text? = dict.valueForKey("fwqy") as! String
         
         zhougYIngYeRiZhouJi.text? = dict.valueForKey("zyyr_ks") as! String
@@ -2298,19 +2311,19 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
 
         
         //属性预置
-        yingYeChangSuoMingCheng1.text = dict.valueForKey("yzyycsmc") as! String
-        changSuoDiZhiShi1.text = dict.valueForKey("csdz_s") as! String
-        changSuoDiZhiXian1.text = dict.valueForKey("csdz_xqs") as! String
-        changSuoDiZhiJie1.text = dict.valueForKey("csdz_jx") as! String
-        changSuoDiZhiHao1.text = dict.valueForKey("csdz_h") as! String
-        changSuoDiZhiJingDu1.text = dict.valueForKey("csdz_jd") as! String
-        changSuoDiZhiWeiDu1.text = dict.valueForKey("csdz_wd") as! String
+        yingYeChangSuoMingCheng1.text = dict.valueForKey("yzyycsmc") as? String
+        changSuoDiZhiShi1.text = dict.valueForKey("csdz_s") as? String
+        changSuoDiZhiXian1.text = dict.valueForKey("csdz_xqs") as? String
+        changSuoDiZhiJie1.text = dict.valueForKey("csdz_jx") as? String
+        changSuoDiZhiHao1.text = dict.valueForKey("csdz_h") as? String
+        changSuoDiZhiJingDu1.text = dict.valueForKey("csdz_jd") as? String
+        changSuoDiZhiWeiDu1.text = dict.valueForKey("csdz_wd") as? String
         
-        fuZeRen1.text = dict.valueForKey("fzr") as! String
-        lianXiDianHua1.text = dict.valueForKey("lxdh") as! String
-        youZhengBianMa1.text = dict.valueForKey("yzbm") as! String
-        shangJiDanWei1.text = dict.valueForKey("sjdw") as! String
-        fuWuQuYu1.text = dict.valueForKey("fwqy") as! String
+        fuZeRen1.text = dict.valueForKey("fzr") as? String
+        lianXiDianHua1.text = dict.valueForKey("lxdh") as? String
+        youZhengBianMa1.text = dict.valueForKey("yzbm") as? String
+        shangJiDanWei1.text = dict.valueForKey("sjdw") as? String
+        fuWuQuYu1.text = dict.valueForKey("fwqy") as? String
         
         if(dict.valueForKey("szdd") as! String == "csdq") {
             chooseSuoZaiDiDian1.text = "城市地区"
@@ -2373,10 +2386,10 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             QiTa1.selected = true
         }
         
-        qiTaShiXiang1.text = dict.valueForKey("qtsx") as! String
+        qiTaShiXiang1.text = dict.valueForKey("qtsx") as? String
         
-        cheXiaoYuanYin1.text = dict.valueForKey("cxyy") as! String
-        niCheXiaoRiQi1.text = dict.valueForKey("ncxrq") as! String
+        cheXiaoYuanYin1.text = dict.valueForKey("cxyy") as? String
+        niCheXiaoRiQi1.text = dict.valueForKey("ncxrq") as? String
 
     }
 

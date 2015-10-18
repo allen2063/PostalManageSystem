@@ -640,7 +640,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
     }
     
     func initZanTing(dict: NSDictionary) {
-        changSuoMingCheng.text = dict.valueForKey("yzyycsmc") as! String
+        changSuoMingCheng.text = dict.valueForKey("yzyycsmc") as? String
         shangJiDanWei.text = dict.valueForKey("sjdw") as? String
         
         if (dict.valueForKey("xzblsx") as! String == "zstzblywsx")  {
