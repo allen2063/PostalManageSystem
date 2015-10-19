@@ -20,5 +20,6 @@
 
 //-(id) initWithCountOfPic:(int )count AndFormName:(NSString *)formName;
 
+//当现实上传成功后  通过此属性取服务器回传的url
 @property (strong,nonatomic) NSString * picUrl;
 @end
