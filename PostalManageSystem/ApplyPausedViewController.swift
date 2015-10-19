@@ -649,18 +649,18 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
             }
             
             if app.ServerData == 2 {
-                app.applyResignDic.setValue(changSuoMingCheng.text, forKey: "yzyycsmc")
-                app.applyResignDic.setValue(shangJiDanWei.text, forKey: "sjdw")
-                app.applyResignDic.setValue(chooseBanLiShiXiangLabel.text, forKey: "xzblsx")
-                app.applyResignDic.setValue(stringForEdit, forKey: "xzblsx_ywfw")
-                app.applyResignDic.setValue(fuWuQuYu.text, forKey: "zstzblhzxzblywdyzyycsdfwqy")
-                app.applyResignDic.setValue(diZhi.text, forKey: "dz")
-                app.applyResignDic.setValue(youBian.text, forKey: "yzbm")
-                app.applyResignDic.setValue(lianXiRenXingMing.text, forKey: "lxrxm")
-                app.applyResignDic.setValue(lianXiDianHua.text, forKey: "lxdh")
-                app.applyResignDic.setValue(zanTingShiJian.text, forKey: "zstzblhzxzblywdsj")
-                app.applyResignDic.setValue(zanXianYuanYin.text, forKey: "zstzblhzxzblywdyy")
-                app.applyResignDic.setValue(buJiuCuoShi.text, forKey: "zstzblhzxzblywqjyzqycqdbjcs")
+                app.applyPauseDic.setValue(changSuoMingCheng.text, forKey: "yzyycsmc")
+                app.applyPauseDic.setValue(shangJiDanWei.text, forKey: "sjdw")
+                app.applyPauseDic.setValue(chooseBanLiShiXiangLabel.text, forKey: "xzblsx")
+                app.applyPauseDic.setValue(stringForEdit, forKey: "xzblsx_ywfw")
+                app.applyPauseDic.setValue(fuWuQuYu.text, forKey: "zstzblhzxzblywdyzyycsdfwqy")
+                app.applyPauseDic.setValue(diZhi.text, forKey: "dz")
+                app.applyPauseDic.setValue(youBian.text, forKey: "yzbm")
+                app.applyPauseDic.setValue(lianXiRenXingMing.text, forKey: "lxrxm")
+                app.applyPauseDic.setValue(lianXiDianHua.text, forKey: "lxdh")
+                app.applyPauseDic.setValue(zanTingShiJian.text, forKey: "zstzblhzxzblywdsj")
+                app.applyPauseDic.setValue(zanXianYuanYin.text, forKey: "zstzblhzxzblywdyy")
+                app.applyPauseDic.setValue(buJiuCuoShi.text, forKey: "zstzblhzxzblywqjyzqycqdbjcs")
                 
                 app.network.editWithInterface("Ztxyw", andInfo: app.applyPauseDic as [NSObject : AnyObject] , andExtraInfo:nil)
                 
