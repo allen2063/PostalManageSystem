@@ -672,6 +672,11 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
+        //以下两个字段是上传图片等url
+//        infoOfCxyzpbfwyycssq.gsyyzzfyj =
+//        infoOfCxyzpbfwyycssq.zmwj =
+        
+        
         
         let infoOfNcxyzpbfwyycsjbqkb = InfoOfNcxyzpbfwyycsjbqkb()
         
@@ -1166,6 +1171,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
 //            yeWuLiangDaiLiYeWu.attributedPlaceholder = NSAttributedString(string: "不为空"
 //                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
 //        }
+        
         
         print("\(COMMIT_OK)", terminator: "\n")
         
@@ -2438,11 +2444,14 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     }
 
     //上传图片功能
+    //上传后取得的图片URL
+    var returnPicURL1 = ""
+    var returnPicURL2 = ""
     @IBAction func uploadYIngYeZhiZhaoFuYinJian(sender: AnyObject) {
         
         if app.ServerData == 0 {
             let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "拟撤销场所的工商营业执照复印件", andUploadKind: 1)
-            
+           
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
                 uploadVC.providesPresentationContextTransitionStyle = true
                 uploadVC.definesPresentationContext = true
@@ -2457,6 +2466,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 self.presentViewController(uploadVC ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
+ 
         }
         
         if app.ServerData == 1 {
