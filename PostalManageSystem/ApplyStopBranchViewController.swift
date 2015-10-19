@@ -21,7 +21,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
     
     
     //当键盘出现或改变时调用
-    var positionChangeY: CGFloat?
+    var positionChangeY: CGFloat = 0
     
     func keyboardWillShow(aNotification: NSNotification)
     {
@@ -34,11 +34,13 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         
         let realContentOffsetY = rootView.contentOffset.y
         
+        self.positionChangeY = rootView.contentOffset.y
+        
         if (UIScreen.mainScreen().bounds.height < keyboardHeight + textFieldHeight! - realContentOffsetY)
         {
 //            rootView.contentSize = CGSize(width: 320, height: 1870)
             UIView.animateWithDuration(0.3, animations: {
-                self.positionChangeY = rootView.contentOffset.y
+                
                 
                 rootView.contentOffset.y = (keyboardHeight + self.textFieldHeight! ) - (UIScreen.mainScreen().bounds.height)
                 
@@ -865,6 +867,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         //        print("\(bkView.bounds.origin.y)")
     }
 
+    @IBOutlet weak var rootView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -885,6 +888,33 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         labelNav.textAlignment = .Center
         labelNav.text = "申请停止/限制办理业务"
         self.navigationItem.titleView = labelNav
+        
+        //--------------------------------屏幕适配--------------------------------
+        print(self.view.frame)
+        if UIScreen.mainScreen().bounds.width == 375 {
+            let scaleW: CGFloat = CGFloat(375.0 / 320.0)
+            print(scaleW)
+            let scaleH: CGFloat  = CGFloat(667.0 / 600.0)
+            
+            rootView.transform = CGAffineTransformMakeScale(scaleW, scaleH)
+            //            rootView.frame.origin = CGPoint(x: 0, y: 64)
+            
+            print(rootView.frame.origin)
+            
+            //            bkImageInRootView.frame.origin.y -= 4
+            
+        }
+        
+        if UIScreen.mainScreen().bounds.width == 414 {
+            let scaleW: CGFloat = CGFloat(414.0 / 320.0)
+            print(scaleW)
+            let scaleH: CGFloat  = CGFloat(736.0 / 600.0)
+            
+            rootView.transform = CGAffineTransformMakeScale(scaleW, scaleH)
+            rootView.frame.origin = CGPoint(x: 0, y: 64)
+            
+        }
+        //--------------------------------------------------------------------------
         
         if app.ServerData == 0 {
             fenGongSi.enabled = true

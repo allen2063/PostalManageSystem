@@ -38,15 +38,10 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
             case 0:
                 changeUserInfoView.hidden = false
                 changePasswordView.hidden = true
-                if let rootView = self.view as? UIScrollView {
-                    rootView.contentSize = CGSize(width: 320, height: 1490)
-                }
+                
             case 1:
                 changeUserInfoView.hidden = true
                 changePasswordView.hidden = false
-                if let rootView = self.view as? UIScrollView {
-                    rootView.contentSize = CGSize(width: 320, height: 1779)
-                }
                 
             default:
                 break;
@@ -146,8 +141,43 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    
+    @IBOutlet weak var view1: UIView!
+    @IBOutlet weak var view1Image: UIImageView!
+    @IBOutlet weak var view2: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //--------------------------------屏幕适配--------------------------------
+        print(self.view.frame)
+        if UIScreen.mainScreen().bounds.width == 375 {
+            let scaleW: CGFloat = CGFloat(375.0 / 320.0)
+            print(scaleW)
+            let scaleH: CGFloat  = CGFloat(667.0 / 563.0)
+            segmentedControl.frame = CGRect(x: 0, y: 64, width: 375, height: 40)
+            view1.transform = CGAffineTransformMakeScale(scaleW, scaleH)
+            view1.frame.origin = CGPoint(x: 0, y: 104)
+            
+            view2.transform = CGAffineTransformMakeScale(scaleW, scaleH)
+            view2.frame.origin = CGPoint(x: 0, y: 104)
+        }
+        
+        if UIScreen.mainScreen().bounds.width == 414 {
+            let scaleW: CGFloat = CGFloat(414.0 / 320.0)
+            print(scaleW)
+            let scaleH: CGFloat  = CGFloat(736.0 / 563.0)
+            segmentedControl.frame = CGRect(x: 0, y: 64, width: 414, height: 40)
+            view1.transform = CGAffineTransformMakeScale(scaleW, scaleH)
+            view1.frame.origin = CGPoint(x: 0, y: 104)
+            
+            view2.transform = CGAffineTransformMakeScale(scaleW, scaleH)
+            view2.frame.origin = CGPoint(x: 0, y: 104)
+        }
+        //--------------------------------------------------------------------------
+
+        
+        
         let labelNav = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
 //        labelNav.backgroundColor = UIColor.clearColor
         labelNav.font = UIFont.boldSystemFontOfSize(20)

@@ -49,7 +49,6 @@
 		56C59DD11B82DD5F00D96F08 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C59DD01B82DD5F00D96F08 /* main.m */; };
 		56C59DD41B82DD5F00D96F08 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C59DD31B82DD5F00D96F08 /* AppDelegate.m */; };
 		56C59DD71B82DD5F00D96F08 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C59DD61B82DD5F00D96F08 /* MainViewController.m */; };
-		56C59DDF1B82DD5F00D96F08 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56C59DDD1B82DD5F00D96F08 /* LaunchScreen.xib */; };
 		56C59DEB1B82DD5F00D96F08 /* PostalManageSystemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C59DEA1B82DD5F00D96F08 /* PostalManageSystemTests.m */; };
 		56C59E121B82F59D00D96F08 /* bianminfuwu.png in Resources */ = {isa = PBXBuildFile; fileRef = 56C59DF81B82F59D00D96F08 /* bianminfuwu.png */; };
 		56C59E131B82F59D00D96F08 /* fanhui.png in Resources */ = {isa = PBXBuildFile; fileRef = 56C59DF91B82F59D00D96F08 /* fanhui.png */; };
@@ -129,6 +128,7 @@
 		DC0DF21C1BCF83CC000D19B6 /* RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0DF21B1BCF83CC000D19B6 /* RegularExpression.swift */; settings = {ASSET_TAGS = (); }; };
 		DC23CC9B1BCA32B200FEF7F9 /* RegExCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = DC23CC9A1BCA32B200FEF7F9 /* RegExCategories.m */; settings = {ASSET_TAGS = (); }; };
 		DC3554501BA9AE7B00F7F3CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC35544F1BA9AE7B00F7F3CB /* Images.xcassets */; };
+		DC6AF22C1BD4B6B200F76434 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC6AF22B1BD4B6B200F76434 /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,7 +155,6 @@
 		56A5EA501BABB260002B0007 /* uploads.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uploads.png; sourceTree = "<group>"; };
 		56A5EA541BABB838002B0007 /* backgroundImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundImage.png; sourceTree = "<group>"; };
 		56A5EA581BABE7DC002B0007 /* tup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tup.png; sourceTree = "<group>"; };
-		56A5EA5A1BAC4313002B0007 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		56B28B651BAD77B500D81A9C /* locations.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locations.png; sourceTree = "<group>"; };
 		56B28B661BAD77B500D81A9C /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus.png; sourceTree = "<group>"; };
 		56B28B671BAD77B500D81A9C /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
@@ -199,7 +198,6 @@
 		56C59DD31B82DD5F00D96F08 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		56C59DD51B82DD5F00D96F08 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		56C59DD61B82DD5F00D96F08 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		56C59DDE1B82DD5F00D96F08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		56C59DE41B82DD5F00D96F08 /* PostalManageSystemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PostalManageSystemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56C59DE91B82DD5F00D96F08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56C59DEA1B82DD5F00D96F08 /* PostalManageSystemTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostalManageSystemTests.m; sourceTree = "<group>"; };
@@ -304,6 +302,7 @@
 		DC23CC991BCA32B200FEF7F9 /* RegExCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegExCategories.h; sourceTree = "<group>"; };
 		DC23CC9A1BCA32B200FEF7F9 /* RegExCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegExCategories.m; sourceTree = "<group>"; };
 		DC35544F1BA9AE7B00F7F3CB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DC6AF22B1BD4B6B200F76434 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,6 +354,7 @@
 				56CE54E71BA94ED70065518A /* ApplyResignBranchViewController2.swift */,
 				56CE54E81BA94ED70065518A /* ApplyAddBranchViewController.swift */,
 				56CE54F51BA94EF00065518A /* Main.storyboard */,
+				DC6AF22B1BD4B6B200F76434 /* LaunchScreen.xib */,
 				56CE54FA1BA94F5C0065518A /* Model.swift */,
 				56CE54F31BA94EE80065518A /* ChangeUserInfoViewController.swift */,
 				56CE54F71BA94F540065518A /* ClassToJSON.h */,
@@ -436,7 +436,6 @@
 				56C6628A1B85BBC300BA95BD /* GeneralTableViewCell.m */,
 				56B535851B87186400238BE6 /* BanShiDaTing */,
 				56C59E2B1B83162100D96F08 /* BianMinFuWu */,
-				56C59DDD1B82DD5F00D96F08 /* LaunchScreen.xib */,
 				56C59DCE1B82DD5F00D96F08 /* Supporting Files */,
 			);
 			path = PostalManageSystem;
@@ -728,6 +727,7 @@
 				56B28B6A1BAD77B500D81A9C /* minus.png in Resources */,
 				56C59E281B82F59D00D96F08 /* zhanghao.png in Resources */,
 				56C7745A1BB0FBA000C751B8 /* search_new.png in Resources */,
+				DC6AF22C1BD4B6B200F76434 /* LaunchScreen.xib in Resources */,
 				56C59E241B82F59D00D96F08 /* xinxigonggao.png in Resources */,
 				56C7745B1BB0FBA000C751B8 /* zoom_-.png in Resources */,
 				56C8F0751BA0344A00763A4C /* cities.xml in Resources */,
@@ -743,7 +743,6 @@
 				56B28B711BAD7E6C00D81A9C /* zoom_in.png in Resources */,
 				56A5EA551BABB838002B0007 /* backgroundImage.png in Resources */,
 				56CE5B9D1B9ADAFE008D3B75 /* pull_loading@2x.png in Resources */,
-				56C59DDF1B82DD5F00D96F08 /* LaunchScreen.xib in Resources */,
 				56C59E161B82F59D00D96F08 /* hangyetongji.png in Resources */,
 				56C59E201B82F59D00D96F08 /* shenqingtingxianyewu.png in Resources */,
 				56CE54E41BA92E3E0065518A /* edit.png in Resources */,
@@ -868,18 +867,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		56C59DDD1B82DD5F00D96F08 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				56C59DDE1B82DD5F00D96F08 /* Base */,
-				56A5EA5A1BAC4313002B0007 /* zh-Hans */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		56C59DEC1B82DD5F00D96F08 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -968,7 +955,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -995,7 +981,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

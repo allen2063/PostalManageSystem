@@ -14,7 +14,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
     }
     
     //当键盘出现或改变时调用
-    var positionChangeY: CGFloat?
+    var positionChangeY: CGFloat = 0
     
     func keyboardWillShow(aNotification: NSNotification)
     {
@@ -27,6 +27,8 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         
         let realContentOffsetY = rootView.contentOffset.y
         
+        self.positionChangeY = rootView.contentOffset.y
+        
         if (UIScreen.mainScreen().bounds.height < keyboardHeight + textFieldHeight! - realContentOffsetY)
         {
             if SegmentedControl.selectedSegmentIndex == 0 {
@@ -36,7 +38,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
             }
             
             UIView.animateWithDuration(0.3, animations: {
-                self.positionChangeY = rootView.contentOffset.y
+                
                 
                 rootView.contentOffset.y = (keyboardHeight + self.textFieldHeight!) - (UIScreen.mainScreen().bounds.height)
                 
@@ -55,7 +57,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         }
         
         UIView.animateWithDuration(0.3, animations: {
-            rootView.contentOffset.y = self.positionChangeY!
+            rootView.contentOffset.y = self.positionChangeY
         })
     }
     
@@ -2103,6 +2105,8 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         //        print("\(bkView.bounds.origin.y)")
     }
     
+    @IBOutlet weak var rootView: UIView!
+    
     @IBOutlet weak var commitBtn1: UIButton!
     @IBOutlet weak var commitBtn2: UIButton!
     
@@ -2128,11 +2132,39 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         applyChangeBranchLocationView.hidden = true
         SegmentedControl.frame.size.height = 40
         
-        if let rootView = self.view as? UIScrollView {
-            rootView.contentSize = CGSize(width: 320, height: 1670)
+        if let rootview = self.view as? UIScrollView {
+            rootview.contentSize = CGSize(width: 320, height: 1670)
             print("\(self.view.debugDescription)")
             // Do any additional setup after loading the view.
         }
+        
+        //--------------------------------屏幕适配--------------------------------
+        print(self.view.frame)
+        if UIScreen.mainScreen().bounds.width == 375 {
+            let scaleW: CGFloat = CGFloat(375.0 / 320.0)
+            print(scaleW)
+            let scaleH: CGFloat  = CGFloat(667.0 / 600.0)
+            
+            rootView.transform = CGAffineTransformMakeScale(scaleW, scaleH)
+            //            rootView.frame.origin = CGPoint(x: 0, y: 64)
+            
+            print(rootView.frame.origin)
+            
+            //            bkImageInRootView.frame.origin.y -= 4
+            
+        }
+        
+        if UIScreen.mainScreen().bounds.width == 414 {
+            let scaleW: CGFloat = CGFloat(414.0 / 320.0)
+            print(scaleW)
+            let scaleH: CGFloat  = CGFloat(736.0 / 600.0)
+            
+            rootView.transform = CGAffineTransformMakeScale(scaleW, scaleH)
+            rootView.frame.origin = CGPoint(x: 0, y: 64)
+            
+        }
+        //--------------------------------------------------------------------------
+        
         //服务器信息回填
         //------------------------------ServerData 0--------------------------------
         

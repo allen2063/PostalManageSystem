@@ -15,12 +15,12 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BkBottom" id="z04-xr-uIT">
                                 <rect key="frame" x="0.0" y="-1" width="320" height="571"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jfy-8s-jXm">
                                 <rect key="frame" x="56" y="40" width="100" height="114"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" image="办事大厅用户信息修改">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -31,7 +31,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qXO-dg-9Nv">
                                 <rect key="frame" x="56" y="167" width="100" height="112"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" image="办事大厅撤销网点">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,7 +39,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dJy-an-KyB">
                                 <rect key="frame" x="164" y="167" width="100" height="112"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" image="办事大厅变更网点">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,7 +47,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9PU-vg-R2Z">
                                 <rect key="frame" x="56" y="288" width="100" height="112"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" image="办事大厅暂停网点">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -55,7 +55,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3Kq-DB-vhU">
                                 <rect key="frame" x="164" y="288" width="100" height="112"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" image="办事大厅停止网点">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -63,7 +63,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Xam-AT-9LG">
                                 <rect key="frame" x="56" y="414" width="100" height="114"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" image="办事大厅恢复网点">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -71,7 +71,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0YR-FJ-M6g">
                                 <rect key="frame" x="164" y="414" width="100" height="114"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" image="办事大厅企业查询">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -79,7 +79,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OVg-Vc-COM">
                                 <rect key="frame" x="164" y="40" width="100" height="114"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" image="办事大厅新增网点">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -120,7 +120,7 @@
                         <subviews>
                             <segmentedControl contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Aom-iY-cYX">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.78136564900000005" green="0.89461132470000004" blue="0.88630908529999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
@@ -403,7 +403,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XNk-VS-HMs">
                                         <rect key="frame" x="15" y="1676" width="297" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.8862745098" green="0.0" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -485,6 +485,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vGk-7B-Bbk">
                                                 <rect key="frame" x="8" y="43" width="57" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -497,6 +498,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PoQ-VP-TbX">
                                                 <rect key="frame" x="72" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -509,6 +511,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="P7Y-wJ-bZD">
                                                 <rect key="frame" x="133" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -521,6 +524,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gcC-ZL-S1P">
                                                 <rect key="frame" x="194" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -828,6 +832,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mgo-d9-R2Q">
                                                 <rect key="frame" x="8" y="43" width="57" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -840,6 +845,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Mv0-Ag-LV6">
                                                 <rect key="frame" x="72" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -852,6 +858,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0vo-Yn-JrM">
                                                 <rect key="frame" x="133" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -864,6 +871,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EED-nr-MsP">
                                                 <rect key="frame" x="194" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -1268,6 +1276,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YwA-pb-Kq8">
                                                 <rect key="frame" x="8" y="43" width="57" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -1280,6 +1289,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wua-VO-WwP">
                                                 <rect key="frame" x="72" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -1292,6 +1302,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b6P-mo-ck3">
                                                 <rect key="frame" x="133" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -1304,6 +1315,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vl6-jD-AIl">
                                                 <rect key="frame" x="194" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -1579,7 +1591,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="agW-Zh-Y8J">
                                         <rect key="frame" x="16" y="1492" width="297" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.8862745098" green="0.0" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -1597,6 +1609,7 @@
                             </view>
                         </subviews>
                         <animations/>
+                        <color key="backgroundColor" red="0.54117647059999996" green="0.63921568630000003" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
                                 <size key="value" width="320" height="1600"/>
@@ -1735,6 +1748,7 @@
                         <outlet property="qzqYingYeShiJianZhouJi" destination="CgE-QE-0P5" id="bKg-R7-C8E"/>
                         <outlet property="qzqYouZhengBianMa" destination="eSa-9k-RWT" id="o9k-2c-XYM"/>
                         <outlet property="qzqZhouTouDiPinCi" destination="jly-Y9-jYh" id="v5D-9y-j7P"/>
+                        <outlet property="rootView" destination="hmW-mr-ESW" id="fG2-Im-NbT"/>
                         <outlet property="tap1" destination="to7-aE-9Im" id="3bN-mG-F5z"/>
                         <outlet property="tap10" destination="hq8-qV-EW5" id="69b-Pu-ZZC"/>
                         <outlet property="tap11" destination="hYF-k8-0Cb" id="CHa-cW-F83"/>
@@ -1913,7 +1927,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9Br-VR-rm2">
                                 <rect key="frame" x="15" y="828" width="297" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.8862745098" green="0.0" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -2004,6 +2018,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QyS-FS-eqQ">
                                         <rect key="frame" x="220" y="33" width="55" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -2069,6 +2084,7 @@
                             </textField>
                         </subviews>
                         <animations/>
+                        <color key="backgroundColor" red="0.54117647059999996" green="0.63921568630000003" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
                                 <size key="value" width="320" height="975"/>
@@ -2097,8 +2113,10 @@
                         <outlet property="fuWuQuYu" destination="gMd-En-pRH" id="wxt-DF-RHF"/>
                         <outlet property="lianXiDianHua" destination="TAj-ub-oHp" id="F2S-my-cTS"/>
                         <outlet property="lianXiRenXingMing" destination="1P4-jo-ejZ" id="UWM-xY-A5d"/>
+                        <outlet property="rootView" destination="vBN-Xv-thb" id="DR3-QM-Jfg"/>
                         <outlet property="shangJiDanWei" destination="8cj-E3-9pg" id="1Im-RS-6xu"/>
                         <outlet property="tap1" destination="3sm-99-fZa" id="FWC-OG-FeP"/>
+                        <outlet property="view" destination="vBN-Xv-thb" id="nhb-g5-ujK"/>
                         <outlet property="youBian" destination="uW3-9R-gRA" id="2fw-z0-Zc4"/>
                         <outlet property="zanTingShiJian" destination="as5-m7-eAO" id="GNp-f2-fjI"/>
                         <outlet property="zanXianYuanYin" destination="mCI-wm-qyK" id="Uls-pg-B7p"/>
@@ -2197,6 +2215,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DJo-8a-uuS">
                                         <rect key="frame" x="221" y="5" width="55" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -2439,7 +2458,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="snf-Kz-Rxi">
                                 <rect key="frame" x="13" y="1618" width="297" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.8862745098" green="0.0" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -2544,6 +2563,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TPK-Hg-iTg">
                                         <rect key="frame" x="221" y="4" width="55" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -2621,6 +2641,7 @@
                             </button>
                         </subviews>
                         <animations/>
+                        <color key="backgroundColor" red="0.54117647059999996" green="0.63921568630000003" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
                                 <size key="value" width="320" height="1770"/>
@@ -2665,6 +2686,7 @@
                         <outlet property="niCaiQuBuJiuCuoShi" destination="Ysl-U7-Grp" id="MFh-vE-3B4"/>
                         <outlet property="niTingBanShiJianNian" destination="mEI-hg-ssF" id="Kfj-il-eUL"/>
                         <outlet property="niTingBanShiJianYue" destination="WMt-Ho-h8N" id="Efg-eV-WmG"/>
+                        <outlet property="rootView" destination="XKM-XZ-5he" id="Da1-ti-gj2"/>
                         <outlet property="shangJiDanWei1" destination="2es-Rx-eMh" id="AIH-zl-34B"/>
                         <outlet property="shenQingZhuYaoYuanYin" destination="qAC-3f-HFz" id="tYz-Lq-fwY"/>
                         <outlet property="tap1" destination="Lm4-7z-0UG" id="47G-XR-9d7"/>
@@ -2696,10 +2718,10 @@
         <!--申请恢复业务-->
         <scene sceneID="7kS-Th-yf6">
             <objects>
-                <viewController storyboardIdentifier="applyRestoreBranchVC" title="申请恢复业务" id="Eej-cW-HkP" customClass="ApplyRestoreBranchViewController" customModule="PostalManageSystem" customModuleProvider="target" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" id="TtR-zt-62u">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="740"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <viewController storyboardIdentifier="applyRestoreBranchVC" autoresizesArchivedViewToFullSize="NO" title="申请恢复业务" id="Eej-cW-HkP" customClass="ApplyRestoreBranchViewController" customModule="PostalManageSystem" customModuleProvider="target" sceneMemberID="viewController">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" bounces="NO" id="TtR-zt-62u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="申请恢复业务" id="QV5-cS-gxk">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="840"/>
@@ -2774,6 +2796,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="m2g-OQ-ue5">
                                         <rect key="frame" x="221" y="2" width="55" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -2898,7 +2921,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="etV-NE-nKY">
-                                <rect key="frame" x="15" y="674" width="297" height="30"/>
+                                <rect key="frame" x="51" y="674" width="297" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.8862745098" green="0.0" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -2912,17 +2935,12 @@
                             </button>
                         </subviews>
                         <animations/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
-                                <size key="value" width="320" height="840"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
+                        <color key="backgroundColor" red="0.54117647059999996" green="0.63921568630000003" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <outlet property="delegate" destination="Eej-cW-HkP" id="KzB-bH-F1d"/>
                         </connections>
                     </scrollView>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="740"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="BaoGuo" destination="QAi-8v-cbF" id="BEE-JI-ES3"/>
                         <outlet property="GuoJiaGuiDingBaoKanDeFaXing" destination="eIc-o6-UcA" id="ZL7-2T-ita"/>
@@ -2939,25 +2957,26 @@
                         <outlet property="lianXiDianHua" destination="aQS-jj-f9r" id="srR-NR-pqU"/>
                         <outlet property="qiTaShuoMingShiXiang" destination="FLS-pZ-qLN" id="DSs-46-sgf"/>
                         <outlet property="qiYeMingCheng" destination="Fxo-z1-ELL" id="ibm-Nw-7ei"/>
+                        <outlet property="rootView" destination="TtR-zt-62u" id="kCO-0h-kly"/>
                         <outlet property="yingYeChangSUoMingCheng" destination="mWn-Oc-3OH" id="ta7-ZU-Dqg"/>
                         <outlet property="youBian" destination="vtr-CC-43C" id="HbM-dA-ONg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQr-VR-wBb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2625" y="2978"/>
+            <point key="canvasLocation" x="2683.5" y="2960.5"/>
         </scene>
         <!--Change User Info View Controller-->
         <scene sceneID="2xI-rk-oGk">
             <objects>
                 <viewController storyboardIdentifier="changeUserInfoVC" id="Zjh-kC-fIU" customClass="ChangeUserInfoViewController" customModule="PostalManageSystem" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZlA-b5-qsU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <view key="view" contentMode="center" layoutMarginsFollowReadableWidth="YES" id="ZlA-b5-qsU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="8ZY-mI-JZA">
                                 <rect key="frame" x="0.0" y="64" width="320" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.7803921568627451" green="0.89411764705882357" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
@@ -2970,18 +2989,18 @@
                                     <action selector="resignPostSheetViewSegmentedControlValueChanged:" destination="vNI-Tx-XDl" eventType="valueChanged" id="ZoD-YP-nDl"/>
                                 </connections>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" id="c6a-B8-xPY">
+                            <view tag="1" contentMode="scaleToFill" id="c6a-B8-xPY">
                                 <rect key="frame" x="0.0" y="104" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="用户信息修改 copy" id="0Iw-nu-6LV">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入旧密码" textAlignment="center" minimumFontSize="17" id="zMO-by-nfh">
                                         <rect key="frame" x="95" y="14" width="207" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
@@ -2991,7 +3010,7 @@
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入新密码" textAlignment="center" minimumFontSize="17" id="oS6-Rd-xGU">
                                         <rect key="frame" x="95" y="58" width="207" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
@@ -3001,7 +3020,7 @@
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请重复输入密码" textAlignment="center" minimumFontSize="17" id="TRU-5q-bv4">
                                         <rect key="frame" x="95" y="104" width="207" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
@@ -3027,17 +3046,17 @@
                                 <color key="backgroundColor" red="0.72941176470588232" green="0.82352941176470584" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="zPR-2O-wSP">
-                                <rect key="frame" x="0.0" y="104" width="320" height="475"/>
+                                <rect key="frame" x="0.0" y="104" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="用户信息修改" id="h9B-u6-LQa">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="账号" textAlignment="center" minimumFontSize="17" id="89w-QU-mol">
-                                        <rect key="frame" x="96" y="13" width="216" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="96" y="14" width="216" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -3045,9 +3064,9 @@
                                             <outlet property="delegate" destination="Zjh-kC-fIU" id="VDM-gx-VmV"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" id="jdx-RE-FhH">
-                                        <rect key="frame" x="96" y="51" width="216" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="center" minimumFontSize="17" id="jdx-RE-FhH">
+                                        <rect key="frame" x="96" y="54" width="216" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -3057,8 +3076,8 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="姓名" textAlignment="center" minimumFontSize="17" id="az2-gZ-ADJ">
-                                        <rect key="frame" x="96" y="89" width="216" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="96" y="97" width="216" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -3066,9 +3085,9 @@
                                             <outlet property="delegate" destination="Zjh-kC-fIU" id="1bv-VO-VKn"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="地址" textAlignment="center" minimumFontSize="17" id="zh1-Z8-5hR">
-                                        <rect key="frame" x="96" y="165" width="216" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="联系电话" textAlignment="center" minimumFontSize="17" id="zh1-Z8-5hR">
+                                        <rect key="frame" x="96" y="177" width="216" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -3076,9 +3095,9 @@
                                             <outlet property="delegate" destination="Zjh-kC-fIU" id="X4U-cf-Ehf"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="联系电话" textAlignment="center" minimumFontSize="17" id="Aen-eH-PNs">
-                                        <rect key="frame" x="96" y="203" width="216" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="电子邮箱" textAlignment="center" minimumFontSize="17" id="Aen-eH-PNs">
+                                        <rect key="frame" x="96" y="220" width="216" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -3086,9 +3105,9 @@
                                             <outlet property="delegate" destination="Zjh-kC-fIU" id="ywT-kz-WGC"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="电子邮箱" textAlignment="center" minimumFontSize="17" id="uHo-8r-3f8">
-                                        <rect key="frame" x="96" y="127" width="216" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="地址" textAlignment="center" minimumFontSize="17" id="uHo-8r-3f8">
+                                        <rect key="frame" x="96" y="137" width="216" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -3097,7 +3116,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kXi-u6-P8Q">
-                                        <rect key="frame" x="18" y="261" width="294" height="30"/>
+                                        <rect key="frame" x="18" y="278" width="294" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.8862745098" green="0.0" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -3118,8 +3137,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="4mq-l8-gqj"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="changePasswordView" destination="c6a-B8-xPY" id="fS9-6Y-Fcs"/>
                         <outlet property="changeUserInfoView" destination="zPR-2O-wSP" id="oxi-WI-ngB"/>
@@ -3132,6 +3150,9 @@
                         <outlet property="lianXiDianHua" destination="zh1-Z8-5hR" id="vzs-F0-rkT"/>
                         <outlet property="miMa" destination="jdx-RE-FhH" id="orN-mN-2go"/>
                         <outlet property="segmentedControl" destination="8ZY-mI-JZA" id="Oam-G8-JnM"/>
+                        <outlet property="view1" destination="zPR-2O-wSP" id="l36-HP-aML"/>
+                        <outlet property="view1Image" destination="h9B-u6-LQa" id="JNd-f6-B1J"/>
+                        <outlet property="view2" destination="c6a-B8-xPY" id="1pB-yP-R5t"/>
                         <outlet property="xinMiMa" destination="oS6-Rd-xGU" id="lSJ-2D-3Ki"/>
                         <outlet property="xingMing" destination="az2-gZ-ADJ" id="E77-IU-QO9"/>
                         <outlet property="zhangHao" destination="89w-QU-mol" id="VYR-Yl-XwK"/>
@@ -3139,7 +3160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zb5-nL-XGj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1069" y="295"/>
+            <point key="canvasLocation" x="1068.5" y="294.5"/>
         </scene>
         <!--申请撤销网点-->
         <scene sceneID="dYh-xF-24M">
@@ -3147,7 +3168,7 @@
                 <viewController storyboardIdentifier="applyResignBranchVC" title="申请撤销网点" id="vNI-Tx-XDl" customClass="ApplyResignBranchViewController2" customModule="PostalManageSystem" customModuleProvider="target" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" id="Ur1-dt-ber">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="3500"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Ija-R0-ga1">
                                 <rect key="frame" x="0.0" y="40" width="320" height="2190"/>
@@ -3866,6 +3887,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2wq-is-UcH">
                                                 <rect key="frame" x="72" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -3878,6 +3900,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hPB-zK-Rhj">
                                                 <rect key="frame" x="133" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -3890,6 +3913,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iVe-D4-Bcy">
                                                 <rect key="frame" x="194" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -3976,6 +4000,7 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sNE-VN-07c">
                                                 <rect key="frame" x="8" y="43" width="57" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -4538,7 +4563,7 @@
                             </view>
                             <view contentMode="scaleToFill" id="GT9-wI-kHO">
                                 <rect key="frame" x="0.0" y="40" width="320" height="840"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="撤销邮政营业场所登记表" id="ccx-9M-aUT">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="840"/>
@@ -4616,6 +4641,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="H7W-Y2-oMV">
                                                 <rect key="frame" x="8" y="43" width="57" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -4628,6 +4654,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JHF-wh-rgG">
                                                 <rect key="frame" x="72" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -4640,6 +4667,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xW1-o8-8za">
                                                 <rect key="frame" x="133" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -4652,6 +4680,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hyq-3o-H0R">
                                                 <rect key="frame" x="194" y="43" width="55" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -4858,7 +4887,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Q7g-bT-hp5">
                                         <rect key="frame" x="12" y="760" width="297" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.8862745098" green="0.0" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -4949,6 +4978,7 @@
                             </segmentedControl>
                         </subviews>
                         <animations/>
+                        <color key="backgroundColor" red="0.54117647059999996" green="0.63921568630000003" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
                                 <size key="value" width="320" height="2190"/>
@@ -5040,6 +5070,7 @@
                         <outlet property="riTouDiPinCi" destination="TXl-fr-gdx" id="8u2-qw-1Qf"/>
                         <outlet property="riYingYeRiJiDian" destination="35p-Kt-6on" id="mnc-uU-1tw"/>
                         <outlet property="riYingYeRiZhiJiDian" destination="ALO-XL-bl2" id="bRG-Qz-smc"/>
+                        <outlet property="rootView" destination="Ur1-dt-ber" id="uaz-pO-kJz"/>
                         <outlet property="shangJiDanWei" destination="r8c-vr-OQ6" id="0TW-EZ-Mat"/>
                         <outlet property="shangJiDanWei1" destination="o3P-Hg-eVk" id="dKW-hn-q9q"/>
                         <outlet property="shenQingDanWeiMingCheng" destination="tz2-XC-c3F" id="6VS-ND-nnU"/>
@@ -5109,11 +5140,11 @@
                 <viewController storyboardIdentifier="applyAddBranchVC" title="申请设置网点" id="ypJ-vn-x5I" customClass="ApplyAddBranchViewController" customModule="PostalManageSystem" customModuleProvider="target" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" id="vc4-2Q-9be">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1180"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="申请新增网点" id="nXP-Zf-ADM">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="1300"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                             </imageView>
                             <label opaque="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未选择" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xG0-oC-NBB">
@@ -5433,6 +5464,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="K8X-2F-HwI">
                                         <rect key="frame" x="8" y="43" width="57" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -5445,6 +5477,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TDL-aD-h8k">
                                         <rect key="frame" x="72" y="43" width="55" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -5457,6 +5490,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ioa-gA-xQ7">
                                         <rect key="frame" x="133" y="43" width="55" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -5469,6 +5503,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KcD-pG-4e0">
                                         <rect key="frame" x="194" y="43" width="55" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="tintColor" red="0.035294117649999998" green="0.25490196079999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -5559,7 +5594,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VVe-lH-Db6">
                                 <rect key="frame" x="16" y="1129" width="288" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.88627450980392153" green="0.0" blue="0.054901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -5639,6 +5674,7 @@
                             </button>
                         </subviews>
                         <animations/>
+                        <color key="backgroundColor" red="0.54117647058823526" green="0.63921568627450975" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
                                 <size key="value" width="320" height="1250"/>
@@ -5666,6 +5702,7 @@
                         <outlet property="YinShuaPin" destination="R4G-QM-Dgx" id="LEQ-Mk-geG"/>
                         <outlet property="YouZhengChuXu" destination="TDL-aD-h8k" id="CsR-bv-8N8"/>
                         <outlet property="YouZhengHuiDui" destination="y7e-RB-GAA" id="Tay-Ua-bQL"/>
+                        <outlet property="bkImageInRootView" destination="nXP-Zf-ADM" id="H4f-6b-BZY"/>
                         <outlet property="cangSuoFuZeRen" destination="h8y-R3-UZA" id="RSb-AY-0k7"/>
                         <outlet property="changSuoMingCheng" destination="H4q-5M-s6C" id="kaa-Mx-ff2"/>
                         <outlet property="chooseFangWuChangQuan" destination="8Zp-mt-DiL" id="KnW-ku-xmZ"/>
@@ -5685,6 +5722,7 @@
                         <outlet property="menPaiHao" destination="InO-2E-pwo" id="z1q-2T-gIm"/>
                         <outlet property="riKaiQuPinCi" destination="Kre-DV-XBp" id="RSh-Tx-ogK"/>
                         <outlet property="riTouDiPinCi" destination="gnh-KL-r77" id="4Pu-6T-dW3"/>
+                        <outlet property="rootView" destination="vc4-2Q-9be" id="EQV-ly-Hrc"/>
                         <outlet property="shangJiDanWei" destination="7m3-Pr-y3E" id="ngD-lX-2wE"/>
                         <outlet property="shi" destination="YJB-FC-oeX" id="Lxs-cZ-6QG"/>
                         <outlet property="tap1" destination="JoP-zY-EKW" id="jpd-06-woa"/>
