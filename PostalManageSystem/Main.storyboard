@@ -5087,6 +5087,8 @@
                         <outlet property="tap3" destination="gfF-KC-4S8" id="Dpz-VU-dls"/>
                         <outlet property="tap4" destination="ZNK-1P-T4m" id="xD6-jI-sge"/>
                         <outlet property="tap5" destination="mxC-VJ-ddE" id="lZL-0V-PLt"/>
+                        <outlet property="uploadBtn1" destination="j8U-ja-LgA" id="QUD-b3-1lD"/>
+                        <outlet property="uploadBtn2" destination="1Qc-Mn-PX9" id="jHP-OL-UCp"/>
                         <outlet property="view" destination="Ur1-dt-ber" id="8oF-n6-Tpm"/>
                         <outlet property="yeWuLiangBaoGuo" destination="VST-6r-7fE" id="2nh-st-bdF"/>
                         <outlet property="yeWuLiangBaoKan" destination="c3Q-Pr-JEb" id="Pmz-KZ-xSl"/>
@@ -5730,6 +5732,8 @@
                         <outlet property="tap3" destination="gxq-2g-8ph" id="bOe-u8-8c8"/>
                         <outlet property="tap4" destination="X8d-7h-zTp" id="SYf-HH-b9r"/>
                         <outlet property="tap5" destination="rOL-su-fHi" id="cRK-g0-4Te"/>
+                        <outlet property="uploadBtn1" destination="dl9-xl-SQC" id="Ged-7M-dys"/>
+                        <outlet property="uploadBtn2" destination="1rt-EZ-gW7" id="3tC-qU-eIM"/>
                         <outlet property="view" destination="vc4-2Q-9be" id="mBo-jH-yKD"/>
                         <outlet property="weiDu" destination="8cw-MT-NHE" id="DuV-DN-Pgx"/>
                         <outlet property="xian" destination="G5L-ro-tba" id="QHJ-V5-eaq"/>

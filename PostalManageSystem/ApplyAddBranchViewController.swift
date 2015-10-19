@@ -349,6 +349,9 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     @IBOutlet weak var rootView: UIView!
     @IBOutlet weak var bkImageInRootView: UIImageView!
     
+    @IBOutlet weak var uploadBtn1: UIButton!
+    @IBOutlet weak var uploadBtn2: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -540,6 +543,9 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
 //            commitBtn.setTitle("只可查看", forState: .Disabled)
             
             commitBtn.hidden = true
+            
+            uploadBtn1.setTitle("查看营业日期戳样", forState: .Normal)
+            uploadBtn2.setTitle("查看投递日期戳样", forState: .Normal)
             
             initTianJia(app.applyAddDic)
         }

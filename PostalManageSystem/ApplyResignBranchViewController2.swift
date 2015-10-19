@@ -1602,6 +1602,9 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     @IBOutlet weak var commitBtn1: UIButton!
     @IBOutlet weak var commitBtn2: UIButton!
     
+    @IBOutlet weak var uploadBtn1: UIButton!
+    @IBOutlet weak var uploadBtn2: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -1896,6 +1899,8 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 yeWuLiangBaoKan.enabled = false
                 yeWuLiangDaiLiYeWu.enabled = false
                 
+                uploadBtn1.setTitle("查看拟撤销邮政普遍服务营业场所的工商营业执照复印件", forState: .Normal)
+                uploadBtn2.setTitle("查看申请拟撤销邮政普遍服务营业场所原因的证明文件", forState: .Normal)
                 
                 initCheXiao(app.applyResignDic, segmentedControlIndex: 0)
                 

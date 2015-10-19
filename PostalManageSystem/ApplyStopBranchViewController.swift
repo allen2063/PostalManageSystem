@@ -1044,6 +1044,9 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
             
             initTingZhi(dict1)
             
+            uploadBtn1.setTitle("查看邮政营业场所的工商营业执照复印件", forState: .Normal)
+            uploadBtn2.setTitle("查看申请停限办业务原因的证明文件", forState: .Normal)
+            
             commitBtn.hidden = true
         }
         
