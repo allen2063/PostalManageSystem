@@ -475,6 +475,27 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
+    //上传图片字段
+        if uploadBtn1PicVC != nil {
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj = (uploadBtn1PicVC?.picUrl)!
+        }
+        print(uploadBtn1PicVC?.picUrl)
+        if infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj == "" {
+            UIAlertView(title: "请上传图片", message: "上传邮政营业场所的工商营业执照复印件", delegate: nil, cancelButtonTitle: "返回上传").show()
+        } else {
+            COMMIT_OK += 1
+        }
+        
+        if uploadBtn2PicVC != nil { 
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj = (uploadBtn2PicVC?.picUrl)!
+        }
+        print(uploadBtn2PicVC?.picUrl)
+        if infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj == "" {
+            UIAlertView(title: "请上传图片", message: "上传申请停限办业务原因的证明文件", delegate: nil, cancelButtonTitle: "返回上传").show()
+        } else {
+            COMMIT_OK += 1
+        }
+        
         //拟停止或限制办理业务营业场所基本情况表
         if yingYeChangSuoMingCheng1.text != "" {
             COMMIT_OK += 1
@@ -668,7 +689,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         
         print("\(COMMIT_OK)", terminator: "\n")
         
-        if (COMMIT_OK == 24) {
+        if (COMMIT_OK == 26) {
             if app.ServerData == 0 {
                 app.network.addWithInterface("Txyw", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfYzyycstbhybyzpbfwywhtsfwywdsq), andExtraInfo: ClassToJSON.getObjectData(infoOfNthybywyzyycsjbqkb))
                 
@@ -692,6 +713,8 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                 info1!.setValue(yeWuJuTiQingXing.text, forKey: "xzblywdjtqx")
                 info1!.setValue(niCaiQuBuJiuCuoShi.text, forKey: "cqdbjcs")
                 info1!.setValue(zongTiFuWuShuiPing.text, forKey: "yzpbfwztsp")
+                info1!.setValue(uploadBtn1PicVC?.picUrl, forKey: "gsyyzzfyj")
+                info1!.setValue(uploadBtn2PicVC?.picUrl, forKey: "zmwj")
                 
                 let info2 = app.applyStopDic.valueForKey("info2")
                 info2!.setValue(yingYeChangSuoMingCheng1.text, forKey: "yzyycsmc")
@@ -1130,41 +1153,128 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
     @IBOutlet weak var uploadBtn2: UIButton!
     
     
-    var uploadVCForPicURL1: UploadPicViewController?
-    var uploadVCForPicURL2: UploadPicViewController?
-    
     //图片上传
+//    @IBAction func uploadYingYeChangSuoGongShangYingYeZhiZhaoFuYinJian(sender: AnyObject) {
+//        
+//        if app.ServerData == 0 {
+//            let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
+//            
+//            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+//                uploadVC.providesPresentationContextTransitionStyle = true
+//                uploadVC.definesPresentationContext = true
+//                if #available(iOS 8.0, *) {
+//                    uploadVC.modalPresentationStyle = .OverCurrentContext
+//                } else {
+//                    // Fallback on earlier versions
+//                }
+//                self.presentViewController(uploadVC ,animated: true, completion: nil)
+//            } else {
+//                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+//                self.presentViewController(uploadVC ,animated: false, completion: nil)
+//                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+//            }
+//            
+//            uploadVCForPicURL1 = uploadVC
+//            print("\(uploadVCForPicURL1)")
+//            print("\(uploadVC)")
+//            print("呵呵呵\(uploadVCForPicURL1!.picUrl)")
+//            print("哈哈哈\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj)")
+//        }
+//        
+//        if app.ServerData == 1 {
+////            app.ServerData = 0
+//            let dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+//            
+//            let picStr: AnyObject? = dict1.valueForKey("gsyyzzfyj") as! String
+//            print("\(picStr!.description)")
+////            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
+//            
+//            let uploadVC = UploadPicViewController(uploadState: false, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
+//            
+//            
+//            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+//                uploadVC.providesPresentationContextTransitionStyle = true
+//                uploadVC.definesPresentationContext = true
+//                if #available(iOS 8.0, *) {
+//                    uploadVC.modalPresentationStyle = .OverCurrentContext
+//                } else {
+//                    // Fallback on earlier versions
+//                }
+//                self.presentViewController(uploadVC ,animated: true, completion: nil)
+//            } else {
+//                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+//                self.presentViewController(uploadVC ,animated: false, completion: nil)
+//                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+//            }
+//        }
+//        
+//        if app.ServerData == 2 {
+//            //            app.ServerData = 0
+//            let dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+//            
+//            let picStr: AnyObject? = dict1.valueForKey("gsyyzzfyj")
+//            print("\(picStr!.description)")
+//            //            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
+//            
+//            let uploadVC = UploadPicViewController(uploadState: true, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
+//            
+//            
+//            if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
+//                uploadVC.providesPresentationContextTransitionStyle = true
+//                uploadVC.definesPresentationContext = true
+//                if #available(iOS 8.0, *) {
+//                    uploadVC.modalPresentationStyle = .OverCurrentContext
+//                } else {
+//                    // Fallback on earlier versions
+//                }
+//                self.presentViewController(uploadVC ,animated: true, completion: nil)
+//            } else {
+//                self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+//                self.presentViewController(uploadVC ,animated: false, completion: nil)
+//                self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
+//            }
+//        }
+//
+//
+//    }
+    
+    //上传照片类对应的实例对象 全局
+    var uploadBtn1PicVC: UploadPicViewController?
+    
     @IBAction func uploadYingYeChangSuoGongShangYingYeZhiZhaoFuYinJian(sender: AnyObject) {
         
         if app.ServerData == 0 {
-            let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
+            uploadBtn1PicVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-                uploadVC.providesPresentationContextTransitionStyle = true
-                uploadVC.definesPresentationContext = true
+                uploadBtn1PicVC!.providesPresentationContextTransitionStyle = true
+                uploadBtn1PicVC!.definesPresentationContext = true
                 if #available(iOS 8.0, *) {
-                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                    uploadBtn1PicVC!.modalPresentationStyle = .OverCurrentContext
                 } else {
                     // Fallback on earlier versions
                 }
-                self.presentViewController(uploadVC ,animated: true, completion: nil)
+                self.presentViewController(uploadBtn1PicVC! ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.presentViewController(uploadBtn1PicVC! ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
             
-            uploadVCForPicURL1 = uploadVC
-            print("\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj)")
+//            uploadVCForPicURL1 = uploadBtn1PicVC
+//            print("\(uploadVCForPicURL1)")
+//            print("\(uploadBtn1PicVC)")
+//            print("呵呵呵\(uploadVCForPicURL1!.picUrl)")
+//            print("哈哈哈\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj)")
         }
         
         if app.ServerData == 1 {
-//            app.ServerData = 0
+            //            app.ServerData = 0
             let dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
             
             let picStr: AnyObject? = dict1.valueForKey("gsyyzzfyj") as! String
             print("\(picStr!.description)")
-//            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
+            //            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
             
             let uploadVC = UploadPicViewController(uploadState: false, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
             
@@ -1211,31 +1321,39 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
         }
-
-
+        
+        
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    var uploadBtn2PicVC: UploadPicViewController?
     
     @IBAction func uploadShenQingTingXianBanLiYeWuZhengMingWenJian(sender: AnyObject) {
         if app.ServerData == 0 {
-            let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
+            uploadBtn2PicVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-                uploadVC.providesPresentationContextTransitionStyle = true
-                uploadVC.definesPresentationContext = true
+                uploadBtn2PicVC!.providesPresentationContextTransitionStyle = true
+                uploadBtn2PicVC!.definesPresentationContext = true
                 if #available(iOS 8.0, *) {
-                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                    uploadBtn2PicVC!.modalPresentationStyle = .OverCurrentContext
                 } else {
                     // Fallback on earlier versions
-                    uploadVC.modalPresentationStyle = .CurrentContext
+                    uploadBtn2PicVC!.modalPresentationStyle = .CurrentContext
                 }
-                self.presentViewController(uploadVC ,animated: true, completion: nil)
+                self.presentViewController(uploadBtn2PicVC!, animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.presentViewController(uploadBtn2PicVC!, animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
             
-            uploadVCForPicURL2 = uploadVC
         }
         
         if app.ServerData == 1 {

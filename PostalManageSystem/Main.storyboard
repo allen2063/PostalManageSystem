@@ -3065,7 +3065,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="center" minimumFontSize="17" id="jdx-RE-FhH">
-                                        <rect key="frame" x="96" y="54.5" width="216" height="30"/>
+                                        <rect key="frame" x="96" y="55" width="216" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <nil key="textColor"/>

@@ -782,8 +782,8 @@ class InfoOfYzyycstbhybyzpbfwywhtsfwywdsq : NSObject {
     var imageUrl: String?;// 附件图片地址
     
     //新加入2个字段，用于表单提交时上传照片附件
-    var gsyyzzfyj: String?;	//邮政营业场所的工商营业执照复印件
-    var zmwj: String?;		//申请停限办业务原因的证明文件
+    var gsyyzzfyj: String = "";	//邮政营业场所的工商营业执照复印件
+    var zmwj: String = "";		//申请停限办业务原因的证明文件
     
     var sppl: String?; // 审批评论
 }
