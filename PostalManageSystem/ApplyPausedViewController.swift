@@ -193,7 +193,7 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
             textViewOnBkView.textAlignment = .Center
             //            viewForShenHeYiJian.addSubview(label)
             //            label.hidden = false
-            textViewOnBkView.addSubview(textViewOnBkView)
+            bkView.addSubview(textViewOnBkView)
             //            print("\(flag)\(label)")
         } else if flag == 1
         {

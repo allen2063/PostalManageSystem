@@ -2064,14 +2064,14 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
     @IBOutlet var tap11: UITapGestureRecognizer!
     
     let bkView = UIView(frame: CGRect(x: 0, y: UIScreen.mainScreen().bounds.size.height - 80, width: UIScreen.mainScreen().bounds.size.width, height: 80))
-    let label = UILabel(frame: CGRect(x: 45, y: 5, width: UIScreen.mainScreen().bounds.size.width - 80, height: 30))
+    let textViewOnBkView = UITextView(frame: CGRect(x: 45, y: 5, width: UIScreen.mainScreen().bounds.size.width - 80, height: 30))
     let btmOnBkView = UIButton(frame: CGRect(x: 45, y: 40, width: UIScreen.mainScreen().bounds.size.width - 80, height: 30))
     
     
     var flag = 0
     func shenHeYiJianBtnAction() {
-        label.textColor = UIColor.blackColor()
-        label.backgroundColor = UIColor(red: 199/255, green: 228/255, blue: 226/255, alpha: 1)
+        textViewOnBkView.textColor = UIColor.blackColor()
+        textViewOnBkView.backgroundColor = UIColor(red: 199/255, green: 228/255, blue: 226/255, alpha: 1)
         
         
         //        label.hidden = true
@@ -2080,11 +2080,11 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
             btmOnBkView.setTitle("隐藏审核状态", forState: .Normal)
             flag = 1
             print("\(flag)")
-            label.text = app.applyResignDic.valueForKey("sppl") as? String
-            label.textAlignment = .Center
+            textViewOnBkView.text = app.applyChangeDic.valueForKey("sppl") as? String
+            textViewOnBkView.textAlignment = .Center
             //            viewForShenHeYiJian.addSubview(label)
             //            label.hidden = false
-            bkView.addSubview(label)
+            bkView.addSubview(textViewOnBkView)
             //            print("\(flag)\(label)")
         } else if flag == 1
         {
@@ -2092,17 +2092,29 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
             flag = 0
             //            label.hidden = true
             //            print("\(flag)\(label.superview)")
-            label.removeFromSuperview()
+            textViewOnBkView.removeFromSuperview()
             
         }
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        if UIScreen.mainScreen().bounds.width == 375 {
+            bkView.frame.origin.y = (self.view as! UIScrollView).contentOffset.y + UIScreen.mainScreen().bounds.size.height - bkView.frame.size.height - 65
+            bkView.frame.size.width = 340
+            textViewOnBkView.frame.size.width = 240
+            btmOnBkView.frame.size.width = 240
+        }
         
-        //        print("QQQQQQQQQQQQQQQQQQQQQQQQ\(++i)")
-        //        bkView.backgroundColor = UIColor.redColor()
-        bkView.frame.origin.y = (self.view as! UIScrollView).contentOffset.y + UIScreen.mainScreen().bounds.size.height - bkView.frame.size.height
-        //        print("\(bkView.bounds.origin.y)")
+        if UIScreen.mainScreen().bounds.width == 414 {
+            bkView.frame.origin.y = (self.view as! UIScrollView).contentOffset.y + UIScreen.mainScreen().bounds.size.height - bkView.frame.size.height - 133
+            bkView.frame.size.width = 340
+            textViewOnBkView.frame.size.width = 240
+            btmOnBkView.frame.size.width = 240
+        }
+        
+        if UIScreen.mainScreen().bounds.width == 320 {
+            bkView.frame.origin.y = (self.view as! UIScrollView).contentOffset.y + UIScreen.mainScreen().bounds.size.height - bkView.frame.size.height
+        }
     }
     
     @IBOutlet weak var rootView: UIView!
