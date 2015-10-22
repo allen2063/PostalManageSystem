@@ -207,8 +207,8 @@ class InfoOfYzqyszyzyycsdjb: NSObject {
     //	var String ywfwbkls; // 业务范围报刊零售
     
     //营业日戳戳样、投递日戳戳样是在提交表单时上传的两个图片附件。
-    var yyrccy: String?; // 营业日戳戳样
-    var tdrccy: String?; // 投递日戳戳样
+    var yyrccy: String = ""; // 营业日戳戳样
+    var tdrccy: String = ""; // 投递日戳戳样
     
     var sjhzsdjyzfgsfzrqz: String?; // 省级或者市地级邮政分公司负责人签章
     var sjhzsdjyzfgsfzrqzsj: String?; // 省级或者市地级邮政分公司负责人签章时间
@@ -559,8 +559,8 @@ class InfoOfCxyzpbfwyycssq: NSObject {
     var imageUrl: String?;// 附件图片地址
     
     //新加入2个字段，用于表单提交时上传照片附件
-    var gsyyzzfyj: String?;	//拟撤销邮政普遍服务营业场所的工商营业执照复印件
-    var zmwj: String?;		//申请撤销邮政普遍服务营业场所原因的证明文件
+    var gsyyzzfyj: String = "";	//拟撤销邮政普遍服务营业场所的工商营业执照复印件
+    var zmwj: String = "";		//申请撤销邮政普遍服务营业场所原因的证明文件
     
     var sppl: String?; // 审批评论
 }

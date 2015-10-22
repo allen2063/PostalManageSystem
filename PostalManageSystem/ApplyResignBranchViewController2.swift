@@ -672,9 +672,27 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
-        //以下两个字段是上传图片等url
-//        infoOfCxyzpbfwyycssq.gsyyzzfyj =
-//        infoOfCxyzpbfwyycssq.zmwj =
+        //上传图片字段
+        if uploadBtn1PicVC != nil {
+            infoOfCxyzpbfwyycssq.gsyyzzfyj = (uploadBtn1PicVC?.picUrl)!
+        }
+        print(uploadBtn1PicVC?.picUrl)
+        if infoOfCxyzpbfwyycssq.gsyyzzfyj == "" {
+            UIAlertView(title: "请上传图片", message: "上传拟撤销邮政普遍服务营业场所的工商营业执照复印件", delegate: nil, cancelButtonTitle: "返回上传").show()
+        } else {
+            COMMIT_OK += 1
+        }
+        
+        if uploadBtn2PicVC != nil {
+            infoOfCxyzpbfwyycssq.zmwj = (uploadBtn2PicVC?.picUrl)!
+        }
+        print(uploadBtn2PicVC?.picUrl)
+        if infoOfCxyzpbfwyycssq.zmwj == "" {
+            UIAlertView(title: "请上传图片", message: "上传拟撤销邮政普遍服务营业场所原因的证明文件", delegate: nil, cancelButtonTitle: "返回上传").show()
+        } else {
+            COMMIT_OK += 1
+        }
+
         
         
         
@@ -1175,7 +1193,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         
         print("\(COMMIT_OK)", terminator: "\n")
         
-        if (COMMIT_OK == 40) {
+        if (COMMIT_OK == 42) {
             if app.ServerData == 0 {
 //                  app.network.editWithInterface("bsdtApi/add", andInfo: ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq) , andExtraInfo: ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))
                 app.network.addWithInterface("Cxpbfww", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq), andExtraInfo: ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))
@@ -2444,26 +2462,26 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     }
 
     //上传图片功能
-    //上传后取得的图片URL
-    var returnPicURL1 = ""
-    var returnPicURL2 = ""
+    //上传照片类对应的实例对象 全局
+    var uploadBtn1PicVC: UploadPicViewController?
+    
     @IBAction func uploadYIngYeZhiZhaoFuYinJian(sender: AnyObject) {
         
         if app.ServerData == 0 {
-            let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "拟撤销场所的工商营业执照复印件", andUploadKind: 1)
+            uploadBtn1PicVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "拟撤销场所的工商营业执照复印件", andUploadKind: 1)
            
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-                uploadVC.providesPresentationContextTransitionStyle = true
-                uploadVC.definesPresentationContext = true
+                uploadBtn1PicVC!.providesPresentationContextTransitionStyle = true
+                uploadBtn1PicVC!.definesPresentationContext = true
                 if #available(iOS 8.0, *) {
-                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                    uploadBtn1PicVC!.modalPresentationStyle = .OverCurrentContext
                 } else {
                     // Fallback on earlier versions
                 }
-                self.presentViewController(uploadVC ,animated: true, completion: nil)
+                self.presentViewController(uploadBtn1PicVC! ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.presentViewController(uploadBtn1PicVC! ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
  
@@ -2515,24 +2533,24 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
 
     }
     
-    
+    var uploadBtn2PicVC: UploadPicViewController?
     @IBAction func uploadZhengMingWenJian(sender: AnyObject) {
         
         if app.ServerData == 0 {
-            let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请拟撤销场所原因的证明文件", andUploadKind: 1)
+            uploadBtn2PicVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "申请拟撤销场所原因的证明文件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-                uploadVC.providesPresentationContextTransitionStyle = true
-                uploadVC.definesPresentationContext = true
+                uploadBtn2PicVC!.providesPresentationContextTransitionStyle = true
+                uploadBtn2PicVC!.definesPresentationContext = true
                 if #available(iOS 8.0, *) {
-                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                    uploadBtn2PicVC!.modalPresentationStyle = .OverCurrentContext
                 } else {
                     // Fallback on earlier versions
                 }
-                self.presentViewController(uploadVC ,animated: true, completion: nil)
+                self.presentViewController(uploadBtn2PicVC! ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.presentViewController(uploadBtn2PicVC! ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
         }

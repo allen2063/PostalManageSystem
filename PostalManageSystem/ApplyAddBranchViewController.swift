@@ -1067,6 +1067,29 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         
         }
         
+        //上传图片字段
+        if uploadBtn1PicVC != nil {
+            infoOfYzqyszyzyycsdjb.yyrccy = (uploadBtn1PicVC?.picUrl)!
+        }
+        print(uploadBtn1PicVC?.picUrl)
+        if infoOfYzqyszyzyycsdjb.yyrccy == "" {
+            UIAlertView(title: "请上传图片", message: "上传营业日戳戳样", delegate: nil, cancelButtonTitle: "返回上传").show()
+        } else {
+            COMMIT_OK += 1
+        }
+        
+        if uploadBtn2PicVC != nil {
+            infoOfYzqyszyzyycsdjb.tdrccy = (uploadBtn2PicVC?.picUrl)!
+        }
+        print(uploadBtn2PicVC?.picUrl)
+        if infoOfYzqyszyzyycsdjb.tdrccy == "" {
+            UIAlertView(title: "请上传图片", message: "上传投递日戳戳样", delegate: nil, cancelButtonTitle: "返回上传").show()
+        } else {
+            COMMIT_OK += 1
+        }
+
+        
+        
         print("\(COMMIT_OK)", terminator: "\n")
         
 //        print("\(infoOfYzqyszyzyycsdjb.ywfw)")
@@ -1077,7 +1100,7 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
 //        } else if (COMMIT_OK != 30) {
 //            print("提交失败!!!!!!!!!!!!!!!!!!!!!!!!")
 //        }
-        if (COMMIT_OK == 30) {
+        if (COMMIT_OK == 32) {
             
             if app.ServerData == 0 {
                 //                app.network.editWithInterface("Cxfpbfwwd", andInfo: ClassToJSON.getObjectData(infoOfyzqycxyzyycsdjb) , andExtraInfo:nil)
@@ -1264,22 +1287,26 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
     }
     
     //上传图片功能
+    
+    //上传照片类对应的实例对象 全局
+    var uploadBtn1PicVC: UploadPicViewController?
+    
     @IBAction func uploadYingYeRiQiChuoYang(sender: AnyObject) {
         if app.ServerData == 0 {
-            let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "营业日期戳样", andUploadKind: 1)
+            uploadBtn1PicVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "营业日期戳样", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-                uploadVC.providesPresentationContextTransitionStyle = true
-                uploadVC.definesPresentationContext = true
+                uploadBtn1PicVC!.providesPresentationContextTransitionStyle = true
+                uploadBtn1PicVC!.definesPresentationContext = true
                 if #available(iOS 8.0, *) {
-                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                    uploadBtn1PicVC!.modalPresentationStyle = .OverCurrentContext
                 } else {
                     // Fallback on earlier versions
                 }
-                self.presentViewController(uploadVC ,animated: true, completion: nil)
+                self.presentViewController(uploadBtn1PicVC! ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.presentViewController(uploadBtn1PicVC! ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
         }
@@ -1345,23 +1372,25 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         
     }
     
+    
+    var uploadBtn2PicVC: UploadPicViewController?
     @IBAction func uploadTouDiRiQiChuoYang(sender: AnyObject) {
         if app.ServerData == 0 {
-            let uploadVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "投递日期戳样", andUploadKind: 1)
+            uploadBtn2PicVC = UploadPicViewController(uploadState: true, andUrl: nil, andCountOfPic: 1, andFormName: "投递日期戳样", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-                uploadVC.providesPresentationContextTransitionStyle = true
-                uploadVC.definesPresentationContext = true
+                uploadBtn2PicVC!.providesPresentationContextTransitionStyle = true
+                uploadBtn2PicVC!.definesPresentationContext = true
                 if #available(iOS 8.0, *) {
-                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                    uploadBtn2PicVC!.modalPresentationStyle = .OverCurrentContext
                 } else {
                     // Fallback on earlier versions
-                    uploadVC.modalPresentationStyle = .CurrentContext
+                    uploadBtn2PicVC!.modalPresentationStyle = .CurrentContext
                 }
-                self.presentViewController(uploadVC ,animated: true, completion: nil)
+                self.presentViewController(uploadBtn2PicVC! ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.presentViewController(uploadBtn2PicVC! ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
         }
