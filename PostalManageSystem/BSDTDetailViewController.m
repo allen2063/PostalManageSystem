@@ -7,6 +7,7 @@
 //
 
 #import "BSDTDetailViewController.h"
+#import "UploadPicViewController.h"
 #define leftInterval 10
 #define heightInterval 10
 #define heightForOneLine 30
@@ -42,6 +43,53 @@
     }
     return self;
 }
+
+//上传照片类对应的实例对象  全局
+UploadPicViewController * uploadBtn1PicVC;
+UploadPicViewController * uploadBtn2PicVC;
+//第一个上传按钮
+UIButton * uploadBtn1;
+//第二个上传按钮
+UIButton * uploadBtn2;
+- (void)uploadBtn1CilckedMethod{
+    //do something...如调用上传显示界面
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        uploadBtn1PicVC.providesPresentationContextTransitionStyle = YES;
+        uploadBtn1PicVC.definesPresentationContext = YES;
+        uploadBtn1PicVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        [self presentViewController:uploadBtn1PicVC animated:YES completion:nil];
+    } else {
+        self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [self presentViewController:uploadBtn1PicVC animated:NO completion:nil];
+        self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
+}
+- (void)uploadBtn2CilckedMethod{
+    //do something...如调用上传显示界面
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        uploadBtn2PicVC.providesPresentationContextTransitionStyle = YES;
+        uploadBtn2PicVC.definesPresentationContext = YES;
+        uploadBtn2PicVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        [self presentViewController:uploadBtn2PicVC animated:YES completion:nil];
+    } else {
+        self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [self presentViewController:uploadBtn2PicVC animated:NO completion:nil];
+        self.view.window.rootViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
+}
+//用户点击提交后的按钮响应方法
+- (void)submit{
+    //判空  上传成功后才有值
+    if(uploadBtn1PicVC.picUrl != nil){
+        NSString * pic1Url = uploadBtn1PicVC.picUrl;
+    }
+    //判空  上传成功后才有值
+    if(uploadBtn1PicVC.picUrl != nil){
+        NSString * pic2Url = uploadBtn2PicVC.picUrl;
+    }
+    //取到url   上传等...
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -1049,9 +1097,7 @@
     [self cancelView];
 }
 
-- (void)submit{
 
-}
 
 /*
 #pragma mark - Navigation

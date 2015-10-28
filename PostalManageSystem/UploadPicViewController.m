@@ -212,11 +212,13 @@
                 _backgroudnImgView.image = [[UIImage alloc] initWithData:imageData];
                 [self adjustPicForDisplay:_backgroudnImgView.image];
             }else{//图片加载失败
+                UIImage * failedImg = [UIImage imageNamed:@"failed"];
+                _backgroudnImgView.image =  failedImg;
+                [self adjustPicForDisplay:_backgroudnImgView.image];
                 [GMDCircleLoader hideFromView:self.view animated:YES];
                 alerts = [[UIAlertView alloc]initWithTitle:nil message:@"图片加载失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alerts show];
             }
-            
         }else{
             //没有图片  什么都不做
         }
@@ -225,10 +227,24 @@
         _formData = [tempDic objectForKey:@"info1"];
         NSString * url = [_formData objectForKey:@"imageUrl"];
         if(url.length > 10){
+            
             NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
-            firstImgView.image = [[UIImage alloc] initWithData:imageData];
-            _backgroudnImgView.image = [[UIImage alloc] initWithData:imageData];
-            [self adjustPicForDisplay:_backgroudnImgView.image];
+            UIImage * image = [[UIImage alloc] initWithData:imageData];
+            //验证图片是否下载正确
+            NSData * imgData = [ConnectionAPI picToStringWithImage:image];
+            if ([imgData isKindOfClass:[NSData class]]) {
+                firstImgView.image = [[UIImage alloc] initWithData:imageData];
+                _backgroudnImgView.image = [[UIImage alloc] initWithData:imageData];
+                [self adjustPicForDisplay:_backgroudnImgView.image];
+            }else{//图片加载失败
+                UIImage * failedImg = [UIImage imageNamed:@"failed"];
+                _backgroudnImgView.image =  failedImg;
+                firstImgView.image =  failedImg;
+                [self adjustPicForDisplay:_backgroudnImgView.image];
+                [GMDCircleLoader hideFromView:self.view animated:YES];
+                alerts = [[UIAlertView alloc]initWithTitle:nil message:@"图片加载失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alerts show];
+            }
         }else{
             firstImgView.image = [UIImage imageNamed:@"tup"];
         }
@@ -238,7 +254,19 @@
         url = [_formData2 objectForKey:@"imageUrl"];
         if(url.length > 10){
             NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
-            secondImgView.image = [[UIImage alloc] initWithData:imageData];
+            UIImage * image = [[UIImage alloc] initWithData:imageData];
+            //验证图片是否下载正确
+            NSData * imgData = [ConnectionAPI picToStringWithImage:image];
+            if ([imgData isKindOfClass:[NSData class]]) {
+                secondImgView.image = [[UIImage alloc] initWithData:imageData];
+            }else{//图片加载失败
+                UIImage * failedImg = [UIImage imageNamed:@"failed"];
+                secondImgView.image =  failedImg;
+
+                [GMDCircleLoader hideFromView:self.view animated:YES];
+                alerts = [[UIAlertView alloc]initWithTitle:nil message:@"图片加载失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alerts show];
+            }
         }else{
             secondImgView.image = [UIImage imageNamed:@"tup"];
         }
@@ -528,7 +556,9 @@
         }
         firstImgView.image = _backgroudnImgView.image;
         _backgroudnImgView.image = secondImgView.image;
-        [self adjustPicForDisplay:_backgroudnImgView.image];
+        if (_backgroudnImgView.image !=nil) {
+            [self adjustPicForDisplay:_backgroudnImgView.image];
+        }
         [cancelBtn setTitle:@"上一张" forState:UIControlStateNormal];
         stepFlag = 2;
     }else if (stepFlag == 2){
@@ -539,7 +569,9 @@
         }
         secondImgView.image = _backgroudnImgView.image;
         _backgroudnImgView.image = firstImgView.image;
-        [self adjustPicForDisplay:_backgroudnImgView.image];
+        if (_backgroudnImgView.image !=nil) {
+            [self adjustPicForDisplay:_backgroudnImgView.image];
+        }
         [cancelBtn setTitle:@"下一张" forState:UIControlStateNormal];
         stepFlag = 1;
     }
