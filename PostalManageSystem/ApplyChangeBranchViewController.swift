@@ -803,6 +803,7 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
         if (result == "1") {
             let alert = UIAlertView(title: "提交成功", message: "", delegate: nil, cancelButtonTitle: "确定")
             alert.show()
+            self.navigationController?.popViewControllerAnimated(true)
         } else {
             let alert = UIAlertView(title: "提交失败", message: "", delegate: nil, cancelButtonTitle: "确定")
             alert.show()
@@ -1305,29 +1306,13 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
 //                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
 //        }
         
-        if bghChangSuoDiZhi.text != "" {
-            COMMIT_OK += 1
-            infoOfYzqyyzyycsbaxxbgdjb.csdz_bgh = bghChangSuoDiZhi.text
-        } else if (bghChangSuoDiZhi.text == "")
-        {
-            
-            bghChangSuoDiZhi.attributedPlaceholder = NSAttributedString(string: "不为空"
-                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
-        }
+        infoOfYzqyyzyycsbaxxbgdjb.csdz_bgh = bghChangSuoDiZhi.text
         
-        if bghChangSuoDiZhiBianGengYuanYin.text != "" {
-            COMMIT_OK += 1
-            infoOfYzqyyzyycsbaxxbgdjb.bgyy_bghcsmc = bghChangSuoDiZhiBianGengYuanYin.text
-        } else if (bghChangSuoDiZhiBianGengYuanYin.text == "")
-        {
-            
-            bghChangSuoDiZhiBianGengYuanYin.attributedPlaceholder = NSAttributedString(string: "不为空"
-                , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
-        }
+        infoOfYzqyyzyycsbaxxbgdjb.bgyy_bghcsmc = bghChangSuoDiZhiBianGengYuanYin.text
         
         print("\(COMMIT_OK)", terminator: "\n")
         
-        if (COMMIT_OK == 25) {
+        if (COMMIT_OK == 23) {
             if app.ServerData == 0 {
                 app.network.addWithInterface("Baxxbg", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfYzqyyzyycsbaxxbgdjb), andExtraInfo: nil)
      

@@ -385,6 +385,7 @@ class ApplyRestoreBranchViewController: UIViewController, UITextFieldDelegate, U
         if (result == "1") {
             let alert = UIAlertView(title: "提交成功", message: "", delegate: nil, cancelButtonTitle: "确定")
             alert.show()
+            self.navigationController?.popViewControllerAnimated(true)
             
         } else {
             let alert = UIAlertView(title: "提交失败", message: "", delegate: nil, cancelButtonTitle: "确定")

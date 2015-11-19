@@ -689,7 +689,7 @@
 				TargetAttributes = {
 					56C59DCA1B82DD5F00D96F08 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = V8L6VJV5Z2;
+						DevelopmentTeam = 8YLK7592SW;
 					};
 					56C59DE31B82DD5F00D96F08 = {
 						CreatedOnToolsVersion = 6.4;
@@ -962,8 +962,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: etenginformation@gmail.com (M4M2C4W54A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: etenginformation@gmail.com (M4M2C4W54A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Haixia Ding (CRZ35V8UJX)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -989,8 +989,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: etenginformation@gmail.com (M4M2C4W54A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: etenginformation@gmail.com (M4M2C4W54A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Haixia Ding (CRZ35V8UJX)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

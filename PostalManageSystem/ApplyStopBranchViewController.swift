@@ -295,6 +295,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         if (result == "1") {
             let alert = UIAlertView(title: "提交成功", message: "", delegate: nil, cancelButtonTitle: "确定")
             alert.show()
+            self.navigationController?.popViewControllerAnimated(true)
         } else {
             let alert = UIAlertView(title: "提交失败", message: "", delegate: nil, cancelButtonTitle: "确定")
             alert.show()
@@ -1289,7 +1290,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
             let dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
             
             let picStr: AnyObject? = dict1.valueForKey("gsyyzzfyj") as! String
-            print("\(picStr!.description)")
+            print("啊哈哈哈\(picStr!.description)")
             //            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
             
             let uploadVC = UploadPicViewController(uploadState: false, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
@@ -1375,6 +1376,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         if app.ServerData == 1 {
 //            app.ServerData = 0
             let dict2 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+            print("\(dict2.valueForKey("zmwj"))")
             
             let uploadVC = UploadPicViewController(uploadState: false, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
             

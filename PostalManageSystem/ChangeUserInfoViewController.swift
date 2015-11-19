@@ -126,6 +126,7 @@ class ChangeUserInfoViewController: UIViewController, UITextFieldDelegate {
             let alert = UIAlertView(title: "提交成功", message: "", delegate: nil, cancelButtonTitle: "确定")
             alert.show()
             
+        
 //            xingMing.text = app.userData.valueForKey("realName") as? String
 //            diZhi.text = app.userData.valueForKey("address") as? String
 //            lianXiDianHua.text = app.userData.valueForKey("teleNumber") as? String

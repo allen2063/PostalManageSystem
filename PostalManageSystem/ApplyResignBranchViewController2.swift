@@ -542,9 +542,12 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         let noteDic: NSDictionary = notification.userInfo!
         let result: String = (noteDic.valueForKey("result") as? String)!
         
+        print("Hahahahahahahahahahahahahahahahahahahahahaha\(result)")
+        
         if (result == "1") {
             let alert = UIAlertView(title: "提交成功", message: "", delegate: nil, cancelButtonTitle: "确定")
             alert.show()
+            self.navigationController?.popViewControllerAnimated(true)
         } else {
             let alert = UIAlertView(title: "提交失败", message: "", delegate: nil, cancelButtonTitle: "确定")
             alert.show()
@@ -1196,7 +1199,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         if (COMMIT_OK == 42) {
             if app.ServerData == 0 {
 //                  app.network.editWithInterface("bsdtApi/add", andInfo: ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq) , andExtraInfo: ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))
-                app.network.addWithInterface("Cxpbfww", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq), andExtraInfo: ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))
+                app.network.addWithInterface("Cxpbfwwd", andUser: app.userData, andInfo:  ClassToJSON.getObjectData(infoOfCxyzpbfwyycssq), andExtraInfo: ClassToJSON.getObjectData(infoOfNcxyzpbfwyycsjbqkb))
             }
             
             if app.ServerData == 2 {
@@ -2247,6 +2250,9 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         niCheXiaoYouZhengYingYeChangSuoMingCheng.text = dict.valueForKey("yzpbfwyycsmc") as? String
         niCaiQuTiDaiXingCuoShi.text = dict.valueForKey("ncqdtdxcs") as? String
         caiQuCuoShiHouFuWuShuiPing.text = dict.valueForKey("yzpbyycsszhyzpbfwztsp") as? String
+        
+        
+        
     }
     
     func initCheXiaoPuBianFuWuChangSuo(dict: NSDictionary){
