@@ -836,6 +836,17 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         youBian1.text = dict.valueForKey("yzbm") as? String
         lianXiRenXingMing1.text = dict.valueForKey("lxrxm") as? String
         lianXiDianHua1.text = dict.valueForKey("lxdh") as? String
+        
+        
+        
+        let dict1 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+        let picStr1: AnyObject? = dict1.valueForKey("gsyyzzfyj")
+        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj = picStr1 as! String
+        
+        let dict2 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
+        let picStr2: AnyObject? = dict2.valueForKey("zmwj")
+        infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj = picStr2 as! String
+       
 
     }
     

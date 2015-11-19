@@ -662,10 +662,12 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         }
     }
     
+    let infoOfYzqyszyzyycsdjb = InfoOfYzqyszyzyycsdjb()
+    
     @IBAction func commit(sender: AnyObject) {
         var COMMIT_OK = 0
         
-        let infoOfYzqyszyzyycsdjb = InfoOfYzqyszyzyycsdjb()
+        
         if  chooseShiXiang.text == "未选择" {
             chooseShiXiang.textColor = UIColor.redColor()
         } else {
@@ -1293,6 +1295,11 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
             QiTa!.selected = true
         }
         
+        let pic1ValueFromDict = app.applyAddDic.valueForKey("yyrccy")
+        infoOfYzqyszyzyycsdjb.yyrccy = pic1ValueFromDict as! String
+        
+        let pic2ValueFromDict = app.applyAddDic.valueForKey("tdrccy")
+        infoOfYzqyszyzyycsdjb.tdrccy = pic2ValueFromDict as! String
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

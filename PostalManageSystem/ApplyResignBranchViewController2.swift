@@ -554,10 +554,10 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         }
     }
 
+    let infoOfCxyzpbfwyycssq = InfoOfCxyzpbfwyycssq()
     @IBAction func commit(sender: AnyObject) {
         var COMMIT_OK = 0
         
-        let infoOfCxyzpbfwyycssq = InfoOfCxyzpbfwyycssq()
         
         if shenQingDanWeiMingCheng.text != "" {
             COMMIT_OK += 1
@@ -2251,6 +2251,11 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         niCaiQuTiDaiXingCuoShi.text = dict.valueForKey("ncqdtdxcs") as? String
         caiQuCuoShiHouFuWuShuiPing.text = dict.valueForKey("yzpbyycsszhyzpbfwztsp") as? String
         
+        let pic1ValueFromDict = (app.applyResignDic.valueForKey("info1"))?.valueForKey("gsyyzzfyj")
+        infoOfCxyzpbfwyycssq.gsyyzzfyj = pic1ValueFromDict as! String
+        
+        let pic2ValueFromDict = (app.applyResignDic.valueForKey("info1"))?.valueForKey("zmwj")
+        infoOfCxyzpbfwyycssq.zmwj = pic2ValueFromDict as! String
         
         
     }
