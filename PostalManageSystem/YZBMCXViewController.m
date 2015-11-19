@@ -260,8 +260,12 @@
 - (void)displayTheDistrict{
     [DistrictTextFieldString setString:@""];
     if (districtArray.count == 0) {
-        UIAlertView * alerts = [[UIAlertView alloc]initWithTitle:@"查询失败" message:@"邮政编码输入错误或不在查询范围" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alerts show];
+        //主线程中更新UI  否则iOS中可能崩溃
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 更UI
+            UIAlertView * alerts = [[UIAlertView alloc]initWithTitle:@"查询失败" message:@"邮政编码输入错误或不在查询范围" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alerts show];
+        });
         return;
     }
     for (NSMutableDictionary * dic in districtArray) {

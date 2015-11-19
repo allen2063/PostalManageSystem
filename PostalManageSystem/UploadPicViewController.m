@@ -154,11 +154,16 @@
     
     
     //判断状态  以下为查看状态
-    if (!uploadStates) {
+    //debug  查看状态下要显示图片  上传状态下同样也要显示图片  所以判断条件由 !uploadStates 改为 url ！= nil
+    if (url != nil ) {
         [GMDCircleLoader setOnView:self.view withTitle:@"加载中..." animated:YES];
-        imageUploadBtn.hidden = YES;
-        imageFromCameraBtn.hidden = YES;
-        imageFromAlbumBtn.hidden = YES;
+        //查看状态下隐藏按钮
+        if (!uploadStates) {
+            imageUploadBtn.hidden = YES;
+            imageFromCameraBtn.hidden = YES;
+            imageFromAlbumBtn.hidden = YES;
+        }
+        
         NSLog(@"%f",BIGBACKGROUNDIMGVIEWWIDTH);
         _backgroudnImgView.frame = CGRectMake((UISCREENWIDTH - BIGBACKGROUNDIMGVIEWWIDTH)/2, 45, BIGBACKGROUNDIMGVIEWWIDTH, BIGBACKGROUNDIMGVIEWWIDTH);
         NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:url,@"imageUrl", nil];
