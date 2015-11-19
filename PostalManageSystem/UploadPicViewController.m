@@ -162,10 +162,9 @@
             imageUploadBtn.hidden = YES;
             imageFromCameraBtn.hidden = YES;
             imageFromAlbumBtn.hidden = YES;
+            NSLog(@"%f",BIGBACKGROUNDIMGVIEWWIDTH);
+            _backgroudnImgView.frame = CGRectMake((UISCREENWIDTH - BIGBACKGROUNDIMGVIEWWIDTH)/2, 45, BIGBACKGROUNDIMGVIEWWIDTH, BIGBACKGROUNDIMGVIEWWIDTH);
         }
-        
-        NSLog(@"%f",BIGBACKGROUNDIMGVIEWWIDTH);
-        _backgroudnImgView.frame = CGRectMake((UISCREENWIDTH - BIGBACKGROUNDIMGVIEWWIDTH)/2, 45, BIGBACKGROUNDIMGVIEWWIDTH, BIGBACKGROUNDIMGVIEWWIDTH);
         NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:url,@"imageUrl", nil];
         NSDictionary * dics = [[NSDictionary alloc]initWithObjectsAndKeys:dic,@"info",@"resul",@"sdf", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"bsdtApi/get" object:self userInfo:dics];
