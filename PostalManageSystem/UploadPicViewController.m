@@ -167,7 +167,8 @@
         }
         NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:url,@"imageUrl", nil];
         NSDictionary * dics = [[NSDictionary alloc]initWithObjectsAndKeys:dic,@"info",@"resul",@"sdf", nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"bsdtApi/get" object:self userInfo:dics];
+        //初始化给定url时延时加载 提高模态更新的
+        [NSTimer scheduledTimerWithTimeInterval:0.1 target: self selector: @selector(loadUrlForPic:) userInfo:dics repeats:NO];
     }
     return self;
 }
@@ -199,6 +200,11 @@
     [UIView setAnimationDuration:0.2];
     _blackView.alpha = 0.5;
     [UIView commitAnimations];
+}
+
+//初始化给定url时延时加载
+- (void)loadUrlForPic:(NSTimer *)timer{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"bsdtApi/get" object:self userInfo:[timer userInfo]];
 }
 
 - (void)cellDataBack:(NSNotification *)note{
