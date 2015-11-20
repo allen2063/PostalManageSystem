@@ -1216,10 +1216,38 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 info1!.setValue(niCheXiaoYouZhengYingYeChangSuoMingCheng.text, forKey: "yzpbfwyycsmc")
                 info1!.setValue(niCaiQuTiDaiXingCuoShi.text, forKey: "ncqdtdxcs")
                 info1!.setValue(caiQuCuoShiHouFuWuShuiPing.text, forKey: "yzpbyycsszhyzpbfwztsp")
+                
+                if uploadBtn1PicVC == nil {
+                    app.applyResignDic.valueForKey("info1")?.setValue(app.applyResignDic.valueForKey("info1")?.valueForKey("gsyyzzfyj"), forKey: "gsyyzzfyj")
+                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+                } else {
+                    let info1 = app.applyResignDic.valueForKey("info1")
+                    info1!.setValue(uploadBtn1PicVC?.picUrl, forKey: "gsyyzzfyj")
+                }
+                
+                if uploadBtn2PicVC == nil {
+                    app.applyResignDic.valueForKey("info1")?.setValue(app.applyResignDic.valueForKey("info1")?.valueForKey("zmwj"), forKey: "zmwj")
+                
+                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+                } else {
+                    
+                    let info1 = app.applyResignDic.valueForKey("info1")
+                    info1!.setValue(uploadBtn2PicVC?.picUrl, forKey: "zmwj")
+                }
+
+                
+                
             
                 let info2 = app.applyResignDic.valueForKey("info2")
                 info2!.setValue(youZhengChangSuoMingCheng.text, forKey: "yzcsmc")
-                info2!.setValue(chooseJIngYingFangShi.text, forKey: "jyfs")
+                
+                if (chooseJIngYingFangShi.text == "自办")  {
+                    info2!.setValue("zb", forKey: "jyfs")
+                }
+                if(chooseJIngYingFangShi.text == "委办") {
+                    info2!.setValue("wb", forKey: "jyfs")
+                }
+                
                 info2!.setValue(changSuoDiZhiShi.text, forKey: "csdz_s")
                 info2!.setValue(changSuoDiZhiXian.text, forKey: "csdz_xqs")
                 info2!.setValue(changSuoDiZhiJie.text, forKey: "csdz_jx")
@@ -1231,10 +1259,34 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 info2!.setValue(yingYeChangSuoFuZeRen.text, forKey: "yycsf")
                 info2!.setValue(YingYeChangSuoLianXiDianHua.text, forKey: "yycslxdh")
                 info2!.setValue(fuWuBanJing.text, forKey: "fwbj")
-                info2!.setValue(chooseSuoZaiDiDian.text, forKey: "szdd")
+                
+                if (chooseSuoZaiDiDian.text == "城市地区")  {
+                    info2!.setValue("csdq", forKey: "szdd")
+                }
+                if(chooseSuoZaiDiDian.text == "乡镇地区") {
+                    info2!.setValue("xzdq", forKey: "szdd")
+                }
+                if(chooseSuoZaiDiDian.text == "农村地区") {
+                    info2!.setValue("ncdq", forKey: "szdd")
+                }
+
+                
                 info2!.setValue(fuWuRenKou.text, forKey: "fwrk")
                 info2!.setValue(kaiYeShiJian.text, forKey: "kysj")
-                info2!.setValue(chooseFangWuChangQuan.text, forKey: "fwcq")
+                
+                if (chooseFangWuChangQuan.text == "自有")  {
+                    info2!.setValue("ziy", forKey: "fwcq")
+                }
+                if(chooseFangWuChangQuan.text == "租用") {
+                    info2!.setValue("zuy", forKey: "fwcq")
+                }
+                if (chooseFangWuChangQuan.text == "无偿使用")  {
+                    info2!.setValue("wucsy", forKey: "fwcq")
+                }
+                if(chooseFangWuChangQuan.text == "其他") {
+                    info2!.setValue("qt", forKey: "fwcq")
+                }
+                
                 info2!.setValue(jianZhuMianJi.text, forKey: "jzmj")
                 info2!.setValue(fuWuQuYu.text, forKey: "fwqy")
                 info2!.setValue(zhougYIngYeRiZhouJi.text, forKey: "zyyr_ks")
@@ -1553,8 +1605,24 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 app.applyResignDic.setValue(youZhengBianMa1.text, forKey: "yzbm")
                 app.applyResignDic.setValue(shangJiDanWei1.text, forKey: "sjdw")
                 app.applyResignDic.setValue(fuWuQuYu1.text, forKey: "fwqy")
-                app.applyResignDic.setValue(chooseSuoZaiDiDian1.text, forKey: "szdd")
-                app.applyResignDic.setValue(chooseJIngYingFangShi1.text, forKey: "jyfs")
+                
+                if (chooseSuoZaiDiDian1.text == "城市地区")  {
+                     app.applyResignDic.setValue("csdq", forKey: "szdd")
+                }
+                if(chooseSuoZaiDiDian1.text == "乡镇地区") {
+                     app.applyResignDic.setValue("xzdq", forKey: "szdd")
+                }
+                if(chooseSuoZaiDiDian1.text == "农村地区") {
+                     app.applyResignDic.setValue("ncdq", forKey: "szdd")
+                }
+               
+                if (chooseJIngYingFangShi1.text == "自办")  {
+                    app.applyResignDic.setValue("zb", forKey: "jyfs")
+                }
+                if(chooseJIngYingFangShi1.text == "委办") {
+                    app.applyResignDic.setValue("wb", forKey: "jyfs")
+                }
+                
                 app.applyResignDic.setValue(stringForEdit, forKey: "ywfw")
                 app.applyResignDic.setValue(qiTaShiXiang1.text, forKey: "qtsx")
                 app.applyResignDic.setValue(cheXiaoYuanYin1.text, forKey: "cxyy")
@@ -2263,10 +2331,10 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     func initCheXiaoPuBianFuWuChangSuo(dict: NSDictionary){
         youZhengChangSuoMingCheng.text? = (dict.valueForKey("yzcsmc") as? String)!
         
-        if (dict.valueForKey("jyfs") as! String == "自办")   {
+        if (dict.valueForKey("jyfs") as! String == "zb")   {
             chooseJIngYingFangShi.text? = "自办"
         }
-        if(dict.valueForKey("jyfs") as! String == "委办") {
+        if(dict.valueForKey("jyfs") as! String == "wb") {
             chooseJIngYingFangShi.text? = "委办"
         }
         
@@ -2285,29 +2353,29 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         
         fuWuBanJing.text? = dict.valueForKey("fwbj") as! String
         
-        if(dict.valueForKey("szdd") as! String == "城市地区") {
+        if(dict.valueForKey("szdd") as! String == "csdq") {
             chooseSuoZaiDiDian.text? = "城市地区"
         }
-        if (dict.valueForKey("szdd") as! String == "乡镇地区")   {
+        if (dict.valueForKey("szdd") as! String == "xzdq")   {
             chooseSuoZaiDiDian.text? = "乡镇地区"
         }
-        if(dict.valueForKey("szdd") as! String == "农村地区") {
+        if(dict.valueForKey("szdd") as! String == "ncdq") {
             chooseSuoZaiDiDian.text? = "农村地区"
         }
         
         fuWuRenKou.text? = dict.valueForKey("fwrk") as! String
         kaiYeShiJian.text? = dict.valueForKey("kysj") as! String
         
-        if (dict.valueForKey("fwcq") as! String == "自有")   {
+        if (dict.valueForKey("fwcq") as! String == "ziy")   {
             chooseFangWuChangQuan.text? = "自有"
         }
-        if(dict.valueForKey("fwcq") as! String == "租用") {
+        if(dict.valueForKey("fwcq") as! String == "zuy") {
             chooseFangWuChangQuan.text? = "租用"
         }
-        if (dict.valueForKey("fwcq") as! String == "无偿使用")   {
+        if (dict.valueForKey("fwcq") as! String == "wucsy")   {
             chooseFangWuChangQuan.text? = "无偿使用"
         }
-        if(dict.valueForKey("fwcq") as! String == "其他") {
+        if(dict.valueForKey("fwcq") as! String == "qt") {
             chooseFangWuChangQuan.text? = "其他"
         }
     
@@ -2542,20 +2610,20 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         if app.ServerData == 2 {
             let picValueFromDict = (app.applyResignDic.valueForKey("info1"))?.valueForKey("gsyyzzfyj")
             
-            let uploadVC = UploadPicViewController(uploadState: true, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "拟撤销场所的工商营业执照复印件", andUploadKind: 1)
+            uploadBtn1PicVC = UploadPicViewController(uploadState: true, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "拟撤销场所的工商营业执照复印件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-                uploadVC.providesPresentationContextTransitionStyle = true
-                uploadVC.definesPresentationContext = true
+                uploadBtn1PicVC!.providesPresentationContextTransitionStyle = true
+                uploadBtn1PicVC!.definesPresentationContext = true
                 if #available(iOS 8.0, *) {
-                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                    uploadBtn1PicVC!.modalPresentationStyle = .OverCurrentContext
                 } else {
                     // Fallback on earlier versions
                 }
-                self.presentViewController(uploadVC ,animated: true, completion: nil)
+                self.presentViewController(uploadBtn1PicVC! ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.presentViewController(uploadBtn1PicVC! ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
 
@@ -2609,20 +2677,20 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         if app.ServerData == 2 {
             let picValueFromDict = (app.applyResignDic.valueForKey("info1"))?.valueForKey("zmwj")
             
-            let uploadVC = UploadPicViewController(uploadState: true, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "申请拟撤销场所原因的证明文件", andUploadKind: 1)
+            uploadBtn2PicVC = UploadPicViewController(uploadState: true, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "申请拟撤销场所原因的证明文件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-                uploadVC.providesPresentationContextTransitionStyle = true
-                uploadVC.definesPresentationContext = true
+                uploadBtn2PicVC!.providesPresentationContextTransitionStyle = true
+                uploadBtn2PicVC!.definesPresentationContext = true
                 if #available(iOS 8.0, *) {
-                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                    uploadBtn2PicVC!.modalPresentationStyle = .OverCurrentContext
                 } else {
                     // Fallback on earlier versions
                 }
-                self.presentViewController(uploadVC ,animated: true, completion: nil)
+                self.presentViewController(uploadBtn2PicVC! ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.presentViewController(uploadBtn2PicVC! ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
         }

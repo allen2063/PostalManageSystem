@@ -1330,11 +1330,44 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 app.applyChangeDic.setValue(bgqCangSuoDiZhiJingDu.text, forKey: "csdz_bgq_jd")
                 app.applyChangeDic.setValue(bgqCangSuoDiZhiWeiDu.text, forKey: "csdz_bgq_wd")
                 app.applyChangeDic.setValue(bgqShangJiDanWei.text, forKey: "sjdw_bgq")
-                app.applyChangeDic.setValue(chooseJingYingFangShiBianGengQian.text, forKey: "jyfs_bgq")
+                
+                
+                if (chooseJingYingFangShiBianGengQian.text == "自办")  {
+                    app.applyChangeDic.setValue("zb", forKey: "jyfs_bgq")
+                }
+                if(chooseJingYingFangShiBianGengQian.text == "委办") {
+                    app.applyChangeDic.setValue("wb", forKey: "jyfs_bgq")
+                }
+                
+                
                 app.applyChangeDic.setValue(bgqYouZhengBianMa.text, forKey: "yzbm_bgq")
-                app.applyChangeDic.setValue(chooseSuoZaiDiDian.text, forKey: "szdy_bgq")
+                
+                if (chooseSuoZaiDiDian.text == "城市地区")  {
+                    app.applyChangeDic.setValue("csdq", forKey: "szdy_bgq")
+                }
+                if(chooseSuoZaiDiDian.text == "乡镇地区") {
+                    app.applyChangeDic.setValue("xzdq", forKey: "szdy_bgq")
+                }
+                if(chooseSuoZaiDiDian.text == "农村地区") {
+                    app.applyChangeDic.setValue("ncdq", forKey: "szdy_bgq")
+                }
+                
                 app.applyChangeDic.setValue(bgqKaiYeShiJian.text, forKey: "kysj_bgq")
-                app.applyChangeDic.setValue(chooseFangWuChangQuanBianGengQian.text, forKey: "fwcq_bgq")
+                
+                if (chooseFangWuChangQuanBianGengQian.text == "自有")  {
+                    app.applyChangeDic.setValue("ziy", forKey: "fwcq_bgq")
+                }
+                if(chooseFangWuChangQuanBianGengQian.text == "租用") {
+                    app.applyChangeDic.setValue("zuy", forKey: "fwcq_bgq")
+                }
+                if (chooseFangWuChangQuanBianGengQian.text == "无偿使用")  {
+                    app.applyChangeDic.setValue("wucsy", forKey: "fwcq_bgq")
+                }
+                if(chooseFangWuChangQuanBianGengQian.text == "其他") {
+                    app.applyChangeDic.setValue("qt", forKey: "fwcq_bgq")
+                }
+
+                
                 app.applyChangeDic.setValue(bgqJianZhuMianJi.text, forKey: "jzmj_bgq")
                 app.applyChangeDic.setValue(bgqYingYeShiJianZhouJi.text, forKey: "zyyr_bgq_ks")
                 app.applyChangeDic.setValue(bgqYingYeShiJianZhiZhouJi.text, forKey: "zyyr_bgq_js")
@@ -1353,9 +1386,29 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 app.applyChangeDic.setValue(bghYingYeShiJianJiDian.text, forKey: "ryysj_bgh_ks")
                 app.applyChangeDic.setValue(bghYingYeShiJianZhiJiDian.text, forKey: "ryysj_bgh_js")
                 app.applyChangeDic.setValue(bghYingYeShiJianBianGengYuanYin.text, forKey: "bgyy_bghyysj")
-                app.applyChangeDic.setValue(chooseJIngYingFangShi.text, forKey: "jyfs_bgh")
+                
+                if (chooseJIngYingFangShi.text == "自办")  {
+                    app.applyChangeDic.setValue("zb", forKey: "jyfs_bgh")
+                }
+                if(chooseJIngYingFangShi.text == "委办") {
+                    app.applyChangeDic.setValue("wb", forKey: "jyfs_bgh")
+                }
+                
                 app.applyChangeDic.setValue(bghJingYingFangShiBianGengYuanYin.text, forKey: "bgyy_bghjyfs")
-                app.applyChangeDic.setValue(chooseFangWuChangQuan.text, forKey: "fwcq_bgh")
+                
+                if (chooseFangWuChangQuan.text == "自有")  {
+                    app.applyChangeDic.setValue("ziy", forKey: "fwcq_bgh")
+                }
+                if(chooseFangWuChangQuan.text == "租用") {
+                    app.applyChangeDic.setValue("zuy", forKey: "fwcq_bgh")
+                }
+                if (chooseFangWuChangQuan.text == "无偿使用")  {
+                    app.applyChangeDic.setValue("wucsy", forKey: "fwcq_bgh")
+                }
+                if(chooseFangWuChangQuan.text == "其他") {
+                    app.applyChangeDic.setValue("qt", forKey: "fwcq_bgh")
+                }
+                
                 app.applyChangeDic.setValue(bghFangWuChanQuanBianGengYuanYin.text, forKey: "bgyy_bghfwcq")
                 app.applyChangeDic.setValue(bghChangSuoDiZhi.text, forKey: "csdz_bgh")
                 app.applyChangeDic.setValue(bghChangSuoDiZhiBianGengYuanYin.text, forKey: "bgyy_bghcsmc")
@@ -1985,9 +2038,37 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 app.applyChangeDic.setValue(qzqChangSuoDiZhiHao.text, forKey: "csdz_qzq_h")
                 app.applyChangeDic.setValue(qzqShangJiDanWei.text, forKey: "sjdw_qzq")
                 app.applyChangeDic.setValue(qzqYouZhengBianMa.text, forKey: "yzbm_qzq")
-                app.applyChangeDic.setValue(chooseJIngYingFangShi1.text, forKey: "jyfs_qzq")
-                app.applyChangeDic.setValue(chooseFangWuChangQuan1.text, forKey: "fwcq_qzq")
-                app.applyChangeDic.setValue(chooseSuoZaiDiDian1.text, forKey: "szdy_qzq")
+                
+                if (chooseJIngYingFangShi1.text == "自办")  {
+                    app.applyChangeDic.setValue("zb", forKey: "jyfs_qzq")
+                }
+                if(chooseJIngYingFangShi1.text == "委办") {
+                    app.applyChangeDic.setValue("wb", forKey: "jyfs_qzq")
+                }
+                
+                if (chooseFangWuChangQuan1.text == "自有")  {
+                    app.applyChangeDic.setValue("ziy", forKey: "fwcq_qzq")
+                }
+                if(chooseFangWuChangQuan1.text == "租用") {
+                    app.applyChangeDic.setValue("zuy", forKey: "fwcq_qzq")
+                }
+                if (chooseFangWuChangQuan1.text == "无偿使用")  {
+                    app.applyChangeDic.setValue("wucsy", forKey: "fwcq_qzq")
+                }
+                if(chooseFangWuChangQuan1.text == "其他") {
+                    app.applyChangeDic.setValue("qt", forKey: "fwcq_qzq")
+                }
+                
+                if (chooseSuoZaiDiDian1.text == "城市地区")  {
+                    app.applyChangeDic.setValue("csdq", forKey: "szdy_qzq")
+                }
+                if(chooseSuoZaiDiDian1.text == "乡镇地区") {
+                    app.applyChangeDic.setValue("xzdq", forKey: "szdy_qzq")
+                }
+                if(chooseSuoZaiDiDian1.text == "农村地区") {
+                    app.applyChangeDic.setValue("ncdq", forKey: "szdy_qzq")
+                }
+                
                 app.applyChangeDic.setValue(qzqKaiYeShiJian.text, forKey: "kysj_qzq")
                 app.applyChangeDic.setValue(qzqJianZhuMianJi.text, forKey: "jzmj_qzq")
                 app.applyChangeDic.setValue(qzqYingYeShiJianZhouJi.text, forKey: "zyyr_qzq_ks")
@@ -2006,11 +2087,41 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
                 app.applyChangeDic.setValue(qzhChangSuoDiZhiJie.text, forKey: "csdz_qzh_jx")
                 app.applyChangeDic.setValue(qzhChangSuoDiZhiHao.text, forKey: "csdz_qzh_h")
                 app.applyChangeDic.setValue(qzhYuYuanZhiZhiXianJuLi.text, forKey: "yyzzxjl_qzh")
-                app.applyChangeDic.setValue(chooseJIngYingFangShi2.text, forKey: "jyfs_qzh")
+                
+                if (chooseJIngYingFangShi2.text == "自办")  {
+                    app.applyChangeDic.setValue("zb", forKey: "jyfs_qzh")
+                }
+                if(chooseJIngYingFangShi2.text == "委办") {
+                    app.applyChangeDic.setValue("wb", forKey: "jyfs_qzh")
+                }
+                
                 app.applyChangeDic.setValue(qzhyouZhengBianMa.text, forKey: "yzbm_qzh")
-                app.applyChangeDic.setValue(chooseSuoZaiDiDian2.text, forKey: "szdy_qzh")
+                
+                if (chooseSuoZaiDiDian2.text == "城市地区")  {
+                    app.applyChangeDic.setValue("csdq", forKey: "szdy_qzh")
+                }
+                if(chooseSuoZaiDiDian2.text == "乡镇地区") {
+                    app.applyChangeDic.setValue("xzdq", forKey: "szdy_qzh")
+                }
+                if(chooseSuoZaiDiDian2.text == "农村地区") {
+                    app.applyChangeDic.setValue("ncdq", forKey: "szdy_qzh")
+                }
+                
                 app.applyChangeDic.setValue(qzhKaiYeShiJian.text, forKey: "kysj_qzh")
-                app.applyChangeDic.setValue(chooseFangWuChangQuan2.text, forKey: "fwcq_qzh")
+                
+                if (chooseFangWuChangQuan2.text == "自有")  {
+                    app.applyChangeDic.setValue("ziy", forKey: "fwcq_qzh")
+                }
+                if(chooseFangWuChangQuan2.text == "租用") {
+                    app.applyChangeDic.setValue("zuy", forKey: "fwcq_qzh")
+                }
+                if (chooseFangWuChangQuan2.text == "无偿使用")  {
+                    app.applyChangeDic.setValue("wucsy", forKey: "fwcq_qzh")
+                }
+                if(chooseFangWuChangQuan2.text == "其他") {
+                    app.applyChangeDic.setValue("qt", forKey: "fwcq_qzh")
+                }
+               
                 app.applyChangeDic.setValue(qzhJianZhuMianJi.text, forKey: "jzmj_qzh")
                 app.applyChangeDic.setValue(qzhYingYeShiJianZhouJi.text, forKey: "zyyr_qzh_ks")
                 app.applyChangeDic.setValue(qzhYingYeShiJianZhiZhouJi.text, forKey: "zyyr_qzh_js")
@@ -2737,16 +2848,16 @@ class ApplyChangeBranchViewController: UIViewController, UIActionSheetDelegate, 
             
             
             //属性预置
-            if (dict.valueForKey("bgsx") as! String == "mcbg")   {
+            if (((dict.valueForKey("bgsx") as! String).rangeOfString(",mcbg")) != nil)   {
                 mingChengBianGeng.selected = true
             }
-            if(dict.valueForKey("bgsx") as! String == "yysjbg") {
+            if(((dict.valueForKey("bgsx") as! String).rangeOfString(",yysjbg")) != nil) {
                 jingYingShiJianBianGeng.selected = true
             }
-            if (dict.valueForKey("bgsx") as! String == "jyfsbg")   {
+            if (((dict.valueForKey("bgsx") as! String).rangeOfString(",jyfsbg")) != nil)   {
                 jingYingFangShiBianGeng.selected = true
             }
-            if(dict.valueForKey("bgsx") as! String == "cqxzbg") {
+            if(((dict.valueForKey("bgsx") as! String).rangeOfString(",cqxzbg")) != nil) {
                 changQuanXingZhiBianGeng.selected = true
             }
             
