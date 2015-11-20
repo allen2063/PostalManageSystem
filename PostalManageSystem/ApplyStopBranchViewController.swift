@@ -704,12 +704,27 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                 info1!.setValue(shenQingZhuYaoYuanYin.text, forKey: "sqtzblhzxzywdzyyy")
                 info1!.setValue(niTingBanShiJianNian.text, forKey: "tzblhzxzblsj_n")
                 info1!.setValue(niTingBanShiJianYue.text, forKey: "tzblhzxzblsj_y")
-                info1!.setValue(chooseBanLiShiXiangLabel.text, forKey: "tzblhzxzbl")
+                
+                if (chooseBanLiShiXiangLabel.text == "停止办理")  {
+                    info1!.setValue("tzbl", forKey: "tzblhzxzbl")
+                }
+                if(chooseBanLiShiXiangLabel.text == "限制办理") {
+                    info1!.setValue("xzbl", forKey: "tzblhzxzbl")
+                }
+
+                
                 info1!.setValue(changSuoDiZhiShi.text, forKey: "tzblhzxzbldz_s")
                 info1!.setValue(changSuoDiZhiXian.text, forKey: "tzblhzxzbldz_xqs")
                 info1!.setValue(changSuoDiJie.text, forKey: "tzblhzxzbldz_jx")
                 info1!.setValue(youZhengYingYeChangSuoMingCeng.text, forKey: "yzyycsmc")
-                info1!.setValue(chooseTingXianBanLiYeWuZhongLei.text, forKey: "yzpbfwywhtsfwyw")
+                
+                if (chooseTingXianBanLiYeWuZhongLei.text == "邮政普遍服务业务")  {
+                    info1!.setValue("yzpbfwyw", forKey: "yzpbfwywhtsfwyw")
+                }
+                if (chooseTingXianBanLiYeWuZhongLei.text == "特殊服务业务") {
+                    info1!.setValue("tsfwyw", forKey: "yzpbfwywhtsfwyw")
+                }
+                
                 info1!.setValue(jiTiYeWuMingCheng.text, forKey: "jtywmc")
                 info1!.setValue(yeWuJuTiQingXing.text, forKey: "xzblywdjtqx")
                 info1!.setValue(niCaiQuBuJiuCuoShi.text, forKey: "cqdbjcs")
@@ -727,6 +742,25 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                 info2!.setValue(youBian1.text, forKey: "yzbm")
                 info2!.setValue(lianXiRenXingMing1.text, forKey: "lxrxm")
                 info2!.setValue(lianXiDianHua1.text, forKey: "lxdh")
+                
+                if uploadBtn1PicVC == nil {
+                    app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("gsyyzzfyj"), forKey: "gsyyzzfyj")
+                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+                } else {
+                    let info1 = app.applyStopDic.valueForKey("info1")
+                    info1!.setValue(uploadBtn1PicVC?.picUrl, forKey: "gsyyzzfyj")
+                }
+                
+                if uploadBtn2PicVC == nil {
+                    app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("zmwj"), forKey: "zmwj")
+                    
+                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+                } else {
+                    
+                    let info1 = app.applyStopDic.valueForKey("info1")
+                    info1!.setValue(uploadBtn2PicVC?.picUrl, forKey: "zmwj")
+                }
+
                 
                 app.network.editWithInterface("Txyw", andInfo: info1 as! [NSObject : AnyObject] , andExtraInfo: info2 as! [NSObject : AnyObject])
             }
@@ -749,10 +783,10 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         niTingBanShiJianYue.text = dict.valueForKey("tzblhzxzblsj_y") as? String
         
         //infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbl = chooseBanLiShiXiangLabel.text
-        if (dict.valueForKey("tzblhzxzbl") as! String == "停止办理")   {
+        if (dict.valueForKey("tzblhzxzbl") as! String == "tzbl")   {
            chooseBanLiShiXiangLabel.text = "停止办理"
         }
-        if(dict.valueForKey("tzblhzxzbl") as! String == "限制办理") {
+        if(dict.valueForKey("tzblhzxzbl") as! String == "xzbl") {
             chooseBanLiShiXiangLabel.text = "限制办理"
         }
         
@@ -762,10 +796,10 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         youZhengYingYeChangSuoMingCeng.text = dict.valueForKey("yzyycsmc") as? String
         
         //infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzpbfwywhtsfwyw = chooseTingXianBanLiYeWuZhongLei.text
-        if (dict.valueForKey("yzpbfwywhtsfwyw") as! String == "邮政普遍服务业务")  {
+        if (dict.valueForKey("yzpbfwywhtsfwyw") as! String == "yzpbfwyw")  {
             chooseTingXianBanLiYeWuZhongLei.text = "邮政普遍服务业务"
         }
-        if (dict.valueForKey("yzpbfwywhtsfwyw") as! String == "特殊服务业务") {
+        if (dict.valueForKey("yzpbfwywhtsfwyw") as! String == "tsfwyw") {
             chooseTingXianBanLiYeWuZhongLei.text = "特殊服务业务"
         }
         
@@ -1331,21 +1365,21 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
             print("\(picStr!.description)")
             //            var picNSString = NSString((CString: dict1.valueForKey("gsyyzzfyj") as! String), encoding: NSUTF8StringEncoding))
             
-            let uploadVC = UploadPicViewController(uploadState: true, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
+            uploadBtn1PicVC = UploadPicViewController(uploadState: true, andUrl: picStr as! String, andCountOfPic: 1, andFormName: "邮政营业场所工商营业执照复印件", andUploadKind: 1)
             
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-                uploadVC.providesPresentationContextTransitionStyle = true
-                uploadVC.definesPresentationContext = true
+                uploadBtn1PicVC!.providesPresentationContextTransitionStyle = true
+                uploadBtn1PicVC!.definesPresentationContext = true
                 if #available(iOS 8.0, *) {
-                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                    uploadBtn1PicVC!.modalPresentationStyle = .OverCurrentContext
                 } else {
                     // Fallback on earlier versions
                 }
-                self.presentViewController(uploadVC ,animated: true, completion: nil)
+                self.presentViewController(uploadBtn1PicVC! ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.presentViewController(uploadBtn1PicVC! ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
         }
@@ -1411,20 +1445,20 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
 //            app.ServerData = 0
             let dict2 = app.applyStopDic.valueForKey("info1") as! NSMutableDictionary
             
-            let uploadVC = UploadPicViewController(uploadState: true, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
+            uploadBtn2PicVC = UploadPicViewController(uploadState: true, andUrl: dict2.valueForKey("zmwj") as! String, andCountOfPic: 1, andFormName: "申请停限办业务原因的证明文件", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-                uploadVC.providesPresentationContextTransitionStyle = true
-                uploadVC.definesPresentationContext = true
+                uploadBtn2PicVC!.providesPresentationContextTransitionStyle = true
+                uploadBtn2PicVC!.definesPresentationContext = true
                 if #available(iOS 8.0, *) {
-                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                    uploadBtn2PicVC!.modalPresentationStyle = .OverCurrentContext
                 } else {
                     // Fallback on earlier versions
                 }
-                self.presentViewController(uploadVC ,animated: true, completion: nil)
+                self.presentViewController(uploadBtn2PicVC! ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.presentViewController(uploadBtn2PicVC! ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
         }

@@ -664,7 +664,14 @@ class ApplyPausedViewController: UIViewController, UIActionSheetDelegate, UIText
             if app.ServerData == 2 {
                 app.applyPauseDic.setValue(changSuoMingCheng.text, forKey: "yzyycsmc")
                 app.applyPauseDic.setValue(shangJiDanWei.text, forKey: "sjdw")
-                app.applyPauseDic.setValue(chooseBanLiShiXiangLabel.text, forKey: "xzblsx")
+                
+                if (chooseBanLiShiXiangLabel.text == "暂时停止办理业务事项")  {
+                    app.applyPauseDic.setValue("zstzblywsx", forKey: "xzblsx")
+                }
+                if(chooseBanLiShiXiangLabel.text == "暂时限制办理业务事项") {
+                    app.applyPauseDic.setValue("zsxzblywsx", forKey: "xzblsx")
+                }
+                
                 app.applyPauseDic.setValue(stringForEdit, forKey: "xzblsx_ywfw")
                 app.applyPauseDic.setValue(fuWuQuYu.text, forKey: "zstzblhzxzblywdyzyycsdfwqy")
                 app.applyPauseDic.setValue(diZhi.text, forKey: "dz")
