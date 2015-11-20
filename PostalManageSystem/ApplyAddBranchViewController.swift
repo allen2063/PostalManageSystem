@@ -1213,9 +1213,21 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
                 app.applyAddDic.setValue(fuWuRenKou.text, forKey: "fwrk")
                 app.applyAddDic.setValue(stringForEdit, forKey: "ywfw")
                 
-                app.applyAddDic.setValue(app.applyAddDic.valueForKey("yyrccy"), forKey: "yyrccy")
-//                print("\(app.applyAddDic.valueForKey("yyrccy"))")
-                app.applyAddDic.setValue(app.applyAddDic.valueForKey("tdrccy"), forKey: "tdrccy")
+                if uploadBtn1PicVC == nil {
+                    app.applyAddDic.setValue(app.applyAddDic.valueForKey("yyrccy"), forKey: "yyrccy")
+                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+                } else {
+                    app.applyAddDic.setValue(uploadBtn1PicVC?.picUrl, forKey: "yyrccy")
+                }
+                
+                if uploadBtn2PicVC == nil {
+                    app.applyAddDic.setValue(app.applyAddDic.valueForKey("tdrccy"), forKey: "tdrccy")
+                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+                } else {
+                    app.applyAddDic.setValue(uploadBtn2PicVC?.picUrl, forKey: "tdrccy")
+                }
+                
+                
                 
                 app.network.editWithInterface("Szxwd", andInfo: app.applyAddDic as [NSObject : AnyObject] , andExtraInfo:nil)
             }
@@ -1415,20 +1427,20 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         if app.ServerData == 2 {
             let picValueFromDict = app.applyAddDic.valueForKey("yyrccy")
             
-            let uploadVC = UploadPicViewController(uploadState: true, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "营业日期戳样", andUploadKind: 1)
+            uploadBtn1PicVC = UploadPicViewController(uploadState: true, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "营业日期戳样", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-                uploadVC.providesPresentationContextTransitionStyle = true
-                uploadVC.definesPresentationContext = true
+                uploadBtn1PicVC!.providesPresentationContextTransitionStyle = true
+                uploadBtn1PicVC!.definesPresentationContext = true
                 if #available(iOS 8.0, *) {
-                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                    uploadBtn1PicVC!.modalPresentationStyle = .OverCurrentContext
                 } else {
                     // Fallback on earlier versions
                 }
-                self.presentViewController(uploadVC ,animated: true, completion: nil)
+                self.presentViewController(uploadBtn1PicVC! ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.presentViewController(uploadBtn1PicVC! ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
         }
@@ -1505,21 +1517,21 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         if app.ServerData == 2 {
             let picValueFromDict = app.applyAddDic.valueForKey("tdrccy")
             
-            let uploadVC = UploadPicViewController(uploadState: true, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "投递日期戳样", andUploadKind: 1)
+            uploadBtn2PicVC = UploadPicViewController(uploadState: true, andUrl: picValueFromDict as! String, andCountOfPic: 1, andFormName: "投递日期戳样", andUploadKind: 1)
             
             if ((UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0) {
-                uploadVC.providesPresentationContextTransitionStyle = true
-                uploadVC.definesPresentationContext = true
+                uploadBtn2PicVC!.providesPresentationContextTransitionStyle = true
+                uploadBtn2PicVC!.definesPresentationContext = true
                 if #available(iOS 8.0, *) {
-                    uploadVC.modalPresentationStyle = .OverCurrentContext
+                    uploadBtn2PicVC!.modalPresentationStyle = .OverCurrentContext
                 } else {
                     // Fallback on earlier versions
-                    uploadVC.modalPresentationStyle = .CurrentContext
+                    uploadBtn2PicVC!.modalPresentationStyle = .CurrentContext
                 }
-                self.presentViewController(uploadVC ,animated: true, completion: nil)
+                self.presentViewController(uploadBtn2PicVC! ,animated: true, completion: nil)
             } else {
                 self.view.window?.rootViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                self.presentViewController(uploadVC ,animated: false, completion: nil)
+                self.presentViewController(uploadBtn2PicVC! ,animated: false, completion: nil)
                 self.view.window?.rootViewController?.modalPresentationStyle = .FullScreen
             }
         }
