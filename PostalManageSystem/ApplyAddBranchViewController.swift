@@ -1083,26 +1083,35 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         
         }
         
-            //上传图片字段
-            if uploadBtn1PicVC != nil && app.ServerData != 2 {
-                infoOfYzqyszyzyycsdjb.yyrccy = (uploadBtn1PicVC?.picUrl)!
-            }
-            print(uploadBtn1PicVC?.picUrl)
-            if infoOfYzqyszyzyycsdjb.yyrccy == "" {
-                UIAlertView(title: "请上传图片", message: "上传营业日戳戳样", delegate: nil, cancelButtonTitle: "返回上传").show()
-            } else {
-                COMMIT_OK += 1
-            }
-            
-            if uploadBtn2PicVC != nil && app.ServerData != 2 {
-                infoOfYzqyszyzyycsdjb.tdrccy = (uploadBtn2PicVC?.picUrl)!
-            }
-            print(uploadBtn2PicVC?.picUrl)
-            if infoOfYzqyszyzyycsdjb.tdrccy == "" {
-                UIAlertView(title: "请上传图片", message: "上传投递日戳戳样", delegate: nil, cancelButtonTitle: "返回上传").show()
-            } else {
-                COMMIT_OK += 1
-            }
+        //上传图片字段
+        if uploadBtn1PicVC != nil && app.ServerData != 2 {
+            infoOfYzqyszyzyycsdjb.yyrccy = (uploadBtn1PicVC?.picUrl)!
+        } else if uploadBtn1PicVC == nil && app.ServerData == 2 {
+            infoOfYzqyszyzyycsdjb.yyrccy = app.applyAddDic.valueForKey("yyrccy") as! String
+        } else if uploadBtn1PicVC != nil && app.ServerData == 2 {
+            infoOfYzqyszyzyycsdjb.yyrccy = (uploadBtn1PicVC?.picUrl)!
+        }
+        print(uploadBtn1PicVC?.picUrl)
+        if infoOfYzqyszyzyycsdjb.yyrccy == "" {
+            UIAlertView(title: "请上传图片", message: "上传营业日戳戳样", delegate: nil, cancelButtonTitle: "返回上传").show()
+        } else {
+            COMMIT_OK += 1
+        }
+        
+        if uploadBtn2PicVC != nil && app.ServerData != 2 {
+            infoOfYzqyszyzyycsdjb.tdrccy = (uploadBtn2PicVC?.picUrl)!
+        } else if uploadBtn2PicVC == nil && app.ServerData == 2 {
+            infoOfYzqyszyzyycsdjb.tdrccy = app.applyAddDic.valueForKey("tdrccy") as! String
+        }  else if uploadBtn2PicVC != nil && app.ServerData == 2 {
+            infoOfYzqyszyzyycsdjb.tdrccy = (uploadBtn2PicVC?.picUrl)!
+        }
+        
+        print(uploadBtn2PicVC?.picUrl)
+        if infoOfYzqyszyzyycsdjb.tdrccy == "" {
+            UIAlertView(title: "请上传图片", message: "上传投递日戳戳样", delegate: nil, cancelButtonTitle: "返回上传").show()
+        } else {
+            COMMIT_OK += 1
+        }
 
         
         

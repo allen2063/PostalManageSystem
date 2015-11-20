@@ -476,30 +476,32 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
-        if app.ServerData != 2{
             //上传图片字段
-            if uploadBtn1PicVC != nil {
-                infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj = (uploadBtn1PicVC?.picUrl)!
-            }
-            print(uploadBtn1PicVC?.picUrl)
-            if infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj == "" {
-                UIAlertView(title: "请上传图片", message: "上传邮政营业场所的工商营业执照复印件", delegate: nil, cancelButtonTitle: "返回上传").show()
-            } else {
-                COMMIT_OK += 1
-            }
-            
-            if uploadBtn2PicVC != nil {
-                infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj = (uploadBtn2PicVC?.picUrl)!
-            }
+        if uploadBtn1PicVC != nil && app.ServerData != 2 {
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj = (uploadBtn1PicVC?.picUrl)!
+        } else if uploadBtn1PicVC == nil && app.ServerData == 2 {
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj = app.applyStopDic.valueForKey("info1")?.valueForKey("gsyyzzfyj") as! String
+            print("\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj)")
+        }
+        print(uploadBtn1PicVC?.picUrl)
+        if infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj == "" {
+            UIAlertView(title: "请上传图片", message: "上传邮政营业场所的工商营业执照复印件", delegate: nil, cancelButtonTitle: "返回上传").show()
+        } else {
+            COMMIT_OK += 1
+        }
+        
+        if uploadBtn2PicVC != nil && app.ServerData != 2 {
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj = (uploadBtn2PicVC?.picUrl)!
+        } else if uploadBtn2PicVC == nil && app.ServerData == 2 {
+            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj = app.applyStopDic.valueForKey("info1")?.valueForKey("zmwj") as! String
+            print("\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj)")
+        }
             print(uploadBtn2PicVC?.picUrl)
             if infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj == "" {
                 UIAlertView(title: "请上传图片", message: "上传申请停限办业务原因的证明文件", delegate: nil, cancelButtonTitle: "返回上传").show()
             } else {
                 COMMIT_OK += 1
             }
-        } else {
-            COMMIT_OK += 2
-        }
     
         //拟停止或限制办理业务营业场所基本情况表
         if yingYeChangSuoMingCheng1.text != "" {
@@ -733,9 +735,24 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                 info1!.setValue(yeWuJuTiQingXing.text, forKey: "xzblywdjtqx")
                 info1!.setValue(niCaiQuBuJiuCuoShi.text, forKey: "cqdbjcs")
                 info1!.setValue(zongTiFuWuShuiPing.text, forKey: "yzpbfwztsp")
-                info1!.setValue(uploadBtn1PicVC?.picUrl, forKey: "gsyyzzfyj")
-                info1!.setValue(uploadBtn2PicVC?.picUrl, forKey: "zmwj")
                 
+                if uploadBtn1PicVC == nil {
+                    app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("gsyyzzfyj"), forKey: "gsyyzzfyj")
+                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+                } else {
+                    info1!.setValue(uploadBtn1PicVC?.picUrl, forKey: "gsyyzzfyj")
+                }
+                
+                if uploadBtn2PicVC == nil {
+                    app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("zmwj"), forKey: "zmwj")
+                    
+                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+                } else {
+                    info1!.setValue(uploadBtn2PicVC?.picUrl, forKey: "zmwj")
+                    print("\(info1?.valueForKey("zmwj"))")
+                }
+
+               
                 let info2 = app.applyStopDic.valueForKey("info2")
                 info2!.setValue(yingYeChangSuoMingCheng1.text, forKey: "yzyycsmc")
                 info2!.setValue(shangJiDanWei1.text, forKey: "sjdw")
@@ -747,25 +764,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                 info2!.setValue(lianXiRenXingMing1.text, forKey: "lxrxm")
                 info2!.setValue(lianXiDianHua1.text, forKey: "lxdh")
                 
-                if uploadBtn1PicVC == nil {
-                    app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("gsyyzzfyj"), forKey: "gsyyzzfyj")
-                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
-                } else {
-                    let info1 = app.applyStopDic.valueForKey("info1")
-                    info1!.setValue(uploadBtn1PicVC?.picUrl, forKey: "gsyyzzfyj")
-                }
                 
-                if uploadBtn2PicVC == nil {
-                    app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("zmwj"), forKey: "zmwj")
-                    
-                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
-                } else {
-                    
-                    let info1 = app.applyStopDic.valueForKey("info1")
-                    info1!.setValue(uploadBtn2PicVC?.picUrl, forKey: "zmwj")
-                    print("\(info1?.valueForKey("zmwj"))")
-                }
-
                 
                 app.network.editWithInterface("Txyw", andInfo: info1 as! [NSObject : AnyObject] , andExtraInfo: info2 as! [NSObject : AnyObject])
             }

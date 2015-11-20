@@ -25,12 +25,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PostalManageSystem/ApplyStopBranchViewController.swift"
-            timestampString = "469706442.816287"
+            filePath = "PostalManageSystem/ApplyAddBranchViewController.swift"
+            timestampString = "469724217.096999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "758"
-            endingLineNumber = "758"
+            startingLineNumber = "1101"
+            endingLineNumber = "1101"
             landmarkName = "commit(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -41,12 +41,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PostalManageSystem/ApplyStopBranchViewController.swift"
-            timestampString = "469706175.107576"
+            filePath = "PostalManageSystem/ApplyAddBranchViewController.swift"
+            timestampString = "469724324.310981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
+            startingLineNumber = "1087"
+            endingLineNumber = "1087"
             landmarkName = "commit(_:)"
             landmarkType = "5">
          </BreakpointContent>
