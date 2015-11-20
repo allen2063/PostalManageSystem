@@ -1124,9 +1124,27 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
             }
             
             if app.ServerData == 2 {
-                app.applyAddDic.setValue(chooseShiXiang.text, forKey: "sx")
+                
+                if (chooseShiXiang.text == "设置邮政普遍服务营业场所")  {
+                    app.applyAddDic.setValue("szyzpbfwyycs", forKey: "sx")
+                }
+                if(chooseShiXiang.text == "设置其他营业场所") {
+                    app.applyAddDic.setValue("szqtyzyycs", forKey: "sx")
+                }
+                
                 app.applyAddDic.setValue(changSuoMingCheng.text, forKey: "yzyycsmc")
-                app.applyAddDic.setValue(chooseJingYingFangShi.text, forKey: "jyfs")
+                
+                if (chooseJingYingFangShi.text == "自办")  {
+                    infoOfYzqyszyzyycsdjb.jyfs = "zb"
+                    app.applyAddDic.setValue("zb", forKey: "jyfs")
+                }
+                if(chooseJingYingFangShi.text == "委办") {
+                    app.applyAddDic.setValue("wb", forKey: "jyfs")
+                }
+                
+                
+                
+                
                 app.applyAddDic.setValue(shi.text, forKey: "csdz_s")
                 app.applyAddDic.setValue(xian.text, forKey: "csdz_xqs")
                 app.applyAddDic.setValue(jieDao.text, forKey: "csdz_jx")
@@ -1138,16 +1156,52 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
                 app.applyAddDic.setValue(shangJiDanWei.text, forKey: "sjdw")
                 app.applyAddDic.setValue(cangSuoFuZeRen.text, forKey: "yycsfzr")
                 app.applyAddDic.setValue(lianXiDianHua.text, forKey: "lxdh")
-                app.applyAddDic.setValue(chooseSheZhiDiYu.text, forKey: "szdy")
+                
+                if (chooseSheZhiDiYu.text == "城市地区")  {
+                    app.applyAddDic.setValue("csdq", forKey: "szdy")
+                }
+                if(chooseSheZhiDiYu.text == "乡镇地区") {
+                    app.applyAddDic.setValue("xzdq", forKey: "szdy")
+                }
+                if(chooseSheZhiDiYu.text == "农村地区") {
+                    app.applyAddDic.setValue("ncdq", forKey: "szdy")
+                }
+
                 app.applyAddDic.setValue(kaiYeShiJian.text, forKey: "kysj")
-                app.applyAddDic.setValue(chooseFangWuChangQuan.text, forKey: "fwcq")
+                
+                
+                if (chooseFangWuChangQuan.text == "自有")  {
+                    app.applyAddDic.setValue("ziy", forKey: "fwcq")
+                }
+                if(chooseFangWuChangQuan.text == "租用") {
+                    app.applyAddDic.setValue("zuy", forKey: "fwcq")
+                }
+                if (chooseFangWuChangQuan.text == "无偿使用")  {
+                    app.applyAddDic.setValue("wucsy", forKey: "fwcq")
+                }
+                if(chooseFangWuChangQuan.text == "其他") {
+                    app.applyAddDic.setValue("qt", forKey: "fwcq")
+                }
+
+                
+                
+                
+                
                 app.applyAddDic.setValue(jianZhuMianJi.text, forKey: "jzmj")
                 
                 app.applyAddDic.setValue(yingYeShiJianZhouJi.text, forKey: "zyyr_ks")
                 app.applyAddDic.setValue(yingYeShiJianZhiZhouJi.text, forKey: "zyyr_js")
                 app.applyAddDic.setValue(yingYeShiJianJiDian.text, forKey: "ryysj_ks")
                 app.applyAddDic.setValue(yingYeShiJianZhiJiDian.text, forKey: "ryysj_js")
-                app.applyAddDic.setValue(chooseMenQianYouTong.text, forKey: "mqyt")
+                
+                if (chooseMenQianYouTong.text == "有")  {
+                    app.applyAddDic.setValue("y", forKey: "mqyt")
+                }
+                if(chooseMenQianYouTong.text == "无") {
+                    app.applyAddDic.setValue("w", forKey: "mqyt")
+                }
+
+                
                 app.applyAddDic.setValue(zhouKaiQuTianShu.text, forKey: "zkqts")
                 
                 app.applyAddDic.setValue(riKaiQuPinCi.text, forKey: "rkqpc")
@@ -1158,6 +1212,10 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
                 app.applyAddDic.setValue(fuWuBanJing.text, forKey: "fwbj")
                 app.applyAddDic.setValue(fuWuRenKou.text, forKey: "fwrk")
                 app.applyAddDic.setValue(stringForEdit, forKey: "ywfw")
+                
+                app.applyAddDic.setValue(app.applyAddDic.valueForKey("yyrccy"), forKey: "yyrccy")
+//                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+                app.applyAddDic.setValue(app.applyAddDic.valueForKey("tdrccy"), forKey: "tdrccy")
                 
                 app.network.editWithInterface("Szxwd", andInfo: app.applyAddDic as [NSObject : AnyObject] , andExtraInfo:nil)
             }

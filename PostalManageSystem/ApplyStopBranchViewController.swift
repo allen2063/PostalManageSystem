@@ -749,10 +749,10 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         niTingBanShiJianYue.text = dict.valueForKey("tzblhzxzblsj_y") as? String
         
         //infoOfYzyycstbhybyzpbfwywhtsfwywdsq.tzblhzxzbl = chooseBanLiShiXiangLabel.text
-        if (dict.valueForKey("tzblhzxzbl") as! String == "tzbl")   {
+        if (dict.valueForKey("tzblhzxzbl") as! String == "停止办理")   {
            chooseBanLiShiXiangLabel.text = "停止办理"
         }
-        if(dict.valueForKey("tzblhzxzbl") as! String == "xzbl") {
+        if(dict.valueForKey("tzblhzxzbl") as! String == "限制办理") {
             chooseBanLiShiXiangLabel.text = "限制办理"
         }
         
@@ -762,10 +762,10 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         youZhengYingYeChangSuoMingCeng.text = dict.valueForKey("yzyycsmc") as? String
         
         //infoOfYzyycstbhybyzpbfwywhtsfwywdsq.yzpbfwywhtsfwyw = chooseTingXianBanLiYeWuZhongLei.text
-        if (dict.valueForKey("yzpbfwywhtsfwyw") as! String == "yzpbfwyw")  {
+        if (dict.valueForKey("yzpbfwywhtsfwyw") as! String == "邮政普遍服务业务")  {
             chooseTingXianBanLiYeWuZhongLei.text = "邮政普遍服务业务"
         }
-        if (dict.valueForKey("yzpbfwywhtsfwyw") as! String == "tsfwyw") {
+        if (dict.valueForKey("yzpbfwywhtsfwyw") as! String == "特殊服务业务") {
             chooseTingXianBanLiYeWuZhongLei.text = "特殊服务业务"
         }
         

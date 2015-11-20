@@ -2263,10 +2263,10 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
     func initCheXiaoPuBianFuWuChangSuo(dict: NSDictionary){
         youZhengChangSuoMingCheng.text? = (dict.valueForKey("yzcsmc") as? String)!
         
-        if (dict.valueForKey("jyfs") as! String == "zb")   {
+        if (dict.valueForKey("jyfs") as! String == "自办")   {
             chooseJIngYingFangShi.text? = "自办"
         }
-        if(dict.valueForKey("jyfs") as! String == "wb") {
+        if(dict.valueForKey("jyfs") as! String == "委办") {
             chooseJIngYingFangShi.text? = "委办"
         }
         
@@ -2285,29 +2285,29 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         
         fuWuBanJing.text? = dict.valueForKey("fwbj") as! String
         
-        if(dict.valueForKey("szdd") as! String == "csdq") {
+        if(dict.valueForKey("szdd") as! String == "城市地区") {
             chooseSuoZaiDiDian.text? = "城市地区"
         }
-        if (dict.valueForKey("szdd") as! String == "xzdq")   {
+        if (dict.valueForKey("szdd") as! String == "乡镇地区")   {
             chooseSuoZaiDiDian.text? = "乡镇地区"
         }
-        if(dict.valueForKey("szdd") as! String == "ncdq") {
+        if(dict.valueForKey("szdd") as! String == "农村地区") {
             chooseSuoZaiDiDian.text? = "农村地区"
         }
         
         fuWuRenKou.text? = dict.valueForKey("fwrk") as! String
         kaiYeShiJian.text? = dict.valueForKey("kysj") as! String
         
-        if (dict.valueForKey("fwcq") as! String == "ziy")   {
+        if (dict.valueForKey("fwcq") as! String == "自有")   {
             chooseFangWuChangQuan.text? = "自有"
         }
-        if(dict.valueForKey("fwcq") as! String == "zuy") {
+        if(dict.valueForKey("fwcq") as! String == "租用") {
             chooseFangWuChangQuan.text? = "租用"
         }
-        if (dict.valueForKey("fwcq") as! String == "wucsy")   {
+        if (dict.valueForKey("fwcq") as! String == "无偿使用")   {
             chooseFangWuChangQuan.text? = "无偿使用"
         }
-        if(dict.valueForKey("fwcq") as! String == "qt") {
+        if(dict.valueForKey("fwcq") as! String == "其他") {
             chooseFangWuChangQuan.text? = "其他"
         }
     
