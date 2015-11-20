@@ -676,7 +676,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         }
         
         //上传图片字段
-        if uploadBtn1PicVC != nil {
+        if uploadBtn1PicVC != nil && app.ServerData != 2 {
             infoOfCxyzpbfwyycssq.gsyyzzfyj = (uploadBtn1PicVC?.picUrl)!
         }
         print(uploadBtn1PicVC?.picUrl)
@@ -686,7 +686,7 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             COMMIT_OK += 1
         }
         
-        if uploadBtn2PicVC != nil {
+        if uploadBtn2PicVC != nil && app.ServerData != 2 {
             infoOfCxyzpbfwyycssq.zmwj = (uploadBtn2PicVC?.picUrl)!
         }
         print(uploadBtn2PicVC?.picUrl)

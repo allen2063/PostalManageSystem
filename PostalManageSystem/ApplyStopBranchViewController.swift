@@ -476,27 +476,31 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                 , attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
         }
         
-    //上传图片字段
-        if uploadBtn1PicVC != nil {
-            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj = (uploadBtn1PicVC?.picUrl)!
-        }
-        print(uploadBtn1PicVC?.picUrl)
-        if infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj == "" {
-            UIAlertView(title: "请上传图片", message: "上传邮政营业场所的工商营业执照复印件", delegate: nil, cancelButtonTitle: "返回上传").show()
+        if app.ServerData != 2{
+            //上传图片字段
+            if uploadBtn1PicVC != nil {
+                infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj = (uploadBtn1PicVC?.picUrl)!
+            }
+            print(uploadBtn1PicVC?.picUrl)
+            if infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj == "" {
+                UIAlertView(title: "请上传图片", message: "上传邮政营业场所的工商营业执照复印件", delegate: nil, cancelButtonTitle: "返回上传").show()
+            } else {
+                COMMIT_OK += 1
+            }
+            
+            if uploadBtn2PicVC != nil {
+                infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj = (uploadBtn2PicVC?.picUrl)!
+            }
+            print(uploadBtn2PicVC?.picUrl)
+            if infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj == "" {
+                UIAlertView(title: "请上传图片", message: "上传申请停限办业务原因的证明文件", delegate: nil, cancelButtonTitle: "返回上传").show()
+            } else {
+                COMMIT_OK += 1
+            }
         } else {
-            COMMIT_OK += 1
+            COMMIT_OK += 2
         }
-        
-        if uploadBtn2PicVC != nil { 
-            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj = (uploadBtn2PicVC?.picUrl)!
-        }
-        print(uploadBtn2PicVC?.picUrl)
-        if infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj == "" {
-            UIAlertView(title: "请上传图片", message: "上传申请停限办业务原因的证明文件", delegate: nil, cancelButtonTitle: "返回上传").show()
-        } else {
-            COMMIT_OK += 1
-        }
-        
+    
         //拟停止或限制办理业务营业场所基本情况表
         if yingYeChangSuoMingCheng1.text != "" {
             COMMIT_OK += 1
@@ -759,6 +763,7 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                     
                     let info1 = app.applyStopDic.valueForKey("info1")
                     info1!.setValue(uploadBtn2PicVC?.picUrl, forKey: "zmwj")
+                    print("\(info1?.valueForKey("zmwj"))")
                 }
 
                 
