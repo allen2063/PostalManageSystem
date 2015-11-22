@@ -676,8 +676,16 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
         }
         
         //上传图片字段
-        if uploadBtn1PicVC != nil && app.ServerData != 2 {
+        if uploadBtn1PicVC != nil && app.ServerData == 0 {
             infoOfCxyzpbfwyycssq.gsyyzzfyj = (uploadBtn1PicVC?.picUrl)!
+        } else if uploadBtn1PicVC == nil && app.ServerData == 2 {
+            app.applyResignDic.valueForKey("info1")?.setValue(app.applyResignDic.valueForKey("info1")?.valueForKey("gsyyzzfyj"), forKey: "gsyyzzfyj")
+        } else if uploadBtn1PicVC != nil && app.ServerData == 2 {
+            if uploadBtn1PicVC?.picUrl == nil {
+                app.applyResignDic.valueForKey("info1")?.setValue(app.applyResignDic.valueForKey("info1")?.valueForKey("gsyyzzfyj"), forKey: "gsyyzzfyj")
+            } else {
+                app.applyResignDic.valueForKey("info1")?.setValue(uploadBtn1PicVC?.picUrl, forKey: "gsyyzzfyj")
+            }
         }
         print(uploadBtn1PicVC?.picUrl)
         if infoOfCxyzpbfwyycssq.gsyyzzfyj == "" {
@@ -686,9 +694,20 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
             COMMIT_OK += 1
         }
         
-        if uploadBtn2PicVC != nil && app.ServerData != 2 {
+        if uploadBtn2PicVC != nil && app.ServerData == 0 {
             infoOfCxyzpbfwyycssq.zmwj = (uploadBtn2PicVC?.picUrl)!
+        } else if uploadBtn2PicVC == nil && app.ServerData == 2 {
+            app.applyResignDic.valueForKey("info1")?.setValue(app.applyResignDic.valueForKey("info1")?.valueForKey("zmwj"), forKey: "zmwj")
+        }  else if uploadBtn2PicVC != nil && app.ServerData == 2 {
+            if uploadBtn2PicVC?.picUrl == nil {
+                app.applyResignDic.valueForKey("info1")?.setValue(app.applyResignDic.valueForKey("info1")?.valueForKey("zmwj"), forKey: "zmwj")
+            } else {
+                print("\(uploadBtn2PicVC!.description)")
+                print("\(uploadBtn2PicVC!.picUrl)")
+                app.applyResignDic.valueForKey("info1")?.setValue(uploadBtn2PicVC?.picUrl, forKey: "zmwj")
+            }
         }
+
         print(uploadBtn2PicVC?.picUrl)
         if infoOfCxyzpbfwyycssq.zmwj == "" {
             UIAlertView(title: "请上传图片", message: "上传拟撤销邮政普遍服务营业场所原因的证明文件", delegate: nil, cancelButtonTitle: "返回上传").show()
@@ -1217,23 +1236,23 @@ class ApplyResignBranchViewController2: UIViewController, UIActionSheetDelegate,
                 info1!.setValue(niCaiQuTiDaiXingCuoShi.text, forKey: "ncqdtdxcs")
                 info1!.setValue(caiQuCuoShiHouFuWuShuiPing.text, forKey: "yzpbyycsszhyzpbfwztsp")
                 
-                if uploadBtn1PicVC == nil {
-                    app.applyResignDic.valueForKey("info1")?.setValue(app.applyResignDic.valueForKey("info1")?.valueForKey("gsyyzzfyj"), forKey: "gsyyzzfyj")
-                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
-                } else {
-                    let info1 = app.applyResignDic.valueForKey("info1")
-                    info1!.setValue(uploadBtn1PicVC?.picUrl, forKey: "gsyyzzfyj")
-                }
-                
-                if uploadBtn2PicVC == nil {
-                    app.applyResignDic.valueForKey("info1")?.setValue(app.applyResignDic.valueForKey("info1")?.valueForKey("zmwj"), forKey: "zmwj")
-                
-                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
-                } else {
-                    
-                    let info1 = app.applyResignDic.valueForKey("info1")
-                    info1!.setValue(uploadBtn2PicVC?.picUrl, forKey: "zmwj")
-                }
+//                if uploadBtn1PicVC == nil {
+//                    app.applyResignDic.valueForKey("info1")?.setValue(app.applyResignDic.valueForKey("info1")?.valueForKey("gsyyzzfyj"), forKey: "gsyyzzfyj")
+//                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+//                } else {
+//                    let info1 = app.applyResignDic.valueForKey("info1")
+//                    info1!.setValue(uploadBtn1PicVC?.picUrl, forKey: "gsyyzzfyj")
+//                }
+//                
+//                if uploadBtn2PicVC == nil {
+//                    app.applyResignDic.valueForKey("info1")?.setValue(app.applyResignDic.valueForKey("info1")?.valueForKey("zmwj"), forKey: "zmwj")
+//                
+//                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+//                } else {
+//                    
+//                    let info1 = app.applyResignDic.valueForKey("info1")
+//                    info1!.setValue(uploadBtn2PicVC?.picUrl, forKey: "zmwj")
+//                }
 
                 
                 

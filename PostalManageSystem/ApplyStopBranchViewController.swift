@@ -477,11 +477,16 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
         }
         
             //上传图片字段
-        if uploadBtn1PicVC != nil && app.ServerData != 2 {
+        if uploadBtn1PicVC != nil && app.ServerData == 0 {
             infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj = (uploadBtn1PicVC?.picUrl)!
         } else if uploadBtn1PicVC == nil && app.ServerData == 2 {
-            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj = app.applyStopDic.valueForKey("info1")?.valueForKey("gsyyzzfyj") as! String
-            print("\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj)")
+            app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("gsyyzzfyj"), forKey: "gsyyzzfyj")
+        } else if uploadBtn1PicVC != nil && app.ServerData == 2 {
+            if uploadBtn1PicVC?.picUrl == nil {
+                app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("gsyyzzfyj"), forKey: "gsyyzzfyj")
+            } else {
+                app.applyStopDic.valueForKey("info1")?.setValue(uploadBtn1PicVC?.picUrl, forKey: "gsyyzzfyj")
+            }
         }
         print(uploadBtn1PicVC?.picUrl)
         if infoOfYzyycstbhybyzpbfwywhtsfwywdsq.gsyyzzfyj == "" {
@@ -490,11 +495,16 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
             COMMIT_OK += 1
         }
         
-        if uploadBtn2PicVC != nil && app.ServerData != 2 {
+        if uploadBtn2PicVC != nil && app.ServerData == 0 {
             infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj = (uploadBtn2PicVC?.picUrl)!
         } else if uploadBtn2PicVC == nil && app.ServerData == 2 {
-            infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj = app.applyStopDic.valueForKey("info1")?.valueForKey("zmwj") as! String
-            print("\(infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj)")
+            app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("zmwj"), forKey: "zmwj")
+        } else if uploadBtn2PicVC != nil && app.ServerData == 2 {
+            if uploadBtn2PicVC?.picUrl == nil {
+                app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("zmwj"), forKey: "zmwj")
+            } else {
+                app.applyStopDic.valueForKey("info1")?.setValue(uploadBtn2PicVC?.picUrl, forKey: "zmwj")
+            }
         }
             print(uploadBtn2PicVC?.picUrl)
             if infoOfYzyycstbhybyzpbfwywhtsfwywdsq.zmwj == "" {
@@ -736,21 +746,21 @@ class ApplyStopBranchViewController: UIViewController, UIActionSheetDelegate, UI
                 info1!.setValue(niCaiQuBuJiuCuoShi.text, forKey: "cqdbjcs")
                 info1!.setValue(zongTiFuWuShuiPing.text, forKey: "yzpbfwztsp")
                 
-                if uploadBtn1PicVC == nil {
-                    app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("gsyyzzfyj"), forKey: "gsyyzzfyj")
-                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
-                } else {
-                    info1!.setValue(uploadBtn1PicVC?.picUrl, forKey: "gsyyzzfyj")
-                }
-                
-                if uploadBtn2PicVC == nil {
-                    app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("zmwj"), forKey: "zmwj")
-                    
-                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
-                } else {
-                    info1!.setValue(uploadBtn2PicVC?.picUrl, forKey: "zmwj")
-                    print("\(info1?.valueForKey("zmwj"))")
-                }
+//                if uploadBtn1PicVC == nil {
+//                    app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("gsyyzzfyj"), forKey: "gsyyzzfyj")
+//                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+//                } else {
+//                    info1!.setValue(uploadBtn1PicVC?.picUrl, forKey: "gsyyzzfyj")
+//                }
+//                
+//                if uploadBtn2PicVC == nil {
+//                    app.applyStopDic.valueForKey("info1")?.setValue(app.applyStopDic.valueForKey("info1")?.valueForKey("zmwj"), forKey: "zmwj")
+//                    
+//                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+//                } else {
+//                    info1!.setValue(uploadBtn2PicVC?.picUrl, forKey: "zmwj")
+//                    print("\(info1?.valueForKey("zmwj"))")
+//                }
 
                
                 let info2 = app.applyStopDic.valueForKey("info2")
