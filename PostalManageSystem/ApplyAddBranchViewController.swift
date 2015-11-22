@@ -1084,12 +1084,18 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
         }
         
         //上传图片字段
-        if uploadBtn1PicVC != nil && app.ServerData != 2 {
+        if uploadBtn1PicVC != nil && app.ServerData == 0 {
             infoOfYzqyszyzyycsdjb.yyrccy = (uploadBtn1PicVC?.picUrl)!
         } else if uploadBtn1PicVC == nil && app.ServerData == 2 {
-            infoOfYzqyszyzyycsdjb.yyrccy = app.applyAddDic.valueForKey("yyrccy") as! String
-        } else if uploadBtn1PicVC != nil && app.ServerData == 2 {
-            infoOfYzqyszyzyycsdjb.yyrccy = (uploadBtn1PicVC?.picUrl)!
+            app.applyAddDic.setValue(app.applyAddDic.valueForKey("yyrccy"), forKey: "yyrccy")
+        }  else if uploadBtn1PicVC != nil && app.ServerData == 2 {
+            
+            if uploadBtn1PicVC?.picUrl == nil {
+                app.applyAddDic.setValue(app.applyAddDic.valueForKey("yyrccy"), forKey: "yyrccy")
+            } else {
+                app.applyAddDic.setValue(uploadBtn1PicVC?.picUrl, forKey: "yyrccy")
+            }
+            
         }
         print(uploadBtn1PicVC?.picUrl)
         if infoOfYzqyszyzyycsdjb.yyrccy == "" {
@@ -1098,12 +1104,19 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
             COMMIT_OK += 1
         }
         
-        if uploadBtn2PicVC != nil && app.ServerData != 2 {
+        
+        if uploadBtn2PicVC != nil && app.ServerData == 0 {
             infoOfYzqyszyzyycsdjb.tdrccy = (uploadBtn2PicVC?.picUrl)!
         } else if uploadBtn2PicVC == nil && app.ServerData == 2 {
-            infoOfYzqyszyzyycsdjb.tdrccy = app.applyAddDic.valueForKey("tdrccy") as! String
+            app.applyAddDic.setValue(app.applyAddDic.valueForKey("tdrccy"), forKey: "tdrccy")
         }  else if uploadBtn2PicVC != nil && app.ServerData == 2 {
-            infoOfYzqyszyzyycsdjb.tdrccy = (uploadBtn2PicVC?.picUrl)!
+            if uploadBtn2PicVC?.picUrl == nil {
+                app.applyAddDic.setValue(app.applyAddDic.valueForKey("tdrccy"), forKey: "tdrccy")
+            } else {
+                print("\(uploadBtn2PicVC!.description)")
+                print("\(uploadBtn2PicVC!.picUrl)")
+                app.applyAddDic.setValue(uploadBtn2PicVC?.picUrl, forKey: "tdrccy")
+            }
         }
         
         print(uploadBtn2PicVC?.picUrl)
@@ -1222,19 +1235,19 @@ class ApplyAddBranchViewController: UIViewController, UIActionSheetDelegate, UIT
                 app.applyAddDic.setValue(fuWuRenKou.text, forKey: "fwrk")
                 app.applyAddDic.setValue(stringForEdit, forKey: "ywfw")
                 
-                if uploadBtn1PicVC == nil {
-                    app.applyAddDic.setValue(app.applyAddDic.valueForKey("yyrccy"), forKey: "yyrccy")
-                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
-                } else {
-                    app.applyAddDic.setValue(uploadBtn1PicVC?.picUrl, forKey: "yyrccy")
-                }
-                
-                if uploadBtn2PicVC == nil {
-                    app.applyAddDic.setValue(app.applyAddDic.valueForKey("tdrccy"), forKey: "tdrccy")
-                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
-                } else {
-                    app.applyAddDic.setValue(uploadBtn2PicVC?.picUrl, forKey: "tdrccy")
-                }
+//                if uploadBtn1PicVC == nil {
+//                    app.applyAddDic.setValue(app.applyAddDic.valueForKey("yyrccy"), forKey: "yyrccy")
+//                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+//                } else {
+//                    app.applyAddDic.setValue(uploadBtn1PicVC?.picUrl, forKey: "yyrccy")
+//                }
+//                
+//                if uploadBtn2PicVC == nil {
+//                    app.applyAddDic.setValue(app.applyAddDic.valueForKey("tdrccy"), forKey: "tdrccy")
+//                    //                print("\(app.applyAddDic.valueForKey("yyrccy"))")
+//                } else {
+//                    app.applyAddDic.setValue(uploadBtn2PicVC?.picUrl, forKey: "tdrccy")
+//                }
                 
                 
                 
