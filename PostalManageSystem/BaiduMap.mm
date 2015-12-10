@@ -525,11 +525,11 @@
                 CGFloat jd = [jdString floatValue];
                 CGFloat wd = [wdString floatValue];
                 
-                CLLocationCoordinate2D test = CLLocationCoordinate2DMake(wd, jd);
+                CLLocationCoordinate2D trans = CLLocationCoordinate2DMake(wd, jd);
                 //转换 google地图、soso地图、aliyun地图、mapabc地图和amap地图所用坐标至百度坐标
-                NSDictionary* testdic = BMKConvertBaiduCoorFrom(test,BMK_COORDTYPE_COMMON);
-                //解密坐标
-                CLLocationCoordinate2D trans = BMKCoorDictionaryDecode(testdic);
+//                NSDictionary* testdic = BMKConvertBaiduCoorFrom(test,BMK_COORDTYPE_GPS);
+//                //解密坐标
+//                CLLocationCoordinate2D trans = BMKCoorDictionaryDecode(testdic);
                 jdString = [NSString stringWithFormat:@"%.6f",trans.longitude ] ;
                 wdString = [NSString stringWithFormat:@"%.6f",trans.latitude ];
                 NSLog(@"转换坐标：jd%@,wd%@",jdString,wdString);

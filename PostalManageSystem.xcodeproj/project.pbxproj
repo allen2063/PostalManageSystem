@@ -372,6 +372,7 @@
 				56CC7CF81BA6B537003BF6BE /* CustomTableViewCell.h */,
 				56CC7CF91BA6B537003BF6BE /* CustomTableViewCell.m */,
 				56CE54E61BA94ECC0065518A /* PostalManageSystem-Bridging-Header.h */,
+				DC35544F1BA9AE7B00F7F3CB /* Images.xcassets */,
 			);
 			name = BanShiDaTing;
 			sourceTree = "<group>";
@@ -547,7 +548,6 @@
 		56C59E2B1B83162100D96F08 /* BianMinFuWu */ = {
 			isa = PBXGroup;
 			children = (
-				DC35544F1BA9AE7B00F7F3CB /* Images.xcassets */,
 				56C59E2C1B83164C00D96F08 /* MYDDCBGViewController.h */,
 				56C59E2D1B83164C00D96F08 /* MYDDCBGViewController.m */,
 				56C59E321B831DFC00D96F08 /* YZBMCXViewController.h */,
@@ -689,7 +689,6 @@
 				TargetAttributes = {
 					56C59DCA1B82DD5F00D96F08 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = QRR5JC63ES;
 					};
 					56C59DE31B82DD5F00D96F08 = {
 						CreatedOnToolsVersion = 6.4;
@@ -960,7 +959,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -972,9 +971,10 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PostalManageSystem/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}\"/usr/include/libxml2";
 				INFOPLIST_FILE = PostalManageSystem/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "GuiZhouUniversity.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.GuiYangShiYouZhengGuanLiJu.PostOffice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PostalManageSystem/PostalManageSystem-Bridging-Header.h";
@@ -987,7 +987,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -999,9 +999,10 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PostalManageSystem/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				INFOPLIST_FILE = PostalManageSystem/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "GuiZhouUniversity.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.GuiYangShiYouZhengGuanLiJu.PostOffice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PostalManageSystem/PostalManageSystem-Bridging-Header.h";
