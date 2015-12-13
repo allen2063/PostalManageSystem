@@ -154,6 +154,19 @@
 
 //
 - (void)getXmlFilebyJson:(NSNotification *)note{
+    //加载画面  如若已经加载则跳过
+    AppDelegate * appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSArray *subViewsArray = appDelegate.window.subviews;
+    BOOL setOn = NO;
+    for (UIView * aView in subViewsArray ) {
+        if (aView.tag == 101 ||aView.tag == 102) {
+            setOn = YES;
+        }
+    }
+    if (!setOn) {
+        [GMDCircleLoader setOnView:self.window withTitle:@"加载中..." animated:YES];
+    }
+
     if (self.network.requestQueueThreadFinished) {
         [GMDCircleLoader hideFromView:self.window animated:YES];
     }
