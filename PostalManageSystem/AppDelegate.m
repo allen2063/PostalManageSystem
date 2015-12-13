@@ -33,7 +33,7 @@
     [[UINavigationBar appearance] setBarTintColor:UIColorFromRGBValue(0xea0d0d)];//邮政的红色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];    //导航栏按钮颜色
-    self.titleForCurrentPage = @"邮政普遍服务信息管理系统";
+    self.titleForCurrentPage = @"贵阳市邮政管理局邮政普遍服务系统",//@"邮政普遍服务信息管理系统";
     self.login = NO;
     self.network = [[ConnectionAPI alloc]init];
     self.pager = [[Pager alloc]init];

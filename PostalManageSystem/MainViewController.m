@@ -43,13 +43,13 @@
     //设置导航栏label
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
     self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     self.titleLabel.textColor = [UIColor whiteColor];   //UIColorFromRGBValue(0xfbcf02);
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.text = app.titleForCurrentPage;
     self.navigationItem.titleView = self.titleLabel;
     
-    if ([app.titleForCurrentPage isEqualToString:@"邮政普遍服务信息管理系统"]) {
+    if ([app.titleForCurrentPage isEqualToString:@"贵阳市邮政管理局邮政普遍服务系统"]) {
         [self initForMain];
     }else if ([app.titleForCurrentPage isEqualToString:@"便民服务"]){
         [self initForBMFW];
