@@ -68,10 +68,12 @@
 //    [self.network getListWithToken:@"jiou" AndType:@"qdgg" AndListPager:pager];
     NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:@"qdgg",@"type",pager,@"pager",@"1",@"method", nil];
     [self.network addObjectForRequestQueueWithDci:dic];
+    
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(initQDGG) name:@"initQDGG" object:nil];
+
     [self initQDGG];
-    _backgroundView.alpha = 0.8;
     
-    
+//    _backgroundView.alpha = 0.8;
     
     //百度地图
     [self initBDTT];
@@ -242,6 +244,7 @@
     }
 }
 
+//启动公告UI初始化
 - (void)initQDGG{
     _blackView = [[UIView alloc]initWithFrame:self.window.bounds];
     _blackView.alpha = 0.0;
@@ -271,6 +274,7 @@
     webView.tag = 3;
     webView.scrollView.bounces = NO;
     webView.delegate = self;
+//    webView.scrollView.scrollEnabled = NO;
     [_backgroundView addSubview:webView];
 }
 
@@ -342,6 +346,8 @@
             _blackView.alpha = 0.5;
         }];
     }
+    //无启动公告
+    else [GMDCircleLoader hideFromView:self.window animated:YES];
 }
 
 - (void)cancelView{

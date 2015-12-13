@@ -31,7 +31,7 @@
 
 - (id)init{
     self = [super init];
-    urlToServer = @"http://222.85.149.6/GuiYangPost/";
+    urlToServer = @"http://chisifang.imwork.net:11246/GuiYangPost/";
     //@"chisifang.imwork.net:11246/GuiYangPost/";    communicatingInterface = @"off";
     //rurlToServer = @"http://chisifang.imwork.net:11246/GuiYangPost/";
     alerts = [[UIAlertView alloc]init];
@@ -532,16 +532,25 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"doLogin" object:self userInfo:resultDic];
     }
     //启动公告list
-    else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsByType"] && [self.getXMLResults rangeOfString:@"启动公告"].length !=0 && [self.getXMLResults rangeOfString:@"listPager"].length !=0){
-        NSString * ID = [[[resultDic objectForKey:@"data"]objectAtIndex:0]objectForKey:@"id"];
-        ID = [NSString stringWithFormat:@"%@",ID];
-//        [self getDetailViewWithToken:@"jiou" AndID:ID];
-        NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:ID,@"ID",@"2",@"method", nil];
-        [self addObjectForRequestQueueWithDci:dic];
+    else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsByType"] && [self.getXMLResults rangeOfString:@"qdgg"].length !=0 && [self.getXMLResults rangeOfString:@"listPager"].length !=0){
+        
+        //判断有无启动公告
+        NSArray * detail = [resultDic objectForKey:@"data"];
+        if (detail.count == 0) {
+            NSDictionary * resultDic = [[NSDictionary alloc]initWithObjectsAndKeys:@"0",@"result", nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"qdgg" object:self userInfo:resultDic];
+        }
+        else{
+            NSString * ID = [[[resultDic objectForKey:@"data"]objectAtIndex:0]objectForKey:@"id"];
+            ID = [NSString stringWithFormat:@"%@",ID];
+            //        [self getDetailViewWithToken:@"jiou" AndID:ID];
+            NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:ID,@"ID",@"2",@"method", nil];
+            [self addObjectForRequestQueueWithDci:dic];
+        }
         //执行完毕  调用队列后续请求
         [self doRequestNow];
     }
-    //启动公告detail
+    //启动公告detail 有内容
     else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsById"] && [self.getXMLResults rangeOfString:@"启动公告"].length !=0){
         //执行完毕  调用队列后续请求
         [self doRequestNow];
@@ -549,6 +558,18 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"qdgg" object:self userInfo:resultDic];
         
     }
+//    //启动公告detail 无内容
+//    else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsByType"] && [self.getXMLResults rangeOfString:@"qdgg"].length !=0){
+//        //执行完毕  调用队列后续请求
+//        [self doRequestNow];
+//        //判断有无启动公告
+//        NSArray * detail = [resultDic objectForKey:@"data"];
+//        if (detail.count == 0) {
+//            NSDictionary * resultDic = [[NSDictionary alloc]initWithObjectsAndKeys:@"0",@"result", nil];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"qdgg" object:self userInfo:resultDic];
+//        }
+//        else [[NSNotificationCenter defaultCenter] postNotificationName:@"qdgg" object:self userInfo:resultDic];
+//    }
     //禁限寄物品名录list
     else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsByType"] && [self.getXMLResults rangeOfString:@"禁限寄物品名录"].length !=0 && [self.getXMLResults rangeOfString:@"listPager"].length !=0){
         NSString * ID = [[[resultDic objectForKey:@"data"]objectAtIndex:0]objectForKey:@"id"];
