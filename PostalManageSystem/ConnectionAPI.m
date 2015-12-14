@@ -483,7 +483,6 @@
     }else if([[error localizedDescription] rangeOfString:@"The network connection was lost"].length != 0){
         NSDictionary * dic = [[NSDictionary alloc]initWithObjectsAndKeys:[error localizedDescription],@"timeOut", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"lost" object:self userInfo:dic];
-
     }
 }
 
@@ -558,22 +557,30 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"qdgg" object:self userInfo:resultDic];
         
     }
-//    //启动公告detail 无内容
-//    else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsByType"] && [self.getXMLResults rangeOfString:@"qdgg"].length !=0){
-//        //执行完毕  调用队列后续请求
-//        [self doRequestNow];
-//        //判断有无启动公告
-//        NSArray * detail = [resultDic objectForKey:@"data"];
-//        if (detail.count == 0) {
-//            NSDictionary * resultDic = [[NSDictionary alloc]initWithObjectsAndKeys:@"0",@"result", nil];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"qdgg" object:self userInfo:resultDic];
-//        }
-//        else [[NSNotificationCenter defaultCenter] postNotificationName:@"qdgg" object:self userInfo:resultDic];
+//    //禁限寄物品名录list
+//    else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsByType"] && [self.getXMLResults rangeOfString:@"禁限寄物品名录"].length !=0 && [self.getXMLResults rangeOfString:@"listPager"].length !=0){
+//        NSString * ID = [[[resultDic objectForKey:@"data"]objectAtIndex:0]objectForKey:@"id"];
+//        [self getDetailViewWithToken:@"jiou" AndID:ID];
 //    }
     //禁限寄物品名录list
-    else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsByType"] && [self.getXMLResults rangeOfString:@"禁限寄物品名录"].length !=0 && [self.getXMLResults rangeOfString:@"listPager"].length !=0){
+    else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsByType"]
+             && ([self.getXMLResults rangeOfString:@"\"type\":\"jxjwp\""].length !=0 ||[self.getXMLResults rangeOfString:@"禁限寄物品名录"].length !=0)
+             && [self.getXMLResults rangeOfString:@"listPager"].length !=0){
+        NSArray * data = [resultDic objectForKey:@"data"];
+        if (data.count == 0) {
+            //去除加载画面
+            AppDelegate * appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            NSArray *subViewsArray = appDelegate.window.subviews;
+            for (UIView * aView in subViewsArray ) {
+                if (aView.tag == 101 ||aView.tag == 102) {
+                    [aView removeFromSuperview];
+                }
+            }
+        }
+        else{
         NSString * ID = [[[resultDic objectForKey:@"data"]objectAtIndex:0]objectForKey:@"id"];
         [self getDetailViewWithToken:@"jiou" AndID:ID];
+        }
     }
     //禁限寄物品名录detail
     else if ([communicatingInterface isEqualToString:@"baseNewsApi/getNewsById"] && [self.getXMLResults rangeOfString:@"禁限寄物品名录"].length !=0){
