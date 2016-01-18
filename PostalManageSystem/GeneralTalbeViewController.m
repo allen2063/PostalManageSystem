@@ -120,7 +120,9 @@
     NSString * serverMD5 = [ConnectionAPI md5:[NSString stringWithFormat:@"%@",noteDic]];
     NSString * cacheMD5 = [ConnectionAPI md5:[NSString stringWithFormat:@"%@",[self.cachaDic objectForKey:[NSString stringWithFormat:@"%@%@",interface,app.titleForCurrentPage]]]];
     if(shouldUpdateCacheForTitle && ![serverMD5 isEqualToString:cacheMD5]){
+        //更新cacha
         [self.cachaDic setObject:noteDic forKey:[NSString stringWithFormat:@"%@%@",interface,app.titleForCurrentPage]];
+        //存储更新后的cacha
         [NSThread detachNewThreadSelector:@selector(writeFileDic:) toTarget:self withObject:self.cachaDic];
         shouldUpdateCacheForTitle = NO;
         NSLog(@"Title缓存已更新");
@@ -128,7 +130,8 @@
     
     int threadCount = 0;
     threadBackCount = 0;
-    for (id obj in self.tempDataList) {     //计算出有多少条新闻有图片
+    //计算出有多少条新闻有图片
+    for (id obj in self.tempDataList) {
         if ([obj isKindOfClass:[NSDictionary class]]
             && [[(NSDictionary * )obj objectForKey:@"imageUrl"]isKindOfClass:[NSString class]]
             && [(NSString *)[(NSDictionary * )obj objectForKey:@"imageUrl"] length]!=0) {
@@ -137,7 +140,8 @@
     }
     
     if (threadCount != 0) {
-        for (id obj in self.tempDataList) {     //加载新闻图片
+    //加载新闻图片
+        for (id obj in self.tempDataList) {
             if ([obj isKindOfClass:[NSDictionary class]]
                 && [[(NSDictionary * )obj objectForKey:@"imageUrl"]isKindOfClass:[NSString class]]
                 && [(NSString *)[(NSDictionary * )obj objectForKey:@"imageUrl"] length]!=0) {
@@ -151,10 +155,18 @@
     }
     //无图
     else{
-        [self addDataWithDirection:directionForNow];
+        if(self.refresh.refreshingDirection==DJRefreshingDirectionTop){
+            [self.dataList removeAllObjects];
+        }
+        for (id dic in self.tempDataList) {
+            [self.dataList addObject:dic];
+        }
+        //主线程中更新UI  否则iOS中可能崩溃
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 更UI
+            [self addDataWithDirection:directionForNow];
+        });
     }
-    
-    
     isLoading = NO;
 }
 
@@ -188,7 +200,7 @@
         }
         //主线程中更新UI  否则iOS中可能崩溃
         dispatch_async(dispatch_get_main_queue(), ^{
-            // 更UI
+            // 更UI  
             [self addDataWithDirection:directionForNow];
         });
     }
@@ -227,7 +239,11 @@
             }else{
                 UIAlertView * alerts = [[UIAlertView alloc]initWithTitle:nil message:@"所有信息已加载完毕！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alerts show];
-                [self addDataWithDirection:directionForNow];
+                //主线程中更新UI  否则iOS中可能崩溃
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // 更UI
+                    [self addDataWithDirection:directionForNow];
+                });
             }
         }else if(self.refresh.refreshingDirection==DJRefreshingDirectionTop){
             app.pager = [app.pager init];

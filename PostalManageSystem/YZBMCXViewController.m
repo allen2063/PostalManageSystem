@@ -203,7 +203,7 @@
     informationLabel.center = CGPointMake(self.view.center.x, UISCREENHEIGHT - NAVIGATIONHEIGHT*2.5);
     
     if (segmentControl.selectedSegmentIndex == 1) {
-        instructionLabel.text = @"请输入邮件编码：";
+        instructionLabel.text = @"请输入邮政编码：";
 //        //判断table位置   如若在屏幕上则取消
 //        if (_tableView.frame.origin.y < UISCREENHEIGHT) {
 //            [self cancelLocatePicker];
@@ -211,7 +211,7 @@
         stringToInt = NO;
         self.districtLabel.hidden = YES;
         self.zipCodeText.hidden = NO;
-        self.zipCodeText.placeholder= @"邮件编码";
+        self.zipCodeText.placeholder= @"邮政编码";
         informationLabel.text = @"";
     }else{
         stringToInt = YES;

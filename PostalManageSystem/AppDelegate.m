@@ -73,7 +73,7 @@
 
     [self initQDGG];
     
-//    _backgroundView.alpha = 0.8;
+    _backgroundView.alpha = 0.8;
     
     //百度地图
     [self initBDTT];
